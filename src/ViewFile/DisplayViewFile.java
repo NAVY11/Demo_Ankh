@@ -24,7 +24,7 @@ import javax.swing.JScrollPane;
 /**
  * The Class SaveFileAmbg.
  */
-public class SaveFileAmbg implements ActionListener {
+public class DisplayViewFile implements ActionListener {
    
    /** The my frame. */
    JFrame myFrame = null;

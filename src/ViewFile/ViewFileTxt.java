@@ -18,7 +18,7 @@ import ankhmorpork.GameObjects.Player;
 /**
  * The Class ViewFileAmbg.
  */
-public class ViewFileAmbg {
+public class ViewFileTxt {
 
 	/*public static void main(String[] args) {
 

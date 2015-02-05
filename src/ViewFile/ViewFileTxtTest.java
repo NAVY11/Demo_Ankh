@@ -4,12 +4,12 @@ import static org.junit.Assert.*;
 
 import org.junit.Test;
 
-public class ViewFileAmbgTest {
+public class ViewFileTxtTest {
 
 	@Test
 	public void test() {
 		// 4
-		ViewFileAmbg fileAmbg = new ViewFileAmbg();
+		ViewFileTxt fileAmbg = new ViewFileTxt();
 		String outputPadding = fileAmbg.paddingToMakeSixteen("NareshKumar");
 		assertEquals("NareshKumar     ", outputPadding);
 	}
