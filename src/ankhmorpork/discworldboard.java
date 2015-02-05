@@ -27,8 +27,8 @@ import org.json.JSONException;
 import org.json.JSONObject;
 import org.json.simple.parser.ParseException;
 
-import ViewFile.SaveFileAmbg;
-import ViewFile.ViewFileAmbg;
+import ViewFile.DisplayViewFile;
+import ViewFile.ViewFileTxt;
 import ankhmorpork.Game.Game;
 import ankhmorpork.GameLoad.GameLoad;
 import ankhmorpork.GameLoad.GameSave;
@@ -254,8 +254,8 @@ public class discworldboard extends Component {
 	 * @param lstPlayers the lst players
 	 */
 	public void ViewGameState(Game AnkhMorpork){
-		String viewStateData = ViewFileAmbg.ViewState(AnkhMorpork);
-		SaveFileAmbg abc = new SaveFileAmbg();
+		String viewStateData = ViewFileTxt.ViewState(AnkhMorpork);
+		DisplayViewFile abc = new DisplayViewFile();
 		abc.Viewer(viewStateData);
 	}
 	

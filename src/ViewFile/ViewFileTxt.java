@@ -171,7 +171,7 @@ public class ViewFileTxt {
 			System.out.println(player.getPersonalityCardListCommaSeparated());
 			System.out.println("personality " + PresentationUtility.getPersonalityCardNameById(Integer.parseInt(player.getPersonalityCardListCommaSeparated())));
 
-			playerGeneralInfoStr += "\nPlayer "+(players.size() -i)+", "+ player.getPlayer_color()+", "+ PresentationUtility.getPersonalityCardNameById(Integer.parseInt(player.getPersonalityCardListCommaSeparated()));
+			playerGeneralInfoStr += "\nPlayer "+(players.size() -i)+", "+player.getPlayer_name()+", "+ player.getPlayer_color()+", "+ PresentationUtility.getPersonalityCardNameById(Integer.parseInt(player.getPersonalityCardListCommaSeparated()));
 			i -= 1;
 		}
 		return playerGeneralInfoStr;
@@ -252,7 +252,7 @@ public class ViewFileTxt {
 		for(Player player: players){
 			playerDetails += "\nPlayer "+(players.size() -i)+"'s current Inventory:";
 			playerDetails += "\n\n\t- "+player.lstMinions.size()+" minions, "+player.lstBuildings.size()+" buildings, "+player.getPlayerAmount()+" dollars ";
-			playerDetails += "\n\n\t-City Area Cards: ";
+			playerDetails += "\n\n\t-City Area Cards: \n\n\t\t" +PresentationUtility.getCityAreaCardNameById(Integer.parseInt(player.getCityAreaCardsListCommaSeparated()));
 			playerDetails += "\n\t\t"; //TODO: Have to print City Area Cards, which player has how much
 			playerDetails += "\n\n\t-Player Cards: ";
 			playerDetails += "\n\t\tGreen Cards "+ player.getGreenCardListCommaSeparated(); 

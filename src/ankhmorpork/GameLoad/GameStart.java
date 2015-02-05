@@ -53,7 +53,7 @@ public class GameStart {
 		ArrayList<Integer> initializingCityAreaCardsArr = PresentationUtility.initializeAArrayWithValue(12);
 		ArrayList<Integer> initializingPersonalityArr = PresentationUtility.initializeAArrayWithValue(7);
 		
-		String getFiveDifferentBrownNumbers = "", getFiveDifferentGreenNumbers = "";
+		String getFiveDifferentBrownNumbers = "", getFiveDifferentGreenNumbers = "", getRandomCityAreaCardsForPlayers = "";
 		Integer getOneDifferentPersonalityCard;
 		
 			//New Game
@@ -108,9 +108,11 @@ public class GameStart {
 			}
 			getFiveDifferentBrownNumbers = "";
 			getFiveDifferentGreenNumbers = "";
+			getRandomCityAreaCardsForPlayers = "";
 			
 			int countBrownCard = 0;
 			int countGreenCard = 0;
+			int countCityAreaCard = 0;
 			while(true){
 				Integer randomIndexNumber = PresentationUtility.returnRandomNumber(1, initializingBrownCardsArr.size()-1);				
 				Integer randomNumberAtIndexNumber = initializingBrownCardsArr.get(randomIndexNumber);
@@ -149,6 +151,27 @@ public class GameStart {
 						objPlayer.setGreenCardListCommaSeparated(getFiveDifferentGreenNumbers);
 						//Create Green Card Object and assign cards
 						System.out.print("PlayerId : "+ objPlayer.getPlayer_id() + " - Green Card: " + getFiveDifferentGreenNumbers + "\n");
+						break;
+					}
+				}
+			}
+			
+			while(true){
+				Integer randomIndexNumberForCityAreaCard = PresentationUtility.returnRandomNumber(1, initializingCityAreaCardsArr.size()-1);
+				Integer randomNumberAtIndexNumberForCityAreaCard = initializingCityAreaCardsArr.get(randomIndexNumberForCityAreaCard);
+				
+				if(randomNumberAtIndexNumberForCityAreaCard > 0){
+					getRandomCityAreaCardsForPlayers = randomNumberAtIndexNumberForCityAreaCard+",";
+					countCityAreaCard += 1;
+					initializingCityAreaCardsArr.remove(randomNumberAtIndexNumberForCityAreaCard);
+				
+					if(countCityAreaCard == 1){
+						if (getRandomCityAreaCardsForPlayers.endsWith(",")) {
+							getRandomCityAreaCardsForPlayers = getRandomCityAreaCardsForPlayers.substring(0, getRandomCityAreaCardsForPlayers.length() - 1);
+						}
+						objPlayer.setCityAreaCardsListCommaSeparated(getRandomCityAreaCardsForPlayers);
+						//Create Green Card Object and assign cards
+						System.out.print("PlayerId : "+ objPlayer.getPlayer_id() + " - City Area Card: " + getRandomCityAreaCardsForPlayers + "\n");
 						break;
 					}
 				}

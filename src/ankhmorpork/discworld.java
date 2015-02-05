@@ -31,7 +31,7 @@ import org.json.JSONObject;
 import org.json.simple.parser.ParseException;
 
 import PresentationUtilityCommon.PresentationUtility;
-import ViewFile.SaveFileAmbg;
+import ViewFile.DisplayViewFile;
 import ankhmorpork.Game.Game;
 import ankhmorpork.GameObjects.Player;
 
@@ -279,7 +279,7 @@ public class discworld extends Applet implements ActionListener, WindowListener 
 	 							    } 
  								}else{
  									JSONObject infoBeforeSaving = discworldboard.LoadingBeforeSavingInfo(AnkhMorpork);
- 									SaveFileAmbg abc = new SaveFileAmbg();
+ 									DisplayViewFile abc = new DisplayViewFile();
  									abc.ViewerBeforeSaving(infoBeforeSaving.toString());
  								}
  							} catch (IOException e1) {
