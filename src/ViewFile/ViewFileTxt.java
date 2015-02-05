@@ -28,7 +28,7 @@ public class ViewFileTxt {
 	    int retrival = chooser.showSaveDialog(null);
 	    if (retrival == JFileChooser.APPROVE_OPTION) {
 	        try {
-	            FileWriter fw = new FileWriter(chooser.getSelectedFile()+".ambg");
+	            FileWriter fw = new FileWriter(chooser.getSelectedFile()+".txt");
 	            fw.write(sb.toString());
 	            fw.close();
 	        } catch (Exception ex) {
@@ -253,7 +253,7 @@ public class ViewFileTxt {
 			playerDetails += "\nPlayer "+(players.size() -i)+"'s current Inventory:";
 			playerDetails += "\n\n\t- "+player.lstMinions.size()+" minions, "+player.lstBuildings.size()+" buildings, "+player.getPlayerAmount()+" dollars ";
 			playerDetails += "\n\n\t-City Area Cards: \n\n\t\t" +PresentationUtility.getCityAreaCardNameById(Integer.parseInt(player.getCityAreaCardsListCommaSeparated()));
-			playerDetails += "\n\t\t"; //TODO: Have to print City Area Cards, which player has how much
+			playerDetails += "\n\t\t";
 			playerDetails += "\n\n\t-Player Cards: ";
 			playerDetails += "\n\t\tGreen Cards "+ player.getGreenCardListCommaSeparated(); 
 			playerDetails += "\n\t\tBrown Cards "+ player.getBrownCardListCommaSeparated();

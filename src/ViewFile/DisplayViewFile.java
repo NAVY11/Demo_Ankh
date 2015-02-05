@@ -143,7 +143,7 @@ public class DisplayViewFile implements ActionListener {
     	    int retrival = chooser.showSaveDialog(null);
     	    if (retrival == JFileChooser.APPROVE_OPTION) {
     	        try {
-    	            FileWriter fw = new FileWriter(chooser.getSelectedFile()+".ambg");
+    	            FileWriter fw = new FileWriter(chooser.getSelectedFile()+".txt");
     	            fw.write(beforeSavingPane.getText().toString());
     	            fw.close();
     	        } catch (Exception ex) {

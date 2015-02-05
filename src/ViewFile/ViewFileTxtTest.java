@@ -9,8 +9,8 @@ public class ViewFileTxtTest {
 	@Test
 	public void test() {
 		// 4
-		ViewFileTxt fileAmbg = new ViewFileTxt();
-		String outputPadding = fileAmbg.paddingToMakeSixteen("NareshKumar");
+		ViewFileTxt fileTxt = new ViewFileTxt();
+		String outputPadding = fileTxt.paddingToMakeSixteen("NareshKumar");
 		assertEquals("NareshKumar     ", outputPadding);
 	}
 }
