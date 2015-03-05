@@ -95,10 +95,11 @@ public class discworld extends Applet implements ActionListener, WindowListener 
 	 *
 	 * @param argv the arguments
 	 */
-	public static void main(String argv[]) 
-    {
-    	new discworld();
-    }
+//	public static void main(String argv[]) 
+//    {
+//    	new discworld();
+
+//    }
 
 
 	public void init() {
