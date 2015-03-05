@@ -40,28 +40,19 @@ import ankhmorpork.GameLoad.GameStart;
  */
 public class discworldboard extends Component {
 	
-	/** The Width. */
 	private int Width  = 1200;
 	
-	/** The Height. */
 	private int Height = 900;
 	
-	/** The discworld. */
 	private discworld discworld;
 	
-	/** The Constant quit. */
 	static final Frame quit = new Frame("Are you sure?");
 	
-	/** The rolled. */
 	public boolean rolled = false;
 	
-		/** The Dice1. */
 		private int Dice1 = 0;
 
 
-		/**
-		 * Instantiates a new discworldboard.
-		 */
 		public discworldboard( ) {
 
 
@@ -88,7 +79,6 @@ public class discworldboard extends Component {
 
 
 
-			//g.setColor( new Color( (80), (180), (210) ) ); //blue color
 			g.setColor( new Color( (100), (50), (50) ) );
 			g.fill3DRect( 460, 10, 200, 200, true );				//1
 			g.setColor( new Color( (80), (80), (80) ) );
@@ -130,13 +120,15 @@ public class discworldboard extends Component {
 		
 		g.drawString("2",215, 135);
 		g.drawString("Unreal Estate",245, 165);
+		g.drawString("Unreal Estate",245, 165);
+		
 
 		g.drawString("3",515, 235);
 		g.drawString("Dragon's",540, 255);
-		g.drawString("Landing",540, 275);
 		
 
 		g.drawString("4",365, 235);
+		g.drawString("Small Gods",370, 270);
 		g.drawString("Small Gods",370, 270);
 
 		g.drawString("5",365, 395);

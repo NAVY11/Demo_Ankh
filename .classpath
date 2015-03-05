@@ -2,8 +2,8 @@
 <classpath>
 	<classpathentry kind="src" path="src"/>
 	<classpathentry exported="true" kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER"/>
-	<classpathentry kind="lib" path="D:/Yogesh Code/java-json.jar"/>
-	<classpathentry kind="lib" path="D:/Yogesh Code/json-simple-1.1.1.jar"/>
 	<classpathentry kind="con" path="org.eclipse.jdt.junit.JUNIT_CONTAINER/4"/>
+	<classpathentry kind="lib" path="D:/APP/json/java-json.jar"/>
+	<classpathentry kind="lib" path="D:/APP/json/json-simple-1.1.1.jar"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>
