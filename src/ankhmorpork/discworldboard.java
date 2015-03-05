@@ -17,9 +17,11 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
+import java.io.BufferedReader;
 import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
+import java.io.InputStreamReader;
 
 import javax.swing.JOptionPane;
 
@@ -290,6 +292,7 @@ public class discworldboard extends Component {
 	{					
 		String[] Players = new String[10];
 		String[] Colors = new String[10];
+		BufferedReader buffer = new BufferedReader(new InputStreamReader(System.in));
 		for(int i=1;i<=iNoOfPlayers;i++)
 		{
 		Players[i]= JOptionPane.showInputDialog("Please input Name for Player:" + i);
@@ -297,6 +300,11 @@ public class discworldboard extends Component {
 		}
 	
 		GameStart.StartNewGame(Players, Colors, iNoOfPlayers, AnkhMorpork);
+		ViewFileTxt viewFileText = new ViewFileTxt();
+		String currentPlayer = viewFileText.currentPlayerPlaying(AnkhMorpork.lstPlayers);
+		System.out.println("The current Player Playing is player "+ currentPlayer);
+		
+		
 	}
 	
 	

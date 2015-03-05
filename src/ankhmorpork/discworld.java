@@ -95,11 +95,13 @@ public class discworld extends Applet implements ActionListener, WindowListener 
 	 *
 	 * @param argv the arguments
 	 */
-//	public static void main(String argv[]) 
-//    {
-//    	new discworld();
 
-//    }
+
+	public static void main(String argv[]) 
+    {
+    	//new discworld();
+    	System.out.print("Hello, What is my name?");
+    }
 
 
 	public void init() {
@@ -203,8 +205,7 @@ public class discworld extends Applet implements ActionListener, WindowListener 
 				
 				Framebuilder();
 				
-				
-					}
+		}
  		
 	}
 	

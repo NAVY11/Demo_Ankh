@@ -116,7 +116,7 @@ public class GameStart {
 			while(true){
 				Integer randomIndexNumber = PresentationUtility.returnRandomNumber(1, initializingBrownCardsArr.size()-1);				
 				Integer randomNumberAtIndexNumber = initializingBrownCardsArr.get(randomIndexNumber);
-				System.out.println("Random number : "+randomIndexNumber + " randomNumberAtIndexNumber "+randomNumberAtIndexNumber);
+				//System.out.println("Random number : "+randomIndexNumber + " randomNumberAtIndexNumber "+randomNumberAtIndexNumber);
 				
 				if(randomNumberAtIndexNumber > 0){
 					getFiveDifferentBrownNumbers += randomNumberAtIndexNumber+",";
@@ -130,7 +130,7 @@ public class GameStart {
 						
 						objPlayer.setBrownCardListCommaSeparated(getFiveDifferentBrownNumbers);
 						//Create Brown Card Object and assign cards
-						System.out.print("PlayerId : "+ objPlayer.getPlayer_id() + " - Brown Card: " + getFiveDifferentBrownNumbers + "\n");
+						//System.out.print("PlayerId : "+ objPlayer.getPlayer_id() + " - Brown Card: " + getFiveDifferentBrownNumbers + "\n");
 						break;
 					}
 				}
