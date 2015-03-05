@@ -41,7 +41,7 @@ import ankhmorpork.GameLoad.GameStart;
 public class discworldboard extends Component {
 	
 	private int Width  = 1200;
-	
+	//yogesh
 	private int Height = 900;
 	
 	private discworld discworld;
