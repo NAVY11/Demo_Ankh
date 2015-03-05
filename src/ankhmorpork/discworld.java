@@ -100,7 +100,7 @@ public class discworld extends Applet implements ActionListener, WindowListener 
 	public static void main(String argv[]) 
     {
     	//new discworld();
-    	System.out.print("Hello, What is my name?");
+    	System.out.print("say my name?");
     }
 
 
