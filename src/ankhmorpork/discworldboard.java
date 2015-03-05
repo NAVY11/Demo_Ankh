@@ -125,10 +125,10 @@ public class discworldboard extends Component {
 
 		g.drawString("3",515, 235);
 		g.drawString("Dragon's",540, 255);
-		g.drawString("Landing",540, 275);
 		
 
 		g.drawString("4",365, 235);
+		g.drawString("Small Gods",370, 270);
 		g.drawString("Small Gods",370, 270);
 
 		g.drawString("5",365, 395);
