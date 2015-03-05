@@ -359,7 +359,7 @@ public class PresentationUtility {
 		}
 		
 		if (namesOfGreenCardsList.endsWith(", ")) {
-			namesOfGreenCardsList = namesOfGreenCardsList.substring(0, namesOfGreenCardsList.length()-2);
+			namesOfGreenCardsList = namesOfGreenCardsList.substring(0, namesOfGreenCardsList.length()-2); 
 		}
 		
 		return namesOfGreenCardsList;
