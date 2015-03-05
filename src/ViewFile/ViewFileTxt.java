@@ -166,8 +166,8 @@ public class ViewFileTxt {
 		playerGeneralInfoStr += "\nThere are "+players.size()+" players:";
 		
 		for(Player player: players){
-			System.out.println("size " + players.size());
-			System.out.println("colour " + player.getPlayer_color());
+			//System.out.println("size " + players.size());
+			//System.out.println("colour " + player.getPlayer_color());
 			System.out.println(player.getPersonalityCardListCommaSeparated());
 			System.out.println("personality " + PresentationUtility.getPersonalityCardNameById(Integer.parseInt(player.getPersonalityCardListCommaSeparated())));
 
@@ -197,6 +197,18 @@ public class ViewFileTxt {
 		
 		return currentAndNextPlayerTurnStr ;
 	}
+	
+	public static String currentPlayerPlaying(ArrayList<Player> players){
+		String currentPlayerPlaying = "";
+		
+		if(2 == players.size()){
+			currentPlayerPlaying = "1";
+		}else{
+			currentPlayerPlaying = (PresentationUtility.nextPlayerTurn(2, players.size())).toString();
+		}
+		
+		return currentPlayerPlaying ;
+	}
 
 	/**
 	 * Area details.
@@ -206,7 +218,7 @@ public class ViewFileTxt {
 	public static String areaDetails(){
 		
 		String areaDetails = "\n\nCurrent State of the Game Board: ";
-		areaDetails += "\n\tarea\t\tminions\ttrouble?\tbuildings?\tdemons\ttrolls";
+		areaDetails += "\n\tArea\t\tminions\ttrouble?\tbuildings?\tdemons\ttrolls";
 		
 		for(int i = 1; i < 12; i++){
 			areaDetails += "\n\t"+paddingToMakeSixteen(PresentationUtility.getCityAreaCardNameById(i))+"\t"
@@ -229,13 +241,13 @@ public class ViewFileTxt {
 	public static String paddingToMakeSixteen(String areaName){
 		
 		String emptyString = "";
-		System.out.print("\nCard Name : "+areaName+" \tCard Size: "+areaName.length());
+		//System.out.print("\nCard Name : "+areaName+" \tCard Size: "+areaName.length());
 		if(areaName.length() < 16){
 			for(int i = 1; i <= 16-areaName.length(); i++){
 				areaName += " ";
 			}
 		}
-		System.out.print("\nCard Name : "+areaName+" \tCard Size: "+(areaName+emptyString).length());
+		//System.out.print("\nCard Name : "+areaName+" \tCard Size: "+(areaName+emptyString).length());
 		return areaName;
 	}
 	
@@ -253,10 +265,10 @@ public class ViewFileTxt {
 			playerDetails += "\nPlayer "+(players.size() -i)+"'s current Inventory:";
 			playerDetails += "\n\n\t- "+player.lstMinions.size()+" minions, "+player.lstBuildings.size()+" buildings, "+player.getPlayerAmount()+" dollars ";
 			playerDetails += "\n\n\t-City Area Cards: \n\n\t\t" +PresentationUtility.getCityAreaCardNameById(Integer.parseInt(player.getCityAreaCardsListCommaSeparated()));
-			playerDetails += "\n\t\t";
 			playerDetails += "\n\n\t-Player Cards: ";
-			playerDetails += "\n\t\tGreen Cards "+ player.getGreenCardListCommaSeparated(); 
-			playerDetails += "\n\t\tBrown Cards "+ player.getBrownCardListCommaSeparated();
+			playerDetails += "\n\t\tGreen Cards: "+ player.getGreenCardListCommaSeparated();
+			playerDetails += "\n\t\tGreen Cards Names: " + PresentationUtility.getCommaSeparatedGreenCardNames(player.getGreenCardListCommaSeparated());
+			//playerDetails += "\n\t\tBrown Cards "+ player.getBrownCardListCommaSeparated();
 			playerDetails += "\n";
 			i -= 1;
 		}

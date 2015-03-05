@@ -34,39 +34,51 @@ public class IConstants {
 	//Constants(String) for Area Cards
 	
 	/** The city card area1. */
+	public static Integer cityCardAreaId1 = 1;
 	public static String cityCardArea1	= "The Shades";
 	
 	/** The city card area2. */
+	public static Integer cityCardAreaId2 = 2;
 	public static String cityCardArea2	= "Dolly Sisters";
 	
 	/** The city card area3. */
+	public static Integer cityCardAreaId3 = 3;
 	public static String cityCardArea3	= "The Scours";
 	
 	/** The city card area4. */
+	public static Integer cityCardAreaId4 = 4;
 	public static String cityCardArea4	= "Dimwell";
 	
 	/** The city card area5. */
+	public static Integer cityCardAreaId5 = 5;
 	public static String cityCardArea5	= "Nap Hill ";
 	
 	/** The city card area6. */
+	public static Integer cityCardAreaId6 = 6;
 	public static String cityCardArea6	= "Longwall";
 	
 	/** The city card area7. */
+	public static Integer cityCardAreaId7 = 7;
 	public static String cityCardArea7	= "The Hippo";
 	
 	/** The city card area8. */
+	public static Integer cityCardAreaId8 = 8;
 	public static String cityCardArea8	= "Dragon’s Landing";
 	
 	/** The city card area9. */
+	public static Integer cityCardAreaId9 = 9;
 	public static String cityCardArea9	= "Isle of Gods";
 	
 	/** The city card area10. */
+	public static Integer cityCardAreaId10 = 10;
 	public static String cityCardArea10	= "Small Gods";
 	
 	/** The city card area11. */
+	public static Integer cityCardAreaId11 = 11;
 	public static String cityCardArea11	= "Seven Sleepers";
 	
 	/** The city card area12. */
+	public static Integer cityCardAreaId12 = 12;
 	public static String cityCardArea12	= "Unreal Estate";
 	
 	//Constants for Coins
@@ -98,149 +110,230 @@ public class IConstants {
 	//Constants for Green Cards
 	
 	/** The g1. */
-	private static Integer g1 = 1;
+	public static Integer g1 = 1;
+	public static String g1Str = "Mr Boggis";
 	
 	/** The g2. */
-	private static Integer g2 = 2;
+	public static Integer g2 = 2;
+	public static String g2Str = "Mr Bent";
 	
 	/** The g3. */
-	private static Integer g3 = 3;
+	public static Integer g3 = 3;
+	public static String g3Str = "The Beggars' Child";
 	
 	/** The g4. */
-	private static Integer g4 = 4;
+	public static Integer g4 = 4;
+	public static String g4Str = "The Bank of Ankh-Morpork";
 	
 	/** The g5. */
-	private static Integer g5 = 5;
+	public static Integer g5 = 5;
+	public static String g5Str = "The Ankh Morpork Sunshine Dragon Sanctuary";
 	
 	/** The g6. */
-	private static Integer g6 = 6;
+	public static Integer g6 = 6;
+	public static String g6Str = "Sergeant Angua";
 	
 	/** The g7. */
-	private static Integer g7 = 7;
+	public static Integer g7 = 7;
+	public static String g7Str = "The Agony Aunts";
 	
 	/** The g8. */
-	private static Integer g8 = 8;
+	public static Integer g8 = 8;
+	public static String g8Str = "The Dysk";
 	
 	/** The g9. */
-	private static Integer g9 = 9;
+	public static Integer g9 = 9;
+	public static String g9Str = "The Duckman";
 	
 	/** The g10. */
-	private static Integer g10 = 10;
+	public static Integer g10 = 10;
+	public static String g10Str = "Drumknott";
 	
 	/** The g11. */
-	private static Integer g11 = 11;
+	public static Integer g11 = 11;
+	public static String g11Str = "CMOT Dibbler";
 	
 	/** The g12. */
-	private static Integer g12 = 12;
+	public static Integer g12 = 12;
+	public static String g12Str = "Dr Cruces";
 	
 	/** The g13. */
-	private static Integer g13 = 13;
+	public static Integer g13 = 13;
+	public static String g13Str = "Captain Carrot";
 	
 	/** The g14. */
-	private static Integer g14 = 14;
+	public static Integer g14 = 14;
+	public static String g14Str = "Mrs Cake";
 	
 	/** The g15. */
-	private static Integer g15 = 15;
+	public static Integer g15 = 15;
+	public static String g15Str = "Groat";
 	
 	/** The g16. */
-	private static Integer g16 = 16;
+	public static Integer g16 = 16;
+	public static String g16Str = "Gimlet's Dwarf";
 	
 	/** The g17. */
-	private static Integer g17 = 17;
+	public static Integer g17 = 17;
+	public static String g17Str = "Gaspode";
 	
 	/** The g18. */
-	private static Integer g18 = 18;
+	public static Integer g18 = 18;
+	public static String g18Str = "Fresh Start Club";
 	
 	/** The g19. */
-	private static Integer g19 = 19;
+	public static Integer g19 = 19;
+	public static String g19Str = "Foul Ole Ron";
 	
 	/** The g20. */
-	private static Integer g20 = 20;
+	public static Integer g20 = 20;
+	public static String g20Str = "The Fools Guild";
 	
 	/** The g21. */
-	private static Integer g21 = 21;
+	public static Integer g21 = 21;
+	public static String g21Str = "The Fire Brigade";
 	
 	/** The g22. */
-	private static Integer g22 = 22;
+	public static Integer g22 = 22;
+	public static String g22Str = "Inigo Skimmer";
 	
 	/** The g23. */
-	private static Integer g23 = 23;
+	public static Integer g23 = 23;
+	public static String g23Str = "History Monks";
 	
 	/** The g24. */
-	private static Integer g24 = 24;
+	public static Integer g24 = 24;
+	public static String g24Str = "Hex";
 	
 	/** The g25. */
-	private static Integer g25 = 25;
+	public static Integer g25 = 25;
+	public static String g25Str = "Here'n'Now";
 	
 	/** The g26. */
-	private static Integer g26 = 26;
+	public static Integer g26 = 26;
+	public static String g26Str = "Harry King";
 	
 	/** The g27. */
-	private static Integer g27 = 27;
+	public static Integer g27 = 27;
+	public static String g27Str = "Harga's House of Ribs";
 	
 	/** The g28. */
-	private static Integer g28 = 28;
+	public static Integer g28 = 28;
+	public static String g28Str = "Mr Gryle";
 	
 	/** The g29. */
-	private static Integer g29 = 29;
+	public static Integer g29 = 29;
+	public static String g29Str = "The Peeled Nuts";
 	
 	/** The g30. */
-	private static Integer g30 = 30;
+	public static Integer g30 = 30;
+	public static String g30Str = "The Opera House";
 	
 	/** The g31. */
-	private static Integer g31 = 31;
+	public static Integer g31 = 31;
+	public static String g31Str = "Nobby Noobs";
 	
 	/** The g32. */
-	private static Integer g32 = 32;
+	public static Integer g32 = 32;
+	public static String g32Str = "Modo";
 	
 	/** The g33. */
-	private static Integer g33 = 33;
+	public static Integer g33 = 33;
+	public static String g33Str = "The Mended Drum";
 	
 	/** The g34. */
-	private static Integer g34 = 34;
+	public static Integer g34 = 34;
+	public static String g34Str = "Librarian";
 	
 	/** The g35. */
-	private static Integer g35 = 35;
+	public static Integer g35 = 35;
+	public static String g35Str = "Leonard of Quirm";
 	
 	/** The g36. */
-	private static Integer g36 = 36;
+	public static Integer g36 = 36;
+	public static String g36Str = "Shonky Shop";
 	
 	/** The g37. */
-	private static Integer g37 = 37;
+	public static Integer g37 = 37;
+	public static String g37Str = "Sacharissa Cripslock";
 	
 	/** The g38. */
-	private static Integer g38 = 38;
+	public static Integer g38 = 38;
+	public static String g38Str = "Rosie Palm";
 	
 	/** The g39. */
-	private static Integer g39 = 39;
+	public static Integer g39 = 39;
+	public static String g39Str = "Rincewind";
 	
 	/** The g40. */
-	private static Integer g40 = 40;
+	public static Integer g40 = 40;
+	public static String g40Str = "The Royal Mint";
 	
 	/** The g41. */
-	private static Integer g41 = 41;
+	public static Integer g41 = 41;
+	public static String g41Str = "Queen Molly";
 	
 	/** The g42. */
-	private static Integer g42 = 42;
+	public static Integer g42 = 42;
+	public static String g42Str = "Pink PussyCat Club";
 	
 	/** The g43. */
-	private static Integer g43 = 43;
+	public static Integer g43 = 43;
+	public static String g43Str = "Zorgo the Retro-phrenologist";
 	
 	/** The g44. */
-	private static Integer g44 = 44;
+	public static Integer g44 = 44;
+	public static String g44Str = "Dr Whiteface";
 	
 	/** The g45. */
-	private static Integer g45 = 45;
+	public static Integer g45 = 45;
+	public static String g45Str = "Wallace Sonky";
 	
 	/** The g46. */
-	private static Integer g46 = 46;
+	public static Integer g46 = 46;
+	public static String g46Str = "The Seamstresses' Guild";
 	
 	/** The g47. */
-	private static Integer g47 = 47;
+	public static Integer g47 = 47;
+	public static String g47Str = "Mr Pin & Mr Tulip";
 	
 	/** The g48. */
-	private static Integer g48 = 48;
+	public static Integer g48 = 48;
+	public static String g48Str = "The Thieves' Guild";
 
+	
+	private static Integer[] greenAssassinationCards 			= new Integer[]{g7, g12, g22, g28, g47};
+	
+	// These card numbers tell you to remove any player trouble marker from any area
+	private static Integer[] greenRemoveOneTroubleMakerCards 	= new Integer[]{g6, g13, g47};
+	
+	// These card numbers tell you to take $1 from bank
+	private static Integer[] greenTakeOneDollarMoneyCards 		= new Integer[]{g28, g47};
+
+	// These card numbers tell you to take $2 from bank
+	private static Integer[] greenTakeTwoDollarMoneyCards 		= new Integer[]{g7, g22, g33};
+	
+	// These card numbers tell you to take $3 from bank
+	private static Integer[] greenTakeThreeDollarMoneyCards 	= new Integer[]{g12, g16, g27, g42};
+	
+	// These card numbers tell you to take $5 from bank
+	private static Integer[] greenTakeFiveDollarMoneyCards 		= new Integer[]{g40};
+	
+	// These card numbers can generate a Random Event	
+	private static Integer[] greenRandomEventCards 				= new Integer[]{g39};
+	
+	// These card numbers tell to another another card immediately after their turn
+	private static Integer[] greenPlayAnotherCards 				= new Integer[]{g2, g4, g5, g6, g11, g19, g21, g25, g31, g39, g42};
+	
+	// These card numbers are interrupt cards
+	private static Integer[] greenInterruptCards 				= new Integer[]{g17, g18, g45};
+	
+	// These card numbers can place a minion	
+	private static Integer[] greenPlaceAMinionCards				= new Integer[]{g1, g3, g7, g13, g15, g16, g20, g23, g26, g27, g32, g37, g38, g41, g44, g46, g48};
+	
+	// These card numbers can place a building
+	private static Integer[] greenPlaceABuildingCards			= new Integer[]{g8, g14, g17, g24, g30, g33, g40, g43};
+	
 	//Constants for Brown Cards
 	
 	/** The b1. */
