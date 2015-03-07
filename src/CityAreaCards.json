@@ -1,0 +1,119 @@
+{
+"cityCardAreaId7": {
+	"Name" : "The Hippo",
+	"ID" : "6", 
+	"Description" : " Once per turn you can take $2 from the bank. ",
+	"AreaId" :,
+	"Action" :,
+	"PlayerId" :
+},	
+
+"cityCardAreaId3": {
+	"Name" : "The Scours", 
+	"ID" : "5", 
+	"Description" : " Once per turn you can discard one card and take $2 from the bank. ",
+	"AreaId" :,
+	"Action" :,
+	"PlayerId" :
+},	
+	
+"cityCardAreaId10": {
+	"Name" : "Small Gods",
+	"ID" : "4", 
+	"Description" : "Whenever one of your pieces is affected by a random event you  can $3 to ignore it. ",
+	"AreaId" :,
+	"Action" :,
+	"PlayerId" :
+},	
+
+"cityCardAreaId8": {
+	"Name" :"Dragon's Landing",
+	"ID" : "3", 
+	"Description" : " Once per turn you can take $2 from the bank. ",
+	"AreaId" :,
+	"Action" :,
+	"PlayerId" :
+},
+	
+"cityCardAreaId12": {
+	"Name" : "Unreal Estate",
+	"ID" : "2", 
+	"Description" : " At any point in your turn  you can take one card from the deck and then discard one. ",
+	"AreaId" :,
+	"Action" :,
+	"PlayerId" :
+},	
+
+"cityCardAreaId2": {
+	"Name" : "Dolly Sisters",
+	"ID" : "1", 
+	"Description" : " Once per turn you can pay $3 and place one of your minions in Dolly Sisters or an adjacent area. ",
+	"AreaId" :,
+	"Action" :,
+	"PlayerId" :
+},
+	
+"cityCardAreaId5": {
+	"Name" : "Nap Hills",
+	"ID" : "12", 
+	"Description" : " Once per turn you can take $1 from the bank. ",
+	"AreaId" :,
+	"Action" :,
+	"PlayerId" :
+},
+
+"cityCardAreaId11": {
+	"Name" : "Seven Sleepers",
+	"ID" : "11", 
+	"Description" : " Once per turn you can take $3 from the bank.",
+	"AreaId" :,
+	"Action" :,
+	"PlayerId" :
+},
+
+"cityCardAreaId9": {
+	"Name" : "Isle Of Gods",
+	"ID" : "10", 
+	"Description" : " Once per turn you can pay $2 and remove one trouble marker from the board. ",
+	"AreaId" :,
+	"Action" :,
+	"PlayerId" :
+},
+
+"cityCardAreaId6": {
+	"Name" : "Longwall",
+	"ID" : "9", 
+	"Description" : " Once per turn you can take $1 from the bank. ",
+	"AreaId" :,
+	"Action" :,
+	"PlayerId" :
+},
+
+"cityCardAreaId4": {
+	"Name" : "Dimwell",
+	"ID" : "8", 
+	"Description" : "Once per turn you can pay $3 and place one of your minions in Dimwell or an adjacent area. ",
+	"AreaId" :,
+	"Action" :,
+	"PlayerId" : 
+},
+
+"cityCardAreaId1": {
+	"Name" : "The Shades",
+	"ID" : "7", 
+	"Description" : " Once per turn you can place one trouble maker in the Shades or an adjacent area ",
+	"AreaId" :,
+	"Action" :,	"PlayerId" :
+},
+
+
+
+
+
+
+
+
+
+
+
+}
