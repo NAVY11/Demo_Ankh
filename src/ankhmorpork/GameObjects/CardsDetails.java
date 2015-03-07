@@ -15,86 +15,94 @@ public class CardsDetails {
 	
 //	public static void main(String args[]) throws JSONException, IOException, ParseException
 //	{
-//		ArrayList<Integer> a = new ArrayList();
-//		a.add(1);
-//		a.add(6);
+//		ArrayList<String> a = new ArrayList();
+//		a.add("g1");
+//		a.add("g6");
 //		greencard_details(a);
 //	}
     static Object obj;
     static JSONParser parser = new JSONParser();
 		
-	public static void greencard_details(ArrayList<Integer> a) throws FileNotFoundException, IOException, ParseException, JSONException 
+	public static void greencard_details(ArrayList<String> GreenCard) throws FileNotFoundException, IOException, ParseException, JSONException 
 	{
 		
-		for(int i=0;i<a.size();i++)
+		for(int i=0;i<GreenCard.size();i++)
 	    {
-	    String card = "g" +a.get(i);
-		obj = parser.parse(new FileReader("GreenCard.json"));
+			String card = GreenCard.get(i);
+			obj = parser.parse(new FileReader("GreenCard.json"));
 
-	  	org.json.JSONObject jsonObject =  new org.json.JSONObject(obj.toString());
-        org.json.JSONObject green =  jsonObject.getJSONObject(card);
+			org.json.JSONObject jsonObject =  new org.json.JSONObject(obj.toString());
+			org.json.JSONObject green =  jsonObject.getJSONObject(card);
 
  
-		System.out.println("Name " +(String) green.get("Name"));
-		System.out.println("Description " +(String) green.get("Description"));
-		JSONArray action = green.getJSONArray("Action");
-		for(int j =0;j<action.length();j++)
-		{
-			System.out.println(action.getString(j));
-		}
+			System.out.println("Name " +(String) green.get("Name"));
+			System.out.println("Description " +(String) green.get("Description"));
+			JSONArray action = green.getJSONArray("Action");
+			for(int j =0;j<action.length();j++)
+			{
+				System.out.println(action.getString(j));
+			}
 	    }
 
 }
 
 	
-	public static void browncard_details(ArrayList<Integer> a) throws FileNotFoundException, IOException, ParseException, JSONException 
+	public static void browncard_details(ArrayList<String> BrownCard) throws FileNotFoundException, IOException, ParseException, JSONException 
 	{
 		
-		for(int i=0;i<a.size();i++)
+		for(int i=0;i<BrownCard.size();i++)
 	    {
-	    String card = "b" +a.get(i);
-		obj = parser.parse(new FileReader("BrownCard.json"));
+			String card = BrownCard.get(i);
+			obj = parser.parse(new FileReader("BrownCard.json"));
 
-	  	System.out.println("-------USING JSON---------------------");
-
-	  	org.json.JSONObject jsonObject =  new org.json.JSONObject(obj.toString());
-        org.json.JSONObject green =  jsonObject.getJSONObject(card);
+			org.json.JSONObject jsonObject =  new org.json.JSONObject(obj.toString());
+			org.json.JSONObject brown =  jsonObject.getJSONObject(card);
 
  
-		System.out.println("Name " +(String) green.get("Name"));
-		System.out.println("Description " +(String) green.get("Description"));
-		JSONArray action = green.getJSONArray("Action");
-		for(int j =0;j<action.length();j++)
-		{
+			System.out.println("Name " +(String) brown.get("Name"));
+			System.out.println("Description " +(String) brown.get("Description"));
+			JSONArray action = brown.getJSONArray("Action");
+			for(int j =0;j<action.length();j++)
+			{
 			System.out.println(action.getString(j));
-		}
+			}
 	    }
 
 }
 	
-	public static void cityAreacard_details(ArrayList<Integer> a) throws FileNotFoundException, IOException, ParseException, JSONException 
+	public static void cityAreacard_details(ArrayList<String> cityAreaCard) throws FileNotFoundException, IOException, ParseException, JSONException 
 	{
 		
-		for(int i=0;i<a.size();i++)
+		for(int i=0;i<cityAreaCard.size();i++)
 	    {
-	    String card = "g" +a.get(i);
-		obj = parser.parse(new FileReader("cityAreaCard.json"));
+			String card = cityAreaCard.get(i);
+			obj = parser.parse(new FileReader("cityAreaCard.json"));
 
-	  	System.out.println("-------USING JSON---------------------");
 
-	  	org.json.JSONObject jsonObject =  new org.json.JSONObject(obj.toString());
-        org.json.JSONObject green =  jsonObject.getJSONObject(card);
+			org.json.JSONObject jsonObject =  new org.json.JSONObject(obj.toString());
+			org.json.JSONObject cityareacard =  jsonObject.getJSONObject(card);
 
- 
-		System.out.println("Name " +(String) green.get("Name"));
-		System.out.println("Description " +(String) green.get("Description"));
-		JSONArray action = green.getJSONArray("Action");
-		for(int j =0;j<action.length();j++)
-		{
-			System.out.println(action.getString(j));
-		}
+
 	    }
 
-}
+	}
+	
+	public static void randomEvent_details(ArrayList<String> randomEventCard) throws FileNotFoundException, IOException, ParseException, JSONException 
+	{
+		
+		for(int i=0;i<randomEventCard.size();i++)
+	    {
+			String card = randomEventCard.get(i);
+			obj = parser.parse(new FileReader("cityAreaCard.json"));
+
+			System.out.println("-------USING JSON---------------------");
+
+			org.json.JSONObject jsonObject =  new org.json.JSONObject(obj.toString());
+			org.json.JSONObject randomevent =  jsonObject.getJSONObject(card);
+
+
+	    }
+
+	}
 }
 
