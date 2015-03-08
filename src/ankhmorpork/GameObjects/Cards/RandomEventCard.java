@@ -3,15 +3,15 @@ package ankhmorpork.GameObjects.Cards;
 
 public class RandomEventCard extends Cards{
 
-	private int EventID;
+	private String EventID;
 	private String EventDescription;
 	
-	public void SetCardID(int ID)
+	public void SetCardID(String ID)
 	{
 		this.CardID = ID;
 	}
 	
-	public int GetCardID()
+	public String GetCardID()
 	{
 		return this.CardID;
 	}
@@ -26,12 +26,12 @@ public class RandomEventCard extends Cards{
 		return this.IsPlayed;
 	}
 	
-	public void SetEventID(int ID)
+	public void SetEventID(String ID)
 	{
 		this.EventID = ID;
 	}
 	
-	public int GetEventID()
+	public String GetEventID()
 	{
 		return this.EventID;
 	}
