@@ -5,7 +5,7 @@ import java.util.Arrays;
 
 public class GreenCard extends Cards {
 	//private int ActionID;
-	public String Action[];
+	private String Action[];
 	private String ActionDescription = new String();
 	
 	public void SetCardID(String ID)
