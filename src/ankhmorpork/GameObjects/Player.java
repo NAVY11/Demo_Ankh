@@ -6,7 +6,7 @@ import java.util.ArrayList;
 
 import PresentationUtilityCommon.PresentationUtility;
 import ankhmorpork.GameConstants.Constants;
-
+import ankhmorpork.GameObjects.Cards.*;
 // TODO: Auto-generated Javadoc
 /**
  * The Class Player.
@@ -48,6 +48,15 @@ public class Player {
 	
 	/** The lst buildings. */
 	public ArrayList<Building> lstBuildings = new ArrayList<Building>();	
+	
+	/** The lst Green Cards. */
+	public ArrayList<GreenCard> lstGreenCards = new ArrayList<GreenCard>();
+	
+	/** The lst BrownCards. */
+	public ArrayList<BrownCard> lstBrownCards = new ArrayList<BrownCard>();
+	
+	/** The lst Personality Card. */
+	public PersonalityCard PersonalityCard = new PersonalityCard();		
 	
 	/** The obj gold coin. */
 	public Coins objGoldCoin = new Coins(Constants.GoldCoin());
