@@ -7,12 +7,12 @@ public class CityAreaCard extends Cards{
 	private int AreaID;
 	private String AreaName;
 	
-	public void SetCardID(int ID)
+	public void SetCardID(String ID)
 	{
 		this.CardID = ID;
 	}
 	
-	public int GetCardID()
+	public String GetCardID()
 	{
 		return this.CardID;
 	}

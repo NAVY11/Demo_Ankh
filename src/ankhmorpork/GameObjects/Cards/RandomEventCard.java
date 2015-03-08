@@ -6,12 +6,12 @@ public class RandomEventCard extends Cards{
 	private int EventID;
 	private String EventDescription;
 	
-	public void SetCardID(int ID)
+	public void SetCardID(String ID)
 	{
 		this.CardID = ID;
 	}
 	
-	public int GetCardID()
+	public String GetCardID()
 	{
 		return this.CardID;
 	}

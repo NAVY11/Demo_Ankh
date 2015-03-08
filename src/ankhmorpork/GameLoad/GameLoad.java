@@ -1,25 +1,21 @@
 package ankhmorpork.GameLoad;
 import ankhmorpork.Game.Game;
 import ankhmorpork.GameObjects.*;
+import ankhmorpork.GameObjects.Cards.GreenCard;
 import ankhmorpork.GameConstants.*;
 
 import java.io.FileNotFoundException;
 import java.io.FileReader;
-import java.io.FileWriter;
 import java.io.IOException;
 import java.util.Iterator;
+
+
 
 //import org.json.JSONArray;
 import org.json.simple.JSONArray;
 import org.json.JSONException;
-import org.json.JSONML;
-//import org.json.JSONObject;
 import org.json.simple.JSONObject;
-import org.json.JSONString;
-import org.json.JSONStringer;
-import org.json.JSONTokener;
-import org.json.JSONWriter;
-import org.*;
+
 import org.json.simple.parser.JSONParser;
 import org.json.simple.parser.ParseException;
 
@@ -132,4 +128,74 @@ public class GameLoad {
 				return LoadedGame;	
 	
 	}
+	
+	public static Game GreenCard_Details() throws FileNotFoundException, IOException, ParseException, JSONException 
+	{
+		Game LoadedGame = new Game();
+	    Object obj;
+	    JSONParser parser = new JSONParser();
+
+		for(int i=1;i<49;i++)
+	    {
+			GreenCard gc = new GreenCard();
+			String card = "g"+i;
+			obj = parser.parse(new FileReader("GreenCard.json"));
+
+			org.json.JSONObject jsonObject =  new org.json.JSONObject(obj.toString());
+			org.json.JSONObject green =  jsonObject.getJSONObject(card);
+			
+			String s = (String) green.get("IsPlayed");
+			gc.SetIsPlayed(Boolean.valueOf(Boolean.valueOf(s)));
+			
+			gc.SetActionDescription((String)green.get("ActionDescription"));
+			
+			gc.setName((String) green.get("Name"));
+			
+			gc.SetCardID(card);
+			String a1 = (String) green.get("Action");
+			String[] a2 = a1.split(",");
+			gc.SetAction(a2);
+			
+			LoadedGame.lstGreenCards.add(gc);
+
+	    }
+
+		return LoadedGame;
+
+}
+	
+	public static Game Browncard_Details() throws FileNotFoundException, IOException, ParseException, JSONException 
+	{
+		Game LoadedGame = new Game();
+	    Object obj;
+	    JSONParser parser = new JSONParser();
+
+		for(int i=1;i<54;i++)
+	    {
+			GreenCard gc = new GreenCard();
+			String card = "b"+i;
+			obj = parser.parse(new FileReader("BrownCard.json"));
+
+			org.json.JSONObject jsonObject =  new org.json.JSONObject(obj.toString());
+			org.json.JSONObject brown =  jsonObject.getJSONObject(card);
+			
+			String s = (String) brown.get("IsPlayed");
+			gc.SetIsPlayed(Boolean.valueOf(Boolean.valueOf(s)));
+			
+			gc.SetActionDescription((String)brown.get("ActionDescription"));
+			
+			gc.setName((String) brown.get("Name"));
+			
+			gc.SetCardID(card);
+			String a1 = (String) brown.get("Action");
+			String[] a2 = a1.split(",");
+			gc.SetAction(a2);
+			
+			LoadedGame.lstGreenCards.add(gc);
+
+	    }
+
+		return LoadedGame;
+
+}
 }

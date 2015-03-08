@@ -5,12 +5,12 @@ public class PersonalityCard extends Cards{
 	private String PersonalityName;
 	private String PersonalityMotive;
 	
-	public void SetCardID(int ID)
+	public void SetCardID(String ID)
 	{
 		this.CardID = ID;
 	}
 	
-	public int GetCardID()
+	public String GetCardID()
 	{
 		return this.CardID;
 	}
