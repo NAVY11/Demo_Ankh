@@ -5,7 +5,7 @@ import java.util.Arrays;
 
 public class GreenCard extends Cards {
 	//private int ActionID;
-	private String Action[];
+	private String ActionID[];
 	private String ActionDescription = new String();
 	
 	public void SetCardID(String ID)
@@ -31,14 +31,14 @@ public class GreenCard extends Cards {
 	public void SetAction(String[] a)
 	{
 		//this.Action = Arrays.copyOf(a, a.length);
-		this.Action = a;
+		this.ActionID = a;
 	}
 	
     
 	
 	public String[] GetAction()
 	{	
-		return this.Action;
+		return this.ActionID;
 	}
 	
 	public void SetActionDescription(String EventDescription)

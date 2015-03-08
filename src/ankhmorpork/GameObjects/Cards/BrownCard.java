@@ -2,7 +2,7 @@ package ankhmorpork.GameObjects.Cards;
 
 
 public class BrownCard extends Cards{
-	private String ActionID;
+	private String ActionID[];
 	private String ActionDescription;
 	
 	public void SetCardID(String ID)
@@ -25,12 +25,12 @@ public class BrownCard extends Cards{
 		return this.IsPlayed;
 	}
 	
-	public void SetActionID(String ID)
+	public void SetActionID(String[] ID)
 	{
 		this.ActionID = ID;
 	}
 	
-	public String GetActionID()
+	public String[] GetActionID()
 	{
 		return this.ActionID;
 	}

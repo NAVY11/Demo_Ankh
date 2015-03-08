@@ -1,7 +1,9 @@
 package ankhmorpork.GameLoad;
 import ankhmorpork.Game.Game;
 import ankhmorpork.GameObjects.*;
+import ankhmorpork.GameObjects.Cards.BrownCard;
 import ankhmorpork.GameObjects.Cards.GreenCard;
+import ankhmorpork.GameObjects.Cards.RandomEventCard;
 import ankhmorpork.GameConstants.*;
 
 import java.io.FileNotFoundException;
@@ -11,11 +13,12 @@ import java.util.Iterator;
 
 
 
+
+
 //import org.json.JSONArray;
 import org.json.simple.JSONArray;
 import org.json.JSONException;
 import org.json.simple.JSONObject;
-
 import org.json.simple.parser.JSONParser;
 import org.json.simple.parser.ParseException;
 
@@ -172,7 +175,7 @@ public class GameLoad {
 
 		for(int i=1;i<54;i++)
 	    {
-			GreenCard gc = new GreenCard();
+			BrownCard bc = new BrownCard();
 			String card = "b"+i;
 			obj = parser.parse(new FileReader("BrownCard.json"));
 
@@ -180,18 +183,52 @@ public class GameLoad {
 			org.json.JSONObject brown =  jsonObject.getJSONObject(card);
 			
 			String s = (String) brown.get("IsPlayed");
-			gc.SetIsPlayed(Boolean.valueOf(Boolean.valueOf(s)));
+			bc.SetIsPlayed(Boolean.valueOf(Boolean.valueOf(s)));
 			
-			gc.SetActionDescription((String)brown.get("ActionDescription"));
+			bc.SetActionDescription((String)brown.get("ActionDescription"));
 			
-			gc.setName((String) brown.get("Name"));
+			bc.setName((String) brown.get("Name"));
 			
-			gc.SetCardID(card);
+			bc.SetCardID(card);
 			String a1 = (String) brown.get("Action");
 			String[] a2 = a1.split(",");
-			gc.SetAction(a2);
+			bc.SetActionID(a2);
 			
-			LoadedGame.lstGreenCards.add(gc);
+			LoadedGame.lstBrownCards.add(bc);
+
+	    }
+
+		return LoadedGame;
+
+}
+	
+	public static Game RandomEventCard_Details() throws FileNotFoundException, IOException, ParseException, JSONException 
+	{
+		Game LoadedGame = new Game();
+	    Object obj;
+	    JSONParser parser = new JSONParser();
+
+		for(int i=1;i<13;i++)
+	    {
+			RandomEventCard rec = new RandomEventCard();
+			String card = "e"+i;
+			obj = parser.parse(new FileReader("RandomEventCard.json"));
+
+			org.json.JSONObject jsonObject =  new org.json.JSONObject(obj.toString());
+			org.json.JSONObject randomevent =  jsonObject.getJSONObject(card);
+			
+			String s = (String) randomevent.get("IsPlayed");
+			rec.SetIsPlayed(Boolean.valueOf(Boolean.valueOf(s)));
+			
+			rec.SetEventDescription((String)randomevent.get("EventDescription"));
+			
+			rec.setName((String) randomevent.get("Name"));
+			
+			rec.SetCardID(card);
+			rec.SetEventID(card);
+
+			
+			LoadedGame.lstRandomEventCards.add(rec);
 
 	    }
 
