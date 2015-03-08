@@ -32,9 +32,10 @@ import org.json.simple.parser.ParseException;
 import ViewFile.DisplayViewFile;
 import ViewFile.ViewFileTxt;
 import ankhmorpork.Game.Game;
-import ankhmorpork.GameLoad.GameLoad;
-import ankhmorpork.GameLoad.GameSave;
-import ankhmorpork.GameLoad.GameStart;
+import ankhmorpork.GameObjects.*;
+import ankhmorpork.GameObjects.Cards.GreenCard;
+import ankhmorpork.GameLoad.*;
+
 
 // TODO: Auto-generated Javadoc
 /**
@@ -241,7 +242,11 @@ public class discworldboard extends Component {
 
 		repaint();
 	}
-	
+	//Method to decide who starts game
+	public int StartingPlayer(int noOfPlayers)
+	{
+		return (int)(Math.random()*noOfPlayers + 1);
+	}
 	/**
 	 * View game state.
 	 *
@@ -287,8 +292,9 @@ public class discworldboard extends Component {
 	 *
 	 * @param iNoOfPlayers the i no of players
 	 * @param AnkhMorpork the ankh morpork
+	 * @throws IOException 
 	 */
-	public void InitialiseGame(int iNoOfPlayers, Game AnkhMorpork)
+	public void InitialiseGame(int iNoOfPlayers, Game AnkhMorpork) throws IOException
 	{					
 		String[] Players = new String[10];
 		String[] Colors = new String[10];
@@ -304,7 +310,47 @@ public class discworldboard extends Component {
 		String currentPlayer = viewFileText.currentPlayerPlaying(AnkhMorpork.lstPlayers);
 		System.out.println("The current Player Playing is player "+ currentPlayer);
 		
+		//Get Starting Player randomly
+		int CurrentPlayer = StartingPlayer(iNoOfPlayers);
+		System.out.println("Player "+ CurrentPlayer + " starts game");
+		boolean GameEnds = false;
 		
+		while(!GameEnds)
+		{
+		//Show Board
+		ViewFileTxt.ViewState(AnkhMorpork);        
+		//Play Game						
+		//Load Player details
+		Player objPlayer = AnkhMorpork.lstPlayers.get(CurrentPlayer);
+		
+		//********Which Card to Play?
+		System.out.println("Which card to play?");
+		
+		//Show available cards
+		StringBuilder sbValidIDs = new StringBuilder();
+		for(GreenCard grnCard: objPlayer.lstGreenCards)
+		{	
+			sbValidIDs.append(grnCard.GetCardID());			
+			System.out.println(grnCard.CardID + " : " + grnCard.getName());
+		}
+		
+		//Accept Card to play from Player
+		String CardID = null;
+		while(true)
+		{
+			System.out.println("Enter a valid Card ID");
+			BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+			CardID = br.readLine().toString();
+			if((sbValidIDs.toString()).contains(CardID))
+			{
+				break;
+			}
+		}
+				//Which Action to perform?
+					//Does a Player wish to interrupt?
+						//If Yes : Which Player wants to interrupt?
+							//Play Game		
+		}
 	}
 	
 	

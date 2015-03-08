@@ -146,7 +146,7 @@ public class discworld extends Applet implements ActionListener, WindowListener 
 	/* (non-Javadoc)
 	 * @see java.awt.event.ActionListener#actionPerformed(java.awt.event.ActionEvent)
 	 */
-	public void actionPerformed( ActionEvent e) {
+	public void actionPerformed( ActionEvent e){
 			if (e.getSource() == Exit){
 				initframe.setVisible(false);    
 			}
@@ -192,15 +192,30 @@ public class discworld extends Applet implements ActionListener, WindowListener 
 				//discworldboard = new discworldboard( );
 				if(e.getSource() == start2){
 				
-					discworldboard.InitialiseGame(2,AnkhMorpork);
+					try {
+						discworldboard.InitialiseGame(2,AnkhMorpork);
+					} catch (IOException e1) {
+						// TODO Auto-generated catch block
+						e1.printStackTrace();
+					}
 											
 				}else if(e.getSource() == start3){	
 				
-					discworldboard.InitialiseGame(3,AnkhMorpork);
+					try {
+						discworldboard.InitialiseGame(3,AnkhMorpork);
+					} catch (IOException e1) {
+						// TODO Auto-generated catch block
+						e1.printStackTrace();
+					}
 				
 				}else if(e.getSource() == start4){
 				
-					discworldboard.InitialiseGame(4,AnkhMorpork);
+					try {
+						discworldboard.InitialiseGame(4,AnkhMorpork);
+					} catch (IOException e1) {
+						// TODO Auto-generated catch block
+						e1.printStackTrace();
+					}
 			}
 				
 				Framebuilder();
