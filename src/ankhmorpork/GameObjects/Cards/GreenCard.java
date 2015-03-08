@@ -3,7 +3,8 @@ package ankhmorpork.GameObjects.Cards;
 
 public class GreenCard extends Cards {
 	//private int ActionID;
-	private String[] Action = new String[2];
+	private String[] Action = new String[3];
+	private String ActionDescription = new String();
 	
 	public void SetCardID(int ID)
 	{
@@ -25,23 +26,23 @@ public class GreenCard extends Cards {
 		return this.IsPlayed;
 	}
 	
-//	public void SetActionID(int ID)
-//	{
-//		this.ActionID = ID;
-//	}
-//	
-//	public int GetActionID()
-//	{
-//		return this.ActionID;
-//	}
+	public void SetAction(String[] Action)
+	{
+		this.Action = Action;
+	}
 	
-//	public void SetActionDescription(String EventDescription)
-//	{
-//		this.ActionDescription = EventDescription;
-//	}
-//	
-//	public String GetActionDescription()
-//	{
-//		return this.ActionDescription;
-//	}
+	public String[] GetAction()
+	{
+		return this.Action;
+	}
+	
+	public void SetActionDescription(String EventDescription)
+	{
+		this.ActionDescription = EventDescription;
+	}
+	
+	public String GetActionDescription()
+	{
+		return this.ActionDescription;
+	}
 }
