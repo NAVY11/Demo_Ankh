@@ -411,14 +411,23 @@ public class Player {
 					System.out.print("ID : " + objDemon.getDemon_id() + " ");
 				}
 			}
-			System.out.println("Enter 'M' for Minion, 'D' for Demon, 'T' for Troll");
+			boolean Break = false;
+			while(true)
+			{
+			System.out.println("To assassinate Enter 'M' for Minion, 'D' for Demon, 'T' for Troll");
 			String input = br.readLine();
 			switch(input)
 			{
-			case "M" : success = AssassinateMinion(Minions);
-			case "T" : success = AssassinateTroll(Trolls);
-			case "D" : success = AssassinateDemon(Demons);
-			default  : System.out.println("Incorrect input");
+			case "M" : success = AssassinateMinion(Minions); Break = true;
+			case "T" : success = AssassinateTroll(Trolls); Break = true;
+			case "D" : success = AssassinateDemon(Demons); Break = true;
+			default  : System.out.println("Incorrect input. Please try again.");
+			}
+			if(Break)
+			{
+				break;
+			}
+			
 			}
 		}
 		
