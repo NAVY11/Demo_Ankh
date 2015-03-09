@@ -123,6 +123,10 @@ public class Area {
 		belongs_to=BelongsTo;
 	}
 	
+	public Area() {
+		// TODO Auto-generated constructor stub
+	}
+
 	/** The lst minions. */
 	public static ArrayList<Minion> lstMinions = new ArrayList<Minion>();
 	
