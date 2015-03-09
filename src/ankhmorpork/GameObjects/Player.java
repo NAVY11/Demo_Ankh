@@ -2,9 +2,14 @@
  * 
  */
 package ankhmorpork.GameObjects;
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStreamReader;
 import java.util.ArrayList;
+import java.util.Hashtable;
 
 import PresentationUtilityCommon.PresentationUtility;
+import ankhmorpork.Game.Game;
 import ankhmorpork.GameConstants.Constants;
 import ankhmorpork.GameObjects.Cards.*;
 // TODO: Auto-generated Javadoc
@@ -315,11 +320,327 @@ public class Player {
 		// TODO Auto-generated constructor stub
 	}
 	
+	//Get Active Minions List
+	public String GetActiveMinions()
+	{
+		StringBuilder strActiveMinions = new StringBuilder();
+		for(Minion objMinion : this.lstMinions)
+		{
+			if(objMinion.getActive()&& objMinion.getArea_id()!=0)
+			{
+				strActiveMinions.append(objMinion.getMinion_id() + ",");
+			}
+		}
+		return strActiveMinions.toString();
+	}
+	
+	//Method for Assassination
+	public boolean Assassination(Player CurrentPlayer, Hashtable AreaTable) throws IOException
+	{			
+		String AreaID = null;
+		boolean success = false;
+		BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+		//Dispaly Areas with Trouble Makers
+		System.out.println("Select an area to perform Assasination :");
+		boolean TMOnBoard = false;
+		StringBuilder sbValidAreas = new StringBuilder();
+		for(TroubleMaker objTM : Game.lstTroubleMaker)
+		{
+			if(objTM.getArea_id()!=0 && objTM.getActive() && (HasOtherPlayersMinion(CurrentPlayer,objTM.getArea_id())||Game.AreaHasTroll(objTM.getArea_id())||Game.AreaHasDemon(objTM.getArea_id())))
+			{
+				//Display Areas which have Trouble Marker and Minion of other players
+				TMOnBoard = true; //At least 1 Trouble marker is present on board
+				sbValidAreas.append(objTM.getArea_id());
+				System.out.println(objTM.getArea_id() + " : " + AreaTable.get(objTM.getArea_id()));
+			}			
+		}
+		
+		if(!TMOnBoard)
+		{
+			System.out.println("No Area contains a Trouble Marker. Thus Assassination cannot be performed.");
+			return false;
+		}
+		else
+		{
+			
+			while(true)
+			{
+				//Read entered Area ID
+				AreaID = br.readLine() ;
+				String[] ValidAreas = sbValidAreas.toString().split(",");
+				
+				if(PresentationUtility.ArrayHasElement(ValidAreas, AreaID))
+				{					
+					break;					
+				}
+				else
+				{
+					System.out.println("Enter a valid Area ID shown above.");
+				}					
+			}
+			
+			System.out.println("Select whom to assassinate:");
+			ArrayList<Minion> Minions = GetOtherPlayersMinion(CurrentPlayer, Integer.parseInt(AreaID));
+			ArrayList<Troll> Trolls = Game.GetTrollByAreaID(Integer.parseInt(AreaID));
+			ArrayList<Demon> Demons = Game.GetDemonByAreaID(Integer.parseInt(AreaID));
+			
+			//Display Minions, Demons, Trolls which can be Assassinated
+			if(!Minions.isEmpty())
+			{
+				System.out.println("Minions :");								
+				for(Minion objMinion : Minions)
+				{					
+					System.out.print("ID : " + objMinion.getMinion_id() + " ");
+				}
+			}
+			
+			if(!Trolls.isEmpty())
+			{
+				System.out.println("Trolls :");
+				for(Troll objTroll : Trolls)
+				{
+					System.out.print("ID : " + objTroll.getTroll_id() + " ");
+				}
+			}
+			
+			if(!Demons.isEmpty())
+			{
+				System.out.println("Demons :");
+				for(Demon objDemon : Demons)
+				{
+					System.out.print("ID : " + objDemon.getDemon_id() + " ");
+				}
+			}
+			boolean Break = false;
+			while(true)
+			{
+			System.out.println("To assassinate Enter 'M' for Minion, 'D' for Demon, 'T' for Troll");
+			String input = br.readLine();
+			switch(input)
+			{
+			case "M" : success = AssassinateMinion(Minions); Break = true;
+			case "T" : success = AssassinateTroll(Trolls); Break = true;
+			case "D" : success = AssassinateDemon(Demons); Break = true;
+			default  : System.out.println("Incorrect input. Please try again.");
+			}
+			if(Break)
+			{
+				break;
+			}
+			
+			}
+		}
+		
+		if(success)
+		{
+			RemoveTroubleMarker(Integer.parseInt(AreaID));
+		}
+		return success;
+	}	
+
+	//Method to assassinate Minion
+	public boolean AssassinateMinion(ArrayList<Minion> Minions) throws IOException
+	{
+		boolean success = false;
+		BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+		if(!Minions.isEmpty())
+		{
+			System.out.println("Minions :");								
+			for(Minion objMinion : Minions)
+			{				
+				System.out.print("ID : " + objMinion.getMinion_id() + " ");
+			}
+			
+			String MinionID = null;			
+			while(true)
+			{
+				MinionID = br.readLine();
+				for(Minion objMinion : Minions)
+				{
+					if(objMinion.getMinion_id().toString() == MinionID)
+					{
+						for(Minion GameMinion : Game.lstMinions)
+						{
+							if(GameMinion.getMinion_id().toString() == MinionID)
+							{
+								GameMinion.setActive(false);
+								success = true;
+							}
+							
+							if(success)
+								break;
+						}
+						
+
+						if(success)
+							break;
+					}
+					else
+					{
+						System.out.println("Invalid Minion ID");
+					}
+					
+				}
+				
+			}
+		}
+		else
+		{
+			System.out.print("No Minions found");
+		}
+		
+		return success;
+	}
+	
+	public boolean AssassinateTroll(ArrayList<Troll> Trolls) throws IOException
+	{
+		boolean success = false;
+		BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+		if(!Trolls.isEmpty())
+		{
+			System.out.println("Trolls :");								
+			for(Troll objTroll : Trolls)
+			{				
+				System.out.print("ID : " + objTroll.getTroll_id() + " ");
+			}
+			
+			String TrollID = null;			
+			while(true)
+			{
+				TrollID = br.readLine();
+				for(Troll objTroll : Trolls)
+				{
+					if(objTroll.getTroll_id().toString() == TrollID)
+					{
+						for(Troll GameTroll : Game.lstTrolls)
+						{
+							if(GameTroll.getTroll_id().toString() == TrollID)
+							{
+								GameTroll.setActive(false);
+								success = true;
+							}							
+							if(success)
+								break;
+						}						
+						if(success)
+							break;
+					}
+					else
+					{
+						System.out.println("Invalid Troll ID");
+					}
+					
+				}
+				
+			}
+		}
+		else
+		{
+			System.out.print("No Trolls found");
+		}
+				
+		return success;
+	}
+	//Assassinate Demon
+	public boolean AssassinateDemon(ArrayList<Demon> Demons) throws IOException
+	{
+		boolean success = false;
+		BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+		if(!Demons.isEmpty())
+		{
+			System.out.println("Demons :");								
+			for(Demon objDemon : Demons)
+			{				
+				System.out.print("ID : " + objDemon.getDemon_id() + " ");
+			}
+			
+			String DemonID = null;			
+			while(true)
+			{
+				DemonID = br.readLine();
+				for(Demon objDemon : Demons)
+				{
+					if(objDemon.getDemon_id().toString() == DemonID)
+					{
+						for(Demon GameDemon : Game.lstDemons)
+						{
+							if(GameDemon.getDemon_id().toString() == DemonID)
+							{
+								GameDemon.setActive(false);
+								success = true;
+							}							
+							if(success)
+								break;
+						}						
+						if(success)
+							break;
+					}
+					else
+					{
+						System.out.println("Invalid Demon ID");
+					}
+					
+				}
+				
+			}
+		}
+		else
+		{
+			System.out.print("No Demons found");
+		}
+		
+		return success;
+	}
+	
+	//Method to check if "other" Players have Minion in an Area
+	public boolean HasOtherPlayersMinion(Player objPlayer, int AreaID)
+	{
+		boolean success = false;
+		String ListOfMinions = Game.GetActiveMinionsStringByPlayerID(objPlayer.getPlayer_id());		
+		ArrayList<Minion> Minions = Game.GetMinionsByAreaID(AreaID);
+		for(Minion objMinion : Minions)
+				{
+					if(!(ListOfMinions.contains(objMinion.getMinion_id().toString())&&objMinion.getActive()))
+					{
+						success = true;
+						break;
+					}
+				}
+						
+		return success;
+	}
+	//Method to check if "other" Players have Minion in an Area
+	public ArrayList<Minion> GetOtherPlayersMinion(Player objPlayer, int AreaID)
+	{
+		ArrayList<Minion> MinionIDs = new ArrayList<Minion>();
+		String ListOfMinions = Game.GetActiveMinionsStringByPlayerID(objPlayer.getPlayer_id());		
+		ArrayList<Minion> Minions = Game.GetMinionsByAreaID(AreaID);
+		for(Minion objMinion : Minions)
+		{
+			if(!(ListOfMinions.contains(objMinion.getMinion_id().toString())&&objMinion.getActive()))
+			{
+				MinionIDs.add(objMinion);						
+			}
+		}
+				
+		return MinionIDs;
+	}
 	
 	
-	
-	
-	
+	//Method to remove Trouble marker
+		public boolean RemoveTroubleMarker(int AreaID)
+		{
+			boolean success = false;
+			for(TroubleMaker TM : Game.lstTroubleMaker)
+			{
+				if(TM.getArea_id()== AreaID)
+				{
+					TM.setArea_id(0);
+					success = true;
+				}
+			}
+			return success;
+		}
 	
 	
 	

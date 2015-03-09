@@ -1,17 +1,19 @@
 package ankhmorpork.GameObjects.Cards;
 
+import java.util.Arrays;
+
 
 public class GreenCard extends Cards {
 	//private int ActionID;
-	private String[] Action = new String[3];
+	private String ActionID[];
 	private String ActionDescription = new String();
 	
-	public void SetCardID(int ID)
+	public void SetCardID(String ID)
 	{
 		this.CardID = ID;
 	}
 	
-	public int GetCardID()
+	public String GetCardID()
 	{
 		return this.CardID;
 	}
@@ -26,14 +28,17 @@ public class GreenCard extends Cards {
 		return this.IsPlayed;
 	}
 	
-	public void SetAction(String[] Action)
+	public void SetAction(String[] a)
 	{
-		this.Action = Action;
+		//this.Action = Arrays.copyOf(a, a.length);
+		this.ActionID = a;
 	}
 	
+    
+	
 	public String[] GetAction()
-	{
-		return this.Action;
+	{	
+		return this.ActionID;
 	}
 	
 	public void SetActionDescription(String EventDescription)
