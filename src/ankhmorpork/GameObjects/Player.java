@@ -336,7 +336,8 @@ public class Player {
 	
 	//Method for Assassination
 	public boolean Assassination(Player CurrentPlayer, Hashtable AreaTable) throws IOException
-	{		
+	{			
+		String AreaID = null;
 		boolean success = false;
 		BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
 		//Dispaly Areas with Trouble Makers
@@ -361,14 +362,14 @@ public class Player {
 		}
 		else
 		{
-			//Read entered Area ID
-			String AreaID = null;
+			
 			while(true)
-			{				
+			{
+				//Read entered Area ID
 				AreaID = br.readLine() ;
 				String[] ValidAreas = sbValidAreas.toString().split(",");
 				
-				if(Game.ArrayHasElement(ValidAreas, AreaID))
+				if(PresentationUtility.ArrayHasElement(ValidAreas, AreaID))
 				{					
 					break;					
 				}
@@ -421,6 +422,10 @@ public class Player {
 			}
 		}
 		
+		if(success)
+		{
+			RemoveTroubleMarker(Integer.parseInt(AreaID));
+		}
 		return success;
 	}	
 
@@ -524,7 +529,7 @@ public class Player {
 		{
 			System.out.print("No Trolls found");
 		}
-		
+				
 		return success;
 	}
 	//Assassinate Demon
@@ -613,7 +618,20 @@ public class Player {
 	}
 	
 	
-	
+	//Method to remove Trouble marker
+		public boolean RemoveTroubleMarker(int AreaID)
+		{
+			boolean success = false;
+			for(TroubleMaker TM : Game.lstTroubleMaker)
+			{
+				if(TM.getArea_id()== AreaID)
+				{
+					TM.setArea_id(0);
+					success = true;
+				}
+			}
+			return success;
+		}
 	
 	
 	
