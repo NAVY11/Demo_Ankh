@@ -238,4 +238,38 @@ public class Game {
 			return Trolls;
 		}
 		
+		public static boolean AreaHasDemon(Integer AreaID) 
+		{
+			ArrayList<Demon> lstDemon = new ArrayList<Demon>();
+			lstDemon = GetDemonByAreaID(AreaID);
+			if(!lstDemon.isEmpty())
+				return true;
+			else
+				return false;
+		}
+		
+		public static boolean AreaHasTroll(Integer AreaID) 
+		{
+			ArrayList<Troll> lstDemon = new ArrayList<Troll>();
+			lstDemon = GetTrollByAreaID(AreaID);
+			if(!lstDemon.isEmpty())
+				return true;
+			else
+				return false;
+		}
+		
+		public static boolean ArrayHasElement(String[] Array, String Element)
+		{
+			boolean ElementFound = false;
+			for(int i=0; i < Array.length; i++)
+			{
+				if(Array[i]==Element)
+				{
+					ElementFound = true;
+					break;
+				}				
+			}
+			
+			return ElementFound;
+		}
 }
