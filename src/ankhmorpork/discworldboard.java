@@ -321,7 +321,7 @@ public class discworldboard extends Component {
 		ViewFileTxt.ViewState(AnkhMorpork);        
 		//Play Game						
 		//Load Player details
-		Player objPlayer = AnkhMorpork.lstPlayers.get(CurrentPlayer);
+		Player objPlayer = Game.lstPlayers.get(CurrentPlayer - 1);
 		
 		//********Which Card to Play?
 		System.out.println("Which card to play?");
