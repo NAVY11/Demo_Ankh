@@ -258,6 +258,37 @@ public class Game {
 				return false;
 		}
 		
+		//Method to return TroubleMaker based on AreaID
+		public static TroubleMaker GetTroubleMarker(int AreaID)
+		{
+			TroubleMaker objTroubleMaker = new TroubleMaker();
+			for(TroubleMaker objTM : Game.lstTroubleMaker)
+			{
+				if(objTM.getArea_id()==AreaID)
+				{
+					objTroubleMaker = objTM;
+				}
+			}
+			return objTroubleMaker;
+		}
+		
+		//Method to return list of TroubleMakers
+		public static TroubleMaker GetTroubleMakerNotOnBoard()
+		{
+			TroubleMaker objTroubleMaker = new TroubleMaker();
+			for(TroubleMaker objTM : Game.lstTroubleMaker)
+			{
+				if(objTM.getArea_id()==0)
+				{
+					objTroubleMaker = objTM;
+					break;
+				}
+			}
+			//This object can be null
+			return objTroubleMaker;
+		}
+		
+		
 		public static boolean ArrayHasElement(String[] Array, String Element)
 		{
 			boolean ElementFound = false;
