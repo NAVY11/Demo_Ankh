@@ -2,6 +2,7 @@ package ankhmorpork.GameLoad;
 import ankhmorpork.Game.Game;
 import ankhmorpork.GameObjects.*;
 import ankhmorpork.GameObjects.Cards.BrownCard;
+import ankhmorpork.GameObjects.Cards.CityAreaCard;
 import ankhmorpork.GameObjects.Cards.GreenCard;
 import ankhmorpork.GameObjects.Cards.RandomEventCard;
 import ankhmorpork.GameConstants.*;
@@ -10,6 +11,7 @@ import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.IOException;
 import java.util.Iterator;
+
 
 
 
@@ -131,6 +133,37 @@ public class GameLoad {
 				return LoadedGame;	
 	
 	}
+	
+	public static Game CityAreaCard_Details() throws FileNotFoundException, IOException, ParseException, JSONException 
+	{
+		Game LoadedGame = new Game();
+	    Object obj;
+	    JSONParser parser = new JSONParser();
+
+		for(int i=1;i<13;i++)
+	    {
+			CityAreaCard objCityAreaCard = new CityAreaCard();
+			String card = "c"+i;
+			obj = parser.parse(new FileReader("CityAreaCards.json"));
+
+			org.json.JSONObject jsonObject =  new org.json.JSONObject(obj.toString());
+			org.json.JSONObject cityAreaCards =  jsonObject.getJSONObject(card);
+						
+			objCityAreaCard.SetActionID((String)cityAreaCards.get("ActionID"));
+			objCityAreaCard.SetName((String)cityAreaCards.get("AreaName"));
+			objCityAreaCard.SetActionDescription((String)cityAreaCards.get("ActionDescription"));
+			objCityAreaCard.SetAreaID(Integer.parseInt(cityAreaCards.get("AreaID").toString()));
+			LoadedGame.lstCityAreaCards.add(objCityAreaCard);
+
+	    }
+
+		return LoadedGame;
+
+}
+
+	
+	
+	
 	
 	public static Game GreenCard_Details() throws FileNotFoundException, IOException, ParseException, JSONException 
 	{
