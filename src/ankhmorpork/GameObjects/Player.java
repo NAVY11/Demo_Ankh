@@ -31,7 +31,7 @@ public class Player {
 	String player_color;
 	
 	/** The player_amount. */
-	//Float player_amount;
+	Float player_amount;
 	
 	/** The player_personality_card_id. */
 	Integer player_personality_card_id;
@@ -232,9 +232,9 @@ public class Player {
 	 *
 	 * @param player_amount the new player_amount
 	 */
-//	public void setPlayer_amount(Float player_amount) {
-//		this.player_amount = player_amount;
-//	}
+	public void setPlayer_amount(float player_amount) {
+		this.player_amount = player_amount;
+	}
 	
 	/**
 	 * Gets the player_personality_card_id.
