@@ -72,6 +72,7 @@ public class Player {
 	//public ArrayList<Coins> lstGoldCoin = new ArrayList<Coins>();
 	//public ArrayList<Coins> lstSilverCoin = new ArrayList<Coins>();
 	
+	private static BufferedReader BR = new BufferedReader(new InputStreamReader(System.in));
 	/**
 	 * Gets the brown card list comma separated.
 	 *
@@ -418,9 +419,9 @@ public class Player {
 			String input = br.readLine();
 			switch(input)
 			{
-			case "M" : success = AssassinateMinion(Minions); Break = true;
-			case "T" : success = AssassinateTroll(Trolls); Break = true;
-			case "D" : success = AssassinateDemon(Demons); Break = true;
+			case "M" : if(AskForInterrupt()){if(GetInterrupter()){success = false; Break =true;}else{success = AssassinateMinion(Minions); Break = true;}}else{success = AssassinateMinion(Minions); Break = true;}						
+			case "T" : if(AskForInterrupt()){if(GetInterrupter()){success = false; Break =true;}else{success = AssassinateTroll(Trolls); Break = true;}}else{success = AssassinateTroll(Trolls); Break = true;}
+			case "D" : if(AskForInterrupt()){if(GetInterrupter()){success = false; Break =true;}else{success = AssassinateDemon(Demons); Break = true;}}else{success = AssassinateDemon(Demons); Break = true;}
 			default  : System.out.println("Incorrect input. Please try again.");
 			}
 			if(Break)
@@ -437,6 +438,11 @@ public class Player {
 		}
 		return success;
 	}	
+
+	private boolean GetInterrupter() {
+		// TODO Auto-generated method stub
+		return false;
+	}
 
 	//Method to assassinate Minion
 	public boolean AssassinateMinion(ArrayList<Minion> Minions) throws IOException
@@ -642,7 +648,43 @@ public class Player {
 			return success;
 		}
 	
-	
+	//Method to ask for Interrupt
+		private boolean AskForInterrupt()
+		{
+			boolean interrupt =false;
+			boolean Break = false;
+			String Answer = null;
+			BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+			System.out.println("Does any Player wish to interupt? Y/N");
+			while(true)
+			{
+				try {
+					Answer = br.readLine();
+				} catch (IOException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
+				
+				if(Answer=="N")
+				{
+					interrupt = false;
+					Break = true;
+				}
+				else if(Answer=="Y")
+				{
+					interrupt = true;
+					Break = true;
+				}
+				else
+				{
+					System.out.println("Incorrect input. Enter 'Y' for Yes or 'N' for No.");
+				}
+				if(Break)
+					break;
+			}
+			
+			return interrupt;
+		}
 	
 	
 	
