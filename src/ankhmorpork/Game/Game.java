@@ -22,6 +22,8 @@ public class Game {
 	public static Bank GameBank = new Bank();
 		
 	
+	
+			
 	//Method to Get Player from Player ID
 	public static Player GetPlayer(int PlayerID)
 	{
@@ -327,5 +329,48 @@ public class Game {
 			return objTroubleMaker;
 		}
 				
-
+		//Method to check whether Green cards are available in stack
+		public static boolean IsGreenCardInDeck()
+		{
+			boolean found = false;
+			for(GreenCard GC : lstGreenCards)
+			{
+				if(GC.IsPlayed==false)
+				{
+					found = true;
+					break;
+				}
+			}
+			
+			return found;
+		}
+		
+		//Method to get Green Card by Card ID
+		public static GreenCard GetGreenCard(String CardID)
+		{
+			GreenCard objGC = new GreenCard();
+			for(GreenCard grnCard : lstGreenCards)
+			{
+				if(grnCard.GetCardID()==CardID && grnCard.IsPlayed==false)
+				{
+					objGC = grnCard;
+				}
+			}
+			
+			return objGC;
+		}
+		
+		//Method to get Green CArd Actions
+		public static String GetGreenCardActions(String GreenCardID)
+		{
+			GreenCard GC = Game.GetGreenCard(GreenCardID);
+			String[] ActionArray = GC.GetAction();
+			StringBuilder sbActions = new StringBuilder();			
+			for(int i = 0; i < ActionArray.length; i++)
+			{
+				sbActions.append(ActionArray[i] + ", ");
+			}
+			
+			return sbActions.toString();
+		}
 }
