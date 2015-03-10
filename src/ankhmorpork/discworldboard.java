@@ -48,7 +48,7 @@ public class discworldboard extends Component {
 	private int Height = 900;
 	
 	private discworld discworld;
-	
+	private static BufferedReader BR = new BufferedReader(new InputStreamReader(System.in));
 	static final Frame quit = new Frame("Are you sure?");
 	
 	public boolean rolled = false;
@@ -328,10 +328,13 @@ public class discworldboard extends Component {
 		
 		//Show available cards
 		StringBuilder sbValidIDs = new StringBuilder();
-		for(GreenCard grnCard: objPlayer.lstGreenCards)
+		for(GreenCard grnCard: Game.lstGreenCards)
 		{	
-			sbValidIDs.append(grnCard.GetCardID());			
-			System.out.println(grnCard.CardID + " : " + grnCard.getName());
+			if(grnCard.getPlayerID()==objPlayer.getPlayer_id())
+			{
+				sbValidIDs.append(grnCard.GetCardID());			
+				System.out.println(grnCard.CardID + " : " + grnCard.getName());
+			}
 		}
 		
 		//Accept Card to play from Player
@@ -347,6 +350,34 @@ public class discworldboard extends Component {
 			}
 		}
 				//Which Action to perform?
+				GreenCard grnCard = Game.GetGreenCard(CardID);
+				String[] ActionArray = grnCard.GetAction();
+				String ActionList = Game.GetGreenCardActions(CardID);
+				System.out.println("Card " + grnCard.getName() + " has following actions :");
+				System.out.println(ActionList);
+				for(int i = 0; i<ActionArray.length; i++)
+				{
+					String ans = null;
+					System.out.println("Do you wish to perform " + ActionArray[i] + " action? Y/N");
+					while(true)
+					{						
+						ans = BR.readLine();
+						if(ans=="Y" || ans=="N")
+						{
+							break;
+						}
+						else
+							System.out.println("Incorrect input. Please try again.");
+					}
+					
+					if(ans == "Y")
+					{
+						//Perform Action
+						
+					}
+					else
+						continue;
+				}
 					//Does a Player wish to interrupt?
 						//If Yes : Which Player wants to interrupt?
 							//Play Game		

@@ -21,25 +21,7 @@ public class Game {
 	public static ArrayList<PersonalityCard> lstPersonalityCard = new ArrayList<PersonalityCard>();
 	public static Bank GameBank = new Bank();
 	
-	
-	public static int GetAvailableSilverCoin(){
-		
-		 Coins objSilverCoin = new Coins(Constants.SilverCoin());
-		
-		 int numberOfCoinavailable = objSilverCoin.getCoin_Available();
-		 return numberOfCoinavailable;
-		
-	}
-
-	public static int GetAvailableGoldCoin(){
-		
-		 Coins objGoldCoin = new Coins(Constants.GoldCoin());
-		 int numberOfCoinavailable = objGoldCoin.getCoin_Available();
-		 return numberOfCoinavailable;
-		
-	}
-	
-	
+			
 	//Method to Get Player from Player ID
 	public static Player GetPlayer(int PlayerID)
 	{
@@ -128,6 +110,7 @@ public class Game {
 			return Minions;
 		}
 		
+		//Method to return comma separated String of Active Minion IDs in an Area
 		public static String GetActiveMinionsStringByAreaID(int AreaID)
 		{
 			StringBuilder strActiveMinions = new StringBuilder();
@@ -138,9 +121,12 @@ public class Game {
 					strActiveMinions.append(objMinion.getMinion_id() + ",");
 				}
 			}
-			return strActiveMinions.toString();
+			String ActiveMinions = strActiveMinions.toString();
+			//Remove the trailing "," and return the string
+			return ActiveMinions.substring(0,ActiveMinions.length()-2);
 		}
 		
+		//Method to return comma separated String of Active Minion IDs of a Player
 		public static String GetActiveMinionsStringByPlayerID(int PlayerID)
 		{
 			StringBuilder strActiveMinions = new StringBuilder();
@@ -151,7 +137,40 @@ public class Game {
 					strActiveMinions.append(objMinion.getMinion_id() + ",");
 				}
 			}
-			return strActiveMinions.toString();
+			String ActiveMinions = strActiveMinions.toString();
+			//Remove the trailing "," and return the string
+			return ActiveMinions.substring(0,ActiveMinions.length()-2);
+		}
+		
+		//Method to return comma separated String of Active Minion IDs in an Area
+		public static String GetActiveBuildingsStringByAreaID(int AreaID)
+		{
+			StringBuilder strActiveBuildings = new StringBuilder();
+			for(Building objBuilding : lstBuildings)
+			{
+				if(objBuilding.getActive()&& objBuilding.getArea_id()== AreaID)
+				{
+					strActiveBuildings.append(objBuilding.getBuilding_id() + ",");
+				}
+			}
+			String ActiveBuildings = strActiveBuildings.toString();
+			//Remove the trailing "," and return the string
+			return ActiveBuildings.substring(0,ActiveBuildings.length()-2);
+		}
+		//Method to return comma separated String of Active Building IDs of a Player
+		public static String GetActiveBuildingsStringByPlayerID(int PlayerID)
+		{
+			StringBuilder strActiveBuildings = new StringBuilder();
+			for(Building objBuilding : lstBuildings)
+			{
+				if(objBuilding.getActive()&& objBuilding.getPlayer_id()== PlayerID)
+				{
+					strActiveBuildings.append(objBuilding.getBuilding_id() + ",");
+				}
+			}
+			String ActiveBuildings = strActiveBuildings.toString();
+			//Remove the trailing "," and return the string
+			return ActiveBuildings.substring(0,ActiveBuildings.length()-2);
 		}
 		
 		public static ArrayList<Building> GetBuildingsByBuildingID(int BuildingID)
@@ -307,21 +326,49 @@ public class Game {
 			//This object can be null
 			return objTroubleMaker;
 		}
-		
-		
-		public static boolean ArrayHasElement(String[] Array, String Element)
+				
+		//Method to check whether Green cards are available in stack
+		public static boolean IsGreenCardInDeck()
 		{
-			boolean ElementFound = false;
-			for(int i=0; i < Array.length; i++)
+			boolean found = false;
+			for(GreenCard GC : lstGreenCards)
 			{
-				if(Array[i]==Element)
+				if(GC.IsPlayed==false)
 				{
-					ElementFound = true;
+					found = true;
 					break;
-				}				
+				}
 			}
 			
-			return ElementFound;
+			return found;
 		}
-
+		
+		//Method to get Green Card by Card ID
+		public static GreenCard GetGreenCard(String CardID)
+		{
+			GreenCard objGC = new GreenCard();
+			for(GreenCard grnCard : lstGreenCards)
+			{
+				if(grnCard.GetCardID()==CardID && grnCard.IsPlayed==false)
+				{
+					objGC = grnCard;
+				}
+			}
+			
+			return objGC;
+		}
+		
+		//Method to get Green CArd Actions
+		public static String GetGreenCardActions(String GreenCardID)
+		{
+			GreenCard GC = Game.GetGreenCard(GreenCardID);
+			String[] ActionArray = GC.GetAction();
+			StringBuilder sbActions = new StringBuilder();			
+			for(int i = 0; i < ActionArray.length; i++)
+			{
+				sbActions.append(ActionArray[i] + ", ");
+			}
+			
+			return sbActions.toString();
+		}
 }

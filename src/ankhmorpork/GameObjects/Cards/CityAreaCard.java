@@ -16,6 +16,7 @@ public class CityAreaCard extends Cards{
 	private String ActionDescription;
 	private int AreaID;
 	private String AreaName;
+	private int Cost;
 	
 	public void SetCardID(String ID)
 	{
@@ -70,6 +71,16 @@ public class CityAreaCard extends Cards{
 	public void SetName(String AreaName)
 	{
 		this.AreaName = AreaName;
+	}
+	
+	public int GetCost()
+	{
+		return this.Cost;
+	}
+	
+	public void SetCost(int Cost)
+	{
+		this.Cost = Cost;
 	}
 	
 	public String GetAreaName()

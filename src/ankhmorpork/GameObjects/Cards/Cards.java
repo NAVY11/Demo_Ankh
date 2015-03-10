@@ -4,6 +4,7 @@ public class Cards {
 	public String CardID;	
 	public boolean IsPlayed;
 	public String Name;
+	public int PlayerID;
 	
 	public String getName()
 	{
@@ -12,5 +13,13 @@ public class Cards {
 	public void setName(String Name)
 	{
 		this.Name = Name;
+	}
+	public int getPlayerID()
+	{
+		return this.PlayerID;
+	}
+	public void setPlayerID(int PlayerID)
+	{
+		this.PlayerID = PlayerID;
 	}
 }
