@@ -20,25 +20,7 @@ public class Game {
 	public static ArrayList<RandomEventCard> lstRandomEventCards = new ArrayList<RandomEventCard>();
 	public static ArrayList<PersonalityCard> lstPersonalityCard = new ArrayList<PersonalityCard>();
 	public static Bank GameBank = new Bank();
-	
-	
-	public static int GetAvailableSilverCoin(){
 		
-		 Coins objSilverCoin = new Coins(Constants.SilverCoin());
-		
-		 int numberOfCoinavailable = objSilverCoin.getCoin_Available();
-		 return numberOfCoinavailable;
-		
-	}
-
-	public static int GetAvailableGoldCoin(){
-		
-		 Coins objGoldCoin = new Coins(Constants.GoldCoin());
-		 int numberOfCoinavailable = objGoldCoin.getCoin_Available();
-		 return numberOfCoinavailable;
-		
-	}
-	
 	
 	//Method to Get Player from Player ID
 	public static Player GetPlayer(int PlayerID)
