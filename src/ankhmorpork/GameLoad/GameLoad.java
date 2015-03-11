@@ -222,6 +222,7 @@ public class GameLoad {
 	
 	}
 	
+
 	public static Game LoadNewGame_Cards() throws FileNotFoundException, IOException, ParseException, JSONException 
 	{
 		Game LoadedGame = new Game();
@@ -263,7 +264,7 @@ public class GameLoad {
 			objGreenCard.setName((String) green.get("Name"));
 			
 			objGreenCard.SetCardID(card);
-			String a1 = (String) green.get("Action");
+			String a1 = (String) green.get("ActionID");
 			String[] a2 = a1.split(",");
 			objGreenCard.SetAction(a2);
 			
@@ -272,30 +273,30 @@ public class GameLoad {
 	    }
 
 
-		for(int i=1;i<54;i++)
-	    {
-			BrownCard objBrownCard = new BrownCard();
-			String card = "b"+i;
-			obj = parser.parse(new FileReader("BrownCard.json"));
-
-			org.json.JSONObject jsonObject =  new org.json.JSONObject(obj.toString());
-			org.json.JSONObject brown =  jsonObject.getJSONObject(card);
-			
-			String s = (String) brown.get("IsPlayed");
-			objBrownCard.SetIsPlayed(Boolean.valueOf(Boolean.valueOf(s)));
-			
-			objBrownCard.SetActionDescription((String)brown.get("ActionDescription"));
-			
-			objBrownCard.setName((String) brown.get("Name"));
-			
-			objBrownCard.SetCardID(card);
-			String a1 = (String) brown.get("Action");
-			String[] a2 = a1.split(",");
-			objBrownCard.SetActionID(a2);
-			
-			LoadedGame.lstBrownCards.add(objBrownCard);
-
-	    }
+//		for(int i=1;i<54;i++)
+//	    {
+//			BrownCard objBrownCard = new BrownCard();
+//			String card = "b"+i;
+//			obj = parser.parse(new FileReader("BrownCard.json"));
+//
+//			org.json.JSONObject jsonObject =  new org.json.JSONObject(obj.toString());
+//			org.json.JSONObject brown =  jsonObject.getJSONObject(card);
+//			
+//			String s = (String) brown.get("IsPlayed");
+//			objBrownCard.SetIsPlayed(Boolean.valueOf(Boolean.valueOf(s)));
+//			
+//			objBrownCard.SetActionDescription((String)brown.get("ActionDescription"));
+//			
+//			objBrownCard.setName((String) brown.get("Name"));
+//			
+//			objBrownCard.SetCardID(card);
+//			String a1 = (String) brown.get("Action");
+//			String[] a2 = a1.split(",");
+//			objBrownCard.SetActionID(a2);
+//			
+//			LoadedGame.lstBrownCards.add(objBrownCard);
+//
+//	    }
 
 
 		for(int i=1;i<13;i++)
