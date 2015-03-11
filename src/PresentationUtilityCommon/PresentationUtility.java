@@ -20,6 +20,23 @@ public class PresentationUtility {
 	/** The random number a. */
 	static Integer randomNumberA = 0;
 	
+	/**Method to check if an element exists in a String array*/
+	public static boolean ArrayHasElement(String[] Array, String Element)
+	{
+		boolean ElementFound = false;
+		for(int i=0; i < Array.length; i++)
+		{
+			if(Array[i]==Element)
+			{
+				ElementFound = true;
+				break;
+			}				
+		}
+		
+		return ElementFound;
+	}
+	
+	
 	/**
 	 * Random integer generator.
 	 *
