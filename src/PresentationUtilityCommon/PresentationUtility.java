@@ -287,25 +287,27 @@ public class PresentationUtility {
 		}else if(currentAreaId == 12){
 			if(areaToBePlacedIn == 1 || areaToBePlacedIn == 1 || areaToBePlacedIn == 11)
 				return true;
+		}else if(currentAreaId == -1){ //Means this is a new minion to be placed
+			return true;
 		}
 		return false;
 	}
 	
-	public boolean isThisGreenCardAssassinationCard(int greenCardId){
+	public static boolean isThisGreenCardAssassinationCard(int greenCardId){
 		
 		if(greenCardId == 7 || greenCardId == 12 || greenCardId == 22 || greenCardId == 28 || greenCardId == 47)
 			return true;
 		return false;
 	}
 	
-	public boolean isThisGreenCardTroubleMakerCard(int greenCardId){
+	public static boolean isThisGreenCardTroubleMakerCard(int greenCardId){
 		
 		if(greenCardId == 6 || greenCardId == 13 || greenCardId == 47)
 			return true;
 		return false;
 	}
 	
-	public boolean isThisGreenCardPlacingAMinionCard(int greenCardId){
+	public static boolean isThisGreenCardPlacingAMinionCard(int greenCardId){
 		
 		if(greenCardId == 1 || greenCardId == 3 || greenCardId == 7 || greenCardId == 13 || greenCardId == 15 || greenCardId == 16 
 				|| greenCardId == 20 || greenCardId == 23 || greenCardId == 26 || greenCardId == 27 || greenCardId == 32 || greenCardId == 37 
@@ -314,7 +316,7 @@ public class PresentationUtility {
 		return false;
 	}
 	
-	public boolean isThisGreenCardPlacingABuildingCard(int greenCardId){
+	public static boolean isThisGreenCardPlacingABuildingCard(int greenCardId){
 		
 		if(greenCardId == 8 || greenCardId == 14 || greenCardId == 17 || greenCardId == 24 
 				|| greenCardId == 30 || greenCardId == 33 || greenCardId == 40 || greenCardId == 43)
@@ -329,14 +331,14 @@ public class PresentationUtility {
 		return false;
 	}
 	
-	public boolean isThisGreenCardRandomEventCard(int greenCardId){
+	public static boolean isThisGreenCardRandomEventCard(int greenCardId){
 		
 		if(greenCardId == 39)
 			return true;
 		return false;
 	}
 	
-	public Integer howMuchMoneyToTakeFromBank(int greenCardId){
+	public static Integer howMuchMoneyToTakeFromBank(int greenCardId){
 		
 		if(greenCardId == 28 || greenCardId == 47)
 			return 1;
