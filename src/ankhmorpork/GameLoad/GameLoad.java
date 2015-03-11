@@ -222,7 +222,7 @@ public class GameLoad {
 	
 	}
 	
-	public static Game CityAreaCard_Details() throws FileNotFoundException, IOException, ParseException, JSONException 
+	public static Game LoadNewGame_Cards() throws FileNotFoundException, IOException, ParseException, JSONException 
 	{
 		Game LoadedGame = new Game();
 	    Object obj;
@@ -245,23 +245,10 @@ public class GameLoad {
 
 	    }
 
-		return LoadedGame;
-
-}
-
-	
-	
-	
-	
-	public static Game GreenCard_Details() throws FileNotFoundException, IOException, ParseException, JSONException 
-	{
-		Game LoadedGame = new Game();
-	    Object obj;
-	    JSONParser parser = new JSONParser();
 
 		for(int i=1;i<49;i++)
 	    {
-			GreenCard gc = new GreenCard();
+			GreenCard objGreenCard = new GreenCard();
 			String card = "g"+i;
 			obj = parser.parse(new FileReader("GreenCard.json"));
 
@@ -269,34 +256,25 @@ public class GameLoad {
 			org.json.JSONObject green =  jsonObject.getJSONObject(card);
 			
 			String s = (String) green.get("IsPlayed");
-			gc.SetIsPlayed(Boolean.valueOf(Boolean.valueOf(s)));
+			objGreenCard.SetIsPlayed(Boolean.valueOf(Boolean.valueOf(s)));
 			
-			gc.SetActionDescription((String)green.get("ActionDescription"));
+			objGreenCard.SetActionDescription((String)green.get("ActionDescription"));
 			
-			gc.setName((String) green.get("Name"));
+			objGreenCard.setName((String) green.get("Name"));
 			
-			gc.SetCardID(card);
+			objGreenCard.SetCardID(card);
 			String a1 = (String) green.get("Action");
 			String[] a2 = a1.split(",");
-			gc.SetAction(a2);
+			objGreenCard.SetAction(a2);
 			
-			LoadedGame.lstGreenCards.add(gc);
+			LoadedGame.lstGreenCards.add(objGreenCard);
 
 	    }
 
-		return LoadedGame;
-
-}
-	
-	public static Game Browncard_Details() throws FileNotFoundException, IOException, ParseException, JSONException 
-	{
-		Game LoadedGame = new Game();
-	    Object obj;
-	    JSONParser parser = new JSONParser();
 
 		for(int i=1;i<54;i++)
 	    {
-			BrownCard bc = new BrownCard();
+			BrownCard objBrownCard = new BrownCard();
 			String card = "b"+i;
 			obj = parser.parse(new FileReader("BrownCard.json"));
 
@@ -304,34 +282,25 @@ public class GameLoad {
 			org.json.JSONObject brown =  jsonObject.getJSONObject(card);
 			
 			String s = (String) brown.get("IsPlayed");
-			bc.SetIsPlayed(Boolean.valueOf(Boolean.valueOf(s)));
+			objBrownCard.SetIsPlayed(Boolean.valueOf(Boolean.valueOf(s)));
 			
-			bc.SetActionDescription((String)brown.get("ActionDescription"));
+			objBrownCard.SetActionDescription((String)brown.get("ActionDescription"));
 			
-			bc.setName((String) brown.get("Name"));
+			objBrownCard.setName((String) brown.get("Name"));
 			
-			bc.SetCardID(card);
+			objBrownCard.SetCardID(card);
 			String a1 = (String) brown.get("Action");
 			String[] a2 = a1.split(",");
-			bc.SetActionID(a2);
+			objBrownCard.SetActionID(a2);
 			
-			LoadedGame.lstBrownCards.add(bc);
+			LoadedGame.lstBrownCards.add(objBrownCard);
 
 	    }
 
-		return LoadedGame;
-
-}
-	
-	public static Game RandomEventCard_Details() throws FileNotFoundException, IOException, ParseException, JSONException 
-	{
-		Game LoadedGame = new Game();
-	    Object obj;
-	    JSONParser parser = new JSONParser();
 
 		for(int i=1;i<13;i++)
 	    {
-			RandomEventCard rec = new RandomEventCard();
+			RandomEventCard objRandomEventCard = new RandomEventCard();
 			String card = "e"+i;
 			obj = parser.parse(new FileReader("RandomEventCard.json"));
 
@@ -339,21 +308,22 @@ public class GameLoad {
 			org.json.JSONObject randomevent =  jsonObject.getJSONObject(card);
 			
 			String s = (String) randomevent.get("IsPlayed");
-			rec.SetIsPlayed(Boolean.valueOf(Boolean.valueOf(s)));
+			objRandomEventCard.SetIsPlayed(Boolean.valueOf(Boolean.valueOf(s)));
 			
-			rec.SetEventDescription((String)randomevent.get("EventDescription"));
+			objRandomEventCard.SetEventDescription((String)randomevent.get("EventDescription"));
 			
-			rec.setName((String) randomevent.get("Name"));
+			objRandomEventCard.setName((String) randomevent.get("Name"));
 			
-			rec.SetCardID(card);
-			rec.SetEventID(card);
+			objRandomEventCard.SetCardID(card);
+			objRandomEventCard.SetEventID(card);
 
 			
-			LoadedGame.lstRandomEventCards.add(rec);
+			LoadedGame.lstRandomEventCards.add(objRandomEventCard);
 
 	    }
 
 		return LoadedGame;
 
 }
+	
 }
