@@ -12,6 +12,6 @@ public class Test1 {
 	public void test() {
 		Boolean valueReturnValue = PresentationUtility.randomIntegerGenerator(1, 10);
 		assertTrue(valueReturnValue);
-	}
+	} 
 
 }
