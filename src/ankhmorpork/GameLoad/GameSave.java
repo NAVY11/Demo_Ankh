@@ -84,11 +84,11 @@ public class GameSave {
 		for(Player objPlayer: newGame.lstPlayers)
 		{
 			
-			//Saving BUILDINGS			
-			jsonAddData.put("Buildings_"+PlayerID,objPlayer.lstBuildings);
-
-			//Saving MINIONS					
-			jsonAddData.put("Minions_"+PlayerID, objPlayer.lstMinions);
+//			//Saving BUILDINGS			
+//			jsonAddData.put("Buildings_"+PlayerID,objPlayer.lstBuildings);
+//
+//			//Saving MINIONS					
+//			jsonAddData.put("Minions_"+PlayerID, objPlayer.lstMinions);
 			
 			//Saving GOLD COINS
 			jsonAddData.put("GoldCoins_Avail_"+PlayerID,objPlayer.objGoldCoin.getCoin_Available());

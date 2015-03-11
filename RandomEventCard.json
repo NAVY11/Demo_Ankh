@@ -2,61 +2,73 @@
 	"e1": {
 		Name: "Fire",
 		IsPlayed: "False",
+		"PlayerID" : "0",
 		EventDescription: "Roll the die to see where it starts. You then continue rolling it to see if it spreads(see rules for more details)"
 	}
 	"e2": {
 		Name: "Fog",
 		IsPlayed: "False",
+		"PlayerID" : "0",
 		EventDescription: "Draw and discard the top five cards from the deck"
 	}
 	"e3": {
 		Name: "Mysterious Murders",
 		IsPlayed: "False",
+		"PlayerID" : "0",
 		EventDescription: "Each player takes it in turn to roll the die and remove one minion from the area rolled , even if it does not contain a trouble marker"
 	}
 	"e4": {
 		Name: "Riots",
 		IsPlayed: "False",
+		"PlayerID" : "0",
 		EventDescription: "If there are eight or more trouble markers on the board then the game ends immediately"
 	}
 	"e5": {
 		Name: "Subsidence",
 		IsPlayed: "False",
+		"PlayerID" : "0",
 		EventDescription: "All players must pay 2$ for each building they have or remove it instead"
 	}
 	"e6": {
 		Name: "Trolls",
 		IsPlayed: "False",
+		"PlayerID" : "0",
 		EventDescription: "Roll die three times and place one troll minion piece in each area"
 	}
 	"e7": {
 		Name: "Bloody Stupid Johnson",
 		IsPlayed: "False",
+		"PlayerID" : "0",
 		EventDescription: "Roll the die. If the city area card of the same value is in the play then the card is placed to one side. The owner of the card must also remove one of his minions from the same area as the card"
 	}
 	"e8": {
 		Name: "Demons from the Dungeon Dimensions",
 		IsPlayed: "False",
+		"PlayerID" : "0",
 		EventDescription: "Roll the die four times and place one demon minion piece in each area rolled. See rules for effect	"
 	}
 	"e9": {
 		Name: "The Dragon",
 		IsPlayed: "False",
+		"PlayerID" : "0",
 		EventDescription: "Roll the die to see where it lands. Remove all pieces from the area"
 	}
 	"e10": {
 		Name: "Earthquake",
 		IsPlayed: "False",
+		"PlayerID" : "0",
 		EventDescription: "Roll the die twice and remove any building in those area"
 	}
 	"e11": {
 		Name: "Explosion",
 		IsPlayed: "False",
+		"PlayerID" : "0",
 		EventDescription: "Roll one die and remove any building in that area"
 	}
 	"e12": {
 		Name: "Flood",
 		IsPlayed: "False",
+		"PlayerID" : "0",
 		EventDescription: "Roll the die twice to see which areas are affected. If the area rolled is adjacent to the river then player must move their minions to adjacent areas. Trolls and demons remain in the area"
 	}
 
