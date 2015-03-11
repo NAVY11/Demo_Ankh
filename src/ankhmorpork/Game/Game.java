@@ -20,6 +20,8 @@ public class Game {
 	public static ArrayList<RandomEventCard> lstRandomEventCards = new ArrayList<RandomEventCard>();
 	public static ArrayList<PersonalityCard> lstPersonalityCard = new ArrayList<PersonalityCard>();
 	public static Bank GameBank = new Bank();
+		
+	
 	
 			
 	//Method to Get Player from Player ID
