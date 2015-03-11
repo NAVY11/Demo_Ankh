@@ -47,7 +47,7 @@ public class CardsDetails {
 			gc.setName((String) green.get("Name"));
 			
 			gc.SetCardID(card);
-			String a1 = (String) green.get("Action");
+			String a1 =(String) green.get("ActionID");
 			String[] a2 = a1.split(",");
 			gc.SetAction(a2);
 			
