@@ -43,6 +43,9 @@ public class GameSave {
 		//FileWriter jsonWriter = new FileWriter(objFileWriter);
 		JSONObject jsonAddData = new JSONObject();
 		
+		//Saving Area		
+		jsonAddData.put("Areas",newGame.lstArea);
+		
 		//Saving TROLLS		
 		jsonAddData.put("Trolls",newGame.lstTrolls);
 		
@@ -51,6 +54,30 @@ public class GameSave {
 				
 		//Saving Players		
 		jsonAddData.put("Players",newGame.lstPlayers);
+		
+		//Saving Minions		
+		jsonAddData.put("Minions",newGame.lstMinions);
+		
+		//Saving Buildings		
+		jsonAddData.put("Buildings",newGame.lstBuildings);
+		
+		//Saving TroubleMaker		
+		jsonAddData.put("TroubleMaker",newGame.lstTroubleMaker);
+		
+		//Saving CityAreaCards		
+		jsonAddData.put("CityAreaCards",newGame.lstCityAreaCards);
+		
+		//Saving GreenCards		
+		jsonAddData.put("GreenCards",newGame.lstGreenCards);
+				
+		//Saving BrownCards		
+		jsonAddData.put("BrownCards",newGame.lstBrownCards);
+		
+		//Saving RandomEventCards		
+		jsonAddData.put("RandomEventCards",newGame.lstRandomEventCards);
+		
+		//Saving PersonalityCards		
+		jsonAddData.put("PersonalityCards",newGame.lstPersonalityCard);
 		
 		int PlayerID = 1;
 		

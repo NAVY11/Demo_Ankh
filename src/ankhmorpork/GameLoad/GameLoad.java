@@ -4,6 +4,7 @@ import ankhmorpork.GameObjects.*;
 import ankhmorpork.GameObjects.Cards.BrownCard;
 import ankhmorpork.GameObjects.Cards.CityAreaCard;
 import ankhmorpork.GameObjects.Cards.GreenCard;
+import ankhmorpork.GameObjects.Cards.PersonalityCard;
 import ankhmorpork.GameObjects.Cards.RandomEventCard;
 import ankhmorpork.GameConstants.*;
 
@@ -11,8 +12,6 @@ import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.IOException;
 import java.util.Iterator;
-
-
 
 
 
@@ -59,6 +58,90 @@ public class GameLoad {
 					objDemon.setArea_id(Integer.parseInt(jsonTroll.get("area_id").toString()));
 					LoadedGame.lstDemons.add(objDemon);
 				}
+				
+				//Loading CityAreaCards
+				JSONArray CityAreaCard = (JSONArray)json.get("CityAreaCards");
+				Iterator iCityAreaCard = CityAreaCard.iterator();
+				while (iCityAreaCard.hasNext())
+				{
+					CityAreaCard objCityAreaCard = new CityAreaCard();
+					JSONObject jsonCityAreaCard = (JSONObject)iCityAreaCard.next();
+					objCityAreaCard.SetAreaID(Integer.parseInt(jsonCityAreaCard.get("AreaID").toString()));
+					objCityAreaCard.SetCardID((jsonCityAreaCard.get("CardID").toString()));
+					objCityAreaCard.SetActionID((jsonCityAreaCard.get("ActionID").toString()));
+					objCityAreaCard.SetName((jsonCityAreaCard.get("AreaName").toString()));			
+					objCityAreaCard.SetActionDescription((jsonCityAreaCard.get("ActionDescription").toString()));			
+					objCityAreaCard.SetIsPlayed((Boolean)jsonCityAreaCard.get("IsPlayed"));
+					objCityAreaCard.setName((jsonCityAreaCard.get("Name").toString()));			
+
+					LoadedGame.lstCityAreaCards.add(objCityAreaCard);
+				}
+				
+				//Loading GreenCards
+				JSONArray GreenCard = (JSONArray)json.get("GreenCards");
+				Iterator iGreenCard = GreenCard.iterator();
+				while (iGreenCard.hasNext())
+				{
+					GreenCard objGreenCard = new GreenCard();
+					JSONObject jsonGreenCard = (JSONObject)iGreenCard.next();
+					objGreenCard.SetCardID((jsonGreenCard.get("CardID").toString()));
+					//objGreenCard.SetActionID((jsonGreenCard.get("ActionID").toString()));
+					objGreenCard.SetActionDescription((jsonGreenCard.get("ActionDescription").toString()));			
+					objGreenCard.SetIsPlayed((Boolean)jsonGreenCard.get("IsPlayed"));
+					objGreenCard.setName((jsonGreenCard.get("Name").toString()));			
+
+					LoadedGame.lstGreenCards.add(objGreenCard);
+				}
+				
+				//Loading BrownCards
+				JSONArray BrownCard = (JSONArray)json.get("BrownCards");
+				Iterator iBrownCard = BrownCard.iterator();
+				while (iBrownCard.hasNext())
+				{
+					BrownCard objBrownCard = new BrownCard();
+					JSONObject jsonBrownCard = (JSONObject)iBrownCard.next();
+					objBrownCard.SetCardID((jsonBrownCard.get("CardID").toString()));
+					//objBrownCard.SetActionID((jsonBrownCard.get("ActionID").toString()));
+					objBrownCard.SetActionDescription((jsonBrownCard.get("ActionDescription").toString()));			
+					objBrownCard.SetIsPlayed((Boolean)jsonBrownCard.get("IsPlayed"));
+					objBrownCard.setName((jsonBrownCard.get("Name").toString()));			
+
+					LoadedGame.lstBrownCards.add(objBrownCard);
+				}
+				
+				//Loading PersonalityCards
+				JSONArray PersonalityCard = (JSONArray)json.get("PersonalityCards");
+				Iterator iPersonalityCard = BrownCard.iterator();
+				while (iBrownCard.hasNext())
+				{
+					PersonalityCard objPersonalityCard = new PersonalityCard();
+					JSONObject jsonPersonalityCard = (JSONObject)iBrownCard.next();
+					objPersonalityCard.SetCardID((jsonPersonalityCard.get("CardID").toString()));
+					objPersonalityCard.SetPersonalityName((jsonPersonalityCard.get("PersonalityName").toString()));
+					objPersonalityCard.SetPersonalityMotive((jsonPersonalityCard.get("PersonalityMotive").toString()));			
+					objPersonalityCard.SetIsPlayed((Boolean)jsonPersonalityCard.get("IsPlayed"));
+					objPersonalityCard.setName((jsonPersonalityCard.get("Name").toString()));			
+
+					LoadedGame.lstPersonalityCard.add(objPersonalityCard);
+				}
+				
+				//Loading RandomEventCards
+				JSONArray RandomEventCard = (JSONArray)json.get("RandomEventCards");
+				Iterator iRandomEventCard = RandomEventCard.iterator();
+				while (iRandomEventCard.hasNext())
+				{
+					RandomEventCard objRandomEventCard = new RandomEventCard();
+					JSONObject jsonBrownCard = (JSONObject)iBrownCard.next();
+					objRandomEventCard.SetCardID((jsonBrownCard.get("CardID").toString()));
+					objRandomEventCard.SetEventID((jsonBrownCard.get("EventID").toString()));
+					objRandomEventCard.SetEventDescription((jsonBrownCard.get("EventDescription").toString()));			
+					objRandomEventCard.SetIsPlayed((Boolean)jsonBrownCard.get("IsPlayed"));
+					objRandomEventCard.setName((jsonBrownCard.get("Name").toString()));			
+
+					LoadedGame.lstRandomEventCards.add(objRandomEventCard);
+				}
+				
+				
 				
 				//Loading PLAYERS
 				JSONArray Players = (JSONArray)json.get("Players");
