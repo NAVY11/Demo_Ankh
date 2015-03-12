@@ -14,6 +14,7 @@ import PresentationUtilityCommon.PresentationUtility;
 import ankhmorpork.Game.Game;
 import ankhmorpork.GameConstants.Constants;
 import ankhmorpork.GameObjects.Cards.BrownCard;
+import ankhmorpork.GameObjects.Cards.CityAreaCard;
 import ankhmorpork.GameObjects.Cards.GreenCard;
 import ankhmorpork.GameObjects.Cards.PersonalityCard;
 // TODO: Auto-generated Javadoc
@@ -1380,9 +1381,10 @@ public class Player {
 				return false;
 			}
 			
-			public static void performCityAreaAction(String cityAreaId){
+			public void performCityAreaAction(String cityAreaId) throws IOException{
 				CityAreaCard cityAreaCard = new CityAreaCard();
-				switch(cityAreaId):
+				switch(cityAreaId)
+				{
 					case "c6" : cityAreaCard.TheHippoAction(this);
 					case "c5" : cityAreaCard.TheScoursAction(this);
 					case "c4" : cityAreaCard.SmallGodsAction(this);
@@ -1395,6 +1397,7 @@ public class Player {
 					case "c10" : cityAreaCard.IsleOfGodsAction(this);
 					case "c11" : cityAreaCard.SevenSleepersAction(this);
 					case "c12" : cityAreaCard.NapHillAction(this);
+				}
 			}
 			
 	
