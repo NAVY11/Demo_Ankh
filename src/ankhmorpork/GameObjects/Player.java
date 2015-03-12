@@ -785,7 +785,7 @@ public class Player {
 				case "g44" :this.theFoolsGuildFunctionality();
 				case "g46" :this.theRosiePalmFunctionality();
 				case "g48" :this.mrBoggisFunctionality();
-			}
+				}
 			}
 			else
 			{
@@ -797,7 +797,7 @@ public class Player {
 //				case "Random Event" : 
 //				case "Play another card" : 
 //				case "Interrupt " : 
-				}
+			}
 			}
 			return success;			
 		}
@@ -860,7 +860,7 @@ public class Player {
 						{
 							//Perform Action
 							this.PerformCardAction(ActionArray[i], CardID);
-							
+		
 						}
 						else
 							continue;
@@ -907,21 +907,24 @@ public class Player {
 		}
 		
 		// Same Functionality for Queen Molly
-		public boolean theBeggersGuildFunctionality(){
+		public boolean theBeggersGuildFunctionality() throws IOException{
 			//1st Action to read scroll & then play another card
 			boolean success = false;
 			System.out.println("Enter playerId from whom you want two card : ");
-			BufferedReader brPlayer = new BufferedReader(new InputStreamReader(System.in));
+			BufferedReader brPlayerBuff = new BufferedReader(new InputStreamReader(System.in));
+			String brPlayer = brPlayerBuff.readLine();
 			for(Player player : Game.lstPlayers){
 				if(player.getPlayer_id() == Integer.parseInt(brPlayer.toString())){
 					System.out.print("Enter one by one from the list of green card you have available : " + player.getGreenCardListCommaSeparated());
 					BufferedReader brCard1Selected = new BufferedReader(new InputStreamReader(System.in));
-					this.setGreenCardListCommaSeparated(this.getGreenCardListCommaSeparated() + "," +brCard1Selected.toString());
+					String brCard1SelectedReadLine = brCard1Selected.readLine();
+					this.setGreenCardListCommaSeparated(this.getGreenCardListCommaSeparated() + "," +brCard1SelectedReadLine.toString());
 					player.setGreenCardListCommaSeparated(removeOneCardFromCommaSeparatedString(player.getGreenCardListCommaSeparated(), brCard1Selected.toString()));
 					
 					System.out.print("Enter 2nd card from the list of green card you have available : " + player.getGreenCardListCommaSeparated());
 					BufferedReader brCard2Selected = new BufferedReader(new InputStreamReader(System.in));
-					this.setGreenCardListCommaSeparated(this.getGreenCardListCommaSeparated() + "," +brCard2Selected.toString());
+					String brCard2SelectedReadLine = brCard1Selected.readLine();
+					this.setGreenCardListCommaSeparated(this.getGreenCardListCommaSeparated() + "," +brCard2SelectedReadLine.toString());
 					player.setGreenCardListCommaSeparated(removeOneCardFromCommaSeparatedString(player.getGreenCardListCommaSeparated(), brCard2Selected.toString()));
 					return (success = true);
 				}
@@ -930,21 +933,23 @@ public class Player {
 		}
 			
 			
-			public boolean theAnkhMorporkSunshineDragonSanctuaryFunctionality(){
+			public boolean theAnkhMorporkSunshineDragonSanctuaryFunctionality() throws IOException{
 				//1st Action to read scroll & then play another card
 				boolean success = false;
 				for(Player player : Game.lstPlayers){
 					if(!(this.getPlayer_id() == player.getPlayer_id())){
 						System.out.println("Player " + player.getPlayer_id() + ": Select y to give $1 or n to give any one of your card : ");
 						BufferedReader brGiveMoney = new BufferedReader(new InputStreamReader(System.in));
-						if(brGiveMoney.toString().equals("y") || brGiveMoney.toString().equals("Y")){
+						String brGiveMoneyReadLine = brGiveMoney.readLine();
+						if(brGiveMoneyReadLine.toString().equals("y") || brGiveMoneyReadLine.toString().equals("Y")){
 							this.setPlayer_amount((float)(this.getPlayer_amount() != null ? this.getPlayer_amount() : 0) + 1);
 							player.setPlayer_amount((float)player.getPlayer_amount() - 1);
 						}else{
 							System.out.print("Enter one by one from the list of green card you have available : " + player.getGreenCardListCommaSeparated());
 							BufferedReader brCard1Selected = new BufferedReader(new InputStreamReader(System.in));
-							this.setGreenCardListCommaSeparated(this.getGreenCardListCommaSeparated() + "," +brCard1Selected.toString());
-							player.setGreenCardListCommaSeparated(removeOneCardFromCommaSeparatedString(player.getGreenCardListCommaSeparated(), brCard1Selected.toString()));
+							String brCard1SelectedReadLine = brGiveMoney.readLine();
+							this.setGreenCardListCommaSeparated(this.getGreenCardListCommaSeparated() + "," +brCard1SelectedReadLine.toString());
+							player.setGreenCardListCommaSeparated(removeOneCardFromCommaSeparatedString(player.getGreenCardListCommaSeparated(), brCard1SelectedReadLine.toString()));
 						}
 					}
 					success = true;
@@ -968,14 +973,16 @@ public class Player {
 			}
 			
 			//Foul Ole Ron & RinceWind has the same functionality
-			public boolean theDuckmanFunctionality(){
+			public boolean theDuckmanFunctionality() throws IOException{
 				//Read the scroll
 				boolean success = false;
 				Minion minionObj = null;
 				System.out.println("Enter the minionId you wish to move of another player : ");
-				BufferedReader brMinionId = new BufferedReader(new InputStreamReader(System.in));
+				BufferedReader brMinionIdBuff = new BufferedReader(new InputStreamReader(System.in));
+				String brMinionId = brMinionIdBuff.readLine();
 				System.out.println("Enter the areaId you wish to move of another player minion : ");
-				BufferedReader brAreaId = new BufferedReader(new InputStreamReader(System.in));
+				BufferedReader brAreaIdBuf = new BufferedReader(new InputStreamReader(System.in));
+				String brAreaId = brAreaIdBuf.readLine();
 				
 				for(Minion minion : Game.lstMinions){
 					if(minion.getMinion_id() == Integer.parseInt(brMinionId.toString())){
@@ -992,29 +999,33 @@ public class Player {
 				return success;
 			}
 			
-			public boolean theDrumknottFunctionality(){
+			public boolean theDrumknottFunctionality() throws IOException{
 				//Read the scroll
 				boolean success = false;
 				String selectCardToPlay = "";
 				System.out.println("Do you want to continue? Please enter 'y' : ");
-				BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+				BufferedReader brBuff = new BufferedReader(new InputStreamReader(System.in));
+				String br = brBuff.readLine();
 				if(br.toString().equals("y") || br.toString().equals("Y")){
 					System.out.print("Enter one by one from the list of green card you have available : " + this.getGreenCardListCommaSeparated());
-					BufferedReader brCard1Selected = new BufferedReader(new InputStreamReader(System.in));
+					BufferedReader brCard1SelectedBuff = new BufferedReader(new InputStreamReader(System.in));
+					String brCard1Selected = brCard1SelectedBuff.readLine();
 					selectCardToPlay = brCard1Selected.toString() + ",";
 					
-					BufferedReader brCard2Selected = new BufferedReader(new InputStreamReader(System.in));
+					BufferedReader brCard2SelectedBuff = new BufferedReader(new InputStreamReader(System.in));
+					String brCard2Selected = brCard2SelectedBuff.readLine();
 					selectCardToPlay = brCard2Selected.toString();
 				}
 				return success;
 			}
 			
 			// Same functionality for Here'n'Now
-			public boolean theCMOTDibblerFunctionality(){
+			public boolean theCMOTDibblerFunctionality() throws IOException{
 				//Read the scroll
 				boolean success = false;
 				System.out.println("Enter 1 to roll the dice or 2 to remove your minion from the board : ");
-				BufferedReader brChoice = new BufferedReader(new InputStreamReader(System.in));
+				BufferedReader brChoiceBuff = new BufferedReader(new InputStreamReader(System.in));
+				String brChoice = brChoiceBuff.readLine();
 				if(brChoice.toString().equals("1")){
 					Integer rollingDiceNumber = PresentationUtility.returnRandomNumber(1, 12);
 					if(rollingDiceNumber >= 7){
@@ -1028,7 +1039,8 @@ public class Player {
 					}
 				}else if(brChoice.toString().equals("2")){
 					System.out.println("Enter the minionId to be removed from the board : ");
-					BufferedReader brMinionIdToBeRemoved = new BufferedReader(new InputStreamReader(System.in));
+					BufferedReader brMinionIdToBeRemovedBuff = new BufferedReader(new InputStreamReader(System.in));
+					String brMinionIdToBeRemoved = brMinionIdToBeRemovedBuff.readLine();
 					for(Minion minion : Game.lstMinions){
 						if(minion.getMinion_id() == Integer.parseInt(brMinionIdToBeRemoved.toString())){
 							minion.setArea_id(0);
@@ -1054,10 +1066,11 @@ public class Player {
 			}
 			
 			// Same Functionality of Dr WhiteFace
-			public boolean theFoolsGuildFunctionality(){
+			public boolean theFoolsGuildFunctionality() throws IOException{
 				boolean success = false;
 				System.out.println("Enter playerId from whom you want $5 : ");
-				BufferedReader brPlayer = new BufferedReader(new InputStreamReader(System.in));
+				BufferedReader brPlayerBuff = new BufferedReader(new InputStreamReader(System.in));
+				String brPlayer = brPlayerBuff.readLine();
 				for(Player player : Game.lstPlayers){
 					if(player.getPlayer_id() == Integer.parseInt(brPlayer.toString())){
 						if(player.getPlayer_amount() > 5){
@@ -1073,11 +1086,12 @@ public class Player {
 				return success;
 			}
 			
-			public boolean theFireBrigadeFunctionality(){
+			public boolean theFireBrigadeFunctionality() throws IOException{
 				//Read the scroll & play another card
 				boolean success = false;
 				System.out.println("Enter 1 to give $5 or 2 to remove the building");;
-				BufferedReader brChoice = new BufferedReader(new InputStreamReader(System.in));
+				BufferedReader brChoiceBuff = new BufferedReader(new InputStreamReader(System.in));
+				String brChoice = brChoiceBuff.readLine();
 				if(brChoice.toString().equals("1")){
 					System.out.println("Enter playerId from whom you want $5 : ");
 					BufferedReader brPlayer = new BufferedReader(new InputStreamReader(System.in));
@@ -1093,7 +1107,8 @@ public class Player {
 					}
 					if(!(success)){
 						System.out.println("Enter the minionId to be removed from the board : ");
-						BufferedReader brMinionIdToBeRemoved = new BufferedReader(new InputStreamReader(System.in));
+						BufferedReader brMinionIdToBeRemovedBuff = new BufferedReader(new InputStreamReader(System.in));
+						String brMinionIdToBeRemoved = brMinionIdToBeRemovedBuff.readLine();
 						for(Minion minion : Game.lstMinions){
 							if(minion.getMinion_id() == Integer.parseInt(brMinionIdToBeRemoved.toString())){
 								minion.setArea_id(0);
@@ -1106,17 +1121,6 @@ public class Player {
 			}
 			
 			/* Have to implement functionality and keep track of the discarded cards as well*/
-			
-			public boolean theHistoryMonksFunctionality(){
-				//Read the scroll & play another card
-				boolean success = false;
-				System.out.println("Do you want to continue? Please enter 'y' : ");
-				BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
-				if(br.toString().equals("y") || br.toString().equals("Y")){
-					
-				}
-				return success;
-			}
 			
 			public boolean theHexFunctionality(){
 				//Read the scroll & play another card
@@ -1136,10 +1140,11 @@ public class Player {
 				return success;
 			}
 			
-			public boolean theNoobyNoobsFunctionality(){
+			public boolean theNoobyNoobsFunctionality() throws IOException{
 				boolean success = false;
 				System.out.println("Enter playerId from whom you want $3 : ");
-				BufferedReader brPlayer = new BufferedReader(new InputStreamReader(System.in));
+				BufferedReader brPlayerBuff = new BufferedReader(new InputStreamReader(System.in));
+				String brPlayer = brPlayerBuff.readLine();
 				for(Player player : Game.lstPlayers){
 					if(player.getPlayer_id() == Integer.parseInt(brPlayer.toString())){
 						player.setPlayer_amount((float) player.getPlayer_amount() - 3);
@@ -1196,15 +1201,17 @@ public class Player {
 			}
 			
 			// Same functionality for The Seamstresses Guild
-			public boolean theRosiePalmFunctionality(){
+			public boolean theRosiePalmFunctionality() throws IOException{
 				//1st Action to read scroll & then play another card
 				boolean success = false;
 				System.out.println("Enter playerId from whom you want to give $2 and give one card : ");
-				BufferedReader brPlayer = new BufferedReader(new InputStreamReader(System.in));
+				BufferedReader brPlayerBuff = new BufferedReader(new InputStreamReader(System.in));
+				String brPlayer = brPlayerBuff.readLine();
 				for(Player player : Game.lstPlayers){
 					if(player.getPlayer_id() == Integer.parseInt(brPlayer.toString())){
 						System.out.print("Enter one by one from the list of green card you have available : " + this.getGreenCardListCommaSeparated());
-						BufferedReader brCard1Selected = new BufferedReader(new InputStreamReader(System.in));
+						BufferedReader brCard1SelectedBuff = new BufferedReader(new InputStreamReader(System.in));
+						String brCard1Selected = brCard1SelectedBuff.readLine();
 						player.setGreenCardListCommaSeparated(player.getGreenCardListCommaSeparated() + "," +brCard1Selected.toString());
 						this.setGreenCardListCommaSeparated(removeOneCardFromCommaSeparatedString(this.getGreenCardListCommaSeparated(), brCard1Selected.toString()));
 						
@@ -1243,13 +1250,14 @@ public class Player {
 				
 			}
 			
-			public boolean theHistoryMonks(){
+			public boolean theHistoryMonksFunctionality() throws IOException{
 				boolean success = false;
 				List<Integer> discardedPileofGreenCardArr = new ArrayList<Integer>();
 				String discardedPileOfGreenCards = "";
 				String cardInDeckOrWithPlayer = "";
 				System.out.println("Do you want to continue? Please enter 'y' : ");
-				BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+				BufferedReader brBuff = new BufferedReader(new InputStreamReader(System.in));
+				String br = brBuff.readLine();
 				if(br.toString().equals("y") || br.toString().equals("Y")){
 					for(GreenCard greenCard : Game.lstGreenCards){
 						cardInDeckOrWithPlayer += greenCard.GetCardID() + ",";
@@ -1288,17 +1296,19 @@ public class Player {
 				return success;
 			}
 			
-			public boolean theHarryKingFunctionality(){
+			public boolean theHarryKingFunctionality() throws IOException{
 				//1st Action to read scroll & then play another card
 				boolean success = false;
 				System.out.println("Do you want to continue? Please enter 'y' : ");
-				BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+				BufferedReader brBuff = new BufferedReader(new InputStreamReader(System.in));
+				String br = brBuff.readLine();
 				if(br.toString().equals("y") || br.toString().equals("Y")){
 					System.out.print("You have these green cards available : " + this.getGreenCardListCommaSeparated());
 					String[] playerGreenCardArr = this.getGreenCardListCommaSeparated().split(",");
 					for(int i = 0; i < playerGreenCardArr.length; i++){
 						System.out.print("Do you want to discard Card Number : " + playerGreenCardArr[i]);
-						BufferedReader brCard1Selected = new BufferedReader(new InputStreamReader(System.in));
+						BufferedReader brCard1SelectedBuff = new BufferedReader(new InputStreamReader(System.in));
+						String brCard1Selected = brCard1SelectedBuff.readLine();
 						if(brCard1Selected.toString().endsWith("y") || brCard1Selected.toString().endsWith("Y")){
 							this.setGreenCardListCommaSeparated(removeOneCardFromCommaSeparatedString(this.getGreenCardListCommaSeparated(), playerGreenCardArr[i].toString()));
 							this.setPlayer_amount((float) this.getPlayer_amount() + 2);
@@ -1308,17 +1318,19 @@ public class Player {
 				return success;
 			}
 			
-			public boolean theShonkyShopFunctionality(){
+			public boolean theShonkyShopFunctionality() throws IOException{
 				//1st Action to read scroll & then play another card
 				boolean success = false;
 				System.out.println("Do you want to continue? Please enter 'y' : ");
-				BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+				BufferedReader brBuff = new BufferedReader(new InputStreamReader(System.in));
+				String br = brBuff.readLine();
 				if(br.toString().equals("y") || br.toString().equals("Y")){
 					System.out.print("You have these green cards available : " + this.getGreenCardListCommaSeparated());
 					String[] playerGreenCardArr = this.getGreenCardListCommaSeparated().split(",");
 					for(int i = 0; i < playerGreenCardArr.length; i++){
 						System.out.print("Do you want to discard Card Number : " + playerGreenCardArr[i]);
-						BufferedReader brCard1Selected = new BufferedReader(new InputStreamReader(System.in));
+						BufferedReader brCard1SelectedBuff = new BufferedReader(new InputStreamReader(System.in));
+						String brCard1Selected = brCard1SelectedBuff.readLine();
 						if(brCard1Selected.toString().endsWith("y") || brCard1Selected.toString().endsWith("Y")){
 							this.setGreenCardListCommaSeparated(removeOneCardFromCommaSeparatedString(this.getGreenCardListCommaSeparated(), playerGreenCardArr[i].toString()));
 							this.setPlayer_amount((float) this.getPlayer_amount() + 1);
@@ -1328,7 +1340,7 @@ public class Player {
 				return success;
 			}
 			
-			public boolean placeAMinionFunctionality(){
+			public boolean placeAMinionFunctionality() throws IOException{
 				String placingAMinionStr = "";
 				for(Minion minionObj : Game.lstMinions){
 					if(minionObj.getPlayer_id() == this.getPlayer_id() && minionObj.getArea_id() == 0){
@@ -1339,7 +1351,8 @@ public class Player {
 					}
 					System.out.println("You are allowed to place these minions which are not on board : " + placingAMinionStr);
 					System.out.println("Enter a area in which you want to keep the minion : ");
-					BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+					BufferedReader brBuff = new BufferedReader(new InputStreamReader(System.in));
+					String br = brBuff.readLine();
 					ArrayList<Minion> placingMinionInNewObj = Game.GetMinionsByMinionID(Integer.parseInt(placingAMinionStr.substring(0)));
 					placingMinionInNewObj.get(0).setArea_id(Integer.parseInt(br.toString()));
 					return true;
@@ -1347,7 +1360,7 @@ public class Player {
 				return false;
 			}
 			
-			public boolean placeABuildingFunctionality(){
+			public boolean placeABuildingFunctionality() throws IOException{
 				String placingABuidingStr = "";
 				for(Building buildingObj : Game.lstBuildings){
 					if(buildingObj.getPlayer_id() == this.getPlayer_id() && buildingObj.getArea_id() == 0){
@@ -1358,7 +1371,8 @@ public class Player {
 					}
 					System.out.println("You are allowed to place these buildings which are not on board : " + placingABuidingStr);
 					System.out.println("Enter a area in which you want to keep the building : ");
-					BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+					BufferedReader brBuff = new BufferedReader(new InputStreamReader(System.in));
+					String br = brBuff.readLine();
 					ArrayList<Building> placingBuildingInNewObj = Game.GetBuildingsByBuildingID(Integer.parseInt(placingABuidingStr.substring(0)));
 					placingBuildingInNewObj.get(0).setArea_id(Integer.parseInt(br.toString()));
 					return true;
