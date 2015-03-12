@@ -239,10 +239,8 @@ public class PresentationUtility {
 	 */
 	public static Integer nextPlayerTurn(Integer currentPlayer, Integer numberOfPlayers){
 		if(currentPlayer == numberOfPlayers){
-			//System.out.print("Next Player would be : Player " + 1);
 			return 1;
 		}else{
-			//System.out.print("Next Player would be : Player "+(currentPlayer+1));
 			return (currentPlayer+1);  
 		}
 	}
