@@ -415,6 +415,23 @@ public class Game {
 			
 			return sbActions.toString();
 		}
+		
+		public static ArrayList<GreenCard> GetGreenCardByPlayerID(int PlayerID)
+		{
+			ArrayList<GreenCard> lstGreenCard = new ArrayList<GreenCard>();
+			for(GreenCard GreenCard : lstGreenCards)
+			{
+				if(GreenCard.getPlayerID()==PlayerID)
+				{
+					lstGreenCard.add(GreenCard);
+				}
+			}
+			
+			return lstGreenCard;
+		
+		}
+		
+		
 
 		public static ArrayList<CityAreaCard> GetCityAreaCardByPlayerID(int PlayerID)
 		{
@@ -429,6 +446,10 @@ public class Game {
 			
 			return lstCityAreaCard;
 		}
+		
+		
+		
+		
 		
 		public static CityAreaCard GetCityAreaCardByCardID(String CardID)
 		{

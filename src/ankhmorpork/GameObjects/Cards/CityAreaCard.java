@@ -3,10 +3,10 @@ package ankhmorpork.GameObjects.Cards;
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
+import java.util.ArrayList;
 
 import PresentationUtilityCommon.PresentationUtility;
 import ankhmorpork.Game.Game;
-import ankhmorpork.GameObjects.Bank;
 import ankhmorpork.GameObjects.Minion;
 import ankhmorpork.GameObjects.Player;
 import ankhmorpork.GameObjects.TroubleMaker;
@@ -93,7 +93,6 @@ public class CityAreaCard extends Cards{
 	{
 		boolean status = false;
 		try {			
-//			Game gm1 = new Game();
 			BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
 			System.out.println("Would you like to perform this action : Y/N ");
 			String userinput = br.readLine();
@@ -108,19 +107,14 @@ public class CityAreaCard extends Cards{
 				}
 				noOfSilverCoins = noOfSilverCoins - 1;
 				Game.GameBank.objSilverCoin.setCoin_Available(noOfSilverCoins);
-//				int bankamt = b1.getBankAmount();
-//				bankamt = bankamt - 1;
-//				int currentplayer = objPlayer.getPlayerAmount();
-//				currentplayer = currentplayer + 1;
-//				objPlayer.setPlayer_amount(currentplayer);
 				status = true;
 			}
 		} catch (IOException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
-		}
+	}
 		
-		return status;
+	return status;
 	}
 	
 	public boolean SevenSleepersAction(Player objPlayer)
@@ -144,21 +138,14 @@ public class CityAreaCard extends Cards{
 				}
 				noOfSilverCoins = noOfSilverCoins - 3;
 				Game.GameBank.objSilverCoin.setCoin_Available(noOfSilverCoins);
-				
-//				Bank b1 = new Bank();
-//				int bankamt = b1.getBankAmount();
-//				bankamt = bankamt - 3;
-//				int currentplayer = objPlayer.getPlayerAmount();
-//				currentplayer = currentplayer + 3;
-//				objPlayer.setPlayer_amount(currentplayer);
 				status = true;
 			}
 		} catch (IOException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
-		}
+	}
 		
-		return status;
+	return status;
 	}
 	
 	public boolean NapHillAction(Player objPlayer)
@@ -181,21 +168,14 @@ public class CityAreaCard extends Cards{
 				}
 				noOfSilverCoins = noOfSilverCoins - 1;
 				Game.GameBank.objSilverCoin.setCoin_Available(noOfSilverCoins);
-
-//				Bank b1 = new Bank();
-//				int bankamt = b1.getBankAmount();
-//				bankamt = bankamt - 1;
-//				int currentplayer = objPlayer.getPlayerAmount();
-//				currentplayer = currentplayer + 1;
-//				objPlayer.setPlayer_amount(currentplayer);
 				status = true;
 			}
 		} catch (IOException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
-		}
+	}
 		
-		return status;
+	return status;
 	}
 	
 	
@@ -218,21 +198,13 @@ public class CityAreaCard extends Cards{
 				}
 				noOfSilverCoins = noOfSilverCoins - 2;
 				Game.GameBank.objSilverCoin.setCoin_Available(noOfSilverCoins);
-				
-//				Bank b1 = new Bank();
-//				int bankamt = b1.getBankAmount();
-//				bankamt = bankamt - 2;
-//				int currentplayer = objPlayer.getPlayerAmount();
-//				currentplayer = currentplayer + 2;
-//				objPlayer.setPlayer_amount(currentplayer);
 				status = true;
 			}
 		} catch (IOException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
-		}
-		
-		return status;
+	}
+	return status;
 	}
 	
 	public boolean DragonLandingAction(Player objPlayer)
@@ -254,21 +226,13 @@ public class CityAreaCard extends Cards{
 				}
 				noOfSilverCoins = noOfSilverCoins - 2;
 				Game.GameBank.objSilverCoin.setCoin_Available(noOfSilverCoins);
-//				
-//				Bank b1 = new Bank();
-//				int bankamt = b1.getBankAmount();
-//				bankamt = bankamt - 2;
-//				int currentplayer = objPlayer.getPlayerAmount();
-//				currentplayer = currentplayer + 2;
-//				objPlayer.setPlayer_amount(currentplayer);
 				status = true;
 			}
 		} catch (IOException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
-		}
-		
-		return status;
+	}
+	return status;
 	}
 	
 	public boolean DimwellAction(Player objPlayer, Minion objPlayerMinionId)
@@ -296,23 +260,13 @@ public class CityAreaCard extends Cards{
 			}
 			noOfSilverCoins = noOfSilverCoins - 3;
 			Game.GameBank.objSilverCoin.setCoin_Available(noOfSilverCoins);
-				
-//				Bank b1 = new Bank();
-//				int bankamt = b1.getBankAmount();
-//				bankamt = bankamt + 3;
-//				int currentplayer = objPlayer.getPlayerAmount();
-//				currentplayer = currentplayer - 3;
-//				objPlayer.setPlayer_amount(currentplayer);
 				status = true;
-				
 			}
-
 		} catch (IOException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
-		}
-		
-		return status;
+	}
+	return status;
 }
 
 public boolean DollySisterAction(Player objPlayer, Minion objPlayerMinionId)
@@ -340,21 +294,12 @@ public boolean DollySisterAction(Player objPlayer, Minion objPlayerMinionId)
 				}
 				noOfSilverCoins = noOfSilverCoins - 3;
 				Game.GameBank.objSilverCoin.setCoin_Available(noOfSilverCoins);
-				
-//				Bank b1 = new Bank();
-//				int bankamt = b1.getBankAmount();
-//				bankamt = bankamt + 3;
-//				int currentplayer = objPlayer.getPlayerAmount();
-//				currentplayer = currentplayer - 3;
-//				objPlayer.setPlayer_amount(currentplayer);
 				status = true;
 			}
-
 		} catch (IOException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
-		}
-		
+	}
 		return status;
 }
 
@@ -371,7 +316,6 @@ public boolean TheScoursAction(Player objPlayer) throws IOException{
 	String cardID = br1.readLine();
 	GreenCard objGC = Game.GetGreenCard(cardID);
 	objGC.IsPlayed = true;
-
 	int noOfSilverCoins = Game.GameBank.objSilverCoin.getCoin_Available();
 	if (noOfSilverCoins > 0 )
 	{
@@ -437,7 +381,6 @@ public boolean IsleOfGodsAction(Player objPlayer, Minion objPlayerMinionId) thro
 		if(Game.removeTroubleMarkerByAreaId(areaID)){
 			System.out.println("Action Performed Successfully");
 		}
-	
 		status = true;
 	}
 	return status;
@@ -445,7 +388,18 @@ public boolean IsleOfGodsAction(Player objPlayer, Minion objPlayerMinionId) thro
 
 public boolean UnrealEstate(Player objPlayer) throws IOException{
 	boolean status = false;
-	//
+	Game g1 = new Game();
+	String greenCard = Player.takeOneGreenCardFromDeck(g1);
+	objPlayer.setGreenCardListCommaSeparated(objPlayer.getGreenCardListCommaSeparated() + "," + greenCard);
+	//show list of cards
+	//System.out.println("Which Card you want to discard");
+	ArrayList<GreenCard> CardList = Game.GetGreenCardByPlayerID(objPlayer.getPlayer_id());
+	System.out.println("Which card do you want to discard :" + CardList);
+	BufferedReader br1 = new BufferedReader(new InputStreamReader(System.in));
+	String cardID = br1.readLine();
+	GreenCard objGC = Game.GetGreenCard(cardID);
+	objGC.IsPlayed = true;
+	status = true;
 	return status;
 }
 	

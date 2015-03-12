@@ -1226,6 +1226,16 @@ public class Player {
 				}
 				return success;
 			}
+			
+			
+			public static String takeOneGreenCardFromDeck(Game Ankhmorpork){
+
+				Integer cardIndexNumber = PresentationUtility.returnRandomNumber(1, Ankhmorpork.lstGreenCards.size());
+				GreenCard greenCardAccessed = Ankhmorpork.lstGreenCards.get(cardIndexNumber);
+				return greenCardAccessed.GetCardID();	
+				
+			}
+
 	
 	
 }
