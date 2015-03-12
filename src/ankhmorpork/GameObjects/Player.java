@@ -6,13 +6,16 @@ import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.util.ArrayList;
-import java.util.Hashtable;
+import java.util.Arrays;
+import java.util.List;
 
 import PresentationUtilityCommon.IConstants;
 import PresentationUtilityCommon.PresentationUtility;
 import ankhmorpork.Game.Game;
 import ankhmorpork.GameConstants.Constants;
-import ankhmorpork.GameObjects.Cards.*;
+import ankhmorpork.GameObjects.Cards.BrownCard;
+import ankhmorpork.GameObjects.Cards.GreenCard;
+import ankhmorpork.GameObjects.Cards.PersonalityCard;
 // TODO: Auto-generated Javadoc
 /**
  * The Class Player.
@@ -336,6 +339,7 @@ public class Player {
 	public String GetActiveMinions()
 	{
 		StringBuilder strActiveMinions = new StringBuilder();
+		String activeMinionStr = "";
 		for(Minion objMinion : this.lstMinions)
 		{
 			if(objMinion.getActive()&& objMinion.getArea_id()!=0)
@@ -343,7 +347,11 @@ public class Player {
 				strActiveMinions.append(objMinion.getMinion_id() + ",");
 			}
 		}
-		return strActiveMinions.toString();
+		activeMinionStr = strActiveMinions.toString();
+		if(activeMinionStr.endsWith(",")){
+			activeMinionStr = activeMinionStr.substring(0, activeMinionStr.length()-1);
+		}
+		return activeMinionStr;
 	}
 	
 	//Method for Assassination
@@ -800,14 +808,10 @@ public class Player {
 		public boolean mrBoggisFunctionality(){
 			//1st Action to read scroll & then to place minion
 			boolean success = false;
-			System.out.println("Take $2, if possible, from every other player. Do you want to continue? Please enter 'y' : ");
-			BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
-			if(br.toString().equals("y") || br.toString().equals("Y")){
-				for(Player player : Game.lstPlayers){
-					if(!(player.getPlayer_id() == this.getPlayer_id())){
-						this.setPlayer_amount((float) this.getPlayer_amount() + 2);
-						player.setPlayer_amount((float)(player.getPlayerAmount() - 2));
-					}
+			for(Player player : Game.lstPlayers){
+				if(!(player.getPlayer_id() == this.getPlayer_id())){
+					this.setPlayer_amount((float) (this.getPlayer_amount() != null ? this.getPlayer_amount() : 0) + 2);
+					player.setPlayer_amount((float)(player.getPlayerAmount() - 2));
 				}
 				success = true;
 			}
@@ -818,14 +822,10 @@ public class Player {
 		public boolean mrBentFunctionality(){
 			//1st Action to read scroll & then play another card
 			boolean success = false;
-			System.out.println("Do you want to continue? Please enter 'y' : ");
-			BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
-			if(br.toString().equals("y") || br.toString().equals("Y")){
-				this.setPlayer_amount((float)this.getPlayer_amount() + 10);
-				Game.GameBank.setBankAmount((float)Game.GameBank.getBankAmount() - 10);
-				this.setPlayer_comments("You had played Mr. Bent./The Bank of AnkhMorpork You need to $12 back to Bank Or either you lose 15 points.");
-				success = true;
-			}
+			this.setPlayer_amount((float)(this.getPlayer_amount() != null ? this.getPlayer_amount() : 0) + 10);
+			Game.GameBank.setBankAmount((float)Game.GameBank.getBankAmount() - 10);
+			this.setPlayer_comments("You had played Mr. Bent/The Bank of AnkhMorpork You need to $12 back to Bank Or either you lose 15 points.");
+			success = true;
 			return success;
 		}
 		
@@ -847,24 +847,20 @@ public class Player {
 		public boolean theBeggersGuildFunctionality(){
 			//1st Action to read scroll & then play another card
 			boolean success = false;
-			System.out.println("Do you want to continue? Please enter 'y' : ");
-			BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
-			if(br.toString().equals("y") || br.toString().equals("Y")){
-				System.out.println("Enter playerId from whom you want two card : ");
-				BufferedReader brPlayer = new BufferedReader(new InputStreamReader(System.in));
-				for(Player player : Game.lstPlayers){
-					if(player.getPlayer_id() == Integer.parseInt(brPlayer.toString())){
-						System.out.print("Enter one by one from the list of green card you have available : " + player.getGreenCardListCommaSeparated());
-						BufferedReader brCard1Selected = new BufferedReader(new InputStreamReader(System.in));
-						this.setGreenCardListCommaSeparated(this.getGreenCardListCommaSeparated() + "," +brCard1Selected.toString());
-						player.setGreenCardListCommaSeparated(removeOneCardFromCommaSeparatedString(player.getGreenCardListCommaSeparated(), brCard1Selected.toString()));
-						
-						System.out.print("Enter 2nd card from the list of green card you have available : " + player.getGreenCardListCommaSeparated());
-						BufferedReader brCard2Selected = new BufferedReader(new InputStreamReader(System.in));
-						this.setGreenCardListCommaSeparated(this.getGreenCardListCommaSeparated() + "," +brCard2Selected.toString());
-						player.setGreenCardListCommaSeparated(removeOneCardFromCommaSeparatedString(player.getGreenCardListCommaSeparated(), brCard2Selected.toString()));
-						return (success = true);
-					}
+			System.out.println("Enter playerId from whom you want two card : ");
+			BufferedReader brPlayer = new BufferedReader(new InputStreamReader(System.in));
+			for(Player player : Game.lstPlayers){
+				if(player.getPlayer_id() == Integer.parseInt(brPlayer.toString())){
+					System.out.print("Enter one by one from the list of green card you have available : " + player.getGreenCardListCommaSeparated());
+					BufferedReader brCard1Selected = new BufferedReader(new InputStreamReader(System.in));
+					this.setGreenCardListCommaSeparated(this.getGreenCardListCommaSeparated() + "," +brCard1Selected.toString());
+					player.setGreenCardListCommaSeparated(removeOneCardFromCommaSeparatedString(player.getGreenCardListCommaSeparated(), brCard1Selected.toString()));
+					
+					System.out.print("Enter 2nd card from the list of green card you have available : " + player.getGreenCardListCommaSeparated());
+					BufferedReader brCard2Selected = new BufferedReader(new InputStreamReader(System.in));
+					this.setGreenCardListCommaSeparated(this.getGreenCardListCommaSeparated() + "," +brCard2Selected.toString());
+					player.setGreenCardListCommaSeparated(removeOneCardFromCommaSeparatedString(player.getGreenCardListCommaSeparated(), brCard2Selected.toString()));
+					return (success = true);
 				}
 			}
 			return success;
@@ -874,22 +870,18 @@ public class Player {
 			public boolean theAnkhMorporkSunshineDragonSanctuaryFunctionality(){
 				//1st Action to read scroll & then play another card
 				boolean success = false;
-				System.out.println("Do you want to continue? Please enter 'y' : ");
-				BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
-				if(br.toString().equals("y") || br.toString().equals("Y")){
-					for(Player player : Game.lstPlayers){
-						if(!(this.getPlayer_id() == player.getPlayer_id())){
-							System.out.println("Player " + player.getPlayer_id() + ": Select y to give $1 or n to give any one of your card : ");
-							BufferedReader brGiveMoney = new BufferedReader(new InputStreamReader(System.in));
-							if(brGiveMoney.toString().equals("y") || brGiveMoney.toString().equals("Y")){
-								this.setPlayer_amount((float)this.getPlayer_amount() + 1);
-								player.setPlayer_amount((float)player.getPlayer_amount() - 1);
-							}else{
-								System.out.print("Enter one by one from the list of green card you have available : " + player.getGreenCardListCommaSeparated());
-								BufferedReader brCard1Selected = new BufferedReader(new InputStreamReader(System.in));
-								this.setGreenCardListCommaSeparated(this.getGreenCardListCommaSeparated() + "," +brCard1Selected.toString());
-								player.setGreenCardListCommaSeparated(removeOneCardFromCommaSeparatedString(player.getGreenCardListCommaSeparated(), brCard1Selected.toString()));
-							}
+				for(Player player : Game.lstPlayers){
+					if(!(this.getPlayer_id() == player.getPlayer_id())){
+						System.out.println("Player " + player.getPlayer_id() + ": Select y to give $1 or n to give any one of your card : ");
+						BufferedReader brGiveMoney = new BufferedReader(new InputStreamReader(System.in));
+						if(brGiveMoney.toString().equals("y") || brGiveMoney.toString().equals("Y")){
+							this.setPlayer_amount((float)(this.getPlayer_amount() != null ? this.getPlayer_amount() : 0) + 1);
+							player.setPlayer_amount((float)player.getPlayer_amount() - 1);
+						}else{
+							System.out.print("Enter one by one from the list of green card you have available : " + player.getGreenCardListCommaSeparated());
+							BufferedReader brCard1Selected = new BufferedReader(new InputStreamReader(System.in));
+							this.setGreenCardListCommaSeparated(this.getGreenCardListCommaSeparated() + "," +brCard1Selected.toString());
+							player.setGreenCardListCommaSeparated(removeOneCardFromCommaSeparatedString(player.getGreenCardListCommaSeparated(), brCard1Selected.toString()));
 						}
 					}
 					success = true;
@@ -902,16 +894,12 @@ public class Player {
 				//Place a building & then read the scroll
 				boolean success = false;
 				int  count = 0;
-				System.out.println("Do you want to continue? Please enter 'y' : ");
-				BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
-				if(br.toString().equals("y") || br.toString().equals("Y")){
-					for(Minion minion : Game.lstMinions){
-						if(minion.getArea_id() == IConstants.cityCardAreaId9){
-							count += 1;
-						}
+				for(Minion minion : Game.lstMinions){
+					if(minion.getArea_id() == IConstants.cityCardAreaId9){
+						count += 1;
 					}
-					this.setPlayer_amount((float) this.getPlayer_amount() + (count*1) );
-					success = true;
+				this.setPlayer_amount((float) (this.getPlayer_amount() != null ? this.getPlayer_amount() : 0) + (count*1) );
+				success = true;
 				}
 				return success;
 			}
@@ -921,26 +909,22 @@ public class Player {
 				//Read the scroll
 				boolean success = false;
 				Minion minionObj = null;
-				System.out.println("Do you want to continue? Please enter 'y' : ");
-				BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
-				if(br.toString().equals("y") || br.toString().equals("Y")){
-					System.out.println("Enter the minionId you wish to move of another player : ");
-					BufferedReader brMinionId = new BufferedReader(new InputStreamReader(System.in));
-					System.out.println("Enter the areaId you wish to move of another player minion : ");
-					BufferedReader brAreaId = new BufferedReader(new InputStreamReader(System.in));
-					
-					for(Minion minion : Game.lstMinions){
-						if(minion.getMinion_id() == Integer.parseInt(brMinionId.toString())){
-							minionObj = minion;
-							break;
-						}
+				System.out.println("Enter the minionId you wish to move of another player : ");
+				BufferedReader brMinionId = new BufferedReader(new InputStreamReader(System.in));
+				System.out.println("Enter the areaId you wish to move of another player minion : ");
+				BufferedReader brAreaId = new BufferedReader(new InputStreamReader(System.in));
+				
+				for(Minion minion : Game.lstMinions){
+					if(minion.getMinion_id() == Integer.parseInt(brMinionId.toString())){
+						minionObj = minion;
+						break;
 					}
-					
-					boolean checkWhetherMinionCanBeRemoved = PresentationUtility.canMinionBePlacedInAdjacentArea(minionObj.getPlayer_id(), Integer.parseInt(brMinionId.toString()), minionObj.getArea_id(), Integer.parseInt(brAreaId.toString()));
-					if(checkWhetherMinionCanBeRemoved){
-						minionObj.setArea_id(Integer.parseInt(brAreaId.toString()));
-						success = true;
-					}
+				}
+				
+				boolean checkWhetherMinionCanBeRemoved = PresentationUtility.canMinionBePlacedInAdjacentArea(minionObj.getPlayer_id(), Integer.parseInt(brMinionId.toString()), minionObj.getArea_id(), Integer.parseInt(brAreaId.toString()));
+				if(checkWhetherMinionCanBeRemoved){
+					minionObj.setArea_id(Integer.parseInt(brAreaId.toString()));
+					success = true;
 				}
 				return success;
 			}
@@ -966,30 +950,26 @@ public class Player {
 			public boolean theCMOTDibblerFunctionality(){
 				//Read the scroll
 				boolean success = false;
-				System.out.println("Do you want to continue? Please enter 'y' : ");
-				BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
-				if(br.toString().equals("y") || br.toString().equals("Y")){
-					System.out.println("Enter 1 to roll the dice or 2 to remove your minion from the board : ");
-					BufferedReader brChoice = new BufferedReader(new InputStreamReader(System.in));
-					if(brChoice.toString().equals("1")){
-						Integer rollingDiceNumber = PresentationUtility.returnRandomNumber(1, 12);
-						if(rollingDiceNumber >= 7){
-							this.setPlayer_amount((float) this.getPlayer_amount() + 4);
-							Game.GameBank.setBankAmount((float) Game.GameBank.getBankAmount() - 4);
+				System.out.println("Enter 1 to roll the dice or 2 to remove your minion from the board : ");
+				BufferedReader brChoice = new BufferedReader(new InputStreamReader(System.in));
+				if(brChoice.toString().equals("1")){
+					Integer rollingDiceNumber = PresentationUtility.returnRandomNumber(1, 12);
+					if(rollingDiceNumber >= 7){
+						this.setPlayer_amount((float) (this.getPlayer_amount() != null ? this.getPlayer_amount() : 0) + 4);
+						Game.GameBank.setBankAmount((float) Game.GameBank.getBankAmount() - 4);
+						success = true;
+					}else if(rollingDiceNumber == 1){
+						this.setPlayer_amount((float) (this.getPlayer_amount() != null ? this.getPlayer_amount() : 0) - 2);
+						Game.GameBank.setBankAmount((float) Game.GameBank.getBankAmount() + 2);
+						success = true;
+					}
+				}else if(brChoice.toString().equals("2")){
+					System.out.println("Enter the minionId to be removed from the board : ");
+					BufferedReader brMinionIdToBeRemoved = new BufferedReader(new InputStreamReader(System.in));
+					for(Minion minion : Game.lstMinions){
+						if(minion.getMinion_id() == Integer.parseInt(brMinionIdToBeRemoved.toString())){
+							minion.setArea_id(0);
 							success = true;
-						}else if(rollingDiceNumber == 1){
-							this.setPlayer_amount((float) this.getPlayer_amount() - 2);
-							Game.GameBank.setBankAmount((float) Game.GameBank.getBankAmount() + 2);
-							success = true;
-						}
-					}else if(brChoice.toString().equals("2")){
-						System.out.println("Enter the minionId to be removed from the board : ");
-						BufferedReader brMinionIdToBeRemoved = new BufferedReader(new InputStreamReader(System.in));
-						for(Minion minion : Game.lstMinions){
-							if(minion.getMinion_id() == Integer.parseInt(brMinionIdToBeRemoved.toString())){
-								minion.setArea_id(0);
-								success = true;
-							}
 						}
 					}
 				}
@@ -1000,12 +980,8 @@ public class Player {
 				//Read the scroll
 				boolean success = false;
 				String nameOfPersonalityCardsCommaSeparated = "";
-				System.out.println("Do you want to continue? Please enter 'y' : ");
-				BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
-				if(br.toString().equals("y") || br.toString().equals("Y")){
-					for(PersonalityCard personalityCard : Game.lstPersonalityCard){
-						nameOfPersonalityCardsCommaSeparated = personalityCard.GetPersonalityName() + ",";
-					}
+				for(PersonalityCard personalityCard : Game.lstPersonalityCard){
+					nameOfPersonalityCardsCommaSeparated = personalityCard.GetPersonalityName() + ",";
 				}
 				if(nameOfPersonalityCardsCommaSeparated.endsWith(",")){
 					nameOfPersonalityCardsCommaSeparated = nameOfPersonalityCardsCommaSeparated.substring(0, nameOfPersonalityCardsCommaSeparated.length()-1);
@@ -1017,21 +993,17 @@ public class Player {
 			// Same Functionality of Dr WhiteFace
 			public boolean theFoolsGuildFunctionality(){
 				boolean success = false;
-				System.out.println("Do you want to continue? Please enter 'y' : ");
-				BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
-				if(br.toString().equals("y") || br.toString().equals("Y")){
-					System.out.println("Enter playerId from whom you want $5 : ");
-					BufferedReader brPlayer = new BufferedReader(new InputStreamReader(System.in));
-					for(Player player : Game.lstPlayers){
-						if(player.getPlayer_id() == Integer.parseInt(brPlayer.toString())){
-							if(player.getPlayer_amount() > 5){
-								player.setPlayer_amount(player.getPlayer_amount() - 5);
-								this.setPlayer_amount(this.getPlayer_amount() + 5);
-								success = true;
-								break;
-							}else{
-								player.setPlayer_comments("Have to give back $5 to player " + this.getPlayer_id());
-							}
+				System.out.println("Enter playerId from whom you want $5 : ");
+				BufferedReader brPlayer = new BufferedReader(new InputStreamReader(System.in));
+				for(Player player : Game.lstPlayers){
+					if(player.getPlayer_id() == Integer.parseInt(brPlayer.toString())){
+						if(player.getPlayer_amount() > 5){
+							player.setPlayer_amount(player.getPlayer_amount() - 5);
+							this.setPlayer_amount((this.getPlayer_amount() != null ? this.getPlayer_amount() : 0) + 5);
+							success = true;
+							break;
+						}else{
+							player.setPlayer_comments("Have to give back $5 to player " + this.getPlayer_id());
 						}
 					}
 				}
@@ -1041,36 +1013,31 @@ public class Player {
 			public boolean theFireBrigadeFunctionality(){
 				//Read the scroll & play another card
 				boolean success = false;
-				System.out.println("Do you want to continue? Please enter 'y' : ");
-				BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
-				if(br.toString().equals("y") || br.toString().equals("Y")){
-					System.out.println("Enter 1 to give $5 or 2 to remove the building");;
-					BufferedReader brChoice = new BufferedReader(new InputStreamReader(System.in));
-					if(brChoice.toString().equals("1")){
-						System.out.println("Enter playerId from whom you want $5 : ");
-						BufferedReader brPlayer = new BufferedReader(new InputStreamReader(System.in));
-						for(Player player : Game.lstPlayers){
-							if(player.getPlayer_id() == Integer.parseInt(brPlayer.toString())){
-								if(player.getPlayer_amount() > 5){
-									player.setPlayer_amount(player.getPlayer_amount() - 5);
-									this.setPlayer_amount(this.getPlayer_amount() + 5);
-									success = true;
-									break;
-								}
-							}
-						}
-						if(!(success)){
-							System.out.println("Enter the minionId to be removed from the board : ");
-							BufferedReader brMinionIdToBeRemoved = new BufferedReader(new InputStreamReader(System.in));
-							for(Minion minion : Game.lstMinions){
-								if(minion.getMinion_id() == Integer.parseInt(brMinionIdToBeRemoved.toString())){
-									minion.setArea_id(0);
-									success = true;
-								}
+				System.out.println("Enter 1 to give $5 or 2 to remove the building");;
+				BufferedReader brChoice = new BufferedReader(new InputStreamReader(System.in));
+				if(brChoice.toString().equals("1")){
+					System.out.println("Enter playerId from whom you want $5 : ");
+					BufferedReader brPlayer = new BufferedReader(new InputStreamReader(System.in));
+					for(Player player : Game.lstPlayers){
+						if(player.getPlayer_id() == Integer.parseInt(brPlayer.toString())){
+							if(player.getPlayer_amount() > 5){
+								player.setPlayer_amount(player.getPlayer_amount() - 5);
+								this.setPlayer_amount((this.getPlayer_amount() != null ? this.getPlayer_amount() : 0) + 5);
+								success = true;
+								break;
 							}
 						}
 					}
-					
+					if(!(success)){
+						System.out.println("Enter the minionId to be removed from the board : ");
+						BufferedReader brMinionIdToBeRemoved = new BufferedReader(new InputStreamReader(System.in));
+						for(Minion minion : Game.lstMinions){
+							if(minion.getMinion_id() == Integer.parseInt(brMinionIdToBeRemoved.toString())){
+								minion.setArea_id(0);
+								success = true;
+							}
+						}
+					}
 				}
 				return success;
 			}
@@ -1091,18 +1058,14 @@ public class Player {
 			public boolean theHexFunctionality(){
 				//Read the scroll & play another card
 				boolean success = false;
-				System.out.println("Do you want to continue? Please enter 'y' : ");
-				BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
-				if(br.toString().equals("y") || br.toString().equals("Y")){
-					for(int i = 1; i <=3; i++){
-						if(Game.lstGreenCards.size() > (3-i+1)){
-							int cardIndexNumber = PresentationUtility.returnRandomNumber(0, Game.lstGreenCards.size() -1);
-							if(cardIndexNumber > 0){
-								GreenCard cardToAdd = Game.lstGreenCards.get(cardIndexNumber);
-								this.setGreenCardListCommaSeparated(this.getGreenCardListCommaSeparated()+","+cardToAdd);
-								Game.lstGreenCards.remove(cardIndexNumber);
-								success = true;
-							}
+				for(int i = 1; i <=3; i++){
+					if(Game.lstGreenCards.size() > (3-i+1)){
+						int cardIndexNumber = PresentationUtility.returnRandomNumber(0, Game.lstGreenCards.size() -1);
+						if(cardIndexNumber > 0){
+							GreenCard cardToAdd = Game.lstGreenCards.get(cardIndexNumber);
+							this.setGreenCardListCommaSeparated(this.getGreenCardListCommaSeparated()+","+cardToAdd);
+							Game.lstGreenCards.remove(cardIndexNumber);
+							success = true;
 						}
 					}
 					success = true;
@@ -1112,17 +1075,13 @@ public class Player {
 			
 			public boolean theNoobyNoobsFunctionality(){
 				boolean success = false;
-				System.out.println("Do you want to continue? Please enter 'y' : ");
-				BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
-				if(br.toString().equals("y") || br.toString().equals("Y")){
-					System.out.println("Enter playerId from whom you want $3 : ");
-					BufferedReader brPlayer = new BufferedReader(new InputStreamReader(System.in));
-					for(Player player : Game.lstPlayers){
-						if(player.getPlayer_id() == Integer.parseInt(brPlayer.toString())){
-							player.setPlayer_amount((float) player.getPlayer_amount() - 3);
-							this.setPlayer_amount((float) this.getPlayerAmount() + 3);
-							success = true;
-						}
+				System.out.println("Enter playerId from whom you want $3 : ");
+				BufferedReader brPlayer = new BufferedReader(new InputStreamReader(System.in));
+				for(Player player : Game.lstPlayers){
+					if(player.getPlayer_id() == Integer.parseInt(brPlayer.toString())){
+						player.setPlayer_amount((float) player.getPlayer_amount() - 3);
+						this.setPlayer_amount((float) this.getPlayerAmount() + 3);
+						success = true;
 					}
 				}
 				return success;
@@ -1144,18 +1103,15 @@ public class Player {
 			public boolean theLibrarianFunctionality(){
 				//Read the scroll & play another card
 				boolean success = false;
-				System.out.println("Do you want to continue? Please enter 'y' : ");
 				BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
-				if(br.toString().equals("y") || br.toString().equals("Y")){
-					for(int i = 1; i <=4; i++){
-						if(Game.lstGreenCards.size() > (4-i+1)){
-							int cardIndexNumber = PresentationUtility.returnRandomNumber(0, Game.lstGreenCards.size() -1);
-							if(cardIndexNumber > 0){
-								GreenCard cardToAdd = Game.lstGreenCards.get(cardIndexNumber);
-								this.setGreenCardListCommaSeparated(this.getGreenCardListCommaSeparated()+","+cardToAdd);
-								Game.lstGreenCards.remove(cardIndexNumber);
-								success = true;
-							}
+				for(int i = 1; i <=4; i++){
+					if(Game.lstGreenCards.size() > (4-i+1)){
+						int cardIndexNumber = PresentationUtility.returnRandomNumber(0, Game.lstGreenCards.size() -1);
+						if(cardIndexNumber > 0){
+							GreenCard cardToAdd = Game.lstGreenCards.get(cardIndexNumber);
+							this.setGreenCardListCommaSeparated(this.getGreenCardListCommaSeparated()+","+cardToAdd);
+							Game.lstGreenCards.remove(cardIndexNumber);
+							success = true;
 						}
 					}
 					success = true;
@@ -1167,13 +1123,9 @@ public class Player {
 				//Read the scroll & play another card
 				boolean success = false;
 				int countMoneyToBeGivenToCurrentPlayer = 0;
-				System.out.println("Do you want to continue? Please enter 'y' : ");
-				BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
-				if(br.toString().equals("y") || br.toString().equals("Y")){
-					for(TroubleMaker troubleMaker : Game.lstTroubleMaker){
-						if(troubleMaker.getActive() && troubleMaker.getArea_id() > 0){
-							countMoneyToBeGivenToCurrentPlayer += 1;
-						}
+				for(TroubleMaker troubleMaker : Game.lstTroubleMaker){
+					if(troubleMaker.getActive() && troubleMaker.getArea_id() > 0){
+						countMoneyToBeGivenToCurrentPlayer += 1;
 					}
 					this.setPlayer_amount((float) this.getPlayerAmount() + (countMoneyToBeGivenToCurrentPlayer * 1));
 				}
@@ -1184,22 +1136,18 @@ public class Player {
 			public boolean theRosiePalmFunctionality(){
 				//1st Action to read scroll & then play another card
 				boolean success = false;
-				System.out.println("Do you want to continue? Please enter 'y' : ");
-				BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
-				if(br.toString().equals("y") || br.toString().equals("Y")){
-					System.out.println("Enter playerId from whom you want to give $2 and give one card : ");
-					BufferedReader brPlayer = new BufferedReader(new InputStreamReader(System.in));
-					for(Player player : Game.lstPlayers){
-						if(player.getPlayer_id() == Integer.parseInt(brPlayer.toString())){
-							System.out.print("Enter one by one from the list of green card you have available : " + this.getGreenCardListCommaSeparated());
-							BufferedReader brCard1Selected = new BufferedReader(new InputStreamReader(System.in));
-							player.setGreenCardListCommaSeparated(player.getGreenCardListCommaSeparated() + "," +brCard1Selected.toString());
-							this.setGreenCardListCommaSeparated(removeOneCardFromCommaSeparatedString(this.getGreenCardListCommaSeparated(), brCard1Selected.toString()));
-							
-							player.setPlayer_amount((float) player.getPlayer_amount());
-							this.setPlayer_amount((float) this.getPlayer_amount() + 2);
-							return (success = true);
-						}
+				System.out.println("Enter playerId from whom you want to give $2 and give one card : ");
+				BufferedReader brPlayer = new BufferedReader(new InputStreamReader(System.in));
+				for(Player player : Game.lstPlayers){
+					if(player.getPlayer_id() == Integer.parseInt(brPlayer.toString())){
+						System.out.print("Enter one by one from the list of green card you have available : " + this.getGreenCardListCommaSeparated());
+						BufferedReader brCard1Selected = new BufferedReader(new InputStreamReader(System.in));
+						player.setGreenCardListCommaSeparated(player.getGreenCardListCommaSeparated() + "," +brCard1Selected.toString());
+						this.setGreenCardListCommaSeparated(removeOneCardFromCommaSeparatedString(this.getGreenCardListCommaSeparated(), brCard1Selected.toString()));
+						
+						player.setPlayer_amount((float) player.getPlayer_amount());
+						this.setPlayer_amount((float) (this.getPlayer_amount() != null ? this.getPlayer_amount() : 0) + 2);
+						return (success = true);
 					}
 				}
 				return success;
@@ -1209,9 +1157,6 @@ public class Player {
 				//1st Action to read scroll & then play another card
 				boolean success = false;
 				PersonalityCard personalityCard = new PersonalityCard();
-				System.out.println("Do you want to continue? Please enter 'y' : ");
-				BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
-				if(br.toString().equals("y") || br.toString().equals("Y")){
 					if(Game.lstPersonalityCard.size() > 0){
 						int personalityCardIndexNumber = PresentationUtility.returnRandomNumber(0, Game.lstPersonalityCard.size() -1);
 						PersonalityCard personalityCard1 = Game.lstPersonalityCard.get(personalityCardIndexNumber);
@@ -1223,7 +1168,6 @@ public class Player {
 
 						Game.lstPersonalityCard.remove(personalityCardIndexNumber);
 					}
-				}
 				return success;
 			}
 			
@@ -1235,7 +1179,130 @@ public class Player {
 				return greenCardAccessed.GetCardID();	
 				
 			}
+			
+			public boolean theHistoryMonks(){
+				boolean success = false;
+				List<Integer> discardedPileofGreenCardArr = new ArrayList<Integer>();
+				String discardedPileOfGreenCards = "";
+				String cardInDeckOrWithPlayer = "";
+				System.out.println("Do you want to continue? Please enter 'y' : ");
+				BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+				if(br.toString().equals("y") || br.toString().equals("Y")){
+					for(GreenCard greenCard : Game.lstGreenCards){
+						cardInDeckOrWithPlayer += greenCard.GetCardID() + ",";
+					}
+					
+					for(Player greenCardToExtract : Game.lstPlayers){
+						cardInDeckOrWithPlayer += greenCardToExtract.getGreenCardListCommaSeparated() + ",";
+					}
+					
+					if(cardInDeckOrWithPlayer.endsWith(",")){
+						cardInDeckOrWithPlayer = cardInDeckOrWithPlayer.substring(0, cardInDeckOrWithPlayer.length() -1);
+					}
+					
+					char[] cardInDeckOrWithPlayerChar = cardInDeckOrWithPlayer.toCharArray();
+					Arrays.sort(cardInDeckOrWithPlayerChar);
 
-	
+					String[] greenCardsInGameStrArr = cardInDeckOrWithPlayerChar.toString().split(",");
+					
+					ArrayList<String> greenCardsInGameArr  = new ArrayList<String>();
+					for(String greenCardInGame : greenCardsInGameStrArr){
+						greenCardsInGameArr.add(greenCardInGame);
+					}
+					
+					for(int i = 48; i <= 1; i--){
+						if(!(greenCardsInGameArr.contains(i))){
+							discardedPileofGreenCardArr.add(i);
+						}
+					}
+					if(discardedPileofGreenCardArr.size() > 0){
+						discardedPileOfGreenCards = discardedPileofGreenCardArr.toString().substring(0, 6);
+					}
+					
+					this.setGreenCardListCommaSeparated(this.getGreenCardListCommaSeparated() + "," +discardedPileOfGreenCards);
+					
+				}
+				return success;
+			}
+			
+			public boolean theHarryKingFunctionality(){
+				//1st Action to read scroll & then play another card
+				boolean success = false;
+				System.out.println("Do you want to continue? Please enter 'y' : ");
+				BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+				if(br.toString().equals("y") || br.toString().equals("Y")){
+					System.out.print("You have these green cards available : " + this.getGreenCardListCommaSeparated());
+					String[] playerGreenCardArr = this.getGreenCardListCommaSeparated().split(",");
+					for(int i = 0; i < playerGreenCardArr.length; i++){
+						System.out.print("Do you want to discard Card Number : " + playerGreenCardArr[i]);
+						BufferedReader brCard1Selected = new BufferedReader(new InputStreamReader(System.in));
+						if(brCard1Selected.toString().endsWith("y") || brCard1Selected.toString().endsWith("Y")){
+							this.setGreenCardListCommaSeparated(removeOneCardFromCommaSeparatedString(this.getGreenCardListCommaSeparated(), playerGreenCardArr[i].toString()));
+							this.setPlayer_amount((float) this.getPlayer_amount() + 2);
+						}
+					}
+				}
+				return success;
+			}
+			
+			public boolean theShonkyShopFunctionality(){
+				//1st Action to read scroll & then play another card
+				boolean success = false;
+				System.out.println("Do you want to continue? Please enter 'y' : ");
+				BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+				if(br.toString().equals("y") || br.toString().equals("Y")){
+					System.out.print("You have these green cards available : " + this.getGreenCardListCommaSeparated());
+					String[] playerGreenCardArr = this.getGreenCardListCommaSeparated().split(",");
+					for(int i = 0; i < playerGreenCardArr.length; i++){
+						System.out.print("Do you want to discard Card Number : " + playerGreenCardArr[i]);
+						BufferedReader brCard1Selected = new BufferedReader(new InputStreamReader(System.in));
+						if(brCard1Selected.toString().endsWith("y") || brCard1Selected.toString().endsWith("Y")){
+							this.setGreenCardListCommaSeparated(removeOneCardFromCommaSeparatedString(this.getGreenCardListCommaSeparated(), playerGreenCardArr[i].toString()));
+							this.setPlayer_amount((float) this.getPlayer_amount() + 1);
+						}
+					}
+				}
+				return success;
+			}
+			
+			public boolean placeAMinionFunctionality(){
+				String placingAMinionStr = "";
+				for(Minion minionObj : Game.lstMinions){
+					if(minionObj.getPlayer_id() == this.getPlayer_id() && minionObj.getArea_id() == 0){
+						placingAMinionStr += minionObj.getArea_id() + ",";
+					}
+					if(placingAMinionStr.endsWith(",")){
+						placingAMinionStr = placingAMinionStr.substring(0, placingAMinionStr.length()-1);
+					}
+					System.out.println("You are allowed to place these minions which are not on board : " + placingAMinionStr);
+					System.out.println("Enter a area in which you want to keep the minion : ");
+					BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+					ArrayList<Minion> placingMinionInNewObj = Game.GetMinionsByMinionID(Integer.parseInt(placingAMinionStr.substring(0)));
+					placingMinionInNewObj.get(0).setArea_id(Integer.parseInt(br.toString()));
+					return true;
+				}
+				return false;
+			}
+			
+			public boolean placeABuildingFunctionality(){
+				String placingABuidingStr = "";
+				for(Building buildingObj : Game.lstBuildings){
+					if(buildingObj.getPlayer_id() == this.getPlayer_id() && buildingObj.getArea_id() == 0){
+						placingABuidingStr += buildingObj.getArea_id() + ",";
+					}
+					if(placingABuidingStr.endsWith(",")){
+						placingABuidingStr = placingABuidingStr.substring(0, placingABuidingStr.length()-1);
+					}
+					System.out.println("You are allowed to place these buildings which are not on board : " + placingABuidingStr);
+					System.out.println("Enter a area in which you want to keep the building : ");
+					BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+					ArrayList<Building> placingBuildingInNewObj = Game.GetBuildingsByBuildingID(Integer.parseInt(placingABuidingStr.substring(0)));
+					placingBuildingInNewObj.get(0).setArea_id(Integer.parseInt(br.toString()));
+					return true;
+				}
+				return false;
+			}
+			
+			
 	
 }
