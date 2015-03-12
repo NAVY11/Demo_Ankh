@@ -795,7 +795,70 @@ public class Player {
 		}
 		
 		//Green Card Functionalities
-		
+		//Play another card
+		public boolean PlayAnotherCard(String OldCardID) throws IOException
+		{
+			//Set previously played card to Played
+			Game.SetGreenCardIsPlayed(OldCardID, true);
+			
+			System.out.println("Player " + this.getPlayer_name()+" plays another card");
+			System.out.println("Which card to play?");
+			
+			//Show available cards
+			StringBuilder sbValidIDs = new StringBuilder();
+			for(GreenCard grnCard: Game.lstGreenCards)
+			{	
+				if(grnCard.getPlayerID()==this.getPlayer_id())
+				{
+					sbValidIDs.append(grnCard.GetCardID());			
+					System.out.println(grnCard.CardID + " : " + grnCard.getName());
+				}
+			}
+			
+			//Accept Card to play from Player
+			String CardID = null;
+			while(true)
+			{
+				System.out.println("Enter a valid Card ID");
+				BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+				CardID = br.readLine().toString();
+				if((sbValidIDs.toString()).contains(CardID))
+				{
+					break;
+				}
+			}
+					//Which Action to perform?
+					GreenCard grnCard = Game.GetGreenCard(CardID);
+					String[] ActionArray = grnCard.GetAction();
+					String ActionList = Game.GetGreenCardActions(CardID);
+					System.out.println("Card " + grnCard.getName() + " has following actions :");
+					System.out.println(ActionList);
+					for(int i = 0; i<ActionArray.length; i++)
+					{
+						String ans = null;
+						System.out.println("Do you wish to perform " + ActionArray[i] + " action? Y/N");
+						while(true)
+						{						
+							ans = BR.readLine();
+							if(ans.equalsIgnoreCase("Y") || ans.equalsIgnoreCase("N"))
+							{
+								break;
+							}
+							else
+								System.out.println("Incorrect input. Please try again.");
+						}
+						
+						if(ans.equalsIgnoreCase("Y"))
+						{
+							//Perform Action
+							this.PerformCardAction(ActionArray[i], CardID);
+							
+						}
+						else
+							continue;
+					}
+					return true;
+		}
 		//Same Functionality of The Thieves' Guild
 		public boolean mrBoggisFunctionality(){
 			//1st Action to read scroll & then to place minion
