@@ -29,13 +29,19 @@ public class GameSave {
 
 	public static void SaveGame(FileWriter objFileWriter) throws IOException, JSONException
 	{												
-																
+			//Player Player1 = NewGame.lstPlayers.get(0);						
+			
+			//jsonWriter.write(jsonGame.toString());
+			//jsonWriter.write(jsonPlayerMinionsXX.toString());
+		objFileWriter.write(jsonObjectWhileSavingGame().toString());
+		objFileWriter.flush();
+		objFileWriter.close();											
 
-		FileWriter jsonWriter = new FileWriter(objFileWriter.toString());
+	}
+	
+	public static JSONObject jsonObjectWhileSavingGame()throws IOException, JSONException{
+		//FileWriter jsonWriter = new FileWriter(objFileWriter);
 		JSONObject jsonAddData = new JSONObject();
-		
-		//Saving Area		
-		jsonAddData.put("Areas",Game.lstArea);
 		
 		//Saving TROLLS		
 		jsonAddData.put("Trolls",Game.lstTrolls);
@@ -46,40 +52,16 @@ public class GameSave {
 		//Saving Players		
 		jsonAddData.put("Players",Game.lstPlayers);
 		
-		//Saving Minions		
-		jsonAddData.put("Minions",Game.lstMinions);
-		
-		//Saving Buildings		
-		jsonAddData.put("Buildings",Game.lstBuildings);
-		
-		//Saving TroubleMaker		
-		jsonAddData.put("TroubleMaker",Game.lstTroubleMaker);
-		
-		//Saving CityAreaCards		
-		jsonAddData.put("CityAreaCards",Game.lstCityAreaCards);
-		
-		//Saving GreenCards		
-		jsonAddData.put("GreenCards",Game.lstGreenCards);
-				
-		//Saving BrownCards		
-		//jsonAddData.put("BrownCards",Game.lstBrownCards);
-		
-		//Saving RandomEventCards		
-		jsonAddData.put("RandomEventCards",Game.lstRandomEventCards);
-		
-		//Saving PersonalityCards		
-		jsonAddData.put("PersonalityCards",Game.lstPersonalityCard);
-		
 		int PlayerID = 1;
 		
 		for(Player objPlayer: Game.lstPlayers)
 		{
 			
-//			//Saving BUILDINGS			
-//			jsonAddData.put("Buildings_"+PlayerID,objPlayer.lstBuildings);
-//
-//			//Saving MINIONS					
-//			jsonAddData.put("Minions_"+PlayerID, objPlayer.lstMinions);
+			//Saving BUILDINGS			
+			jsonAddData.put("Buildings_"+PlayerID,objPlayer.lstBuildings);
+
+			//Saving MINIONS					
+			jsonAddData.put("Minions_"+PlayerID, objPlayer.lstMinions);
 			
 			//Saving GOLD COINS
 			jsonAddData.put("GoldCoins_Avail_"+PlayerID,objPlayer.objGoldCoin.getCoin_Available());
@@ -96,10 +78,7 @@ public class GameSave {
 		jsonAddData.put("GoldCoins_Avail_Bank",Game.GameBank.objGoldCoin.getCoin_Available());
 		jsonAddData.put("SilverCoins_Avail_Bank",Game.GameBank.objSilverCoin.getCoin_Available());
 		
-		jsonWriter.write(jsonAddData.toString());
-		jsonWriter.flush();
-		jsonWriter.close();
-
+		return jsonAddData;
 		
 
 	}
