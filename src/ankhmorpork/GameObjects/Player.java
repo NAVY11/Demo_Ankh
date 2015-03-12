@@ -798,6 +798,8 @@ public class Player {
 //				case "Random Event" : 
 				case "Play another card" : this.PlayAnotherCard(CardID);break;
 //				case "Interrupt " : 
+				case "Place a Minion" : this.placeAMinionFunctionality();break;
+				case "Place a Building" : this.placeABuildingFunctionality();break;
 			}
 			}
 			return success;			
@@ -1362,23 +1364,56 @@ public class Player {
 			}
 			
 			public boolean placeABuildingFunctionality() throws IOException{
+				boolean success = false;
 				String placingABuidingStr = "";
-				for(Building buildingObj : Game.lstBuildings){
+				for(Building buildingObj : Game.lstBuildings)
+				{
 					if(buildingObj.getPlayer_id() == this.getPlayer_id() && buildingObj.getArea_id() == 0){
-						placingABuidingStr += buildingObj.getArea_id() + ",";
+						placingABuidingStr += buildingObj.getBuilding_id() + ",";
 					}
 					if(placingABuidingStr.endsWith(",")){
 						placingABuidingStr = placingABuidingStr.substring(0, placingABuidingStr.length()-1);
 					}
-					System.out.println("You are allowed to place these buildings which are not on board : " + placingABuidingStr);
-					System.out.println("Enter a area in which you want to keep the building : ");
+					if(!placingABuidingStr.isEmpty())
+					{
+					//System.out.println("You are allowed to place these buildings which are not on board : " + placingABuidingStr);
+					System.out.println("Enter a area in which you want to keep the building  : ");
+					String AreaList = Game.AreaWithNoBuilding();
+					System.out.println(AreaList);
 					BufferedReader brBuff = new BufferedReader(new InputStreamReader(System.in));
 					String br = brBuff.readLine();
-					ArrayList<Building> placingBuildingInNewObj = Game.GetBuildingsByBuildingID(Integer.parseInt(placingABuidingStr.substring(0)));
-					placingBuildingInNewObj.get(0).setArea_id(Integer.parseInt(br.toString()));
-					return true;
+					if(AreaList.contains(br))
+					{
+						Building objBuilding = Game.GetBuildingsByBuildingID(Integer.parseInt(placingABuidingStr.substring(0,2)));
+						objBuilding.setArea_id(Integer.parseInt(br.toString()));
+						CityAreaCard CityAreaCard = Game.GetCityAreaCardByCardID("c"+br);
+						if(Game.PaymentToBank(this.getPlayer_id(), CityAreaCard.GetCost()))
+						{
+							Game.SetBuilding(objBuilding);
+							System.out.println("Building placed successfully. Amount deducted "+CityAreaCard.GetCost());
+						}
+						else
+						{
+							System.out.println("You do not have sufficient funds");
+						}
+						
+						success=true;
+					//Perform check on area id -- to do					
+					}
+					else
+					{
+						System.out.println("You have no Building to palce");
+						success = false;
+					}
+					
+					}
+					else
+					{
+						System.out.println("No Area available to place Building");
+						success = false;
+					}
 				}
-				return false;
+				return success;
 			}
 			
 			public static void performCityAreaAction(String cityAreaId){
