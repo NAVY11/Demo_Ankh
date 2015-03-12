@@ -27,13 +27,12 @@ import java.util.Iterator;
 
 public class GameSave {
 
-	public static void SaveGame(FileWriter objFileWriter, Game newGame) throws IOException, JSONException
+	public static void SaveGame(FileWriter objFileWriter) throws IOException, JSONException
 	{												
 			//Player Player1 = NewGame.lstPlayers.get(0);						
 			
 			//jsonWriter.write(jsonGame.toString());
 			//jsonWriter.write(jsonPlayerMinionsXX.toString());
-		objFileWriter.write(jsonObjectWhileSavingGame(newGame).toString());
 		objFileWriter.flush();
 		objFileWriter.close();											
 

@@ -36,13 +36,12 @@ public class GameStart {
 	 * @param Players the players
 	 * @param Colors the colors
 	 * @param iNoOfPlayers the i no of players
-	 * @param AnkhMorpork the ankh morpork
 	 * @throws JSONException 
 	 * @throws ParseException 
 	 * @throws IOException 
 	 * @throws FileNotFoundException 
 	 */
-	public static void StartNewGame(String Players[], String Colors[], int iNoOfPlayers,Game AnkhMorpork) throws FileNotFoundException, IOException, ParseException, JSONException
+	public static void StartNewGame(String Players[], String Colors[], int iNoOfPlayers) throws FileNotFoundException, IOException, ParseException, JSONException
 	{
 		Area[] AreaList = new Area[13];	
 		AreaList[0]=new Area(0,0,"Not on Board",0);
