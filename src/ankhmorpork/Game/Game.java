@@ -443,4 +443,34 @@ public class Game {
 			
 			return objCityAreaCard;
 		}
+		
+		public static String getAdjacentAreas(int areaID){
+			String adjacentAreasList = "";
+			if(areaID == 1){
+				adjacentAreasList = "2,3,12";
+			}else if(areaID == 2){
+				adjacentAreasList = "1,3,4,10,11,12";
+			}else if(areaID == 3){
+				adjacentAreasList = "1,2,4";
+			}else if(areaID == 4){
+				adjacentAreasList = "2,3,5,6,10";
+			}else if(areaID == 5){
+				adjacentAreasList = "4,6,7,8,10";
+			}else if(areaID == 6){
+				adjacentAreasList = "4,5,7";
+			}else if(areaID == 7){
+				adjacentAreasList = "5,6,8";
+			}else if(areaID == 8){
+				adjacentAreasList = "5,7,9";
+			}else if(areaID == 9){
+				adjacentAreasList = "8,10,11";
+			}else if(areaID == 10){
+				adjacentAreasList = "2,4,5,9,11";
+			}else if(areaID == 11){
+				adjacentAreasList = "2,9,10,12";
+			}else if(areaID == 12){
+				adjacentAreasList = "1,2,11";
+			}
+			return adjacentAreasList;
+		}
 }
