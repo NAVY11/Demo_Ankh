@@ -347,7 +347,7 @@ public class Player {
 	}
 	
 	//Method for Assassination
-	public boolean Assassination(Player CurrentPlayer, Hashtable AreaTable) throws IOException
+	public boolean Assassination() throws IOException
 	{			
 		String AreaID = null;
 		boolean success = false;
@@ -358,12 +358,12 @@ public class Player {
 		StringBuilder sbValidAreas = new StringBuilder();
 		for(TroubleMaker objTM : Game.lstTroubleMaker)
 		{
-			if(objTM.getArea_id()!=0 && objTM.getActive() && (HasOtherPlayersMinion(CurrentPlayer,objTM.getArea_id())||Game.AreaHasTroll(objTM.getArea_id())||Game.AreaHasDemon(objTM.getArea_id())))
+			if(objTM.getArea_id()!=0 && objTM.getActive() && (HasOtherPlayersMinion(this,objTM.getArea_id())||Game.AreaHasTroll(objTM.getArea_id())||Game.AreaHasDemon(objTM.getArea_id())))
 			{
 				//Display Areas which have Trouble Marker and Minion of other players
 				TMOnBoard = true; //At least 1 Trouble marker is present on board
 				sbValidAreas.append(objTM.getArea_id());
-				System.out.println(objTM.getArea_id() + " : " + AreaTable.get(objTM.getArea_id()));
+				System.out.println(objTM.getArea_id() + " : " + PresentationUtility.getCityAreaCardNameById(objTM.getArea_id()));
 			}			
 		}
 		
@@ -392,7 +392,7 @@ public class Player {
 			}
 			
 			System.out.println("Select whom to assassinate:");
-			ArrayList<Minion> Minions = GetOtherPlayersMinion(CurrentPlayer, Integer.parseInt(AreaID));
+			ArrayList<Minion> Minions = GetOtherPlayersMinion(this, Integer.parseInt(AreaID));
 			ArrayList<Troll> Trolls = Game.GetTrollByAreaID(Integer.parseInt(AreaID));
 			ArrayList<Demon> Demons = Game.GetDemonByAreaID(Integer.parseInt(AreaID));
 			
@@ -643,6 +643,41 @@ public class Player {
 		return MinionIDs;
 	}
 	
+	//Method to ask user to remove One trouble marker
+	public boolean UserRemoveOneTroubleMarker() throws IOException
+	{
+		System.out.println("Select an area to remove Trouble Marker");
+		String strAreaList = Game.GetTroubleMakerOnBoardAreaId();
+		String[] arryAreaList = strAreaList.split(",");
+		for(int i = 0; i<arryAreaList.length;i++)
+		{
+			System.out.print(arryAreaList[i]+":"+PresentationUtility.getCityAreaCardNameById(Integer.parseInt(arryAreaList[i]+" ")));
+		}
+			boolean Run = true;
+			String ans = "";
+			while(Run)
+			{
+				ans = BR.readLine();
+				for(int i=0;i<arryAreaList.length;i++)
+				{
+					if(arryAreaList[i]==ans)
+					{
+						Run=false;
+						break;
+					}
+				}
+				if(Run)
+				{
+					System.out.println("Please enter valid ID");
+				}
+			}
+			
+		return RemoveTroubleMarker(Integer.parseInt(ans));
+			
+		}
+	
+	
+	
 	
 	//Method to remove Trouble marker
 		public boolean RemoveTroubleMarker(int AreaID)
@@ -697,8 +732,15 @@ public class Player {
 			return interrupt;
 		}
 	
+		//Take money from bank
+		public boolean TakeMoneyFromBank(String CardID)
+		{
+			int getAmount = PresentationUtility.howMuchMoneyToTakeFromBank(CardID);
+			//this.
+			return true;
+		}
 		//Player performs action
-		public boolean PerformCardAction(String ActionID, String CardID)
+		public boolean PerformCardAction(String ActionID, String CardID) throws IOException
 		{
 			boolean success = false;
 			if(ActionID=="Scroll")
@@ -708,18 +750,48 @@ public class Player {
 				case "g1" :this.mrBoggisFunctionality();
 				case "g2" :this.mrBentFunctionality();
 				case "g3" :this.theBeggersGuildFunctionality();
-				case "g4" :;
+				case "g4" :this.mrBentFunctionality();
 				case "g5" :this.theAnkhMorporkSunshineDragonSanctuaryFunctionality();								
 				case "g9" :this.theDuckmanFunctionality();
 				case "g10" :this.theDrumknottFunctionality();
-				case "g11" :;
-				case "g12" :;
-				case "g13" :;
-				case "g14" :;
+				case "g11" :this.theCMOTDibblerFunctionality();
+				case "g14" :this.theMrsCakeFunctionality();
+				case "g19" :this.theDuckmanFunctionality();
+				case "g20" :this.theFoolsGuildFunctionality();
+				case "g21" :this.theFireBrigadeFunctionality();
+				case "g23" :this.theHistoryMonksFunctionality();
+				//case "g24" : this.get
+				case "g25" :this.theCMOTDibblerFunctionality();
+				//case "g26" : this. harry king
+				case "g30" :this.theDyskFunctionality();
+				case "g31" :this.theNoobyNoobsFunctionality();
+				case "g32" :this.theModoFunctionality();
+				case "g34" :this.theLibrarianFunctionality();
+				case "g35" :this.theLibrarianFunctionality();
+				//case "g36" : this.thes shonky shop
+				case "g37" :this.theSacharissaCripslockFunctionality();
+				case "g38" :this.theRosiePalmFunctionality();
+				case "g39" :this.theDyskFunctionality();
+				case "g41" :this.theBeggersGuildFunctionality();
+				case "g43" :this.theZorgoTheRetroFunctionality();
+				case "g44" :this.theFoolsGuildFunctionality();
+				case "g46" :this.theRosiePalmFunctionality();
+				case "g48" :this.mrBoggisFunctionality();
 			}
 			}
-			
-			return success;
+			else
+			{
+				switch(ActionID)
+				{
+				case "Assassination" : this.Assassination();
+				case "Remove one trouble marker" : UserRemoveOneTroubleMarker();
+				case "Take money" : TakeMoneyFromBank(CardID);
+//				case "Random Event" : 
+//				case "Play another card" : 
+//				case "Interrupt " : 
+				}
+			}
+			return success;			
 		}
 		
 		//Green Card Functionalities
@@ -751,7 +823,7 @@ public class Player {
 			if(br.toString().equals("y") || br.toString().equals("Y")){
 				this.setPlayer_amount((float)this.getPlayer_amount() + 10);
 				Game.GameBank.setBankAmount((float)Game.GameBank.getBankAmount() - 10);
-				this.setPlayer_comments("You had played Mr. Bent. You need to $12 back to Bank Or either you lose 15 points.");
+				this.setPlayer_comments("You had played Mr. Bent./The Bank of AnkhMorpork You need to $12 back to Bank Or either you lose 15 points.");
 				success = true;
 			}
 			return success;
@@ -1005,7 +1077,7 @@ public class Player {
 			
 			/* Have to implement functionality and keep track of the discarded cards as well*/
 			
-			public boolean theHistoryMonksFunctionality(Game Ankhmorpork, Player currentPlayer){
+			public boolean theHistoryMonksFunctionality(){
 				//Read the scroll & play another card
 				boolean success = false;
 				System.out.println("Do you want to continue? Please enter 'y' : ");
