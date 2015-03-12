@@ -1,9 +1,19 @@
 package ankhmorpork.Game;
 import java.util.ArrayList;
 
-import ankhmorpork.GameConstants.Constants;
-import ankhmorpork.GameObjects.*;
-import ankhmorpork.GameObjects.Cards.*;
+import ankhmorpork.GameObjects.Area;
+import ankhmorpork.GameObjects.Bank;
+import ankhmorpork.GameObjects.Building;
+import ankhmorpork.GameObjects.Demon;
+import ankhmorpork.GameObjects.Minion;
+import ankhmorpork.GameObjects.Player;
+import ankhmorpork.GameObjects.Troll;
+import ankhmorpork.GameObjects.TroubleMaker;
+import ankhmorpork.GameObjects.Cards.BrownCard;
+import ankhmorpork.GameObjects.Cards.CityAreaCard;
+import ankhmorpork.GameObjects.Cards.GreenCard;
+import ankhmorpork.GameObjects.Cards.PersonalityCard;
+import ankhmorpork.GameObjects.Cards.RandomEventCard;
 
 public class Game {
 
@@ -312,6 +322,38 @@ public class Game {
 			}
 			return objTroubleMaker;
 		}
+		
+		public static boolean removeTroubleMarkerByAreaId(int areaId){
+			boolean success = false;
+				for(TroubleMaker troubleMaker : Game.lstTroubleMaker){
+					if(troubleMaker.getArea_id() == areaId){
+						troubleMaker.setArea_id(0);
+						success = true;
+					}
+				}
+			return success;
+		}
+		
+		public static String GetTroubleMakerOnBoardAreaId()
+		{
+			String sbAreaListStr = "";
+			StringBuilder sbAreaList = new StringBuilder();
+			TroubleMaker objTroubleMaker = new TroubleMaker();
+			for(TroubleMaker objTM : Game.lstTroubleMaker)
+			{
+				if(objTM.getArea_id()!=0)
+				{
+					sbAreaList.append(objTroubleMaker.getArea_id()+ ",");					
+				}
+			}
+			
+			sbAreaListStr = sbAreaList.toString();
+			if(sbAreaListStr.endsWith(",")){
+				sbAreaListStr = sbAreaListStr.substring(0, sbAreaListStr.length()-1);
+			}
+			return sbAreaListStr;
+		}
+		
 		
 		//Method to return list of TroubleMakers
 		public static TroubleMaker GetTroubleMakerNotOnBoard()
