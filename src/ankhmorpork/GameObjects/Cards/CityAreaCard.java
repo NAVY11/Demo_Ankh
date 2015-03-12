@@ -9,6 +9,7 @@ import ankhmorpork.Game.Game;
 import ankhmorpork.GameObjects.Bank;
 import ankhmorpork.GameObjects.Minion;
 import ankhmorpork.GameObjects.Player;
+import ankhmorpork.GameObjects.TroubleMaker;
 
 
 public class CityAreaCard extends Cards{
@@ -88,7 +89,7 @@ public class CityAreaCard extends Cards{
 		return this.AreaName;
 	}
 	
-	public boolean LongwallAction(Player CurrentPlayer)
+	public boolean LongwallAction(Player objPlayer)
 	{
 		boolean status = false;
 		try {			
@@ -101,18 +102,17 @@ public class CityAreaCard extends Cards{
 				int noOfSilverCoins = Game.GameBank.objSilverCoin.getCoin_Available();
 				if (noOfSilverCoins > 0 )
 				{
-					
-					int noOfPlayerCoins = CurrentPlayer.objSilverCoin.getCoin_Available();
+					int noOfPlayerCoins = objPlayer.objSilverCoin.getCoin_Available();
 					noOfPlayerCoins = noOfPlayerCoins + 1;
-					CurrentPlayer.objSilverCoin.setCoin_Available(noOfPlayerCoins);
+					objPlayer.objSilverCoin.setCoin_Available(noOfPlayerCoins);
 				}
 				noOfSilverCoins = noOfSilverCoins - 1;
 				Game.GameBank.objSilverCoin.setCoin_Available(noOfSilverCoins);
 //				int bankamt = b1.getBankAmount();
 //				bankamt = bankamt - 1;
-//				int currentplayer = CurrentPlayer.getPlayerAmount();
+//				int currentplayer = objPlayer.getPlayerAmount();
 //				currentplayer = currentplayer + 1;
-//				CurrentPlayer.setPlayer_amount(currentplayer);
+//				objPlayer.setPlayer_amount(currentplayer);
 				status = true;
 			}
 		} catch (IOException e) {
@@ -123,7 +123,7 @@ public class CityAreaCard extends Cards{
 		return status;
 	}
 	
-	public boolean SevenSleepersAction(Player CurrentPlayer)
+	public boolean SevenSleepersAction(Player objPlayer)
 	{
 		boolean status = false;
 		
@@ -138,9 +138,9 @@ public class CityAreaCard extends Cards{
 				if (noOfSilverCoins > 0 )
 				{
 					
-					int noOfPlayerCoins = CurrentPlayer.objSilverCoin.getCoin_Available();
+					int noOfPlayerCoins = objPlayer.objSilverCoin.getCoin_Available();
 					noOfPlayerCoins = noOfPlayerCoins + 3;
-					CurrentPlayer.objSilverCoin.setCoin_Available(noOfPlayerCoins);
+					objPlayer.objSilverCoin.setCoin_Available(noOfPlayerCoins);
 				}
 				noOfSilverCoins = noOfSilverCoins - 3;
 				Game.GameBank.objSilverCoin.setCoin_Available(noOfSilverCoins);
@@ -148,9 +148,9 @@ public class CityAreaCard extends Cards{
 //				Bank b1 = new Bank();
 //				int bankamt = b1.getBankAmount();
 //				bankamt = bankamt - 3;
-//				int currentplayer = CurrentPlayer.getPlayerAmount();
+//				int currentplayer = objPlayer.getPlayerAmount();
 //				currentplayer = currentplayer + 3;
-//				CurrentPlayer.setPlayer_amount(currentplayer);
+//				objPlayer.setPlayer_amount(currentplayer);
 				status = true;
 			}
 		} catch (IOException e) {
@@ -161,12 +161,12 @@ public class CityAreaCard extends Cards{
 		return status;
 	}
 	
-	public boolean NapHillAction(Player CurrentPlayer)
+	public boolean NapHillAction(Player objPlayer)
 	{
 		boolean status = false;
 		try {
 			
-			BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+ 			BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
 			System.out.println("Would you like to perform this action : Y/N ");
 			String userinput;
 			userinput = br.readLine();
@@ -175,9 +175,9 @@ public class CityAreaCard extends Cards{
 				int noOfSilverCoins = Game.GameBank.objSilverCoin.getCoin_Available();
 				if (noOfSilverCoins > 0 )
 				{
-					int noOfPlayerCoins = CurrentPlayer.objSilverCoin.getCoin_Available();
+					int noOfPlayerCoins = objPlayer.objSilverCoin.getCoin_Available();
 					noOfPlayerCoins = noOfPlayerCoins + 1;
-					CurrentPlayer.objSilverCoin.setCoin_Available(noOfPlayerCoins);
+					objPlayer.objSilverCoin.setCoin_Available(noOfPlayerCoins);
 				}
 				noOfSilverCoins = noOfSilverCoins - 1;
 				Game.GameBank.objSilverCoin.setCoin_Available(noOfSilverCoins);
@@ -185,9 +185,9 @@ public class CityAreaCard extends Cards{
 //				Bank b1 = new Bank();
 //				int bankamt = b1.getBankAmount();
 //				bankamt = bankamt - 1;
-//				int currentplayer = CurrentPlayer.getPlayerAmount();
+//				int currentplayer = objPlayer.getPlayerAmount();
 //				currentplayer = currentplayer + 1;
-//				CurrentPlayer.setPlayer_amount(currentplayer);
+//				objPlayer.setPlayer_amount(currentplayer);
 				status = true;
 			}
 		} catch (IOException e) {
@@ -199,7 +199,7 @@ public class CityAreaCard extends Cards{
 	}
 	
 	
-	public boolean TheHippoAction(Player CurrentPlayer)
+	public boolean TheHippoAction(Player objPlayer)
 	{
 		boolean status = false;
 		try {
@@ -212,9 +212,9 @@ public class CityAreaCard extends Cards{
 				int noOfSilverCoins = Game.GameBank.objSilverCoin.getCoin_Available();
 				if (noOfSilverCoins > 0 )
 				{
-					int noOfPlayerCoins = CurrentPlayer.objSilverCoin.getCoin_Available();
+					int noOfPlayerCoins = objPlayer.objSilverCoin.getCoin_Available();
 					noOfPlayerCoins = noOfPlayerCoins + 2;
-					CurrentPlayer.objSilverCoin.setCoin_Available(noOfPlayerCoins);
+					objPlayer.objSilverCoin.setCoin_Available(noOfPlayerCoins);
 				}
 				noOfSilverCoins = noOfSilverCoins - 2;
 				Game.GameBank.objSilverCoin.setCoin_Available(noOfSilverCoins);
@@ -222,9 +222,9 @@ public class CityAreaCard extends Cards{
 //				Bank b1 = new Bank();
 //				int bankamt = b1.getBankAmount();
 //				bankamt = bankamt - 2;
-//				int currentplayer = CurrentPlayer.getPlayerAmount();
+//				int currentplayer = objPlayer.getPlayerAmount();
 //				currentplayer = currentplayer + 2;
-//				CurrentPlayer.setPlayer_amount(currentplayer);
+//				objPlayer.setPlayer_amount(currentplayer);
 				status = true;
 			}
 		} catch (IOException e) {
@@ -235,7 +235,7 @@ public class CityAreaCard extends Cards{
 		return status;
 	}
 	
-	public boolean DragonLandingAction(Player CurrentPlayer)
+	public boolean DragonLandingAction(Player objPlayer)
 	{
 		boolean status = false;		
 		try {
@@ -248,9 +248,9 @@ public class CityAreaCard extends Cards{
 				int noOfSilverCoins = Game.GameBank.objSilverCoin.getCoin_Available();
 				if (noOfSilverCoins > 0 )
 				{
-					int noOfPlayerCoins = CurrentPlayer.objSilverCoin.getCoin_Available();
+					int noOfPlayerCoins = objPlayer.objSilverCoin.getCoin_Available();
 					noOfPlayerCoins = noOfPlayerCoins + 2;
-					CurrentPlayer.objSilverCoin.setCoin_Available(noOfPlayerCoins);
+					objPlayer.objSilverCoin.setCoin_Available(noOfPlayerCoins);
 				}
 				noOfSilverCoins = noOfSilverCoins - 2;
 				Game.GameBank.objSilverCoin.setCoin_Available(noOfSilverCoins);
@@ -258,9 +258,9 @@ public class CityAreaCard extends Cards{
 //				Bank b1 = new Bank();
 //				int bankamt = b1.getBankAmount();
 //				bankamt = bankamt - 2;
-//				int currentplayer = CurrentPlayer.getPlayerAmount();
+//				int currentplayer = objPlayer.getPlayerAmount();
 //				currentplayer = currentplayer + 2;
-//				CurrentPlayer.setPlayer_amount(currentplayer);
+//				objPlayer.setPlayer_amount(currentplayer);
 				status = true;
 			}
 		} catch (IOException e) {
@@ -271,7 +271,7 @@ public class CityAreaCard extends Cards{
 		return status;
 	}
 	
-	public boolean DimwellAction(Player objCurrentPlayer, Minion objCurrentPlayerMinionId)
+	public boolean DimwellAction(Player objPlayer, Minion objPlayerMinionId)
 	{
 		boolean status = false;
 		try {
@@ -283,16 +283,16 @@ public class CityAreaCard extends Cards{
 				System.out.println("Enter AreaId where you want to place the minion 8,7,9,5 : ");
 				BufferedReader areaidinput = new BufferedReader(new InputStreamReader(System.in));
 				int areaIdToPlace = Integer.parseInt(areaidinput.readLine());
-				if(PresentationUtility.canMinionBePlacedInAdjacentArea(objCurrentPlayer.getPlayer_id(), objCurrentPlayerMinionId.getMinion_id(), 0, areaIdToPlace)){
-				objCurrentPlayerMinionId.setArea_id(areaIdToPlace);
+				if(PresentationUtility.canMinionBePlacedInAdjacentArea(objPlayer.getPlayer_id(), objPlayerMinionId.getMinion_id(), 0, areaIdToPlace)){
+				objPlayerMinionId.setArea_id(areaIdToPlace);
 			}
 				
 			int noOfSilverCoins = Game.GameBank.objSilverCoin.getCoin_Available();
 			if (noOfSilverCoins > 0 )
 			{
-				int noOfPlayerCoins = objCurrentPlayer.objSilverCoin.getCoin_Available();
+				int noOfPlayerCoins = objPlayer.objSilverCoin.getCoin_Available();
 				noOfPlayerCoins = noOfPlayerCoins + 3;
-				objCurrentPlayer.objSilverCoin.setCoin_Available(noOfPlayerCoins);
+				objPlayer.objSilverCoin.setCoin_Available(noOfPlayerCoins);
 			}
 			noOfSilverCoins = noOfSilverCoins - 3;
 			Game.GameBank.objSilverCoin.setCoin_Available(noOfSilverCoins);
@@ -300,9 +300,9 @@ public class CityAreaCard extends Cards{
 //				Bank b1 = new Bank();
 //				int bankamt = b1.getBankAmount();
 //				bankamt = bankamt + 3;
-//				int currentplayer = objCurrentPlayer.getPlayerAmount();
+//				int currentplayer = objPlayer.getPlayerAmount();
 //				currentplayer = currentplayer - 3;
-//				objCurrentPlayer.setPlayer_amount(currentplayer);
+//				objPlayer.setPlayer_amount(currentplayer);
 				status = true;
 				
 			}
@@ -315,7 +315,7 @@ public class CityAreaCard extends Cards{
 		return status;
 }
 
-public boolean DollySisterAction(Player objCurrentPlayer, Minion objCurrentPlayerMinionId)
+public boolean DollySisterAction(Player objPlayer, Minion objPlayerMinionId)
 	{
 		boolean status = false;
 		try {
@@ -327,16 +327,16 @@ public boolean DollySisterAction(Player objCurrentPlayer, Minion objCurrentPlaye
 				System.out.println("Enter AreaId where you want to place the minion 1,3,2,12 : ");
 				BufferedReader br1 = new BufferedReader(new InputStreamReader(System.in));
 				int areaIdToPlace = Integer.parseInt(br1.readLine());
-				if(PresentationUtility.canMinionBePlacedInAdjacentArea(objCurrentPlayer.getPlayer_id(), objCurrentPlayerMinionId.getMinion_id(), 0, areaIdToPlace)){
-					objCurrentPlayerMinionId.setArea_id(areaIdToPlace);
+				if(PresentationUtility.canMinionBePlacedInAdjacentArea(objPlayer.getPlayer_id(), objPlayerMinionId.getMinion_id(), 0, areaIdToPlace)){
+					objPlayerMinionId.setArea_id(areaIdToPlace);
 				}
 				
 				int noOfSilverCoins = Game.GameBank.objSilverCoin.getCoin_Available();
 				if (noOfSilverCoins > 0 )
 				{
-					int noOfPlayerCoins = objCurrentPlayer.objSilverCoin.getCoin_Available();
+					int noOfPlayerCoins = objPlayer.objSilverCoin.getCoin_Available();
 					noOfPlayerCoins = noOfPlayerCoins + 3;
-					objCurrentPlayer.objSilverCoin.setCoin_Available(noOfPlayerCoins);
+					objPlayer.objSilverCoin.setCoin_Available(noOfPlayerCoins);
 				}
 				noOfSilverCoins = noOfSilverCoins - 3;
 				Game.GameBank.objSilverCoin.setCoin_Available(noOfSilverCoins);
@@ -344,9 +344,9 @@ public boolean DollySisterAction(Player objCurrentPlayer, Minion objCurrentPlaye
 //				Bank b1 = new Bank();
 //				int bankamt = b1.getBankAmount();
 //				bankamt = bankamt + 3;
-//				int currentplayer = objCurrentPlayer.getPlayerAmount();
+//				int currentplayer = objPlayer.getPlayerAmount();
 //				currentplayer = currentplayer - 3;
-//				objCurrentPlayer.setPlayer_amount(currentplayer);
+//				objPlayer.setPlayer_amount(currentplayer);
 				status = true;
 			}
 
@@ -358,8 +358,7 @@ public boolean DollySisterAction(Player objCurrentPlayer, Minion objCurrentPlaye
 		return status;
 }
 
-
-public boolean UnrealEstateAction(Player objPlayer) throws IOException{
+public boolean TheScoursAction(Player objPlayer) throws IOException{
 	boolean status = false;
 	BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
 	System.out.println("Would you like to perform this action : Y/N ");
@@ -369,9 +368,9 @@ public boolean UnrealEstateAction(Player objPlayer) throws IOException{
 	//String CardList = Game.getGreenCardIDForPlayer(objPlayer.getPlayer_id());
 	//System.out.println("Which card do you want to discard :" + CardList);
 	BufferedReader br1 = new BufferedReader(new InputStreamReader(System.in));
-	//String userinput = br1.readLine();
-	//GreenCard objGC = Game.getGreenCardByCardID(userinput);
-	//objGC.IsPlayed = true;
+	String cardID = br1.readLine();
+	GreenCard objGC = Game.GetGreenCard(cardID);
+	objGC.IsPlayed = true;
 
 	int noOfSilverCoins = Game.GameBank.objSilverCoin.getCoin_Available();
 	if (noOfSilverCoins > 0 )
@@ -382,37 +381,72 @@ public boolean UnrealEstateAction(Player objPlayer) throws IOException{
 	}
 	noOfSilverCoins = noOfSilverCoins - 3;
 	Game.GameBank.objSilverCoin.setCoin_Available(noOfSilverCoins);
-	
 	status = true;
-	
 	}
 	return status;
 }
 
-public boolean SmallGodsAction(Player objCurrentPlayer, Minion objCurrentPlayerMinionId){
+public boolean TheShadesAction(Player objPlayer) throws NumberFormatException, IOException{
 	boolean status = false;
-	return status;
-}
-
-public boolean TheScoursAction(Player objCurrentPlayer, Minion objCurrentPlayerMinionId){
-	boolean status = false;
+	BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+	System.out.println("Would you like to perform this action : Y/N ");
+	String userinput = br.readLine();
+	if (userinput.equals('Y'))
+	{
+		//To draw one card from deck
+		//String areaList = Game.getAreaIDForPlayer(objPlayer.getPlayer_id());
+		//System.out.println("Enter areaId :" + areaList);
+		BufferedReader br1 = new BufferedReader(new InputStreamReader(System.in));
+		int areaID = Integer.parseInt(br1.readLine());
+			//String adjacentAreaidList = Game.getAdjacentAreaByAreaID(areaID);
+			//System.out.println.("Enter the areaID among the list you want place the troublemarker adjacent to it:" + adjacentAreaidList );
+					BufferedReader br2 = new BufferedReader(new InputStreamReader(System.in));
+					int adjacentAreaID = Integer.parseInt(br2.readLine());
+					 TroubleMaker objTroubleMaker = Game.GetTroubleMakerNotOnBoard();
+					 objTroubleMaker.setArea_id(adjacentAreaID);
+					 status = true;
+	}
 	
+	return status;
+}
+
+public boolean SmallGodsAction(Player objPlayer) throws IOException{
+		return true;
+}
+
+public boolean IsleOfGodsAction(Player objPlayer, Minion objPlayerMinionId) throws IOException{
+	boolean status = false;
+	BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+	System.out.println("Would you like to perform this action : Y/N ");
+	String userinput = br.readLine();
+	if (userinput.equals('Y'))
+	{
+		int noOfPlayerCoins = objPlayer.objSilverCoin.getCoin_Available();
+		if (noOfPlayerCoins > 0 )
+		{
+			int noOfSilverCoins = Game.GameBank.objSilverCoin.getCoin_Available();
+			noOfSilverCoins = noOfSilverCoins + 2;
+			Game.GameBank.objSilverCoin.setCoin_Available(noOfSilverCoins);
+		}
+		noOfPlayerCoins = noOfPlayerCoins - 2;
+		objPlayer.objSilverCoin.setCoin_Available(noOfPlayerCoins);
+		String areaList = Game.GetTroubleMakerOnBoardAreaId();
+		System.out.println("Enter areaID from which area you want to remove trouble marker" + areaList);
+		BufferedReader br1 = new BufferedReader(new InputStreamReader(System.in));
+		int areaID = Integer.parseInt(br1.readLine());
+		if(Game.removeTroubleMarkerByAreaId(areaID)){
+			System.out.println("Action Performed Successfully");
+		}
 	
+		status = true;
+	}
 	return status;
 }
 
-public boolean TheShadesAction(Player objCurrentPlayer, Minion objCurrentPlayerMinionId){
+public boolean UnrealEstate(Player objPlayer) throws IOException{
 	boolean status = false;
+	//
 	return status;
 }
-
-public boolean IsleOfGodsAction(Player objCurrentPlayer, Minion objCurrentPlayerMinionId){
-	boolean status = false;
-	return status;
-}
-
-
-
-
 	
 }
