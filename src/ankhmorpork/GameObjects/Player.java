@@ -697,20 +697,43 @@ public class Player {
 			return interrupt;
 		}
 	
-	
+		//Player performs action
+		public boolean PerformCardAction(String ActionID, String CardID)
+		{
+			boolean success = false;
+			if(ActionID=="Scroll")
+			{
+			switch(CardID)
+			{
+				case "g1" :this.mrBoggisFunctionality();
+				case "g2" :this.mrBentFunctionality();
+				case "g3" :this.theBeggersGuildFunctionality();
+				case "g4" :;
+				case "g5" :this.theAnkhMorporkSunshineDragonSanctuaryFunctionality();								
+				case "g9" :this.theDuckmanFunctionality();
+				case "g10" :this.theDrumknottFunctionality();
+				case "g11" :;
+				case "g12" :;
+				case "g13" :;
+				case "g14" :;
+			}
+			}
+			
+			return success;
+		}
 		
 		//Green Card Functionalities
 		
 		//Same Functionality of The Thieves' Guild
-		public boolean mrBoggisFunctionality(Game Ankhmorpork, Player currentPlayer){
+		public boolean mrBoggisFunctionality(){
 			//1st Action to read scroll & then to place minion
 			boolean success = false;
 			System.out.println("Take $2, if possible, from every other player. Do you want to continue? Please enter 'y' : ");
 			BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
 			if(br.toString().equals("y") || br.toString().equals("Y")){
 				for(Player player : Game.lstPlayers){
-					if(!(player.getPlayer_id() == currentPlayer.getPlayer_id())){
-						currentPlayer.setPlayer_amount((float) currentPlayer.getPlayer_amount() + 2);
+					if(!(player.getPlayer_id() == this.getPlayer_id())){
+						this.setPlayer_amount((float) this.getPlayer_amount() + 2);
 						player.setPlayer_amount((float)(player.getPlayerAmount() - 2));
 					}
 				}
@@ -720,15 +743,15 @@ public class Player {
 		}
 		
 		// Same Functionality for The Bank of Ankh-Morpork
-		public boolean mrBentFunctionality(Game Ankhmorpork, Player currentPlayer){
+		public boolean mrBentFunctionality(){
 			//1st Action to read scroll & then play another card
 			boolean success = false;
 			System.out.println("Do you want to continue? Please enter 'y' : ");
 			BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
 			if(br.toString().equals("y") || br.toString().equals("Y")){
-				currentPlayer.setPlayer_amount((float)currentPlayer.getPlayer_amount() + 10);
-				Ankhmorpork.GameBank.setBankAmount((float)Ankhmorpork.GameBank.getBankAmount() - 10);
-				currentPlayer.setPlayer_comments("You had played Mr. Bent. You need to $12 back to Bank Or either you lose 15 points.");
+				this.setPlayer_amount((float)this.getPlayer_amount() + 10);
+				Game.GameBank.setBankAmount((float)Game.GameBank.getBankAmount() - 10);
+				this.setPlayer_comments("You had played Mr. Bent. You need to $12 back to Bank Or either you lose 15 points.");
 				success = true;
 			}
 			return success;
@@ -749,7 +772,7 @@ public class Player {
 		}
 		
 		// Same Functionality for Queen Molly
-		public boolean theBeggersGuildFunctionality(Game Ankhmorpork, Player currentPlayer){
+		public boolean theBeggersGuildFunctionality(){
 			//1st Action to read scroll & then play another card
 			boolean success = false;
 			System.out.println("Do you want to continue? Please enter 'y' : ");
@@ -761,12 +784,12 @@ public class Player {
 					if(player.getPlayer_id() == Integer.parseInt(brPlayer.toString())){
 						System.out.print("Enter one by one from the list of green card you have available : " + player.getGreenCardListCommaSeparated());
 						BufferedReader brCard1Selected = new BufferedReader(new InputStreamReader(System.in));
-						currentPlayer.setGreenCardListCommaSeparated(currentPlayer.getGreenCardListCommaSeparated() + "," +brCard1Selected.toString());
+						this.setGreenCardListCommaSeparated(this.getGreenCardListCommaSeparated() + "," +brCard1Selected.toString());
 						player.setGreenCardListCommaSeparated(removeOneCardFromCommaSeparatedString(player.getGreenCardListCommaSeparated(), brCard1Selected.toString()));
 						
 						System.out.print("Enter 2nd card from the list of green card you have available : " + player.getGreenCardListCommaSeparated());
 						BufferedReader brCard2Selected = new BufferedReader(new InputStreamReader(System.in));
-						currentPlayer.setGreenCardListCommaSeparated(currentPlayer.getGreenCardListCommaSeparated() + "," +brCard2Selected.toString());
+						this.setGreenCardListCommaSeparated(this.getGreenCardListCommaSeparated() + "," +brCard2Selected.toString());
 						player.setGreenCardListCommaSeparated(removeOneCardFromCommaSeparatedString(player.getGreenCardListCommaSeparated(), brCard2Selected.toString()));
 						return (success = true);
 					}
@@ -776,23 +799,23 @@ public class Player {
 		}
 			
 			
-			public boolean theAnkhMorporkSunshineDragonSanctuaryFunctionality(Game Ankhmorpork, Player currentPlayer){
+			public boolean theAnkhMorporkSunshineDragonSanctuaryFunctionality(){
 				//1st Action to read scroll & then play another card
 				boolean success = false;
 				System.out.println("Do you want to continue? Please enter 'y' : ");
 				BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
 				if(br.toString().equals("y") || br.toString().equals("Y")){
 					for(Player player : Game.lstPlayers){
-						if(!(currentPlayer.getPlayer_id() == player.getPlayer_id())){
+						if(!(this.getPlayer_id() == player.getPlayer_id())){
 							System.out.println("Player " + player.getPlayer_id() + ": Select y to give $1 or n to give any one of your card : ");
 							BufferedReader brGiveMoney = new BufferedReader(new InputStreamReader(System.in));
 							if(brGiveMoney.toString().equals("y") || brGiveMoney.toString().equals("Y")){
-								currentPlayer.setPlayer_amount((float)currentPlayer.getPlayer_amount() + 1);
+								this.setPlayer_amount((float)this.getPlayer_amount() + 1);
 								player.setPlayer_amount((float)player.getPlayer_amount() - 1);
 							}else{
 								System.out.print("Enter one by one from the list of green card you have available : " + player.getGreenCardListCommaSeparated());
 								BufferedReader brCard1Selected = new BufferedReader(new InputStreamReader(System.in));
-								currentPlayer.setGreenCardListCommaSeparated(currentPlayer.getGreenCardListCommaSeparated() + "," +brCard1Selected.toString());
+								this.setGreenCardListCommaSeparated(this.getGreenCardListCommaSeparated() + "," +brCard1Selected.toString());
 								player.setGreenCardListCommaSeparated(removeOneCardFromCommaSeparatedString(player.getGreenCardListCommaSeparated(), brCard1Selected.toString()));
 							}
 						}
@@ -803,7 +826,7 @@ public class Player {
 			}
 			
 			// Same Functionality for The Opera House
-			public boolean theDyskFunctionality(Game Ankhmorpork, Player currentPlayer){
+			public boolean theDyskFunctionality(){
 				//Place a building & then read the scroll
 				boolean success = false;
 				int  count = 0;
@@ -815,14 +838,14 @@ public class Player {
 							count += 1;
 						}
 					}
-					currentPlayer.setPlayer_amount((float) currentPlayer.getPlayer_amount() + (count*1) );
+					this.setPlayer_amount((float) this.getPlayer_amount() + (count*1) );
 					success = true;
 				}
 				return success;
 			}
 			
 			//Foul Ole Ron & RinceWind has the same functionality
-			public boolean theDuckmanFunctionality(Game Ankhmorpork, Player currentPlayer){
+			public boolean theDuckmanFunctionality(){
 				//Read the scroll
 				boolean success = false;
 				Minion minionObj = null;
@@ -834,7 +857,7 @@ public class Player {
 					System.out.println("Enter the areaId you wish to move of another player minion : ");
 					BufferedReader brAreaId = new BufferedReader(new InputStreamReader(System.in));
 					
-					for(Minion minion : Ankhmorpork.lstMinions){
+					for(Minion minion : Game.lstMinions){
 						if(minion.getMinion_id() == Integer.parseInt(brMinionId.toString())){
 							minionObj = minion;
 							break;
@@ -850,14 +873,14 @@ public class Player {
 				return success;
 			}
 			
-			public boolean theDrumknottFunctionality(Game Ankhmorpork, Player currentPlayer){
+			public boolean theDrumknottFunctionality(){
 				//Read the scroll
 				boolean success = false;
 				String selectCardToPlay = "";
 				System.out.println("Do you want to continue? Please enter 'y' : ");
 				BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
 				if(br.toString().equals("y") || br.toString().equals("Y")){
-					System.out.print("Enter one by one from the list of green card you have available : " + currentPlayer.getGreenCardListCommaSeparated());
+					System.out.print("Enter one by one from the list of green card you have available : " + this.getGreenCardListCommaSeparated());
 					BufferedReader brCard1Selected = new BufferedReader(new InputStreamReader(System.in));
 					selectCardToPlay = brCard1Selected.toString() + ",";
 					
@@ -868,7 +891,7 @@ public class Player {
 			}
 			
 			// Same functionality for Here'n'Now
-			public boolean theCMOTDibblerFunctionality(Game Ankhmorpork, Player currentPlayer){
+			public boolean theCMOTDibblerFunctionality(){
 				//Read the scroll
 				boolean success = false;
 				System.out.println("Do you want to continue? Please enter 'y' : ");
@@ -879,18 +902,18 @@ public class Player {
 					if(brChoice.toString().equals("1")){
 						Integer rollingDiceNumber = PresentationUtility.returnRandomNumber(1, 12);
 						if(rollingDiceNumber >= 7){
-							currentPlayer.setPlayer_amount((float) currentPlayer.getPlayer_amount() + 4);
-							Ankhmorpork.GameBank.setBankAmount((float) Ankhmorpork.GameBank.getBankAmount() - 4);
+							this.setPlayer_amount((float) this.getPlayer_amount() + 4);
+							Game.GameBank.setBankAmount((float) Game.GameBank.getBankAmount() - 4);
 							success = true;
 						}else if(rollingDiceNumber == 1){
-							currentPlayer.setPlayer_amount((float) currentPlayer.getPlayer_amount() - 2);
-							Ankhmorpork.GameBank.setBankAmount((float) Ankhmorpork.GameBank.getBankAmount() + 2);
+							this.setPlayer_amount((float) this.getPlayer_amount() - 2);
+							Game.GameBank.setBankAmount((float) Game.GameBank.getBankAmount() + 2);
 							success = true;
 						}
 					}else if(brChoice.toString().equals("2")){
 						System.out.println("Enter the minionId to be removed from the board : ");
 						BufferedReader brMinionIdToBeRemoved = new BufferedReader(new InputStreamReader(System.in));
-						for(Minion minion : Ankhmorpork.lstMinions){
+						for(Minion minion : Game.lstMinions){
 							if(minion.getMinion_id() == Integer.parseInt(brMinionIdToBeRemoved.toString())){
 								minion.setArea_id(0);
 								success = true;
@@ -901,14 +924,14 @@ public class Player {
 				return success;
 			}
 			
-			public boolean theMrsCakeFunctionality(Game Ankhmorpork, Player currentPlayer){
+			public boolean theMrsCakeFunctionality(){
 				//Read the scroll
 				boolean success = false;
 				String nameOfPersonalityCardsCommaSeparated = "";
 				System.out.println("Do you want to continue? Please enter 'y' : ");
 				BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
 				if(br.toString().equals("y") || br.toString().equals("Y")){
-					for(PersonalityCard personalityCard : Ankhmorpork.lstPersonalityCard){
+					for(PersonalityCard personalityCard : Game.lstPersonalityCard){
 						nameOfPersonalityCardsCommaSeparated = personalityCard.GetPersonalityName() + ",";
 					}
 				}
@@ -920,7 +943,7 @@ public class Player {
 			}
 			
 			// Same Functionality of Dr WhiteFace
-			public boolean theFoolsGuildFunctionality(Game AnkhMorpork, Player currentPlayer){
+			public boolean theFoolsGuildFunctionality(){
 				boolean success = false;
 				System.out.println("Do you want to continue? Please enter 'y' : ");
 				BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
@@ -931,11 +954,11 @@ public class Player {
 						if(player.getPlayer_id() == Integer.parseInt(brPlayer.toString())){
 							if(player.getPlayer_amount() > 5){
 								player.setPlayer_amount(player.getPlayer_amount() - 5);
-								currentPlayer.setPlayer_amount(currentPlayer.getPlayer_amount() + 5);
+								this.setPlayer_amount(this.getPlayer_amount() + 5);
 								success = true;
 								break;
 							}else{
-								player.setPlayer_comments("Have to give back $5 to player " + currentPlayer.getPlayer_id());
+								player.setPlayer_comments("Have to give back $5 to player " + this.getPlayer_id());
 							}
 						}
 					}
@@ -943,7 +966,7 @@ public class Player {
 				return success;
 			}
 			
-			public boolean theFireBrigadeFunctionality(Game Ankhmorpork, Player currentPlayer){
+			public boolean theFireBrigadeFunctionality(){
 				//Read the scroll & play another card
 				boolean success = false;
 				System.out.println("Do you want to continue? Please enter 'y' : ");
@@ -958,7 +981,7 @@ public class Player {
 							if(player.getPlayer_id() == Integer.parseInt(brPlayer.toString())){
 								if(player.getPlayer_amount() > 5){
 									player.setPlayer_amount(player.getPlayer_amount() - 5);
-									currentPlayer.setPlayer_amount(currentPlayer.getPlayer_amount() + 5);
+									this.setPlayer_amount(this.getPlayer_amount() + 5);
 									success = true;
 									break;
 								}
@@ -967,7 +990,7 @@ public class Player {
 						if(!(success)){
 							System.out.println("Enter the minionId to be removed from the board : ");
 							BufferedReader brMinionIdToBeRemoved = new BufferedReader(new InputStreamReader(System.in));
-							for(Minion minion : Ankhmorpork.lstMinions){
+							for(Minion minion : Game.lstMinions){
 								if(minion.getMinion_id() == Integer.parseInt(brMinionIdToBeRemoved.toString())){
 									minion.setArea_id(0);
 									success = true;
@@ -993,19 +1016,19 @@ public class Player {
 				return success;
 			}
 			
-			public boolean theHexFunctionality(Game Ankhmorpork, Player currentPlayer){
+			public boolean theHexFunctionality(){
 				//Read the scroll & play another card
 				boolean success = false;
 				System.out.println("Do you want to continue? Please enter 'y' : ");
 				BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
 				if(br.toString().equals("y") || br.toString().equals("Y")){
 					for(int i = 1; i <=3; i++){
-						if(Ankhmorpork.lstGreenCards.size() > (3-i+1)){
-							int cardIndexNumber = PresentationUtility.returnRandomNumber(0, Ankhmorpork.lstGreenCards.size() -1);
+						if(Game.lstGreenCards.size() > (3-i+1)){
+							int cardIndexNumber = PresentationUtility.returnRandomNumber(0, Game.lstGreenCards.size() -1);
 							if(cardIndexNumber > 0){
-								GreenCard cardToAdd = Ankhmorpork.lstGreenCards.get(cardIndexNumber);
-								currentPlayer.setGreenCardListCommaSeparated(currentPlayer.getGreenCardListCommaSeparated()+","+cardToAdd);
-								Ankhmorpork.lstGreenCards.remove(cardIndexNumber);
+								GreenCard cardToAdd = Game.lstGreenCards.get(cardIndexNumber);
+								this.setGreenCardListCommaSeparated(this.getGreenCardListCommaSeparated()+","+cardToAdd);
+								Game.lstGreenCards.remove(cardIndexNumber);
 								success = true;
 							}
 						}
@@ -1015,7 +1038,7 @@ public class Player {
 				return success;
 			}
 			
-			public boolean theNoobyNoobsFunctionality(Game AnkhMorpork, Player currentPlayer){
+			public boolean theNoobyNoobsFunctionality(){
 				boolean success = false;
 				System.out.println("Do you want to continue? Please enter 'y' : ");
 				BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
@@ -1025,7 +1048,7 @@ public class Player {
 					for(Player player : Game.lstPlayers){
 						if(player.getPlayer_id() == Integer.parseInt(brPlayer.toString())){
 							player.setPlayer_amount((float) player.getPlayer_amount() - 3);
-							currentPlayer.setPlayer_amount((float) currentPlayer.getPlayerAmount() + 3);
+							this.setPlayer_amount((float) this.getPlayerAmount() + 3);
 							success = true;
 						}
 					}
@@ -1033,32 +1056,32 @@ public class Player {
 				return success;
 			}
 			
-			public boolean theModoFunctionality(Game AnkhMorpork, Player currentPlayer){
+			public boolean theModoFunctionality(){
 				boolean success = false;
 				System.out.println("Do you want to continue? Please enter 'y' : ");
 				BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
 				if(br.toString().equals("y") || br.toString().equals("Y")){
-					System.out.println("Enter CardId which you want to discard from your Green Card : "+currentPlayer.getGreenCardListCommaSeparated());
+					System.out.println("Enter CardId which you want to discard from your Green Card : "+this.getGreenCardListCommaSeparated());
 					BufferedReader brCardId = new BufferedReader(new InputStreamReader(System.in));
-					currentPlayer.setGreenCardListCommaSeparated(removeOneCardFromCommaSeparatedString(currentPlayer.getGreenCardListCommaSeparated(), brCardId.toString()));
+					this.setGreenCardListCommaSeparated(removeOneCardFromCommaSeparatedString(this.getGreenCardListCommaSeparated(), brCardId.toString()));
 				}
 				return success;
 			}
 			
 			//Same Functionality for Leonard of Quirm 
-			public boolean theLibrarianFunctionality(Game Ankhmorpork, Player currentPlayer){
+			public boolean theLibrarianFunctionality(){
 				//Read the scroll & play another card
 				boolean success = false;
 				System.out.println("Do you want to continue? Please enter 'y' : ");
 				BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
 				if(br.toString().equals("y") || br.toString().equals("Y")){
 					for(int i = 1; i <=4; i++){
-						if(Ankhmorpork.lstGreenCards.size() > (4-i+1)){
-							int cardIndexNumber = PresentationUtility.returnRandomNumber(0, Ankhmorpork.lstGreenCards.size() -1);
+						if(Game.lstGreenCards.size() > (4-i+1)){
+							int cardIndexNumber = PresentationUtility.returnRandomNumber(0, Game.lstGreenCards.size() -1);
 							if(cardIndexNumber > 0){
-								GreenCard cardToAdd = Ankhmorpork.lstGreenCards.get(cardIndexNumber);
-								currentPlayer.setGreenCardListCommaSeparated(currentPlayer.getGreenCardListCommaSeparated()+","+cardToAdd);
-								Ankhmorpork.lstGreenCards.remove(cardIndexNumber);
+								GreenCard cardToAdd = Game.lstGreenCards.get(cardIndexNumber);
+								this.setGreenCardListCommaSeparated(this.getGreenCardListCommaSeparated()+","+cardToAdd);
+								Game.lstGreenCards.remove(cardIndexNumber);
 								success = true;
 							}
 						}
@@ -1068,25 +1091,25 @@ public class Player {
 				return success;
 			}
 			
-			public boolean theSacharissaCripslockFunctionality(Game Ankhmorpork, Player currentPlayer){
+			public boolean theSacharissaCripslockFunctionality(){
 				//Read the scroll & play another card
 				boolean success = false;
 				int countMoneyToBeGivenToCurrentPlayer = 0;
 				System.out.println("Do you want to continue? Please enter 'y' : ");
 				BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
 				if(br.toString().equals("y") || br.toString().equals("Y")){
-					for(TroubleMaker troubleMaker : Ankhmorpork.lstTroubleMaker){
+					for(TroubleMaker troubleMaker : Game.lstTroubleMaker){
 						if(troubleMaker.getActive() && troubleMaker.getArea_id() > 0){
 							countMoneyToBeGivenToCurrentPlayer += 1;
 						}
 					}
-					currentPlayer.setPlayer_amount((float) currentPlayer.getPlayerAmount() + (countMoneyToBeGivenToCurrentPlayer * 1));
+					this.setPlayer_amount((float) this.getPlayerAmount() + (countMoneyToBeGivenToCurrentPlayer * 1));
 				}
 				return success;
 			}
 			
 			// Same functionality for The Seamstresses Guild
-			public boolean theRosiePalmFunctionality(Game Ankhmorpork, Player currentPlayer){
+			public boolean theRosiePalmFunctionality(){
 				//1st Action to read scroll & then play another card
 				boolean success = false;
 				System.out.println("Do you want to continue? Please enter 'y' : ");
@@ -1096,13 +1119,13 @@ public class Player {
 					BufferedReader brPlayer = new BufferedReader(new InputStreamReader(System.in));
 					for(Player player : Game.lstPlayers){
 						if(player.getPlayer_id() == Integer.parseInt(brPlayer.toString())){
-							System.out.print("Enter one by one from the list of green card you have available : " + currentPlayer.getGreenCardListCommaSeparated());
+							System.out.print("Enter one by one from the list of green card you have available : " + this.getGreenCardListCommaSeparated());
 							BufferedReader brCard1Selected = new BufferedReader(new InputStreamReader(System.in));
 							player.setGreenCardListCommaSeparated(player.getGreenCardListCommaSeparated() + "," +brCard1Selected.toString());
-							currentPlayer.setGreenCardListCommaSeparated(removeOneCardFromCommaSeparatedString(currentPlayer.getGreenCardListCommaSeparated(), brCard1Selected.toString()));
+							this.setGreenCardListCommaSeparated(removeOneCardFromCommaSeparatedString(this.getGreenCardListCommaSeparated(), brCard1Selected.toString()));
 							
 							player.setPlayer_amount((float) player.getPlayer_amount());
-							currentPlayer.setPlayer_amount((float) currentPlayer.getPlayer_amount() + 2);
+							this.setPlayer_amount((float) this.getPlayer_amount() + 2);
 							return (success = true);
 						}
 					}
@@ -1110,23 +1133,23 @@ public class Player {
 				return success;
 			}
 			
-			public boolean theZorgoTheRetroFunctionality(Game Ankhmorpork, Player currentPlayer){
+			public boolean theZorgoTheRetroFunctionality(){
 				//1st Action to read scroll & then play another card
 				boolean success = false;
 				PersonalityCard personalityCard = new PersonalityCard();
 				System.out.println("Do you want to continue? Please enter 'y' : ");
 				BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
 				if(br.toString().equals("y") || br.toString().equals("Y")){
-					if(Ankhmorpork.lstPersonalityCard.size() > 0){
-						int personalityCardIndexNumber = PresentationUtility.returnRandomNumber(0, Ankhmorpork.lstPersonalityCard.size() -1);
-						PersonalityCard personalityCard1 = Ankhmorpork.lstPersonalityCard.get(personalityCardIndexNumber);
+					if(Game.lstPersonalityCard.size() > 0){
+						int personalityCardIndexNumber = PresentationUtility.returnRandomNumber(0, Game.lstPersonalityCard.size() -1);
+						PersonalityCard personalityCard1 = Game.lstPersonalityCard.get(personalityCardIndexNumber);
 						
-						personalityCard.SetCardID(currentPlayer.getPlayer_personality_card_id().toString());
-						Ankhmorpork.lstPersonalityCard.add(personalityCard);
+						personalityCard.SetCardID(this.getPlayer_personality_card_id().toString());
+						Game.lstPersonalityCard.add(personalityCard);
 						
-						currentPlayer.setPlayer_personality_card_id(Integer.parseInt(personalityCard1.GetCardID()));
+						this.setPlayer_personality_card_id(Integer.parseInt(personalityCard1.GetCardID()));
 
-						Ankhmorpork.lstPersonalityCard.remove(personalityCardIndexNumber);
+						Game.lstPersonalityCard.remove(personalityCardIndexNumber);
 					}
 				}
 				return success;
