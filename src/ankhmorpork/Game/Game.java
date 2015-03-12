@@ -20,6 +20,8 @@ public class Game {
 	public static ArrayList<RandomEventCard> lstRandomEventCards = new ArrayList<RandomEventCard>();
 	public static ArrayList<PersonalityCard> lstPersonalityCard = new ArrayList<PersonalityCard>();
 	public static Bank GameBank = new Bank();
+		
+	
 	
 			
 	//Method to Get Player from Player ID
@@ -370,5 +372,33 @@ public class Game {
 			}
 			
 			return sbActions.toString();
+		}
+
+		public static ArrayList<CityAreaCard> GetCityAreaCardByPlayerID(int PlayerID)
+		{
+			ArrayList<CityAreaCard> lstCityAreaCard = new ArrayList<CityAreaCard>();
+			for(CityAreaCard CityAreaCard : lstCityAreaCards)
+			{
+				if(CityAreaCard.getPlayerID()==PlayerID)
+				{
+					lstCityAreaCard.add(CityAreaCard);
+				}
+			}
+			
+			return lstCityAreaCard;
+		}
+		
+		public static CityAreaCard GetCityAreaCardByCardID(String CardID)
+		{
+			CityAreaCard objCityAreaCard = new CityAreaCard();
+			for(CityAreaCard CityAreaCard : lstCityAreaCards)
+			{
+				if(CityAreaCard.GetCardID()==CardID)
+				{
+					objCityAreaCard = CityAreaCard;
+				}
+			}
+			
+			return objCityAreaCard;
 		}
 }

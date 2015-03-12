@@ -4,6 +4,7 @@ import ankhmorpork.GameConstants.Constants;
 
 public class Bank {
 	Float player_amount;
+	Float Bank_Amount;
 	Integer player_personality_card_id;	
 	String cityAreaCardsListCommaSeparated;
 	String personalityCardListCommaSeparated;
@@ -34,4 +35,11 @@ public class Bank {
           iTotalAmount = this.objGoldCoin.getCoin_Available()*this.objGoldCoin.getCoin_Val() + this.objSilverCoin.getCoin_Val()*this.objSilverCoin.getCoin_Available();
           return iTotalAmount;
      }
+
+	public void setBankAmount(float f) {
+		// TODO Auto-generated method stub
+		this.Bank_Amount = f;
+	}
+
+	
 }
