@@ -373,4 +373,32 @@ public class Game {
 			
 			return sbActions.toString();
 		}
+
+		public static ArrayList<CityAreaCard> GetCityAreaCardByPlayerID(int PlayerID)
+		{
+			ArrayList<CityAreaCard> lstCityAreaCard = new ArrayList<CityAreaCard>();
+			for(CityAreaCard CityAreaCard : lstCityAreaCards)
+			{
+				if(CityAreaCard.getPlayerID()==PlayerID)
+				{
+					lstCityAreaCard.add(CityAreaCard);
+				}
+			}
+			
+			return lstCityAreaCard;
+		}
+		
+		public static CityAreaCard GetCityAreaCardByCardID(String CardID)
+		{
+			CityAreaCard objCityAreaCard = new CityAreaCard();
+			for(CityAreaCard CityAreaCard : lstCityAreaCards)
+			{
+				if(CityAreaCard.GetCardID()==CardID)
+				{
+					objCityAreaCard = CityAreaCard;
+				}
+			}
+			
+			return objCityAreaCard;
+		}
 }
