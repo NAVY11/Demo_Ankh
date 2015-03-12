@@ -67,6 +67,8 @@ public class GameLoad {
 					JSONObject jsonCityAreaCard = (JSONObject)iCityAreaCard.next();
 					objCityAreaCard.SetAreaID(Integer.parseInt(jsonCityAreaCard.get("AreaID").toString()));
 					objCityAreaCard.setPlayerID(Integer.parseInt(jsonCityAreaCard.get("PlayerID").toString()));
+					objCityAreaCard.SetCost(Integer.parseInt(jsonCityAreaCard.get("Cost").toString()));
+
 					objCityAreaCard.SetCardID((jsonCityAreaCard.get("CardID").toString()));
 					objCityAreaCard.SetActionID((jsonCityAreaCard.get("ActionID").toString()));
 					objCityAreaCard.SetName((jsonCityAreaCard.get("AreaName").toString()));			
@@ -239,6 +241,8 @@ public class GameLoad {
 			objCityAreaCard.SetName((String)cityAreaCards.get("AreaName"));
 			objCityAreaCard.SetActionDescription((String)cityAreaCards.get("ActionDescription"));
 			objCityAreaCard.SetAreaID(Integer.parseInt(cityAreaCards.get("AreaID").toString()));
+			objCityAreaCard.SetCost(Integer.parseInt(cityAreaCards.get("Cost").toString()));
+
 			Game.lstCityAreaCards.add(objCityAreaCard);
 
 	    }
