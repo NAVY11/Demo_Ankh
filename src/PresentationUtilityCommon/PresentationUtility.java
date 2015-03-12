@@ -24,7 +24,13 @@ public class PresentationUtility {
 	/** The random number a. */
 	static Integer randomNumberA = 0;
 	
-	/**Method to check if an element exists in a String array*/
+	/**
+	 * Method to check if an element exists in a String array.
+	 *
+	 * @param Array the array
+	 * @param Element the element
+	 * @return true, if successful
+	 */
 	public static boolean ArrayHasElement(String[] Array, String Element)
 	{
 		boolean ElementFound = false;
@@ -144,6 +150,12 @@ public class PresentationUtility {
 		}
 	}
 	
+	/**
+	 * Gets the green card name by id.
+	 *
+	 * @param greenCardId the green card id
+	 * @return the green card name by id
+	 */
 	public static String getGreenCardNameById(Integer greenCardId){
 		
 		switch (greenCardId) {
@@ -244,29 +256,29 @@ public class PresentationUtility {
 			return (currentPlayer+1);  
 		}
 	}
+	
 	/**
-	 * 
 	 * Adjacent Minion Categorization
-
-		1  --> 2, 3, 12
-		2  --> 1, 3, 4, 10, 11, 12
-		3  --> 1, 2, 4
-		4  --> 2, 3, 5, 6, 10
-		5  --> 4, 6, 7, 8, 10
-		6  --> 4, 5, 7
-		7  --> 5, 6, 8
-		8  --> 5, 7, 9
-		9  --> 8, 10, 11
-		10 --> 2, 4, 5, 9, 11
-		11 --> 2, 9, 10, 12
-		12 --> 1, 2, 11
-
-	 * Returns Whether the minion can be placed in the adjacent area or not
-	 * @param currentPlayerId
-	 * @param minionId
-	 * @param currentAreaId
-	 * @param areaToBePlacedIn
-	 * @return
+	 * 
+	 * 		1  --> 2, 3, 12
+	 * 		2  --> 1, 3, 4, 10, 11, 12
+	 * 		3  --> 1, 2, 4
+	 * 		4  --> 2, 3, 5, 6, 10
+	 * 		5  --> 4, 6, 7, 8, 10
+	 * 		6  --> 4, 5, 7
+	 * 		7  --> 5, 6, 8
+	 * 		8  --> 5, 7, 9
+	 * 		9  --> 8, 10, 11
+	 * 		10 --> 2, 4, 5, 9, 11
+	 * 		11 --> 2, 9, 10, 12
+	 * 		12 --> 1, 2, 11
+	 * Returns Whether the minion can be placed in the adjacent area or not.
+	 *
+	 * @param currentPlayerId the current player id
+	 * @param minionId the minion id
+	 * @param currentAreaId the current area id
+	 * @param areaToBePlacedIn the area to be placed in
+	 * @return true, if successful
 	 */
 	public static boolean canMinionBePlacedInAdjacentArea(Integer currentPlayerId, Integer minionId, Integer currentAreaId, int areaToBePlacedIn){
 		
@@ -312,6 +324,12 @@ public class PresentationUtility {
 		return false;
 	}
 	
+	/**
+	 * Gets the adjacent areas.
+	 *
+	 * @param areaId the area id
+	 * @return the adjacent areas
+	 */
 	public String getAdjacentAreas(String areaId){
 		String adjacentAreasList = "";
 		Integer currentAreaId = Integer.parseInt(areaId);
@@ -343,6 +361,12 @@ public class PresentationUtility {
 		return adjacentAreasList;
 	}
 	
+	/**
+	 * Checks if is this green card assassination card.
+	 *
+	 * @param greenCardId the green card id
+	 * @return true, if is this green card assassination card
+	 */
 	public static boolean isThisGreenCardAssassinationCard(int greenCardId){
 		
 		if(greenCardId == 7 || greenCardId == 12 || greenCardId == 22 || greenCardId == 28 || greenCardId == 47)
@@ -350,6 +374,12 @@ public class PresentationUtility {
 		return false;
 	}
 	
+	/**
+	 * Checks if is this green card trouble maker card.
+	 *
+	 * @param greenCardId the green card id
+	 * @return true, if is this green card trouble maker card
+	 */
 	public static boolean isThisGreenCardTroubleMakerCard(int greenCardId){
 		
 		if(greenCardId == 6 || greenCardId == 13 || greenCardId == 47)
@@ -357,6 +387,12 @@ public class PresentationUtility {
 		return false;
 	}
 	
+	/**
+	 * Checks if is this green card placing a minion card.
+	 *
+	 * @param greenCardId the green card id
+	 * @return true, if is this green card placing a minion card
+	 */
 	public static boolean isThisGreenCardPlacingAMinionCard(int greenCardId){
 		
 		if(greenCardId == 1 || greenCardId == 3 || greenCardId == 7 || greenCardId == 13 || greenCardId == 15 || greenCardId == 16 
@@ -366,6 +402,12 @@ public class PresentationUtility {
 		return false;
 	}
 	
+	/**
+	 * Checks if is this green card placing a building card.
+	 *
+	 * @param greenCardId the green card id
+	 * @return true, if is this green card placing a building card
+	 */
 	public static boolean isThisGreenCardPlacingABuildingCard(int greenCardId){
 		
 		if(greenCardId == 8 || greenCardId == 14 || greenCardId == 17 || greenCardId == 24 
@@ -374,6 +416,12 @@ public class PresentationUtility {
 		return false;
 	}
 	
+	/**
+	 * Checks if is this green card interrupt card.
+	 *
+	 * @param greenCardId the green card id
+	 * @return true, if is this green card interrupt card
+	 */
 	public static boolean isThisGreenCardInterruptCard(int greenCardId){
 		
 		if(greenCardId == 17 || greenCardId == 18 || greenCardId == 45)
@@ -381,6 +429,12 @@ public class PresentationUtility {
 		return false;
 	}
 	
+	/**
+	 * Checks if is this green card random event card.
+	 *
+	 * @param greenCardId the green card id
+	 * @return true, if is this green card random event card
+	 */
 	public static boolean isThisGreenCardRandomEventCard(int greenCardId){
 		
 		if(greenCardId == 39)
@@ -388,6 +442,12 @@ public class PresentationUtility {
 		return false;
 	}
 	
+	/**
+	 * How much money to take from bank.
+	 *
+	 * @param greenCardIdStr the green card id str
+	 * @return the integer
+	 */
 	public static Integer howMuchMoneyToTakeFromBank(String greenCardIdStr){
 		
 		if(greenCardIdStr.equals("g28") || greenCardIdStr.equals("g47"))
@@ -401,6 +461,12 @@ public class PresentationUtility {
 		return 0;
 	}
 	
+	/**
+	 * Gets the comma separated green card names.
+	 *
+	 * @param greenCardListCommaSeparated the green card list comma separated
+	 * @return the comma separated green card names
+	 */
 	public static String getCommaSeparatedGreenCardNames(String greenCardListCommaSeparated){
 		String namesOfGreenCardsList = "";
 		String[] greenCardListCommaSeparatedArr = greenCardListCommaSeparated.split(",");
@@ -417,6 +483,13 @@ public class PresentationUtility {
 		return namesOfGreenCardsList;
 	}
 	
+	/**
+	 * Draw as many card as needed.
+	 *
+	 * @param Ankhmorpork the ankhmorpork
+	 * @param currentPlayer the current player
+	 * @return the string
+	 */
 	public String drawAsManyCardAsNeeded(Game Ankhmorpork, Player currentPlayer){
 		String playerGreenCardUpdatedList = currentPlayer.getGreenCardListCommaSeparated();
 		if(currentPlayer.getGreenCardListCommaSeparated().length() < 9){
@@ -436,6 +509,12 @@ public class PresentationUtility {
 		return playerGreenCardUpdatedList;
 	}
 	
+	/**
+	 * Take one green card from deck.
+	 *
+	 * @param Ankhmorpork the ankhmorpork
+	 * @return the string
+	 */
 	public static String takeOneGreenCardFromDeck(Game Ankhmorpork){
 
 		Integer cardIndexNumber = PresentationUtility.returnRandomNumber(1, Ankhmorpork.lstGreenCards.size());

@@ -23,8 +23,19 @@ import org.json.simple.JSONObject;
 import org.json.simple.parser.JSONParser;
 import org.json.simple.parser.ParseException;
 
+// TODO: Auto-generated Javadoc
+/**
+ * The Class GameLoad.
+ */
 public class GameLoad {
 
+	/**
+	 * Load game.
+	 *
+	 * @param objFilereader the obj filereader
+	 * @throws IOException Signals that an I/O exception has occurred.
+	 * @throws ParseException the parse exception
+	 */
 	public static void LoadGame(FileReader objFilereader) throws IOException, ParseException
 	{
 
@@ -228,6 +239,14 @@ public class GameLoad {
 	}
 	
 
+	/**
+	 * Load new game_ cards.
+	 *
+	 * @throws FileNotFoundException the file not found exception
+	 * @throws IOException Signals that an I/O exception has occurred.
+	 * @throws ParseException the parse exception
+	 * @throws JSONException the JSON exception
+	 */
 	public static void LoadNewGame_Cards() throws FileNotFoundException, IOException, ParseException, JSONException 
 	{
 	    Object obj;

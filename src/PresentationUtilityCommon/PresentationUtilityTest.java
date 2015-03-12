@@ -10,8 +10,15 @@ import java.util.List;
 
 import org.junit.Test;
 
+// TODO: Auto-generated Javadoc
+/**
+ * The Class PresentationUtilityTest.
+ */
 public class PresentationUtilityTest {
 
+	/**
+	 * Test.
+	 */
 	@Test
 	public void test() {
 		// 1
@@ -41,12 +48,26 @@ public class PresentationUtilityTest {
 		
 	}
 
+	/**
+	 * Assert array equals.
+	 *
+	 * @param initializedArray the initialized array
+	 * @param expectedInitializedArray the expected initialized array
+	 * @return the boolean
+	 */
 	private Boolean assertArrayEquals(ArrayList<Integer> initializedArray, ArrayList<Integer> expectedInitializedArray) {
 		// for 3
 		
 		return compareList(initializedArray, expectedInitializedArray);
 	}
 	
+	/**
+	 * Compare list.
+	 *
+	 * @param ls1 the ls1
+	 * @param ls2 the ls2
+	 * @return true, if successful
+	 */
 	public static boolean compareList(List ls1,List ls2){
         return ls1.toString().contentEquals(ls2.toString())?true:false;
     }

@@ -43,7 +43,6 @@ public class ViewFileTxt {
 	/**
 	 * View state.
 	 *
-	 * @param lstPlayers the lst players
 	 * @return the string
 	 */
 	public static String ViewState(){
@@ -102,7 +101,7 @@ public class ViewFileTxt {
 	/**
 	 * Data to store in text file.
 	 *
-	 * @param lstPlayers the lst players
+	 * @param players the players
 	 * @return the string
 	 */
 //	public static String dataToStoreInTextFile(ArrayList<Player> lstPlayers){
@@ -231,6 +230,12 @@ public class ViewFileTxt {
 		return currentAndNextPlayerTurnStr ;
 	}
 	
+	/**
+	 * Current player playing.
+	 *
+	 * @param players the players
+	 * @return the string
+	 */
 	public static String currentPlayerPlaying(ArrayList<Player> players){
 		String currentPlayerPlaying = "";
 		

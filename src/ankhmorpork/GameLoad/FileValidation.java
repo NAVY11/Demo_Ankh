@@ -25,8 +25,20 @@ import org.json.simple.JSONObject;
 import org.json.simple.parser.JSONParser;
 import org.json.simple.parser.ParseException;
 
+// TODO: Auto-generated Javadoc
+/**
+ * The Class FileValidation.
+ */
 public class FileValidation {
 
+	/**
+	 * Validate.
+	 *
+	 * @param objFilereader the obj filereader
+	 * @return true, if successful
+	 * @throws IOException Signals that an I/O exception has occurred.
+	 * @throws ParseException the parse exception
+	 */
 	public static boolean Validate(FileReader objFilereader) throws IOException, ParseException
 	{
 

@@ -6,8 +6,15 @@ import org.junit.Test;
 
 import ViewFile.ViewFileTxt;
 
+// TODO: Auto-generated Javadoc
+/**
+ * The Class Test5.
+ */
 public class Test5 {
 
+	/**
+	 * Test.
+	 */
 	@Test
 	public void test() {
 		ViewFileTxt fileTxt = new ViewFileTxt();

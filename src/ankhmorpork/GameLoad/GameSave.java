@@ -22,11 +22,22 @@ import org.json.simple.parser.ParseException;
 
 import java.util.Iterator;
 
+// TODO: Auto-generated Javadoc
 //import jdk.nashorn.internal.runtime.Source;
 
 
+/**
+ * The Class GameSave.
+ */
 public class GameSave {
 
+	/**
+	 * Save game.
+	 *
+	 * @param objFileWriter the obj file writer
+	 * @throws IOException Signals that an I/O exception has occurred.
+	 * @throws JSONException the JSON exception
+	 */
 	public static void SaveGame(FileWriter objFileWriter) throws IOException, JSONException
 	{												
 			//Player Player1 = NewGame.lstPlayers.get(0);						
@@ -39,6 +50,13 @@ public class GameSave {
 
 	}
 	
+	/**
+	 * Json object while saving game.
+	 *
+	 * @return the JSON object
+	 * @throws IOException Signals that an I/O exception has occurred.
+	 * @throws JSONException the JSON exception
+	 */
 	public static JSONObject jsonObjectWhileSavingGame()throws IOException, JSONException{
 		//FileWriter jsonWriter = new FileWriter(objFileWriter);
 		JSONObject jsonAddData = new JSONObject();

@@ -39,10 +39,10 @@ public class GameStart {
 	 * @param Players the players
 	 * @param Colors the colors
 	 * @param iNoOfPlayers the i no of players
-	 * @throws JSONException 
-	 * @throws ParseException 
-	 * @throws IOException 
-	 * @throws FileNotFoundException 
+	 * @throws FileNotFoundException the file not found exception
+	 * @throws IOException Signals that an I/O exception has occurred.
+	 * @throws ParseException the parse exception
+	 * @throws JSONException the JSON exception
 	 */
 	public static void StartNewGame(String Players[], String Colors[], int iNoOfPlayers) throws FileNotFoundException, IOException, ParseException, JSONException
 	{
@@ -266,7 +266,14 @@ public class GameStart {
 	}
 
 	//Method to get Bank Amounts
-		public static int getDefaultBankCoins(String CoinType, int iNoOfPlayers)
+		/**
+	 * Gets the default bank coins.
+	 *
+	 * @param CoinType the coin type
+	 * @param iNoOfPlayers the i no of players
+	 * @return the default bank coins
+	 */
+	public static int getDefaultBankCoins(String CoinType, int iNoOfPlayers)
 		{
 			if(CoinType==Constants.GoldCoin())
 			{

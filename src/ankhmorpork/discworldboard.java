@@ -47,19 +47,31 @@ import ankhmorpork.GameLoad.*;
  */
 public class discworldboard extends Component {
 	
+	/** The Width. */
 	private int Width  = 1200;
 	//yogesh
+	/** The Height. */
 	private int Height = 900;
 	
+	/** The discworld. */
 	private discworld discworld;
+	
+	/** The br. */
 	private static BufferedReader BR = new BufferedReader(new InputStreamReader(System.in));
+	
+	/** The Constant quit. */
 	static final Frame quit = new Frame("Are you sure?");
 	
+	/** The rolled. */
 	public boolean rolled = false;
 	
+		/** The Dice1. */
 		private int Dice1 = 0;
 
 
+		/**
+		 * Instantiates a new discworldboard.
+		 */
 		public discworldboard( ) {
 
 
@@ -247,14 +259,19 @@ public class discworldboard extends Component {
 		repaint();
 	}
 	//Method to decide who starts game
+	/**
+	 * Starting player.
+	 *
+	 * @param noOfPlayers the no of players
+	 * @return the int
+	 */
 	public int StartingPlayer(int noOfPlayers)
 	{
 		return (int)(Math.random()*noOfPlayers + 1);
 	}
+	
 	/**
 	 * View game state.
-	 *
-	 * @param lstPlayers the lst players
 	 */
 	public void ViewGameState(){
 		String viewStateData = ViewFileTxt.ViewState();
@@ -266,7 +283,6 @@ public class discworldboard extends Component {
 	 * Save game.
 	 *
 	 * @param objFileWriter the obj file writer
-	 * @param PlayedGame the played game
 	 * @throws IOException Signals that an I/O exception has occurred.
 	 * @throws JSONException the JSON exception
 	 */
@@ -295,10 +311,9 @@ public class discworldboard extends Component {
 	 * Initialise game.
 	 *
 	 * @param iNoOfPlayers the i no of players
-	 * @param AnkhMorpork the ankh morpork
-	 * @throws IOException 
-	 * @throws JSONException 
-	 * @throws ParseException 
+	 * @throws IOException Signals that an I/O exception has occurred.
+	 * @throws ParseException the parse exception
+	 * @throws JSONException the JSON exception
 	 */
 	public void InitialiseGame(int iNoOfPlayers) throws IOException, ParseException, JSONException
 	{					

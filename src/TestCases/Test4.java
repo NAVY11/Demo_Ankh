@@ -8,8 +8,15 @@ import org.junit.Test;
 
 import PresentationUtilityCommon.PresentationUtility;
 
+// TODO: Auto-generated Javadoc
+/**
+ * The Class Test4.
+ */
 public class Test4 {
 
+	/**
+	 * Test.
+	 */
 	@Test
 	public void test() {
 		HashMap<Integer, Boolean> initializedHashMap = PresentationUtility.initializeAHashmapWithValue(4);

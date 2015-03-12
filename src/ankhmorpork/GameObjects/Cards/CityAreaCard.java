@@ -14,83 +14,173 @@ import ankhmorpork.GameObjects.Troll;
 import ankhmorpork.GameObjects.TroubleMaker;
 
 
+// TODO: Auto-generated Javadoc
+/**
+ * The Class CityAreaCard.
+ */
 public class CityAreaCard extends Cards{
+	
+	/** The Action id. */
 	private String ActionID;
+	
+	/** The Action description. */
 	private String ActionDescription;
+	
+	/** The Area id. */
 	private int AreaID;
+	
+	/** The Area name. */
 	private String AreaName;
+	
+	/** The Cost. */
 	private int Cost;
 	
+	/**
+	 * Sets the card id.
+	 *
+	 * @param ID the id
+	 */
 	public void SetCardID(String ID)
 	{
 		this.CardID = ID;
 	}
 	
+	/**
+	 * Gets the card id.
+	 *
+	 * @return the string
+	 */
 	public String GetCardID()
 	{
 		return this.CardID;
 	}
 		
+	/**
+	 * Sets the is played.
+	 *
+	 * @param IsPlayed the is played
+	 */
 	public void SetIsPlayed(boolean IsPlayed)
 	{
 		this.IsPlayed = IsPlayed;
 	}
 	
+	/**
+	 * Gets the is played.
+	 *
+	 * @return true, if successful
+	 */
 	public boolean GetIsPlayed()
 	{
 		return this.IsPlayed;
 	}
 	
+	/**
+	 * Sets the action id.
+	 *
+	 * @param ID the id
+	 */
 	public void SetActionID(String ID)
 	{
 		this.ActionID = ID;
 	}
 	
+	/**
+	 * Gets the action id.
+	 *
+	 * @return the string
+	 */
 	public String GetActionID()
 	{
 		return this.ActionID;
 	}
 	
+	/**
+	 * Sets the action description.
+	 *
+	 * @param EventDescription the event description
+	 */
 	public void SetActionDescription(String EventDescription)
 	{
 		this.ActionDescription = EventDescription;
 	}
 	
+	/**
+	 * Gets the action description.
+	 *
+	 * @return the string
+	 */
 	public String GetActionDescription()
 	{
 		return this.ActionDescription;
 	}
 	
+	/**
+	 * Sets the area id.
+	 *
+	 * @param ID the id
+	 */
 	public void SetAreaID(int ID)
 	{
 		this.AreaID = ID;
 	}
 	
+	/**
+	 * Gets the area id.
+	 *
+	 * @return the int
+	 */
 	public int GetAreaID()
 	{
 		return this.AreaID;
 	}
 	
+	/**
+	 * Sets the name.
+	 *
+	 * @param AreaName the area name
+	 */
 	public void SetName(String AreaName)
 	{
 		this.AreaName = AreaName;
 	}
 	
+	/**
+	 * Gets the cost.
+	 *
+	 * @return the int
+	 */
 	public int GetCost()
 	{
 		return this.Cost;
 	}
 	
+	/**
+	 * Sets the cost.
+	 *
+	 * @param Cost the cost
+	 */
 	public void SetCost(int Cost)
 	{
 		this.Cost = Cost;
 	}
 	
+	/**
+	 * Gets the area name.
+	 *
+	 * @return the string
+	 */
 	public String GetAreaName()
 	{
 		return this.AreaName;
 	}
 	
+	/**
+	 * Longwall action.
+	 *
+	 * @param objPlayer the obj player
+	 * @return true, if successful
+	 */
 	public boolean LongwallAction(Player objPlayer)
 	{
 		boolean status = false;
@@ -113,6 +203,12 @@ public class CityAreaCard extends Cards{
 	return status;
 	}
 	
+	/**
+	 * Seven sleepers action.
+	 *
+	 * @param objPlayer the obj player
+	 * @return true, if successful
+	 */
 	public boolean SevenSleepersAction(Player objPlayer)
 	{
 		boolean status = false;
@@ -134,6 +230,12 @@ public class CityAreaCard extends Cards{
 	return status;
 	}
 	
+	/**
+	 * Nap hill action.
+	 *
+	 * @param objPlayer the obj player
+	 * @return true, if successful
+	 */
 	public boolean NapHillAction(Player objPlayer)
 	{
 		boolean status = false;
@@ -156,6 +258,12 @@ public class CityAreaCard extends Cards{
 	return status;
 	}
 	
+	/**
+	 * The hippo action.
+	 *
+	 * @param objPlayer the obj player
+	 * @return true, if successful
+	 */
 	public boolean TheHippoAction(Player objPlayer)
 	{
 		boolean status = false;
@@ -178,6 +286,12 @@ public class CityAreaCard extends Cards{
 	return status;
 	}
 	
+	/**
+	 * Dragon landing action.
+	 *
+	 * @param objPlayer the obj player
+	 * @return true, if successful
+	 */
 	public boolean DragonLandingAction(Player objPlayer)
 	{
 		boolean status = false;		
@@ -200,6 +314,12 @@ public class CityAreaCard extends Cards{
 	return status;
 	}
 	
+	/**
+	 * Dimwell action.
+	 *
+	 * @param objPlayer the obj player
+	 * @return true, if successful
+	 */
 	public boolean DimwellAction(Player objPlayer)
 	{
 		boolean status = false;
@@ -231,6 +351,12 @@ public class CityAreaCard extends Cards{
 	return status;
 }
 
+/**
+ * Dolly sister action.
+ *
+ * @param objPlayer the obj player
+ * @return true, if successful
+ */
 public boolean DollySisterAction(Player objPlayer)
 	{
 		boolean status = false;
@@ -262,6 +388,13 @@ public boolean DollySisterAction(Player objPlayer)
 		return status;
 }
 
+/**
+ * The scours action.
+ *
+ * @param objPlayer the obj player
+ * @return true, if successful
+ * @throws IOException Signals that an I/O exception has occurred.
+ */
 public boolean TheScoursAction(Player objPlayer) throws IOException{
 	boolean status = false;
 	BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
@@ -282,6 +415,14 @@ public boolean TheScoursAction(Player objPlayer) throws IOException{
 	return status;
 }
 
+/**
+ * The shades action.
+ *
+ * @param objPlayer the obj player
+ * @return true, if successful
+ * @throws NumberFormatException the number format exception
+ * @throws IOException Signals that an I/O exception has occurred.
+ */
 public boolean TheShadesAction(Player objPlayer) throws NumberFormatException, IOException{
 	boolean status = false;
 	BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
@@ -307,10 +448,24 @@ public boolean TheShadesAction(Player objPlayer) throws NumberFormatException, I
 	return status;
 }
 
+/**
+ * Small gods action.
+ *
+ * @param objPlayer the obj player
+ * @return true, if successful
+ * @throws IOException Signals that an I/O exception has occurred.
+ */
 public boolean SmallGodsAction(Player objPlayer) throws IOException{
 		return true;
 }
 
+/**
+ * Isle of gods action.
+ *
+ * @param objPlayer the obj player
+ * @return true, if successful
+ * @throws IOException Signals that an I/O exception has occurred.
+ */
 public boolean IsleOfGodsAction(Player objPlayer) throws IOException{
 	boolean status = false;
 	BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
@@ -333,6 +488,13 @@ public boolean IsleOfGodsAction(Player objPlayer) throws IOException{
 	return status;
 }
 
+/**
+ * Unreal estate.
+ *
+ * @param objPlayer the obj player
+ * @return true, if successful
+ * @throws IOException Signals that an I/O exception has occurred.
+ */
 public boolean UnrealEstate(Player objPlayer) throws IOException{
 	boolean status = false;
 	BufferedReader br = new BufferedReader(new InputStreamReader(System.in));

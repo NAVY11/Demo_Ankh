@@ -21,6 +21,7 @@ import javax.swing.JMenuBar;
 import javax.swing.JMenuItem;
 import javax.swing.JScrollPane;
 
+// TODO: Auto-generated Javadoc
 /**
  * The Class SaveFileAmbg.
  */
@@ -63,6 +64,11 @@ public class DisplayViewFile implements ActionListener {
       beforeSavingFrame.setVisible(true);
    }
    
+   /**
+    * Viewer.
+    *
+    * @param dataToView the data to view
+    */
    public void Viewer(String dataToView) {
 	      myFrame = new JFrame("Ankh_Morpork View Game State");
 	      myFrame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -109,6 +115,11 @@ public class DisplayViewFile implements ActionListener {
       return myMenu;
    }
    
+   /**
+    * Gets the file menu before saving.
+    *
+    * @return the file menu before saving
+    */
    private JMenu getFileMenuBeforeSaving() {
 	      JMenu myMenu = new JMenu("File");
 	      

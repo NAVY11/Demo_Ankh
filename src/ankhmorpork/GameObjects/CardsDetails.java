@@ -16,14 +16,35 @@ import org.json.simple.parser.JSONParser;
 import org.json.simple.parser.ParseException;
 
 
+// TODO: Auto-generated Javadoc
+/**
+ * The Class CardsDetails.
+ */
 public class CardsDetails {
 	
+	/**
+	 * The main method.
+	 *
+	 * @param args the arguments
+	 * @throws JSONException the JSON exception
+	 * @throws IOException Signals that an I/O exception has occurred.
+	 * @throws ParseException the parse exception
+	 */
 	public static void main(String args[]) throws JSONException, IOException, ParseException
 	{
 		greencard_details();
 	}
 
 		
+	/**
+	 * Greencard_details.
+	 *
+	 * @return the game
+	 * @throws FileNotFoundException the file not found exception
+	 * @throws IOException Signals that an I/O exception has occurred.
+	 * @throws ParseException the parse exception
+	 * @throws JSONException the JSON exception
+	 */
 	public static Game greencard_details() throws FileNotFoundException, IOException, ParseException, JSONException 
 	{
 		Game LoadedGame = new Game();
@@ -62,6 +83,15 @@ public class CardsDetails {
 	
 	
 	
+	/**
+	 * City areacard_details.
+	 *
+	 * @param cityAreaCard the city area card
+	 * @throws FileNotFoundException the file not found exception
+	 * @throws IOException Signals that an I/O exception has occurred.
+	 * @throws ParseException the parse exception
+	 * @throws JSONException the JSON exception
+	 */
 	public static void cityAreacard_details(ArrayList<String> cityAreaCard) throws FileNotFoundException, IOException, ParseException, JSONException 
 	{
 	    Object obj;
@@ -80,6 +110,15 @@ public class CardsDetails {
 
 	}
 	
+	/**
+	 * Random event_details.
+	 *
+	 * @param randomEventCard the random event card
+	 * @throws FileNotFoundException the file not found exception
+	 * @throws IOException Signals that an I/O exception has occurred.
+	 * @throws ParseException the parse exception
+	 * @throws JSONException the JSON exception
+	 */
 	public static void randomEvent_details(ArrayList<String> randomEventCard) throws FileNotFoundException, IOException, ParseException, JSONException 
 	{
 	    Object obj;
