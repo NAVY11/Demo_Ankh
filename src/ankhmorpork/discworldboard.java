@@ -252,7 +252,7 @@ public class discworldboard extends Component {
 	 *
 	 * @param lstPlayers the lst players
 	 */
-	public void ViewGameState(Game AnkhMorpork){
+	public void ViewGameState(){
 		String viewStateData = ViewFileTxt.ViewState();
 		DisplayViewFile abc = new DisplayViewFile();
 		abc.Viewer(viewStateData);
@@ -266,13 +266,13 @@ public class discworldboard extends Component {
 	 * @throws IOException Signals that an I/O exception has occurred.
 	 * @throws JSONException the JSON exception
 	 */
-	public void SaveGame(FileWriter objFileWriter, Game PlayedGame) throws IOException, JSONException{
-		GameSave.SaveGame(objFileWriter, PlayedGame);
+	public void SaveGame(FileWriter objFileWriter) throws IOException, JSONException{
+		GameSave.SaveGame(objFileWriter);
 	}
 	
-	public static JSONObject LoadingBeforeSavingInfo(Game PlayedGame) throws IOException, JSONException{
-		return GameSave.jsonObjectWhileSavingGame(PlayedGame);
-	}
+//	public static JSONObjectLoadingBeforeSavingInfo()Game PlayedGame throws IOException, JSONException{
+//		return GameSave.jsonObjectWhileSavingGame()PlayedGame;
+//	}
 	
 	/**
 	 * Loadgamefetch.
@@ -296,7 +296,7 @@ public class discworldboard extends Component {
 	 * @throws JSONException 
 	 * @throws ParseException 
 	 */
-	public void InitialiseGame(int iNoOfPlayers, Game AnkhMorpork) throws IOException, ParseException, JSONException
+	public void InitialiseGame(int iNoOfPlayers) throws IOException, ParseException, JSONException
 	{					
 		String[] Players = new String[10];
 		String[] Colors = new String[10];
@@ -307,10 +307,11 @@ public class discworldboard extends Component {
 		Colors[i] = JOptionPane.showInputDialog("Please input Color for Player:" + i);
 		}
 	
-		GameStart.StartNewGame(Players, Colors, iNoOfPlayers, AnkhMorpork);
+		GameStart.StartNewGame(Players, Colors, iNoOfPlayers);
 		ViewFileTxt viewFileText = new ViewFileTxt();
-		String currentPlayer = viewFileText.currentPlayerPlaying(AnkhMorpork.lstPlayers);
+		String currentPlayer = viewFileText.currentPlayerPlaying(Game.lstPlayers);
 		System.out.println("The current Player Playing is player "+ currentPlayer);
+		
 		
 		//Get Starting Player randomly
 		int CurrentPlayer = StartingPlayer(iNoOfPlayers);
@@ -387,34 +388,6 @@ public class discworldboard extends Component {
 		}
 	}
 	
-	
-	
-
-	//start a new game
-	/**
-	 * New.
-	 */
-	public void New() {
-		final Frame a = new Frame();
-		final TextField tf1 = new TextField("Player 1", 20 );
-		final TextField tf2 = new TextField("Player 2", 20 );
-		final Button b = new Button( "Save Game");
-		a.setSize( 800, 200 );
-		a.setBackground( Color.lightGray );
-		a.setLayout( new FlowLayout(FlowLayout.CENTER) );
-		a.add( tf1);
-		a.add( b );
-		a.add( tf2 );
-		a.setVisible( true );
-
-		a.addWindowListener( new WindowAdapter() {
-			public void windowClosing( WindowEvent e ) {
-				a.setVisible( false );
-				repaint();
-			}
-		});
-		repaint();
-	}
 	
 }
 

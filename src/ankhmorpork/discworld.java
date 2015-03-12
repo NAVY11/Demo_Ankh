@@ -194,7 +194,8 @@ public class discworld extends Applet implements ActionListener, WindowListener 
 				
 					try {
 						try {
-							discworldboard.InitialiseGame(2,AnkhMorpork);
+							Framebuilder();
+							discworldboard.InitialiseGame(2);
 						} catch (ParseException e1) {
 							// TODO Auto-generated catch block
 							e1.printStackTrace();
@@ -211,7 +212,8 @@ public class discworld extends Applet implements ActionListener, WindowListener 
 				
 					try {
 						try {
-							discworldboard.InitialiseGame(3,AnkhMorpork);
+							Framebuilder();
+							discworldboard.InitialiseGame(3);
 						} catch (ParseException e1) {
 							// TODO Auto-generated catch block
 							e1.printStackTrace();
@@ -228,7 +230,8 @@ public class discworld extends Applet implements ActionListener, WindowListener 
 				
 					try {
 						try {
-							discworldboard.InitialiseGame(4,AnkhMorpork);
+							Framebuilder();
+							discworldboard.InitialiseGame(4);
 						} catch (ParseException e1) {
 							// TODO Auto-generated catch block
 							e1.printStackTrace();
@@ -242,7 +245,7 @@ public class discworld extends Applet implements ActionListener, WindowListener 
 					}
 			}
 				
-				Framebuilder();
+				//Framebuilder();
 				
 		}
  		
@@ -290,13 +293,13 @@ public class discworld extends Applet implements ActionListener, WindowListener 
 	 							    if (retrival == JFileChooser.APPROVE_OPTION) {
 	 							        
 	 							            FileWriter objFileWriter = new FileWriter(chooser.getSelectedFile()+".txt");
-	 							            discworldboard.SaveGame(objFileWriter,AnkhMorpork);
+	 							            discworldboard.SaveGame(objFileWriter);
 	
 	 							    } 
  								}else{
- 									JSONObject infoBeforeSaving = discworldboard.LoadingBeforeSavingInfo(AnkhMorpork);
+ 									//JSONObject infoBeforeSaving = discworldboard.LoadingBeforeSavingInfo();
  									DisplayViewFile abc = new DisplayViewFile();
- 									abc.ViewerBeforeSaving(infoBeforeSaving.toString());
+ 									//abc.ViewerBeforeSaving(infoBeforeSaving.toString());
  								}
  							} catch (IOException e1) {
  								// TODO Auto-generated catch block
@@ -309,7 +312,7 @@ public class discworld extends Applet implements ActionListener, WindowListener 
  					buttons.add(ViewState);
  					ViewState.addActionListener(new ActionListener() {
  						public void actionPerformed( ActionEvent e ) {
- 							discworldboard.ViewGameState(AnkhMorpork);
+ 							discworldboard.ViewGameState();
  						}});
  					buttons.add(Quit);
  					Quit.addActionListener(new ActionListener() {
