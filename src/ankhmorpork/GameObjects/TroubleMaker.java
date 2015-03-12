@@ -25,6 +25,10 @@ public class TroubleMaker {
 		// TODO Auto-generated constructor stub
 	}
 
+	public TroubleMaker() {
+		// TODO Auto-generated constructor stub
+	}
+
 	/**
 	 * Gets the tm_id.
 	 *
