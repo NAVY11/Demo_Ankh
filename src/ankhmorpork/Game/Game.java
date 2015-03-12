@@ -1,6 +1,7 @@
 package ankhmorpork.Game;
 import java.util.ArrayList;
 
+import PresentationUtilityCommon.PresentationUtility;
 import ankhmorpork.GameObjects.Area;
 import ankhmorpork.GameObjects.Bank;
 import ankhmorpork.GameObjects.Building;
@@ -396,10 +397,70 @@ public class Game {
 				if(grnCard.GetCardID().equals(CardID) && !grnCard.IsPlayed)
 				{
 					objGC = grnCard;
+					break;
 				}
 			}
 			
 			return objGC;
+		}
+		
+		//Method to set card played
+		public static void SetGreenCardIsPlayed(String CardID, boolean IsPlayed)
+		{
+			for(GreenCard GC : Game.lstGreenCards)
+			{
+				if(GC.GetCardID().equals(CardID))
+				{
+					GC.SetIsPlayed(IsPlayed);
+					GC.setPlayerID(0);
+					break;
+				}
+			}
+		}
+		
+		//Method to Get GreenCardIDs in Deck
+		public static String GetGreenCardsIDsFromDeck()
+		{
+			String CardList ="";
+			StringBuilder sbCardIDs = new StringBuilder();
+			for(GreenCard GC : Game.lstGreenCards)
+			{
+				if(GC.IsPlayed==false)
+				{
+					sbCardIDs.append(GC.GetCardID()+",");
+				}
+			}
+			
+			CardList = sbCardIDs.toString();
+			return CardList.substring(0, CardList.length()-2);
+			
+			
+		}
+		
+		//Method to assign random Green Card from Deck
+		public static String GetRandomGreenCardFromDeck()
+		{
+			String CardList = GetGreenCardsIDsFromDeck();			
+				String[] lstCardID = CardList.split(",");
+				
+			Integer cardIndexNumber = PresentationUtility.returnRandomNumber(1,lstCardID.length);
+			return lstCardID[cardIndexNumber];						
+		}
+		
+		//Method to assign Green Card to player
+		public static boolean SetGreenCardToPlayer(String CardID, int PlayerID)
+		{
+			boolean success=false;
+			for(GreenCard GC : Game.lstGreenCards)
+			{
+				if(GC.GetCardID().equals(CardID))
+				{
+					GC.setPlayerID(PlayerID);
+					success = true;
+					break;
+				}
+			}
+			return success;
 		}
 		
 		//Method to get Green CArd Actions
@@ -433,6 +494,20 @@ public class Game {
 		
 		
 
+		//Method to get Player Green Card count
+		public static int GetPlayerGreenCardCount(int PlayerID)
+		{
+			int count = 0;
+			for(GreenCard grnCard: Game.lstGreenCards)
+			{	
+				if(grnCard.getPlayerID()==PlayerID && !grnCard.GetIsPlayed())
+				{
+					count++;
+				}
+			}
+			return count;
+		}
+		
 		public static ArrayList<CityAreaCard> GetCityAreaCardByPlayerID(int PlayerID)
 		{
 			ArrayList<CityAreaCard> lstCityAreaCard = new ArrayList<CityAreaCard>();
@@ -459,6 +534,7 @@ public class Game {
 				if(CityAreaCard.GetCardID().equals(CardID))
 				{
 					objCityAreaCard = CityAreaCard;
+					break;
 				}
 			}
 			

@@ -29,6 +29,7 @@ import org.json.JSONException;
 import org.json.JSONObject;
 import org.json.simple.parser.ParseException;
 
+import PresentationUtilityCommon.PresentationUtility;
 import ViewFile.DisplayViewFile;
 import ViewFile.ViewFileTxt;
 import ankhmorpork.Game.Game;
@@ -315,17 +316,21 @@ public class discworldboard extends Component {
 		
 		//Get Starting Player randomly
 		int CurrentPlayer = StartingPlayer(iNoOfPlayers);
-		System.out.println("Player "+ CurrentPlayer + " starts game");
+		//System.out.println("Player "+ CurrentPlayer + " starts game");
 		boolean GameEnds = false;
-		
+		System.out.println("===========================================================================================");
+		System.out.println("Welcome to Ankh-Morpork, the largest, smelliest, and most ‘interesting’ city on Discworld.");
+		System.out.println("===========================================================================================");
 		while(!GameEnds)
 		{
+			
+			CurrentPlayer = PresentationUtility.nextPlayerTurn(CurrentPlayer, iNoOfPlayers); 
 		//Show Board
 		ViewFileTxt.ViewState();        
 		//Play Game						
 		//Load Player details
 		Player objPlayer = Game.lstPlayers.get(CurrentPlayer - 1);
-		
+		System.out.println("It is "+objPlayer.getPlayer_name()+"'s turn");
 		//********Which Card to Play?
 		System.out.println("Which card to play?");
 		
@@ -375,6 +380,8 @@ public class discworldboard extends Component {
 					
 					if(ans.equalsIgnoreCase("Y"))
 					{
+						//Does a Player wish to interrupt? //TO DO
+						//If Yes : Which Player wants to interrupt?
 						//Perform Action
 						objPlayer.PerformCardAction(ActionArray[i], CardID);
 						
@@ -382,9 +389,20 @@ public class discworldboard extends Component {
 					else
 						continue;
 				}
-					//Does a Player wish to interrupt?
-						//If Yes : Which Player wants to interrupt?
-							//Play Game		
+					//Set Current card as 'Played'
+					Game.SetGreenCardIsPlayed(CardID, true);
+					//Get number of Green Crads available with Player
+					int CardsInHand = Game.GetPlayerGreenCardCount(objPlayer.getPlayer_id());
+					
+					//Pick as many cards from deck so that the Player holds 5 Cards
+					for(int i=0; i< 5 - CardsInHand;i++)
+					{
+					//Pick a GreenCardFromDeck
+					String PickNewCardID = Game.GetRandomGreenCardFromDeck();
+					Game.SetGreenCardToPlayer(PickNewCardID, objPlayer.getPlayer_id());
+					}
+										
+							
 		}
 	}
 	
