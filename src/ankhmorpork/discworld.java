@@ -99,8 +99,7 @@ public class discworld extends Applet implements ActionListener, WindowListener 
 
 	public static void main(String argv[]) 
     {
-    	//new discworld();
-    	System.out.print("say my name?");
+    	new discworld();
     }
 
 
@@ -190,21 +189,18 @@ public class discworld extends Applet implements ActionListener, WindowListener 
 					    
 			if (e.getSource() == start2 || e.getSource() == start3 || e.getSource() == start4 ){
 				//discworldboard = new discworldboard( );
+				//Framebuilder();
 				if(e.getSource() == start2){
 				
 					try {
 						try {
-							Framebuilder();
 							discworldboard.InitialiseGame(2);
 						} catch (ParseException e1) {
-							// TODO Auto-generated catch block
 							e1.printStackTrace();
 						} catch (JSONException e1) {
-							// TODO Auto-generated catch block
 							e1.printStackTrace();
 						}
 					} catch (IOException e1) {
-						// TODO Auto-generated catch block
 						e1.printStackTrace();
 					}
 											
@@ -212,17 +208,13 @@ public class discworld extends Applet implements ActionListener, WindowListener 
 				
 					try {
 						try {
-							Framebuilder();
 							discworldboard.InitialiseGame(3);
 						} catch (ParseException e1) {
-							// TODO Auto-generated catch block
 							e1.printStackTrace();
 						} catch (JSONException e1) {
-							// TODO Auto-generated catch block
 							e1.printStackTrace();
 						}
 					} catch (IOException e1) {
-						// TODO Auto-generated catch block
 						e1.printStackTrace();
 					}
 				
@@ -230,22 +222,18 @@ public class discworld extends Applet implements ActionListener, WindowListener 
 				
 					try {
 						try {
-							Framebuilder();
 							discworldboard.InitialiseGame(4);
 						} catch (ParseException e1) {
-							// TODO Auto-generated catch block
 							e1.printStackTrace();
 						} catch (JSONException e1) {
-							// TODO Auto-generated catch block
 							e1.printStackTrace();
 						}
 					} catch (IOException e1) {
-						// TODO Auto-generated catch block
 						e1.printStackTrace();
 					}
 			}
 				
-				//Framebuilder();
+				Framebuilder();
 				
 		}
  		
