@@ -308,21 +308,21 @@ public class PresentationUtility {
 		return false;
 	}
 	
-	public boolean isThisGreenCardAssassinationCard(int greenCardId){
+	public static boolean isThisGreenCardAssassinationCard(int greenCardId){
 		
 		if(greenCardId == 7 || greenCardId == 12 || greenCardId == 22 || greenCardId == 28 || greenCardId == 47)
 			return true;
 		return false;
 	}
 	
-	public boolean isThisGreenCardTroubleMakerCard(int greenCardId){
+	public static boolean isThisGreenCardTroubleMakerCard(int greenCardId){
 		
 		if(greenCardId == 6 || greenCardId == 13 || greenCardId == 47)
 			return true;
 		return false;
 	}
 	
-	public boolean isThisGreenCardPlacingAMinionCard(int greenCardId){
+	public static boolean isThisGreenCardPlacingAMinionCard(int greenCardId){
 		
 		if(greenCardId == 1 || greenCardId == 3 || greenCardId == 7 || greenCardId == 13 || greenCardId == 15 || greenCardId == 16 
 				|| greenCardId == 20 || greenCardId == 23 || greenCardId == 26 || greenCardId == 27 || greenCardId == 32 || greenCardId == 37 
@@ -331,7 +331,7 @@ public class PresentationUtility {
 		return false;
 	}
 	
-	public boolean isThisGreenCardPlacingABuildingCard(int greenCardId){
+	public static boolean isThisGreenCardPlacingABuildingCard(int greenCardId){
 		
 		if(greenCardId == 8 || greenCardId == 14 || greenCardId == 17 || greenCardId == 24 
 				|| greenCardId == 30 || greenCardId == 33 || greenCardId == 40 || greenCardId == 43)
@@ -339,14 +339,14 @@ public class PresentationUtility {
 		return false;
 	}
 	
-	public boolean isThisGreenCardInterruptCard(int greenCardId){
+	public static boolean isThisGreenCardInterruptCard(int greenCardId){
 		
 		if(greenCardId == 17 || greenCardId == 18 || greenCardId == 45)
 			return true;
 		return false;
 	}
 	
-	public boolean isThisGreenCardRandomEventCard(int greenCardId){
+	public static boolean isThisGreenCardRandomEventCard(int greenCardId){
 		
 		if(greenCardId == 39)
 			return true;

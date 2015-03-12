@@ -10,7 +10,7 @@ public class Test20 {
 
 	@Test
 	public void test() {
-		Integer amountToBeReturned = PresentationUtility.howMuchMoneyToTakeFromBank(40);
+		Integer amountToBeReturned = PresentationUtility.howMuchMoneyToTakeFromBank("g40");
 		assertEquals(amountToBeReturned.toString(), new String("5"));
 	}
 

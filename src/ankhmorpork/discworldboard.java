@@ -253,7 +253,7 @@ public class discworldboard extends Component {
 	 * @param lstPlayers the lst players
 	 */
 	public void ViewGameState(Game AnkhMorpork){
-		String viewStateData = ViewFileTxt.ViewState(AnkhMorpork);
+		String viewStateData = ViewFileTxt.ViewState();
 		DisplayViewFile abc = new DisplayViewFile();
 		abc.Viewer(viewStateData);
 	}
@@ -320,7 +320,7 @@ public class discworldboard extends Component {
 		while(!GameEnds)
 		{
 		//Show Board
-		ViewFileTxt.ViewState(AnkhMorpork);        
+		ViewFileTxt.ViewState();        
 		//Play Game						
 		//Load Player details
 		Player objPlayer = Game.lstPlayers.get(CurrentPlayer - 1);
