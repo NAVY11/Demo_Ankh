@@ -52,26 +52,30 @@ public class GameSave {
 		//Saving Players		
 		jsonAddData.put("Players",Game.lstPlayers);
 		
-		int PlayerID = 1;
+		//Saving Building
+		jsonAddData.put("Building",Game.lstBuildings);
 		
-		for(Player objPlayer: Game.lstPlayers)
-		{
-			
-			//Saving BUILDINGS			
-			//jsonAddData.put("Buildings_"+PlayerID,objPlayer.lstBuildings);
+		//Saving Area
+		jsonAddData.put("Area",Game.lstArea);
+		
+		//Saving TroubleMaker
+		jsonAddData.put("TroubleMaker",Game.lstTroubleMaker);
+		
+		//Saving CityAreaCard
+		jsonAddData.put("CityAreaCards",Game.lstCityAreaCards);
+		
+		//Saving GreenCard
+		jsonAddData.put("GreenCards",Game.lstGreenCards);
+		
+		//Saving BrownCard
+		jsonAddData.put("BrownCard",Game.lstBrownCards);
+		
+		//Saving RandomEventCard
+		jsonAddData.put("RandomEventCards",Game.lstRandomEventCards);
+		
+		//Saving BrownCard
+		jsonAddData.put("PersonalityCard",Game.lstPersonalityCard);
 
-			//Saving MINIONS					
-			//jsonAddData.put("Minions_"+PlayerID, objPlayer.lstMinions);
-			
-			//Saving GOLD COINS
-			jsonAddData.put("GoldCoins_Avail_"+PlayerID,objPlayer.objGoldCoin.getCoin_Available());
-			
-			//Saving SILVER COINS
-			jsonAddData.put("SilverCoins_Avail_"+PlayerID,objPlayer.objSilverCoin.getCoin_Available());
-			
-			PlayerID++;
-			
-		}
 		
 
 		//Saving Bank Coin details

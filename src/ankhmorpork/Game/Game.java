@@ -201,17 +201,33 @@ public class Game {
 			return ActiveBuildings.substring(0,ActiveBuildings.length()-2);
 		}
 		
-		public static ArrayList<Building> GetBuildingsByBuildingID(int BuildingID)
+		public static boolean SetBuilding(Building Building)
 		{
-			ArrayList<Building> Buildings = new ArrayList<Building>();
+			boolean success = false;
+			for(Building objBuilding : Game.lstBuildings)
+			{
+				if(objBuilding.getBuilding_id()==Building.getBuilding_id())
+				{
+					objBuilding = Building;
+					success = true;
+					break;
+				}
+			}
+			return success;
+		}
+		
+		public static Building GetBuildingsByBuildingID(int BuildingID)
+		{
+			Building Building = new Building();
 			for(Building objBuilding : lstBuildings)
 			{
 				if(objBuilding.getBuilding_id() == BuildingID && objBuilding.getActive())
 				{
-					Buildings.add(objBuilding);
+					Building = objBuilding;
+					break;
 				}
 			}					
-			return Buildings;
+			return Building;
 		}
 		
 		public static ArrayList<Building> GetBuildingsByAreaID(int AreaID)
@@ -238,6 +254,22 @@ public class Game {
 				}
 			}					
 			return Buildings;
+		}
+		
+		public static String AreaWithNoBuilding()
+		{
+			String strAreaList = "1,2,3,4,5,6,7,8,9,10,11,12,";
+			for(Building Building : Game.lstBuildings)
+			{
+				if(Building.getArea_id()!=0)
+				{
+					if(strAreaList.contains(Building.getArea_id()+","))
+					{
+						strAreaList.replace(Building.getArea_id()+",", "");
+					}
+				}
+			}
+			return strAreaList;
 		}
 		
 		public static ArrayList<Building> GetBuildingsNotOnBoardByPlayerID(int PlayerID)
@@ -315,6 +347,16 @@ public class Game {
 				return false;
 		}
 		
+		public static boolean AreaHasMinion(Integer AreaID) 
+		{
+			ArrayList<Minion> lstMinion = new ArrayList<Minion>();
+			lstMinion = GetMinionsByAreaID(AreaID);
+			if(!lstMinion.isEmpty())
+				return true;
+			else
+				return false;
+		}
+		
 		public static boolean AreaHasTroll(Integer AreaID) 
 		{
 			ArrayList<Troll> lstDemon = new ArrayList<Troll>();
@@ -323,6 +365,22 @@ public class Game {
 				return true;
 			else
 				return false;
+		}
+		
+		public static boolean AreaHasTroubleMarker(Integer AreaID) 
+		{
+			boolean success=false;
+			for(TroubleMaker TM : Game.lstTroubleMaker)
+			{
+				if(TM.getArea_id()==AreaID)
+					{
+						success = true;
+						break;
+					}								
+			}
+			
+			return success;
+				
 		}
 		
 		//Method to return TroubleMaker based on AreaID
@@ -556,6 +614,19 @@ public class Game {
 			return objCityAreaCard;
 		}
 		
+		public static void SetCityAreaCard(CityAreaCard objCityAreaCard)
+		{
+			
+			for(CityAreaCard CityAreaCard : lstCityAreaCards)
+			{
+				if(CityAreaCard.GetCardID().equals(objCityAreaCard.GetCardID()))
+				{
+					CityAreaCard = objCityAreaCard;
+					break;
+				}
+			}
+			
+		}
 		public static String getAdjacentAreas(int areaID){
 			String adjacentAreasList = "";
 			if(areaID == 1){
