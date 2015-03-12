@@ -182,6 +182,9 @@ public class discworld extends Applet implements ActionListener, WindowListener 
 					} catch (ParseException e1) {
 						// TODO Auto-generated catch block
 						e1.printStackTrace();
+					} catch (JSONException e1) {
+						// TODO Auto-generated catch block
+						e1.printStackTrace();
 					}
 					
 					

@@ -61,7 +61,7 @@ public class FileValidation {
 					playercount ++;
 				}
 				
-				if(trollcount <=12 && demoncount<=12 && playercount<=4)
+				if((trollcount>1 && trollcount <=12) && (demoncount >1 && demoncount<=12) && (playercount >1 && playercount<=4))
 				{
 					return true;
 				}

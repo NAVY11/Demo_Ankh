@@ -1,4 +1,5 @@
 package ankhmorpork.GameLoad;
+import ankhmorpork.discworldboard;
 import ankhmorpork.Game.Game;
 import ankhmorpork.GameObjects.*;
 import ankhmorpork.GameObjects.Cards.BrownCard;
@@ -8,13 +9,18 @@ import ankhmorpork.GameObjects.Cards.PersonalityCard;
 import ankhmorpork.GameObjects.Cards.RandomEventCard;
 import ankhmorpork.GameConstants.*;
 
+import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileReader;
+import java.io.FileWriter;
 import java.io.IOException;
 import java.util.Iterator;
 
 
 
+
+
+import javax.swing.JFileChooser;
 
 //import org.json.JSONArray;
 import org.json.simple.JSONArray;
@@ -25,11 +31,12 @@ import org.json.simple.parser.ParseException;
 
 public class GameLoad {
 
-	public static Game LoadGame(FileReader objFilereader) throws IOException, ParseException
+	public static void LoadGame(FileReader objFilereader) throws IOException, ParseException, JSONException
 	{
 
-				Game LoadedGame = new Game();
-				//FileReader objFilereader = new FileReader(File);		
+				if(FileValidation.Validate(objFilereader))
+				{
+		//FileReader objFilereader = new FileReader(File);		
 				JSONParser jsonParser = new JSONParser();		
 				JSONObject json = (JSONObject)jsonParser.parse(objFilereader);		
 				
@@ -44,7 +51,7 @@ public class GameLoad {
 					objAreas.setAreaName((jsonTroll.get("area_name").toString()));	
 					objAreas.setAreaCost(Integer.parseInt(jsonTroll.get("area_cost").toString()));			
 					objAreas.setAreaID(Integer.parseInt(jsonTroll.get("area_id").toString()));
-					LoadedGame.lstArea.add(objAreas);
+					Game.lstArea.add(objAreas);
 				}
 				
 				//Loading TROLLS
@@ -57,7 +64,7 @@ public class GameLoad {
 					objTroll.setActive((Boolean)jsonTroll.get("active"));
 					objTroll.setTroll_id(Integer.parseInt(jsonTroll.get("troll_id").toString()));			
 					objTroll.setArea_id(Integer.parseInt(jsonTroll.get("area_id").toString()));
-					LoadedGame.lstTrolls.add(objTroll);
+					Game.lstTrolls.add(objTroll);
 				}
 				
 				//Loading DEMONS
@@ -70,7 +77,7 @@ public class GameLoad {
 					objDemon.setActive((Boolean)jsonTroll.get("active"));
 					objDemon.setDemon_id(Integer.parseInt(jsonTroll.get("demon_id").toString()));			
 					objDemon.setArea_id(Integer.parseInt(jsonTroll.get("area_id").toString()));
-					LoadedGame.lstDemons.add(objDemon);
+					Game.lstDemons.add(objDemon);
 				}
 				
 				//Loading TroubleMarker
@@ -83,7 +90,7 @@ public class GameLoad {
 					objTroublemaker.setActive((Boolean)jsonTroll.get("active"));
 					objTroublemaker.setTm_id(Integer.parseInt(jsonTroll.get("tm_id").toString()));			
 					objTroublemaker.setArea_id(Integer.parseInt(jsonTroll.get("area_id").toString()));
-					LoadedGame.lstTroubleMaker.add(objTroublemaker);
+					Game.lstTroubleMaker.add(objTroublemaker);
 				}
 				
 				//Loading Minions
@@ -100,7 +107,7 @@ public class GameLoad {
 					objMinions.setPlayer_id(Integer.parseInt(jsonMinions.get("player_id").toString()));
 
 
-					LoadedGame.lstMinions.add(objMinions);
+					Game.lstMinions.add(objMinions);
 				}
 				
 				//Loading Buildings
@@ -117,7 +124,7 @@ public class GameLoad {
 					objBuildings.setPlayer_id(Integer.parseInt(jsonBuildings.get("player_id").toString()));
 
 
-					LoadedGame.lstBuildings.add(objBuildings);
+					Game.lstBuildings.add(objBuildings);
 				}
 				
 				//Loading CityAreaCards
@@ -135,7 +142,7 @@ public class GameLoad {
 					objCityAreaCard.SetIsPlayed((Boolean)jsonCityAreaCard.get("IsPlayed"));
 					objCityAreaCard.setName((jsonCityAreaCard.get("Name").toString()));			
 
-					LoadedGame.lstCityAreaCards.add(objCityAreaCard);
+					Game.lstCityAreaCards.add(objCityAreaCard);
 				}
 				
 				//Loading GreenCards
@@ -151,7 +158,7 @@ public class GameLoad {
 					objGreenCard.SetIsPlayed((Boolean)jsonGreenCard.get("IsPlayed"));
 					objGreenCard.setName((jsonGreenCard.get("Name").toString()));			
 
-					LoadedGame.lstGreenCards.add(objGreenCard);
+					Game.lstGreenCards.add(objGreenCard);
 				}
 				
 				//Loading BrownCards
@@ -167,7 +174,7 @@ public class GameLoad {
 					objBrownCard.SetIsPlayed((Boolean)jsonBrownCard.get("IsPlayed"));
 					objBrownCard.setName((jsonBrownCard.get("Name").toString()));			
 
-					LoadedGame.lstBrownCards.add(objBrownCard);
+					Game.lstBrownCards.add(objBrownCard);
 				}
 				
 				//Loading PersonalityCards
@@ -183,7 +190,7 @@ public class GameLoad {
 					objPersonalityCard.SetIsPlayed((Boolean)jsonPersonalityCard.get("IsPlayed"));
 					objPersonalityCard.setName((jsonPersonalityCard.get("Name").toString()));			
 
-					LoadedGame.lstPersonalityCard.add(objPersonalityCard);
+					Game.lstPersonalityCard.add(objPersonalityCard);
 				}
 				
 				//Loading RandomEventCards
@@ -199,7 +206,7 @@ public class GameLoad {
 					objRandomEventCard.SetIsPlayed((Boolean)jsonBrownCard.get("IsPlayed"));
 					objRandomEventCard.setName((jsonBrownCard.get("Name").toString()));			
 
-					LoadedGame.lstRandomEventCards.add(objRandomEventCard);
+					Game.lstRandomEventCards.add(objRandomEventCard);
 				}
 				
 				
@@ -261,21 +268,34 @@ public class GameLoad {
 					Player.objSilverCoin.setCoin_Available(Integer.parseInt(json.get("SilverCoins_Avail_"+Player.getPlayer_id()).toString()));
 					Player.objSilverCoin.setCoin_Val(Constants.SilverCoinValue());
 															
-					LoadedGame.lstPlayers.add(Player);
+					Game.lstPlayers.add(Player);
 					
 				}
 				
 				//Loading BANK COINS
-				LoadedGame.GameBank.objGoldCoin.setCoin_Type(Constants.GoldCoin());
-				LoadedGame.GameBank.objGoldCoin.setCoin_Val(Constants.GoldCoinValue());
-				LoadedGame.GameBank.objGoldCoin.setCoin_Available(Integer.parseInt(json.get("GoldCoins_Avail_Bank").toString()));
+				Game.GameBank.objGoldCoin.setCoin_Type(Constants.GoldCoin());
+				Game.GameBank.objGoldCoin.setCoin_Val(Constants.GoldCoinValue());
+				Game.GameBank.objGoldCoin.setCoin_Available(Integer.parseInt(json.get("GoldCoins_Avail_Bank").toString()));
 				
-				LoadedGame.GameBank.objSilverCoin.setCoin_Type(Constants.SilverCoin());
-				LoadedGame.GameBank.objSilverCoin.setCoin_Val(Constants.SilverCoinValue());
-				LoadedGame.GameBank.objSilverCoin.setCoin_Available(Integer.parseInt(json.get("SilverCoins_Avail_Bank").toString()));
+				Game.GameBank.objSilverCoin.setCoin_Type(Constants.SilverCoin());
+				Game.GameBank.objSilverCoin.setCoin_Val(Constants.SilverCoinValue());
+				Game.GameBank.objSilverCoin.setCoin_Available(Integer.parseInt(json.get("SilverCoins_Avail_Bank").toString()));
 				
-				return LoadedGame;	
-	
+				}
+				
+				else
+				{
+					System.out.println("Invalid File. Please select valid file");
+					JFileChooser chooser = new JFileChooser();
+				    chooser.setCurrentDirectory(new File("/home/me/Documents"));
+				    int retrival = chooser.showSaveDialog(null);
+				    if (retrival == JFileChooser.APPROVE_OPTION) {
+				        
+				            FileWriter objFileWriter = new FileWriter(chooser.getSelectedFile()+".txt");
+				            discworldboard.SaveGame(objFileWriter);
+
+				    }
+				}
 	}
 	
 
