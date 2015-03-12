@@ -17,7 +17,14 @@ public class TroubleMaker {
 	
 	/** The active. */
 	private Boolean active;
-	
+		
+
+	public TroubleMaker(int ID) {
+		this.setTm_id(ID);
+		this.setActive(true);		
+		// TODO Auto-generated constructor stub
+	}
+
 	/**
 	 * Gets the tm_id.
 	 *

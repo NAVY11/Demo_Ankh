@@ -15,11 +15,13 @@ import PresentationUtilityCommon.PresentationUtility;
 import ankhmorpork.Game.Game;
 import ankhmorpork.GameConstants.Constants;
 import ankhmorpork.GameObjects.Area;
+import ankhmorpork.GameObjects.Building;
 import ankhmorpork.GameObjects.Coins;
 import ankhmorpork.GameObjects.Demon;
 import ankhmorpork.GameObjects.Minion;
 import ankhmorpork.GameObjects.Player;
 import ankhmorpork.GameObjects.Troll;
+import ankhmorpork.GameObjects.TroubleMaker;
 import ankhmorpork.GameObjects.Cards.GreenCard;
 
 // TODO: Auto-generated Javadoc
@@ -81,6 +83,16 @@ public class GameStart {
 			Demon objDemon = new Demon(i);
 			Game.lstDemons.add(objDemon);
 		}
+		//Initialize Trouble Marker
+		for(int i=1; i<5; i++)
+		{
+			TroubleMaker objTroubleMarker = new TroubleMaker(i);
+			if(i==1 ||i==5||i==7)
+			{
+				objTroubleMarker.setArea_id(i);
+			}
+			Game.lstTroubleMaker.add(objTroubleMarker);
+		}
 		
 		//Below line can be deleted**
 		BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
@@ -104,7 +116,38 @@ public class GameStart {
 			Player objPlayer = new Player(i,Name,Color);
 			Game.lstPlayers.add(objPlayer);	
 		}
-		
+		//Initialze Minions and Buildings
+				for(int PlayerID = 1; PlayerID<=iNoOfPlayers;PlayerID++)
+				{
+					//Create minions for this Player
+					for(int i=1; i<=Constants.MinionsPerPlayer();i++)
+					{
+						Integer MinionID = 100*PlayerID + i;
+						Integer BuildingID = MinionID;
+						Integer AreaCode = 0;
+						if(i<4)
+						{
+							if(i==1)
+							{
+								AreaCode=1;
+							}
+							else if(i==2)
+							{
+								AreaCode=5;
+							}
+							else if(i==3)
+							{
+								AreaCode=7;
+							}
+						}
+						Player objPlayer = Game.GetPlayer(PlayerID);
+						Minion objMinion = new Minion(MinionID,objPlayer.getPlayer_color(),AreaCode,PlayerID);
+						Game.lstMinions.add(objMinion);
+						Building objBuilding = new Building(BuildingID,objPlayer.getPlayer_color(),0,PlayerID);
+						Game.lstBuildings.add(objBuilding);
+					}
+
+				}
 		//To display Output in console
 		int i=1;
 		for(Player objPlayer: Game.lstPlayers)
