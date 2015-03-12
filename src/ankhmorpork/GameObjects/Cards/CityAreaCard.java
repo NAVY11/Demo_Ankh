@@ -96,7 +96,7 @@ public class CityAreaCard extends Cards{
 			BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
 			System.out.println("Would you like to perform this action : Y/N ");
 			String userinput = br.readLine();
-			if (userinput.equals('Y'))
+			if (userinput.equals('Y') || userinput.equals('y'))
 			{
 				int noOfSilverCoins = Game.GameBank.objSilverCoin.getCoin_Available();
 				if (noOfSilverCoins > 0 )
@@ -126,7 +126,7 @@ public class CityAreaCard extends Cards{
 			BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
 			System.out.println("Would you like to perform this action : Y/N ");
 			String userinput = br.readLine();
-			if (userinput.equals('Y'))
+			if (userinput.equals('Y') || userinput.equals('y'))
 			{
 				int noOfSilverCoins = Game.GameBank.objSilverCoin.getCoin_Available();
 				if (noOfSilverCoins > 0 )
@@ -157,7 +157,7 @@ public class CityAreaCard extends Cards{
 			System.out.println("Would you like to perform this action : Y/N ");
 			String userinput;
 			userinput = br.readLine();
-			if (userinput.equals('Y'))
+			if (userinput.equals('Y') || userinput.equals('y'))
 			{
 				int noOfSilverCoins = Game.GameBank.objSilverCoin.getCoin_Available();
 				if (noOfSilverCoins > 0 )
@@ -187,7 +187,7 @@ public class CityAreaCard extends Cards{
 			System.out.println("Would you like to perform this action : Y/N ");
 			String userinput;
 			userinput = br.readLine();
-			if (userinput.equals('Y'))
+			if (userinput.equals('Y') || userinput.equals('y'))
 			{
 				int noOfSilverCoins = Game.GameBank.objSilverCoin.getCoin_Available();
 				if (noOfSilverCoins > 0 )
@@ -215,7 +215,7 @@ public class CityAreaCard extends Cards{
 			System.out.println("Would you like to perform this action : Y/N ");
 			String userinput;
 			userinput = br.readLine();
-			if (userinput.equals('Y'))
+			if (userinput.equals('Y') || userinput.equals('y'))
 			{
 				int noOfSilverCoins = Game.GameBank.objSilverCoin.getCoin_Available();
 				if (noOfSilverCoins > 0 )
@@ -235,20 +235,24 @@ public class CityAreaCard extends Cards{
 	return status;
 	}
 	
-	public boolean DimwellAction(Player objPlayer, Minion objPlayerMinionId)
+	public boolean DimwellAction(Player objPlayer)
 	{
 		boolean status = false;
 		try {
 			BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
 			System.out.println("Would you like to perform this action : Y/N ");
 			String userinput = br.readLine();
-			if (userinput.equals('Y'))
+			if (userinput.equals('Y') || userinput.equals('y'))
 			{
+				ArrayList<Minion> minionsByPlayerList = Game.GetMinionsNotOnBoardByPlayerID(objPlayer.getPlayer_id());
+				//System.out.println(" Minions not on board List" + );
+				//	minionsByPlayerList.get(0).setPlayer_id(objPlayer.getPlayer_id());
+				//	Minion objPlayerMinionId = new Minion();
 				System.out.println("Enter AreaId where you want to place the minion 8,7,9,5 : ");
 				BufferedReader areaidinput = new BufferedReader(new InputStreamReader(System.in));
 				int areaIdToPlace = Integer.parseInt(areaidinput.readLine());
-				if(PresentationUtility.canMinionBePlacedInAdjacentArea(objPlayer.getPlayer_id(), objPlayerMinionId.getMinion_id(), 0, areaIdToPlace)){
-				objPlayerMinionId.setArea_id(areaIdToPlace);
+				if(PresentationUtility.canMinionBePlacedInAdjacentArea(objPlayer.getPlayer_id(), minionsByPlayerList.get(0).getMinion_id(), 0, areaIdToPlace)){
+					minionsByPlayerList.get(0).setArea_id(areaIdToPlace);
 			}
 				
 			int noOfSilverCoins = Game.GameBank.objSilverCoin.getCoin_Available();
@@ -269,22 +273,27 @@ public class CityAreaCard extends Cards{
 	return status;
 }
 
-public boolean DollySisterAction(Player objPlayer, Minion objPlayerMinionId)
+public boolean DollySisterAction(Player objPlayer)
 	{
 		boolean status = false;
 		try {
 			BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
 			System.out.println("Would you like to perform this action : Y/N ");
 			String userinput = br.readLine();
-			if (userinput.equals('Y'))
+			if (userinput.equals('Y') || userinput.equals('y'))
 			{
+				ArrayList<Minion> minionsByPlayerList = Game.GetMinionsNotOnBoardByPlayerID(objPlayer.getPlayer_id());
+				
+			//System.out.println(" Minions not on board List" + );
+			//	minionsByPlayerList.get(0).setPlayer_id(objPlayer.getPlayer_id());
+			//	Minion objPlayerMinionId = new Minion();
 				System.out.println("Enter AreaId where you want to place the minion 1,3,2,12 : ");
 				BufferedReader br1 = new BufferedReader(new InputStreamReader(System.in));
 				int areaIdToPlace = Integer.parseInt(br1.readLine());
-				if(PresentationUtility.canMinionBePlacedInAdjacentArea(objPlayer.getPlayer_id(), objPlayerMinionId.getMinion_id(), 0, areaIdToPlace)){
-					objPlayerMinionId.setArea_id(areaIdToPlace);
+				if(PresentationUtility.canMinionBePlacedInAdjacentArea(objPlayer.getPlayer_id(), minionsByPlayerList.get(0).getMinion_id(), 0, areaIdToPlace)){
+					minionsByPlayerList.get(0).setArea_id(areaIdToPlace);
 				}
-				
+
 				int noOfSilverCoins = Game.GameBank.objSilverCoin.getCoin_Available();
 				if (noOfSilverCoins > 0 )
 				{
@@ -308,7 +317,7 @@ public boolean TheScoursAction(Player objPlayer) throws IOException{
 	BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
 	System.out.println("Would you like to perform this action : Y/N ");
 	String userinput = br.readLine();
-	if (userinput.equals('Y'))
+	if (userinput.equals('Y') || userinput.equals('y'))
 	{
 	//String CardList = Game.getGreenCardIDForPlayer(objPlayer.getPlayer_id());
 	//System.out.println("Which card do you want to discard :" + CardList);
@@ -335,7 +344,7 @@ public boolean TheShadesAction(Player objPlayer) throws NumberFormatException, I
 	BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
 	System.out.println("Would you like to perform this action : Y/N ");
 	String userinput = br.readLine();
-	if (userinput.equals('Y'))
+	if (userinput.equals('Y') || userinput.equals('y'))
 	{
 		//To draw one card from deck
 		//String areaList = Game.getAreaIDForPlayer(objPlayer.getPlayer_id());
@@ -343,7 +352,7 @@ public boolean TheShadesAction(Player objPlayer) throws NumberFormatException, I
 		BufferedReader br1 = new BufferedReader(new InputStreamReader(System.in));
 		int areaID = Integer.parseInt(br1.readLine());
 			String adjacentAreaidList = Game.getAdjacentAreas(7);
-			System.out.println("Enter the areaID among the list you want place the troublemarker adjacent to it:" + adjacentAreaidList);
+			System.out.println("Enter the areaID among the list you want place the troublemarker adjacent to it:" + adjacentAreaidList + 7);
 					BufferedReader br2 = new BufferedReader(new InputStreamReader(System.in));
 					int adjacentAreaID = Integer.parseInt(br2.readLine());
 					 TroubleMaker objTroubleMaker = Game.GetTroubleMakerNotOnBoard();
@@ -358,12 +367,12 @@ public boolean SmallGodsAction(Player objPlayer) throws IOException{
 		return true;
 }
 
-public boolean IsleOfGodsAction(Player objPlayer, Minion objPlayerMinionId) throws IOException{
+public boolean IsleOfGodsAction(Player objPlayer) throws IOException{
 	boolean status = false;
 	BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
 	System.out.println("Would you like to perform this action : Y/N ");
 	String userinput = br.readLine();
-	if (userinput.equals('Y'))
+	if (userinput.equals('Y') || userinput.equals('y'))
 	{
 		int noOfPlayerCoins = objPlayer.objSilverCoin.getCoin_Available();
 		if (noOfPlayerCoins > 0 )
@@ -388,6 +397,11 @@ public boolean IsleOfGodsAction(Player objPlayer, Minion objPlayerMinionId) thro
 
 public boolean UnrealEstate(Player objPlayer) throws IOException{
 	boolean status = false;
+	BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+	System.out.println("Would you like to perform this action : Y/N ");
+	String userinput = br.readLine();
+	if (userinput.equals('Y') || userinput.equals('y'))
+	{	
 	Game g1 = new Game();
 	String greenCard = Player.takeOneGreenCardFromDeck(g1);
 	objPlayer.setGreenCardListCommaSeparated(objPlayer.getGreenCardListCommaSeparated() + "," + greenCard);
@@ -400,6 +414,7 @@ public boolean UnrealEstate(Player objPlayer) throws IOException{
 	GreenCard objGC = Game.GetGreenCard(cardID);
 	objGC.IsPlayed = true;
 	status = true;
+	}
 	return status;
 }
 	

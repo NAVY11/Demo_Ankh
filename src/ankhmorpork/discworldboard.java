@@ -406,11 +406,13 @@ public class discworldboard extends Component {
 				GreenCard grnCard = Game.GetGreenCard(CardID);
 				String[] ActionArray = grnCard.GetAction();
 				String ActionList = Game.GetGreenCardActions(CardID);
-				System.out.println("Card " + grnCard.getName() + " has following actions :");
+				System.out.println("Card '" + grnCard.getName() + "' has following actions :");
 				System.out.println(ActionList);
 				for(int i = 0; i<ActionArray.length; i++)
 				{
 					String ans = null;
+					if(i!=ActionArray.length-1)
+					{
 					System.out.println("Do you wish to perform " + ActionArray[i] + " action? Y/N");
 					while(true)
 					{						
@@ -422,7 +424,12 @@ public class discworldboard extends Component {
 						else
 							System.out.println("Incorrect input. Please try again.");
 					}
-					
+					}
+					else
+					{
+						System.out.println("Performing action "+ ActionArray[i]);
+						ans="Y";
+					}
 					if(ans.equalsIgnoreCase("Y"))
 					{
 						//Does a Player wish to interrupt? //TO DO

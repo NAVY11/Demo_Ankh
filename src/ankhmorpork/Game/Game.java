@@ -440,7 +440,7 @@ public class Game {
 			StringBuilder sbCardIDs = new StringBuilder();
 			for(GreenCard GC : Game.lstGreenCards)
 			{
-				if(GC.IsPlayed==false)
+				if(GC.IsPlayed==false && GC.getPlayerID()==0)
 				{
 					sbCardIDs.append(GC.GetCardID()+",");
 				}
