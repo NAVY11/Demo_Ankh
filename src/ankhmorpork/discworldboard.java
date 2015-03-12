@@ -282,9 +282,9 @@ public class discworldboard extends Component {
 	 * @throws IOException Signals that an I/O exception has occurred.
 	 * @throws ParseException the parse exception
 	 */
-	public Game Loadgamefetch(FileReader objFileReader) throws IOException, ParseException
+	public void Loadgamefetch(FileReader objFileReader) throws IOException, ParseException
 	{
-		return GameLoad.LoadGame(objFileReader);
+		 GameLoad.LoadGame(objFileReader);
 	}
 	
 	/**
@@ -373,6 +373,7 @@ public class discworldboard extends Component {
 					if(ans == "Y")
 					{
 						//Perform Action
+						objPlayer.PerformCardAction(ActionArray[i], CardID);
 						
 					}
 					else

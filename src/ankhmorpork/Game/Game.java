@@ -443,4 +443,6 @@ public class Game {
 			
 			return objCityAreaCard;
 		}
+		
+		//Method to return Gold and Silver Coins
 }

@@ -353,15 +353,15 @@ public class PresentationUtility {
 		return false;
 	}
 	
-	public Integer howMuchMoneyToTakeFromBank(int greenCardId){
+public static Integer howMuchMoneyToTakeFromBank(String greenCardIdStr){
 		
-		if(greenCardId == 28 || greenCardId == 47)
+		if(greenCardIdStr.equals("g28") || greenCardIdStr.equals("g47"))
 			return 1;
-		else if(greenCardId == 7 || greenCardId == 22 || greenCardId == 33)
+		else if(greenCardIdStr.equals("g7") || greenCardIdStr.equals("g22") || greenCardIdStr.equals("g33"))
 			return 2;
-		else if(greenCardId == 12 || greenCardId == 16 || greenCardId == 27 || greenCardId == 42)
+		else if(greenCardIdStr.equals("g12") || greenCardIdStr.equals("g16") || greenCardIdStr.equals("g27") || greenCardIdStr.equals("g42"))
 			return 3;
-		else if(greenCardId == 40)
+		else if(greenCardIdStr.equals("g40"))
 			return 5;
 		return 0;
 	}
