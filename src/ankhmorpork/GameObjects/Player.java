@@ -750,7 +750,7 @@ public class Player {
 		//Player performs action
 		public boolean PerformCardAction(String ActionID, String CardID) throws IOException
 		{
-			boolean success = false;
+			boolean success = true;
 			if(ActionID.equalsIgnoreCase("Scroll"))
 			{
 			switch(CardID)
@@ -792,10 +792,10 @@ public class Player {
 				switch(ActionID)
 				{
 				case "Assassination" : this.Assassination();
-				case "Remove one trouble marker" : UserRemoveOneTroubleMarker();
-				case "Take money" : TakeMoneyFromBank(CardID);
+				case "Remove one trouble marker" : this.UserRemoveOneTroubleMarker();
+				case "Take money" : this.TakeMoneyFromBank(CardID);
 //				case "Random Event" : 
-//				case "Play another card" : 
+				case "Play another card" : this.PlayAnotherCard(CardID);
 //				case "Interrupt " : 
 				}
 			}
