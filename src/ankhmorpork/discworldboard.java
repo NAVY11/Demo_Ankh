@@ -293,8 +293,10 @@ public class discworldboard extends Component {
 	 * @param iNoOfPlayers the i no of players
 	 * @param AnkhMorpork the ankh morpork
 	 * @throws IOException 
+	 * @throws JSONException 
+	 * @throws ParseException 
 	 */
-	public void InitialiseGame(int iNoOfPlayers, Game AnkhMorpork) throws IOException
+	public void InitialiseGame(int iNoOfPlayers, Game AnkhMorpork) throws IOException, ParseException, JSONException
 	{					
 		String[] Players = new String[10];
 		String[] Colors = new String[10];
@@ -362,7 +364,7 @@ public class discworldboard extends Component {
 					while(true)
 					{						
 						ans = BR.readLine();
-						if(ans=="Y" || ans=="N")
+						if(ans.equalsIgnoreCase("Y") || ans.equalsIgnoreCase("N"))
 						{
 							break;
 						}
@@ -370,7 +372,7 @@ public class discworldboard extends Component {
 							System.out.println("Incorrect input. Please try again.");
 					}
 					
-					if(ans == "Y")
+					if(ans.equalsIgnoreCase("Y"))
 					{
 						//Perform Action
 						objPlayer.PerformCardAction(ActionArray[i], CardID);

@@ -3,6 +3,7 @@
  */
 package ankhmorpork.GameLoad;
 import java.io.BufferedReader;
+import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.util.ArrayList;
@@ -13,7 +14,13 @@ import org.json.simple.parser.ParseException;
 import PresentationUtilityCommon.PresentationUtility;
 import ankhmorpork.Game.Game;
 import ankhmorpork.GameConstants.Constants;
-import ankhmorpork.GameObjects.*;
+import ankhmorpork.GameObjects.Area;
+import ankhmorpork.GameObjects.Coins;
+import ankhmorpork.GameObjects.Demon;
+import ankhmorpork.GameObjects.Minion;
+import ankhmorpork.GameObjects.Player;
+import ankhmorpork.GameObjects.Troll;
+import ankhmorpork.GameObjects.Cards.GreenCard;
 
 // TODO: Auto-generated Javadoc
 /**
@@ -30,8 +37,12 @@ public class GameStart {
 	 * @param Colors the colors
 	 * @param iNoOfPlayers the i no of players
 	 * @param AnkhMorpork the ankh morpork
+	 * @throws JSONException 
+	 * @throws ParseException 
+	 * @throws IOException 
+	 * @throws FileNotFoundException 
 	 */
-	public static void StartNewGame(String Players[], String Colors[], int iNoOfPlayers,Game AnkhMorpork)
+	public static void StartNewGame(String Players[], String Colors[], int iNoOfPlayers,Game AnkhMorpork) throws FileNotFoundException, IOException, ParseException, JSONException
 	{
 		Area[] AreaList = new Area[13];	
 		AreaList[0]=new Area(0,0,"Not on Board",0);
@@ -55,21 +66,21 @@ public class GameStart {
 		
 		String getFiveDifferentBrownNumbers = "", getFiveDifferentGreenNumbers = "", getRandomCityAreaCardsForPlayers = "";
 		Integer getOneDifferentPersonalityCard;
-		
+		GameLoad.LoadNewGame_Cards();
 			//New Game
 		//Game AnkhMorpork = new Game();
 		//Initialize Trolls and Players
 		for(int i=1; i<4; i++)
 		{
 			Troll objTroll = new Troll(i);
-			AnkhMorpork.lstTrolls.add(objTroll);
+			Game.lstTrolls.add(objTroll);
 		}
 		
 		//Initialize Demons
 		for(int i=1; i<5; i++)
 		{
 			Demon objDemon = new Demon(i);
-			AnkhMorpork.lstDemons.add(objDemon);
+			Game.lstDemons.add(objDemon);
 		}
 		
 		//Below line can be deleted**
@@ -77,10 +88,10 @@ public class GameStart {
 	    //**
 		
 		//Initialize Bank Details
-		AnkhMorpork.GameBank.objGoldCoin = new Coins(Constants.GoldCoin());
-		AnkhMorpork.GameBank.objGoldCoin.setCoin_Available(getDefaultBankCoins(Constants.GoldCoin(),iNoOfPlayers));
-		AnkhMorpork.GameBank.objSilverCoin = new Coins(Constants.SilverCoin());
-		AnkhMorpork.GameBank.objSilverCoin.setCoin_Available(getDefaultBankCoins(Constants.SilverCoin(),iNoOfPlayers));
+		Game.GameBank.objGoldCoin = new Coins(Constants.GoldCoin());
+		Game.GameBank.objGoldCoin.setCoin_Available(getDefaultBankCoins(Constants.GoldCoin(),iNoOfPlayers));
+		Game.GameBank.objSilverCoin = new Coins(Constants.SilverCoin());
+		Game.GameBank.objSilverCoin.setCoin_Available(getDefaultBankCoins(Constants.SilverCoin(),iNoOfPlayers));
 		
 	    //Initialize Players			    
 		for(int i=1;i<=iNoOfPlayers;i++)
@@ -92,12 +103,12 @@ public class GameStart {
 			String Name = Players[i];
 			String Color = Colors[i];
 			Player objPlayer = new Player(i,Name,Color);
-			AnkhMorpork.lstPlayers.add(objPlayer);	
+			Game.lstPlayers.add(objPlayer);	
 		}
 		
 		//To display Output in console
 		int i=1;
-		for(Player objPlayer: AnkhMorpork.lstPlayers)
+		for(Player objPlayer: Game.lstPlayers)
 		{		
 			System.out.println("Player "+ i + " Details");
 			System.out.println("Player ID: "+objPlayer.getPlayer_id()+" Player Name:"+objPlayer.getPlayer_name()+" Player Color:"+objPlayer.getPlayer_color());
@@ -141,6 +152,13 @@ public class GameStart {
 				
 				if(randomNumberAtIndexNumber > 0){
 					getFiveDifferentGreenNumbers += randomNumberAtIndexNumber+",";
+					String getUniqueDifferentGreenNumberCard = randomNumberAtIndexNumber+",";;
+					for(GreenCard greenCard1 : Game.lstGreenCards){
+						if((greenCard1.GetCardID()+",").equals("g"+getUniqueDifferentGreenNumberCard)){
+							greenCard1.setPlayerID(objPlayer.getPlayer_id());
+							break;
+						}
+					}
 					countGreenCard += 1;
 					initializingGreenCardsArr.remove(randomNumberAtIndexNumber);
 				
@@ -164,6 +182,7 @@ public class GameStart {
 					getRandomCityAreaCardsForPlayers = randomNumberAtIndexNumberForCityAreaCard+",";
 					countCityAreaCard += 1;
 					initializingCityAreaCardsArr.remove(randomNumberAtIndexNumberForCityAreaCard);
+					
 				
 					if(countCityAreaCard == 1){
 						if (getRandomCityAreaCardsForPlayers.endsWith(",")) {
