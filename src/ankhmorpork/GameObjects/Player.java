@@ -755,47 +755,47 @@ public class Player {
 			{
 			switch(CardID)
 			{
-				case "g1" :this.mrBoggisFunctionality();
-				case "g2" :this.mrBentFunctionality();
-				case "g3" :this.theBeggersGuildFunctionality();
-				case "g4" :this.mrBentFunctionality();
-				case "g5" :this.theAnkhMorporkSunshineDragonSanctuaryFunctionality();								
-				case "g9" :this.theDuckmanFunctionality();
-				case "g10" :this.theDrumknottFunctionality();
-				case "g11" :this.theCMOTDibblerFunctionality();
-				case "g14" :this.theMrsCakeFunctionality();
-				case "g19" :this.theDuckmanFunctionality();
-				case "g20" :this.theFoolsGuildFunctionality();
-				case "g21" :this.theFireBrigadeFunctionality();
-				case "g23" :this.theHistoryMonksFunctionality();
+				case "g1" :this.mrBoggisFunctionality();break;
+				case "g2" :this.mrBentFunctionality();break;
+				case "g3" :this.theBeggersGuildFunctionality();break;
+				case "g4" :this.mrBentFunctionality();break;
+				case "g5" :this.theAnkhMorporkSunshineDragonSanctuaryFunctionality();break;								
+				case "g9" :this.theDuckmanFunctionality();break;
+				case "g10" :this.theDrumknottFunctionality();break;
+				case "g11" :this.theCMOTDibblerFunctionality();break;
+				case "g14" :this.theMrsCakeFunctionality();break;
+				case "g19" :this.theDuckmanFunctionality();break;
+				case "g20" :this.theFoolsGuildFunctionality();break;
+				case "g21" :this.theFireBrigadeFunctionality();break;
+				case "g23" :this.theHistoryMonksFunctionality();break;
 				//case "g24" : this.get
-				case "g25" :this.theCMOTDibblerFunctionality();
+				case "g25" :this.theCMOTDibblerFunctionality();break;
 				//case "g26" : this. harry king
-				case "g30" :this.theDyskFunctionality();
-				case "g31" :this.theNoobyNoobsFunctionality();
-				case "g32" :this.theModoFunctionality();
-				case "g34" :this.theLibrarianFunctionality();
-				case "g35" :this.theLibrarianFunctionality();
+				case "g30" :this.theDyskFunctionality();break;
+				case "g31" :this.theNoobyNoobsFunctionality();break;
+				case "g32" :this.theModoFunctionality();break;
+				case "g34" :this.theLibrarianFunctionality();break;
+				case "g35" :this.theLibrarianFunctionality();break;
 				//case "g36" : this.thes shonky shop
-				case "g37" :this.theSacharissaCripslockFunctionality();
-				case "g38" :this.theRosiePalmFunctionality();
-				case "g39" :this.theDyskFunctionality();
-				case "g41" :this.theBeggersGuildFunctionality();
-				case "g43" :this.theZorgoTheRetroFunctionality();
-				case "g44" :this.theFoolsGuildFunctionality();
-				case "g46" :this.theRosiePalmFunctionality();
-				case "g48" :this.mrBoggisFunctionality();
+				case "g37" :this.theSacharissaCripslockFunctionality();break;
+				case "g38" :this.theRosiePalmFunctionality();break;
+				case "g39" :this.theDyskFunctionality();break;
+				case "g41" :this.theBeggersGuildFunctionality();break;
+				case "g43" :this.theZorgoTheRetroFunctionality();break;
+				case "g44" :this.theFoolsGuildFunctionality();break;
+				case "g46" :this.theRosiePalmFunctionality();break;
+				case "g48" :this.mrBoggisFunctionality();break;
 			}
 			}
 			else
 			{
 				switch(ActionID)
 				{
-				case "Assassination" : this.Assassination();
-				case "Remove one trouble marker" : this.UserRemoveOneTroubleMarker();
-				case "Take money" : this.TakeMoneyFromBank(CardID);
+				case "Assassination" : this.Assassination();break;
+				case "Remove one trouble marker" : this.UserRemoveOneTroubleMarker();break;
+				case "Take money" : this.TakeMoneyFromBank(CardID);break;
 //				case "Random Event" : 
-				case "Play another card" : this.PlayAnotherCard(CardID);
+				case "Play another card" : this.PlayAnotherCard(CardID);break;
 //				case "Interrupt " : 
 				}
 			}
