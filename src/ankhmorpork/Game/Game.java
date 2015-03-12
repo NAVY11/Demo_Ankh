@@ -2,6 +2,7 @@ package ankhmorpork.Game;
 import java.util.ArrayList;
 
 import PresentationUtilityCommon.PresentationUtility;
+import ankhmorpork.GameConstants.Constants;
 import ankhmorpork.GameObjects.Area;
 import ankhmorpork.GameObjects.Bank;
 import ankhmorpork.GameObjects.Building;
@@ -49,6 +50,20 @@ public class Game {
 		}
 		
 		return Player;
+	}
+	
+	//Method to Set Player from Player ID
+	public static void SetPlayer(Player Player)
+	{		
+		for(Player objPlayer : lstPlayers)
+		{
+			if(objPlayer.getPlayer_id()== Player.getPlayer_id())
+			{
+				objPlayer = Player;
+				break;
+			}
+		}
+			
 	}
 	
 	//Method to Get Area from Area ID
@@ -570,4 +585,77 @@ public class Game {
 			}
 			return adjacentAreasList;
 		}
+		
+		//Method to make Payment
+		public static boolean PaymentPlayerToPlayer(int PayToPlayerID, int PaidByPlayer, int Amount)
+		{
+			Player objPayToPlayer = GetPlayer(PayToPlayerID);
+			Player objPaidByPlayer =GetPlayer(PaidByPlayer);
+						
+			if(objPaidByPlayer.getPlayerAmount()> Amount)
+			{
+				objPaidByPlayer.setPlayer_amount(objPaidByPlayer.getPlayer_amount()-Amount);
+				objPayToPlayer.setPlayer_amount(objPayToPlayer.getPlayer_amount()+ Amount);
+				Game.SetPlayer(objPaidByPlayer);
+				Game.SetPlayer(objPayToPlayer);
+				return true;
+//				while(Amount/5 > 0 && objPaidByPlayer.objGoldCoin.getCoin_Available()>0)
+//				{
+//					//Add 1 Gold Coin to Player
+//					objPaidByPlayer.objGoldCoin.setCoin_Available(objPaidByPlayer.objGoldCoin.getCoin_Available()-1);
+//					//Deduct amount
+//					Amount-=Constants.GoldCoinValue();
+//				}
+//				
+//				while(Amount>0)
+//				{
+//					//Add 1 Gold Coin to Player
+//					objPaidByPlayer.objSilverCoin.setCoin_Available(objPaidByPlayer.objSilverCoin.getCoin_Available()-1);
+//					//Deduct amount
+//					Amount-=Constants.SilverCoinValue();
+//				}
+			
+			}			
+			else
+			{
+				return false;
+			}
+		}
+		
+		//Method to make Payment to Bank
+		public static boolean PaymentToBank(int PaidByPlayer, int Amount)
+		{			
+			Player objPaidByPlayer =GetPlayer(PaidByPlayer);
+						
+			if(objPaidByPlayer.getPlayerAmount()> Amount)
+			{
+				objPaidByPlayer.setPlayer_amount(objPaidByPlayer.getPlayer_amount()-Amount);
+				Game.GameBank.setBankAmount(Game.GameBank.getBankAmount()+ Amount);
+				Game.SetPlayer(objPaidByPlayer);
+				return true;
+			}
+			else
+			{
+				return false;
+			}
+		}
+		
+		//Method to take Payment from Bank
+				public static boolean PaymentFromBank(int PayToPlayer, int Amount)
+				{			
+					Player objPayToPlayer =GetPlayer(PayToPlayer);
+								
+					if(Game.GameBank.getBankAmount()> Amount)
+					{
+						objPayToPlayer.setPlayer_amount(objPayToPlayer.getPlayer_amount()+Amount);
+						Game.GameBank.setBankAmount(Game.GameBank.getBankAmount()- Amount);
+						Game.SetPlayer(objPayToPlayer);
+						return true;
+					}
+					else
+					{
+						return false;
+					}
+				}
+
 }
