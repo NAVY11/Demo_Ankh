@@ -361,7 +361,7 @@ public class discworldboard extends Component {
 				GreenCard grnCard = Game.GetGreenCard(CardID);
 				String[] ActionArray = grnCard.GetAction();
 				String ActionList = Game.GetGreenCardActions(CardID);
-				System.out.println("Card " + grnCard.getName() + " has following actions :");
+				System.out.println("Card '" + grnCard.getName() + "' has following actions :");
 				System.out.println(ActionList);
 				for(int i = 0; i<ActionArray.length; i++)
 				{
