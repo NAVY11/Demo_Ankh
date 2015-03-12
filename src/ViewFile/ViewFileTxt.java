@@ -44,10 +44,10 @@ public class ViewFileTxt {
 	 * @param lstPlayers the lst players
 	 * @return the string
 	 */
-	public static String ViewState(Game AnkhMorpork){
+	public static String ViewState(){
 		//return dataToStoreInTextFile(lstPlayers);
 		String saveTheDetailsInTextFile = "";
-		ArrayList<Player> lstPlayers = AnkhMorpork.lstPlayers;
+		ArrayList<Player> lstPlayers = Game.lstPlayers;
 		saveTheDetailsInTextFile += playerGeneralInfo(lstPlayers);
 		saveTheDetailsInTextFile += "\n\n";
 		saveTheDetailsInTextFile += currentAndNextPlayerTurn(lstPlayers);
@@ -56,7 +56,7 @@ public class ViewFileTxt {
 		saveTheDetailsInTextFile += "\n\n";
 		saveTheDetailsInTextFile += playerDetails(lstPlayers);
 		saveTheDetailsInTextFile += "\n\n";
-		saveTheDetailsInTextFile += totalAmountBankOwns(AnkhMorpork);
+		saveTheDetailsInTextFile += totalAmountBankOwns();//to be chkd
 		
 		return saveTheDetailsInTextFile;
 	}
@@ -282,9 +282,9 @@ public class ViewFileTxt {
 	 *
 	 * @return the string
 	 */
-	public static String totalAmountBankOwns(Game AnkhMorpork){
+	public static String totalAmountBankOwns(){
 		
-		String totalAmountStr = "The bank has "+AnkhMorpork.GameBank.getBankAmount()+" Ankh-Morpork dollars.";
+		String totalAmountStr = "The bank has "+ Game.GameBank.getBankAmount()+" Ankh-Morpork dollars.";
 		
 		return totalAmountStr;
 		
