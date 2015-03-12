@@ -18,11 +18,13 @@ import java.awt.event.ActionListener;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
 import java.io.BufferedReader;
+import java.io.File;
 import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.io.InputStreamReader;
 
+import javax.swing.JFileChooser;
 import javax.swing.JOptionPane;
 
 import org.json.JSONException;
@@ -34,6 +36,7 @@ import ViewFile.DisplayViewFile;
 import ViewFile.ViewFileTxt;
 import ankhmorpork.Game.Game;
 import ankhmorpork.GameObjects.*;
+import ankhmorpork.GameObjects.Cards.CityAreaCard;
 import ankhmorpork.GameObjects.Cards.GreenCard;
 import ankhmorpork.GameLoad.*;
 
@@ -267,7 +270,7 @@ public class discworldboard extends Component {
 	 * @throws IOException Signals that an I/O exception has occurred.
 	 * @throws JSONException the JSON exception
 	 */
-	public void SaveGame(FileWriter objFileWriter) throws IOException, JSONException{
+	public static void SaveGame(FileWriter objFileWriter) throws IOException, JSONException{
 		GameSave.SaveGame(objFileWriter);
 	}
 	
@@ -326,15 +329,57 @@ public class discworldboard extends Component {
 			
 			CurrentPlayer = PresentationUtility.nextPlayerTurn(CurrentPlayer, iNoOfPlayers); 
 		//Show Board
-		ViewFileTxt.ViewState();        
+		System.out.print(ViewFileTxt.ViewState());
 		//Play Game						
 		//Load Player details
 		Player objPlayer = Game.lstPlayers.get(CurrentPlayer - 1);
+		System.out.println("Enter 'saveGame' to save the Current State. Else write 'cont' to continue ");
+		BufferedReader brOption = new BufferedReader(new InputStreamReader(System.in));
+		String brOptionSelected = brOption.readLine();
+		if(brOptionSelected.equals("saveGame")){
+			JFileChooser chooser = new JFileChooser();
+			    chooser.setCurrentDirectory(new File("/home/me/Documents"));
+			    int retrival = chooser.showSaveDialog(null);
+			    if (retrival == JFileChooser.APPROVE_OPTION) {
+			        
+			            FileWriter objFileWriter = new FileWriter(chooser.getSelectedFile()+".txt");
+			            discworldboard.SaveGame(objFileWriter);
+
+			    }
+		}
 		System.out.println("It is "+objPlayer.getPlayer_name()+"'s turn");
 		//********Which Card to Play?
 		System.out.println("Which card to play?");
 		
-		//Show available cards
+		//Show available city area cards
+		StringBuilder sbValidCityAreaIDs = new StringBuilder();
+		boolean hasCityAreaCard = false;
+		for(CityAreaCard cityAreaCard : Game.lstCityAreaCards)
+		{	
+			if(cityAreaCard.getPlayerID()==objPlayer.getPlayer_id())
+			{
+				sbValidCityAreaIDs.append(cityAreaCard.GetCardID());
+				hasCityAreaCard = true;
+				System.out.println(cityAreaCard.CardID + " : " + cityAreaCard.getName());
+			}
+		}
+		
+		if(hasCityAreaCard){
+			//Accept City Area Card to play from Player
+			String CardID = null;
+			while(true)
+			{
+				System.out.println("Enter a City Area Card ID");
+				BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+				CardID = br.readLine().toString();
+				if((sbValidCityAreaIDs.toString()).contains(CardID))
+				{
+					break;
+				}
+			}
+		}
+
+		//Show available greeen cards
 		StringBuilder sbValidIDs = new StringBuilder();
 		for(GreenCard grnCard: Game.lstGreenCards)
 		{	
@@ -349,7 +394,7 @@ public class discworldboard extends Component {
 		String CardID = null;
 		while(true)
 		{
-			System.out.println("Enter a valid Card ID");
+			System.out.println("Enter a Green Card ID");
 			BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
 			CardID = br.readLine().toString();
 			if((sbValidIDs.toString()).contains(CardID))

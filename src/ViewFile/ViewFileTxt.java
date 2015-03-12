@@ -50,13 +50,14 @@ public class ViewFileTxt {
 		ArrayList<Player> lstPlayers = Game.lstPlayers;
 		saveTheDetailsInTextFile += playerGeneralInfo(lstPlayers);
 		saveTheDetailsInTextFile += "\n\n";
-		saveTheDetailsInTextFile += currentAndNextPlayerTurn(lstPlayers);
-		saveTheDetailsInTextFile += "\n\n";
+		//saveTheDetailsInTextFile += currentAndNextPlayerTurn(lstPlayers);
+		//saveTheDetailsInTextFile += "\n\n";
 		saveTheDetailsInTextFile += areaDetails();
 		saveTheDetailsInTextFile += "\n\n";
 		saveTheDetailsInTextFile += playerDetails(lstPlayers);
 		saveTheDetailsInTextFile += "\n\n";
 		saveTheDetailsInTextFile += totalAmountBankOwns();//to be chkd
+		saveTheDetailsInTextFile += "\n\n";
 		
 		return saveTheDetailsInTextFile;
 	}
@@ -168,8 +169,8 @@ public class ViewFileTxt {
 		for(Player player: players){
 			//System.out.println("size " + players.size());
 			//System.out.println("colour " + player.getPlayer_color());
-			System.out.println(player.getPersonalityCardListCommaSeparated());
-			System.out.println("personality " + PresentationUtility.getPersonalityCardNameById(Integer.parseInt(player.getPersonalityCardListCommaSeparated())));
+			//System.out.println(player.getPersonalityCardListCommaSeparated());
+			//System.out.println("personality " + PresentationUtility.getPersonalityCardNameById(Integer.parseInt(player.getPersonalityCardListCommaSeparated())));
 
 			playerGeneralInfoStr += "\nPlayer "+(players.size() -i)+", "+player.getPlayer_name()+", "+ player.getPlayer_color()+", "+ PresentationUtility.getPersonalityCardNameById(Integer.parseInt(player.getPersonalityCardListCommaSeparated()));
 			i -= 1;
