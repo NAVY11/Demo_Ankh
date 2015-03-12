@@ -240,7 +240,9 @@ public class GameLoad {
 			objCityAreaCard.SetActionID((String)cityAreaCards.get("ActionID"));
 			objCityAreaCard.SetName((String)cityAreaCards.get("AreaName"));
 			objCityAreaCard.SetActionDescription((String)cityAreaCards.get("ActionDescription"));
+			System.out.println(cityAreaCards.get("AreaID"));
 			objCityAreaCard.SetAreaID(Integer.parseInt(cityAreaCards.get("AreaID").toString()));
+			System.out.println(cityAreaCards.get("Cost"));
 			objCityAreaCard.SetCost(Integer.parseInt(cityAreaCards.get("Cost").toString()));
 
 			Game.lstCityAreaCards.add(objCityAreaCard);

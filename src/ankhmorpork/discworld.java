@@ -161,8 +161,8 @@ public class discworld extends Applet implements ActionListener, WindowListener 
 					    		
 					    		isLoadedGameInitialized = true;
 					            FileReader objFileReader = new FileReader(chooser.getSelectedFile());
-					            Game gameDetails = discworldboard.Loadgamefetch(objFileReader);
-					            AnkhMorpork = gameDetails;					            
+					            discworldboard.Loadgamefetch(objFileReader);
+					            //AnkhMorpork = gameDetails;					            
 								int i=1;
 								for(Player objPlayer: AnkhMorpork.lstPlayers)
 								{		
@@ -193,7 +193,15 @@ public class discworld extends Applet implements ActionListener, WindowListener 
 				if(e.getSource() == start2){
 				
 					try {
-						discworldboard.InitialiseGame(2,AnkhMorpork);
+						try {
+							discworldboard.InitialiseGame(2,AnkhMorpork);
+						} catch (ParseException e1) {
+							// TODO Auto-generated catch block
+							e1.printStackTrace();
+						} catch (JSONException e1) {
+							// TODO Auto-generated catch block
+							e1.printStackTrace();
+						}
 					} catch (IOException e1) {
 						// TODO Auto-generated catch block
 						e1.printStackTrace();
@@ -202,7 +210,15 @@ public class discworld extends Applet implements ActionListener, WindowListener 
 				}else if(e.getSource() == start3){	
 				
 					try {
-						discworldboard.InitialiseGame(3,AnkhMorpork);
+						try {
+							discworldboard.InitialiseGame(3,AnkhMorpork);
+						} catch (ParseException e1) {
+							// TODO Auto-generated catch block
+							e1.printStackTrace();
+						} catch (JSONException e1) {
+							// TODO Auto-generated catch block
+							e1.printStackTrace();
+						}
 					} catch (IOException e1) {
 						// TODO Auto-generated catch block
 						e1.printStackTrace();
@@ -211,7 +227,15 @@ public class discworld extends Applet implements ActionListener, WindowListener 
 				}else if(e.getSource() == start4){
 				
 					try {
-						discworldboard.InitialiseGame(4,AnkhMorpork);
+						try {
+							discworldboard.InitialiseGame(4,AnkhMorpork);
+						} catch (ParseException e1) {
+							// TODO Auto-generated catch block
+							e1.printStackTrace();
+						} catch (JSONException e1) {
+							// TODO Auto-generated catch block
+							e1.printStackTrace();
+						}
 					} catch (IOException e1) {
 						// TODO Auto-generated catch block
 						e1.printStackTrace();

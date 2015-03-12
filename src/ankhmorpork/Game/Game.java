@@ -377,7 +377,7 @@ public class Game {
 			boolean found = false;
 			for(GreenCard GC : lstGreenCards)
 			{
-				if(GC.IsPlayed==false)
+				if(GC.IsPlayed)
 				{
 					found = true;
 					break;
@@ -393,7 +393,7 @@ public class Game {
 			GreenCard objGC = new GreenCard();
 			for(GreenCard grnCard : lstGreenCards)
 			{
-				if(grnCard.GetCardID()==CardID && grnCard.IsPlayed==false)
+				if(grnCard.GetCardID().equals(CardID) && !grnCard.IsPlayed)
 				{
 					objGC = grnCard;
 				}
@@ -435,7 +435,7 @@ public class Game {
 			CityAreaCard objCityAreaCard = new CityAreaCard();
 			for(CityAreaCard CityAreaCard : lstCityAreaCards)
 			{
-				if(CityAreaCard.GetCardID()==CardID)
+				if(CityAreaCard.GetCardID().equals(CardID))
 				{
 					objCityAreaCard = CityAreaCard;
 				}

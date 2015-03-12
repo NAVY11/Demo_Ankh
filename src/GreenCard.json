@@ -1,0 +1,337 @@
+{
+    "g1": {
+	  "Name": "Mr Boggis",
+	  "IsPlayed": "False",
+      "ActionID": "Scroll,Place a Minion",
+      "PlayerID" : "0",
+	  "ActionDescription": "Take $2, if possible, from each player"
+    },
+	"g2": {
+	  "Name": "Mr Bent",
+	  "IsPlayed": "False",
+      "ActionID": "Scroll,Play Another Card",
+      "PlayerID" : "0",
+	  "ActionDescription": "Place this card in front of you and take a loan of $10 from the bank. At the end of the game you must pay back $12 or lose 15 points."
+    },
+	"g3": {
+	  "Name": "The Beggars Guild",
+	  "IsPlayed": "False",
+      "ActionID": "Scroll,Place a Minion",
+      "PlayerID" : "0",
+	  "ActionDescription": "Select one player. They must be give you two cards of their choice"
+    },
+	"g4": {
+	  "Name": "The Bank of Ankh-Morpork",
+	  "IsPlayed": "False",
+      "ActionID": "Scroll,Play Another Card",
+      "PlayerID" : "0",
+	  "ActionDescription": "Place this card in front of you and take a loan of $10 from the bank. At the end of the game you must pay back $12 or lose 15 points."
+    },
+	"g5": {
+	  "Name": "The Ankh-Morpork Sunshine Dragon Sanctuary",
+	  "IsPlayed": "False",
+      "ActionID": "Scroll,Play Another Card",
+      "PlayerID" : "0",
+	  "ActionDescription": "Each Player must give you either $1 or one of their cards"
+    },
+	"g6": {
+	  "Name": "Sergeant Angua",
+	  "IsPlayed": "False",
+      "ActionID": "Remove One Trouble Marker,Play Another Card",
+      "PlayerID" : "0",
+	  "ActionDescription": ""
+    },
+	"g7": {
+	  "Name": "The Agony Aunts",
+	  "IsPlayed": "False",
+      "ActionID": "Assassination,Take Money,Place a Minion",
+      "PlayerID" : "0",
+	  "ActionDescription": ""
+    },
+	"g8": {
+	  "Name": "The Dysk",
+	  "IsPlayed": "False",
+      "ActionID": "Place a Building,Scroll",
+      "PlayerID" : "0",
+	  "ActionDescription": "Earn $1 for each minion in the Isle of Gods"
+    },
+	"g9": {
+	  "Name": "The Duckman",
+	  "IsPlayed": "False",
+      "ActionID": "Scroll",
+      "PlayerID" : "0",
+	  "ActionDescription": "Move a minion belonging to another player from one area to an adjacent area"
+    },
+	"g10": {
+	  "Name": "Drumknott",
+	  "IsPlayed": "False",
+      "ActionID": "Scroll",
+      "PlayerID" : "0",
+	  "ActionDescription": "Play any two other cards from your hand"
+    },
+	"g11": {
+	  "Name": "CMOT Dibbler",
+	  "IsPlayed": "False",
+      "ActionID": "Scroll,Play Another Card",
+      "PlayerID" : "0",
+	  "ActionDescription": "Roll the die. On a roll of '7' or more you take $4 from the bank. On a roll of '1' you must pay $2 to the bank or remove one of your minions from the board. All other results have no effect"
+    },
+	"g12": {
+	  "Name": "Dr Cruces",
+	  "IsPlayed": "False",
+      "ActionID": "Assassination,Take Money",
+      "PlayerID" : "0",
+	  "ActionDescription": ""
+    },
+	"g13": {
+	  "Name": "Captain Carrot",
+	  "IsPlayed": "False",
+      "ActionID": "Place a Minion,Assassination,Take Money",
+      "PlayerID" : "0",
+	  "ActionDescription": ""
+    },
+	"g14": {
+	  "Name": " Mrs Cake",
+	  "IsPlayed": "False",
+      "ActionID": "Scroll,Take Money,Place a Building",
+      "PlayerID" : "0",
+	  "ActionDescription": "Look at all one of the unused Personality cards"
+    },
+	"g15": {
+	  "Name": "Groat",
+	  "IsPlayed": "False",
+      "ActionID": "Place a Minion",
+      "PlayerID" : "0",
+	  "ActionDescription": ""
+    },
+	"g16": {
+	  "Name": "Gimlet's Dwarf Delicatessen",
+	  "IsPlayed": "False",
+      "ActionID": "Take Money,Place a Minion",
+      "PlayerID" : "0",
+	  "ActionDescription": ""
+    },
+	"g17": {
+	  "Name": "Gaspode",
+	  "IsPlayed": "False",
+      "ActionID": "Interrupt",
+      "PlayerID" : "0",
+	  "ActionDescription": "Stop a player from moving or removing one of your minions"
+    },
+	"g18": {
+	  "Name": "Fresh Start Club",
+	  "IsPlayed": "False",
+      "ActionID": "Interrupt",
+      "PlayerID" : "0",
+	  "ActionDescription": "If you have a minion removed you can place him in a different area"
+    },
+	"g19": {
+	  "Name": "Foul Ole Ron",
+	  "IsPlayed": "False",
+      "ActionID": "Scroll,Play Another Card",
+      "PlayerID" : "0",
+	  "ActionDescription": "Move a minion belonging to another player from one area to an adjacent area"
+    },
+	"g20": {
+	  "Name": "The Fools Guild",
+	  "IsPlayed": "False",
+      "ActionID": "Scroll,Place a Minion",
+      "PlayerID" : "0",
+	  "ActionDescription": "Select another player. If they do not give you $5 then place this card in front of them. This card now counts towards their hand size of five cards when they come to refill their hands. They cannot get rid of this card"
+    },
+	"g21": {
+	  "Name": "The Fire Brigade",
+	  "IsPlayed": "False",
+      "ActionID": "Scroll,Play Another Card",
+      "PlayerID" : "0",
+	  "ActionDescription": "Choose a player. If he does not pay you $5 you can remove one of this buildings from the board"
+    },
+	"g22": {
+	  "Name": "Inigo Skimmer",
+	  "IsPlayed": "False",
+      "ActionID": "Assassination,Take Money",
+      "PlayerID" : "0",
+	  "ActionDescription": ""
+    },
+	"g23": {
+	  "Name": "History Monks",
+	  "IsPlayed": "False",
+      "ActionID": "Scroll,Place a Minion",
+      "PlayerID" : "0",
+	  "ActionDescription": "Shuffle the discard pile and draw four cards randomly. Place the remaining cards back as the discard pile"
+    },
+	"g24": {
+	  "Name": "Hex",
+	  "IsPlayed": "False",
+      "ActionID": "Scroll,Place a Building",
+      "PlayerID" : "0",
+	  "ActionDescription": "Take three cards from the deck"
+    },
+	"g25": {
+	  "Name": "Here'n'Now",
+	  "IsPlayed": "False",
+      "ActionID": "Scroll,Play Another Card",
+      "PlayerID" : "0",
+	  "ActionDescription": "Roll the die. On a roll of '7' or more you take $4 from the bank. On a roll of '1' you must pay $2 to the bank or remove one of your minions from the board. All other results have no effect"
+    },
+	"g26": {
+	  "Name": "Harry King",
+	  "IsPlayed": "False",
+      "ActionID": "Place a Minion,Scroll",
+      "PlayerID" : "0",
+	  "ActionDescription": "Discard as many cards as you wish and take $2 for each one discarded"
+    },
+	"g27": {
+	  "Name": "Harga's House of Ribs",
+	  "IsPlayed": "False",
+      "ActionID": "Take Money,Place a Minion",
+      "PlayerID" : "0",
+	  "ActionDescription": ""
+    },
+	"g28": {
+	  "Name": " Mr Gryle",
+	  "IsPlayed": "False",
+      "ActionID": "Assassination,Take Money",
+      "PlayerID" : "0",
+	  "ActionDescription": ""
+    },
+	"g29": {
+	  "Name": "The Peeled Nuts",
+	  "IsPlayed": "False",
+      "ActionID": "",
+      "PlayerID" : "0",
+	  "ActionDescription": ""
+    },
+	"g30": {
+	  "Name": "The Opera House",
+	  "IsPlayed": "False",
+      "ActionID": "Place a Building,Scroll",
+      "PlayerID" : "0",
+	  "ActionDescription": "Earn $1 for each minion in the Isle of Gods"
+    },
+	"g31": {
+	  "Name": "Nobby Nobbs",
+	  "IsPlayed": "False",
+      "ActionID": "Scroll,Play Another Card",
+      "PlayerID" : "0",
+	  "ActionDescription": "Take $3 from a player of your choice"
+    },
+	"g32": {
+	  "Name": "Modo",
+	  "IsPlayed": "False",
+      "ActionID": "Scroll,Place a Minion",
+      "PlayerID" : "0",
+	  "ActionDescription": "Discard one card"
+    },
+	"g33": {
+	  "Name": "The Mended Drum",
+	  "IsPlayed": "False",
+      "ActionID": "Place a Building,Take Money",
+      "PlayerID" : "0",
+	  "ActionDescription": ""
+    },
+	"g34": {
+	  "Name": "Librarian",
+	  "IsPlayed": "False",
+      "ActionID": "Scroll",
+      "PlayerID" : "0",
+	  "ActionDescription": "Take four cards from the draw deck"
+    },
+	"g35": {
+	  "Name": "Leonard of Quirm",
+	  "IsPlayed": "False",
+      "ActionID": "Scroll",
+	  "ActionDescription": "Take four cards from the draw deck"
+    },
+	"g36": {
+	  "Name": "Shonky Shop",
+	  "IsPlayed": "False",
+      "ActionID": "Scroll,Place a Building",
+      "PlayerID" : "0",
+	  "ActionDescription": "Discard as many cards as you wish and take $1 for each one discarded"
+    },
+	"g37": {
+	  "Name": "Sacharissa Cripslock",
+	  "IsPlayed": "False",
+      "ActionID": "Scroll,Place a Minion",
+      "PlayerID" : "0",
+	  "ActionDescription": "Earn $1 for each trouble maker on the board"
+    },
+	"g38": {
+	  "Name": "Rosie Palm",
+	  "IsPlayed": "False",
+      "ActionID": "Place a Minion,Scroll",
+      "PlayerID" : "0",
+	  "ActionDescription": "Choose one player. Given them one of your cards. They must give you $2 in return"
+    },
+	"g39": {
+	  "Name": "Rincewind",
+	  "IsPlayed": "False",
+      "ActionID": "Random Event,Scroll,Play Another Card",
+      "PlayerID" : "0",
+	  "ActionDescription": "Move one of your minions from an area containing a trouble maker to an adjacent area"
+    },
+	"g40": {
+	  "Name": "The Royal Mint",
+	  "IsPlayed": "False",
+      "ActionID": "Place a Building,Take Money",
+      "PlayerID" : "0",
+	  "ActionDescription": ""
+    },
+	"g41": {
+	  "Name": "Queen Molly",
+	  "IsPlayed": "False",
+      "ActionID": "Place a Minion,Scroll",
+      "PlayerID" : "0",
+	  "ActionDescription": "Select one player. They must give you two cards of their choice"
+    },
+	"g42": {
+	  "Name": "Pink PussyCat Club",
+	  "IsPlayed": "False",
+      "ActionID": "Take Money,Play Another Card",
+      "PlayerID" : "0",
+	  "ActionDescription": ""
+    },
+	"g43": {
+	  "Name": "Zorgo the Retro-phrenologist",
+	  "IsPlayed": "False",
+      "ActionID": "Scroll,Place a Building",
+      "PlayerID" : "0",
+	  "ActionDescription": "You may exchange your personality card with one drawn randomly from those not in use"
+    },
+	"g44": {
+	  "Name": "Dr Whiteface",
+	  "IsPlayed": "False",
+      "ActionID": "Scroll,Place a Minion",
+      "PlayerID" : "0",
+	  "ActionDescription": "Select another player. If they do not give you $5 then place this card in front of them. This card now counts towards their hand size of five cards when they come to refill their hands. They cannot get rid of this card"
+    },
+	"g45": {
+	  "Name": "Wallace Sonky",
+	  "IsPlayed": "False",
+      "ActionID": "Interrupt",
+      "PlayerID" : "0",
+	  "ActionDescription": "You cannot be affected by the text on a card played by another player."
+    },
+	"g46": {
+	  "Name": "The Seamstresses' Guild",
+	  "IsPlayed": "False",
+      "ActionID": "Scroll,Place a Minion",
+      "PlayerID" : "0",
+	  "ActionDescription": "Choose one player. Give them one of your cards. They must give you $2 in return."
+    },
+	"g47": {
+	  "Name": "Mr Pin & Mr Tulip",
+	  "IsPlayed": "False",
+      "ActionID": "Assassination,Take Money",
+      "PlayerID" : "0",
+	  "ActionDescription": "The new Firm"
+    },
+	"g48": {
+	  "Name": "The Thieves' Guild",
+	  "IsPlayed": "False",
+      "ActionID": "Scroll,Place a Minion",
+      "PlayerID" : "0",
+	  "ActionDescription": "Take $2, if possible, from each player"
+    },
+}

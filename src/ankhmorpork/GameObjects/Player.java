@@ -474,11 +474,11 @@ public class Player {
 				MinionID = br.readLine();
 				for(Minion objMinion : Minions)
 				{
-					if(objMinion.getMinion_id().toString() == MinionID)
+					if(objMinion.getMinion_id().toString().equals(MinionID) )
 					{
 						for(Minion GameMinion : Game.lstMinions)
 						{
-							if(GameMinion.getMinion_id().toString() == MinionID)
+							if(GameMinion.getMinion_id().toString().equals(MinionID))
 							{
 								GameMinion.setActive(false);
 								success = true;
@@ -527,11 +527,11 @@ public class Player {
 				TrollID = br.readLine();
 				for(Troll objTroll : Trolls)
 				{
-					if(objTroll.getTroll_id().toString() == TrollID)
+					if(objTroll.getTroll_id().toString().equals(TrollID))
 					{
 						for(Troll GameTroll : Game.lstTrolls)
 						{
-							if(GameTroll.getTroll_id().toString() == TrollID)
+							if(GameTroll.getTroll_id().toString().equals(TrollID))
 							{
 								GameTroll.setActive(false);
 								success = true;
@@ -577,11 +577,11 @@ public class Player {
 				DemonID = br.readLine();
 				for(Demon objDemon : Demons)
 				{
-					if(objDemon.getDemon_id().toString() == DemonID)
+					if(objDemon.getDemon_id().toString().equals(DemonID) )
 					{
 						for(Demon GameDemon : Game.lstDemons)
 						{
-							if(GameDemon.getDemon_id().toString() == DemonID)
+							if(GameDemon.getDemon_id().toString().equals(DemonID))
 							{
 								GameDemon.setActive(false);
 								success = true;
@@ -651,7 +651,7 @@ public class Player {
 		String[] arryAreaList = strAreaList.split(",");
 		for(int i = 0; i<arryAreaList.length;i++)
 		{
-			System.out.print(arryAreaList[i]+":"+PresentationUtility.getCityAreaCardNameById(Integer.parseInt(arryAreaList[i]+" ")));
+			System.out.print(arryAreaList[i]+":"+PresentationUtility.getCityAreaCardNameById(Integer.parseInt(arryAreaList[i])));
 		}
 			boolean Run = true;
 			String ans = "";
@@ -711,12 +711,12 @@ public class Player {
 					e.printStackTrace();
 				}
 				
-				if(Answer=="N")
+				if(Answer.equalsIgnoreCase("N"))
 				{
 					interrupt = false;
 					Break = true;
 				}
-				else if(Answer=="Y")
+				else if(Answer.equalsIgnoreCase("Y"))
 				{
 					interrupt = true;
 					Break = true;
@@ -743,7 +743,7 @@ public class Player {
 		public boolean PerformCardAction(String ActionID, String CardID) throws IOException
 		{
 			boolean success = false;
-			if(ActionID=="Scroll")
+			if(ActionID.equalsIgnoreCase("Scroll"))
 			{
 			switch(CardID)
 			{
