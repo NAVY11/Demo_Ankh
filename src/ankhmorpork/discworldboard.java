@@ -366,6 +366,8 @@ public class discworldboard extends Component {
 				for(int i = 0; i<ActionArray.length; i++)
 				{
 					String ans = null;
+					if(i!=ActionArray.length-1)
+					{
 					System.out.println("Do you wish to perform " + ActionArray[i] + " action? Y/N");
 					while(true)
 					{						
@@ -377,7 +379,12 @@ public class discworldboard extends Component {
 						else
 							System.out.println("Incorrect input. Please try again.");
 					}
-					
+					}
+					else
+					{
+						System.out.println("Performing action "+ ActionArray[i]);
+						ans="Y";
+					}
 					if(ans.equalsIgnoreCase("Y"))
 					{
 						//Does a Player wish to interrupt? //TO DO
