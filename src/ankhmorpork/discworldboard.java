@@ -285,9 +285,8 @@ public class discworldboard extends Component {
 	 * @return the game
 	 * @throws IOException Signals that an I/O exception has occurred.
 	 * @throws ParseException the parse exception
-	 * @throws JSONException 
 	 */
-	public void Loadgamefetch(FileReader objFileReader) throws IOException, ParseException, JSONException
+	public void Loadgamefetch(FileReader objFileReader) throws IOException, ParseException
 	{
 		 GameLoad.LoadGame(objFileReader);
 	}
@@ -409,10 +408,11 @@ public class discworldboard extends Component {
 				String ActionList = Game.GetGreenCardActions(CardID);
 				System.out.println("Card '" + grnCard.getName() + "' has following actions :");
 				System.out.println(ActionList);
+				boolean actionPerformed = false;
 				for(int i = 0; i<ActionArray.length; i++)
 				{
 					String ans = null;
-					if(i!=ActionArray.length-1)
+					if(i!=ActionArray.length-1 || actionPerformed)
 					{
 					System.out.println("Do you wish to perform " + ActionArray[i] + " action? Y/N");
 					while(true)
@@ -433,6 +433,7 @@ public class discworldboard extends Component {
 					}
 					if(ans.equalsIgnoreCase("Y"))
 					{
+						actionPerformed = true;
 						//Does a Player wish to interrupt? //TO DO
 						//If Yes : Which Player wants to interrupt?
 						//Perform Action

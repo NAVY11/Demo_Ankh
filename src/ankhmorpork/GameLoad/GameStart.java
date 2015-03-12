@@ -22,6 +22,7 @@ import ankhmorpork.GameObjects.Minion;
 import ankhmorpork.GameObjects.Player;
 import ankhmorpork.GameObjects.Troll;
 import ankhmorpork.GameObjects.TroubleMaker;
+import ankhmorpork.GameObjects.Cards.CityAreaCard;
 import ankhmorpork.GameObjects.Cards.GreenCard;
 
 // TODO: Auto-generated Javadoc
@@ -68,6 +69,9 @@ public class GameStart {
 		String getFiveDifferentBrownNumbers = "", getFiveDifferentGreenNumbers = "", getRandomCityAreaCardsForPlayers = "";
 		Integer getOneDifferentPersonalityCard;
 		GameLoad.LoadNewGame_Cards();
+		for(CityAreaCard areaCard : Game.lstCityAreaCards){
+			System.out.println(areaCard);
+		}
 			//New Game
 		//Game AnkhMorpork = new Game();
 		//Initialize Trolls and Players
@@ -222,6 +226,12 @@ public class GameStart {
 				
 				if(randomNumberAtIndexNumberForCityAreaCard > 0){
 					getRandomCityAreaCardsForPlayers = randomNumberAtIndexNumberForCityAreaCard+",";
+					for(CityAreaCard cityAreaCard1 : Game.lstCityAreaCards){
+						if((cityAreaCard1.GetCardID()+",").equals("c"+getRandomCityAreaCardsForPlayers)){
+							cityAreaCard1.setPlayerID(objPlayer.getPlayer_id());
+							break;
+						}
+					}
 					countCityAreaCard += 1;
 					initializingCityAreaCardsArr.remove(randomNumberAtIndexNumberForCityAreaCard);
 					

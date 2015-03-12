@@ -897,11 +897,11 @@ public class Player {
 			
 			if(listOfCommaSeparatedCard.contains(whatToRemove)){
 				if(listOfCommaSeparatedCard.contains(whatToRemove+",")){
-					listOfCommaSeparatedCard.replace(whatToRemove+",", "");
+					listOfCommaSeparatedCard = listOfCommaSeparatedCard.replace(whatToRemove+",", "");
 				}else if(listOfCommaSeparatedCard.contains(","+whatToRemove)){
-					listOfCommaSeparatedCard.replace(","+whatToRemove, "");
+					listOfCommaSeparatedCard = listOfCommaSeparatedCard.replace(","+whatToRemove, "");
 				}else if(listOfCommaSeparatedCard.contains(whatToRemove)){
-					listOfCommaSeparatedCard.replace(whatToRemove, "");
+					listOfCommaSeparatedCard = listOfCommaSeparatedCard.replace(whatToRemove, "");
 				}
 			}
 			return listOfCommaSeparatedCard;
