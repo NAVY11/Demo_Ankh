@@ -398,8 +398,8 @@ public boolean TheShadesAction(Player objPlayer) throws NumberFormatException, I
 		//System.out.println("Enter areaId :" + areaList);
 		BufferedReader br1 = new BufferedReader(new InputStreamReader(System.in));
 		int areaID = Integer.parseInt(br1.readLine());
-			//String adjacentAreaidList = Game.getAdjacentAreaByAreaID(areaID);
-			//System.out.println.("Enter the areaID among the list you want place the troublemarker adjacent to it:" + adjacentAreaidList );
+			String adjacentAreaidList = Game.getAdjacentAreas(7);
+			System.out.println("Enter the areaID among the list you want place the troublemarker adjacent to it:" + adjacentAreaidList);
 					BufferedReader br2 = new BufferedReader(new InputStreamReader(System.in));
 					int adjacentAreaID = Integer.parseInt(br2.readLine());
 					 TroubleMaker objTroubleMaker = Game.GetTroubleMakerNotOnBoard();
