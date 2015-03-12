@@ -8,6 +8,10 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Random;
 
+import ankhmorpork.Game.Game;
+import ankhmorpork.GameObjects.Player;
+import ankhmorpork.GameObjects.Cards.GreenCard;
+
 // TODO: Auto-generated Javadoc
 /**
  * The Class PresentationUtility.
@@ -302,10 +306,43 @@ public class PresentationUtility {
 			if(areaToBePlacedIn == 2 || areaToBePlacedIn == 9 || areaToBePlacedIn == 10 || areaToBePlacedIn == 12)
 				return true;
 		}else if(currentAreaId == 12){
-			if(areaToBePlacedIn == 1 || areaToBePlacedIn == 1 || areaToBePlacedIn == 11)
+			if(areaToBePlacedIn == 1 || areaToBePlacedIn == 2 || areaToBePlacedIn == 11)
 				return true;
+		}else if(currentAreaId == -1){ //Means this is a new minion to be placed
+			return true;
 		}
 		return false;
+	}
+	
+	public String getAdjacentAreas(String areaId){
+		String adjacentAreasList = "";
+		Integer currentAreaId = Integer.parseInt(areaId);
+		if(currentAreaId == 1){
+			adjacentAreasList = "2,3,12";
+		}else if(currentAreaId == 2){
+			adjacentAreasList = "1,3,4,10,11,12";
+		}else if(currentAreaId == 3){
+			adjacentAreasList = "1,2,4";
+		}else if(currentAreaId == 4){
+			adjacentAreasList = "2,3,5,6,10";
+		}else if(currentAreaId == 5){
+			adjacentAreasList = "4,6,7,8,10";
+		}else if(currentAreaId == 6){
+			adjacentAreasList = "4,5,7";
+		}else if(currentAreaId == 7){
+			adjacentAreasList = "5,6,8";
+		}else if(currentAreaId == 8){
+			adjacentAreasList = "5,7,9";
+		}else if(currentAreaId == 9){
+			adjacentAreasList = "8,10,11";
+		}else if(currentAreaId == 10){
+			adjacentAreasList = "2,4,5,9,11";
+		}else if(currentAreaId == 11){
+			adjacentAreasList = "2,9,10,12";
+		}else if(currentAreaId == 12){
+			adjacentAreasList = "1,2,11";
+		}
+		return adjacentAreasList;
 	}
 	
 	public static boolean isThisGreenCardAssassinationCard(int greenCardId){
@@ -353,7 +390,7 @@ public class PresentationUtility {
 		return false;
 	}
 	
-public static Integer howMuchMoneyToTakeFromBank(String greenCardIdStr){
+	public static Integer howMuchMoneyToTakeFromBank(String greenCardIdStr){
 		
 		if(greenCardIdStr.equals("g28") || greenCardIdStr.equals("g47"))
 			return 1;
@@ -380,5 +417,32 @@ public static Integer howMuchMoneyToTakeFromBank(String greenCardIdStr){
 		}
 		
 		return namesOfGreenCardsList;
+	}
+	
+	public String drawAsManyCardAsNeeded(Game Ankhmorpork, Player currentPlayer){
+		String playerGreenCardUpdatedList = currentPlayer.getGreenCardListCommaSeparated();
+		if(currentPlayer.getGreenCardListCommaSeparated().length() < 9){
+			String[] currentPlayerGreenCardArr = currentPlayer.getGreenCardListCommaSeparated().split(",");
+			if(currentPlayerGreenCardArr.length < 5){
+				while(!(currentPlayer.getGreenCardListCommaSeparated().length() < 9)){
+					Integer cardIndexNumber = PresentationUtility.returnRandomNumber(1, Ankhmorpork.lstGreenCards.size());
+					GreenCard greenCardAccessed = Ankhmorpork.lstGreenCards.get(cardIndexNumber);
+					if(currentPlayer.getGreenCardListCommaSeparated().length() == 0){
+						playerGreenCardUpdatedList = greenCardAccessed.GetCardID() + ",";
+					}else{
+						playerGreenCardUpdatedList = "," + greenCardAccessed.GetCardID();
+					}
+				}
+			}
+		}
+		return playerGreenCardUpdatedList;
+	}
+	
+	public static String takeOneGreenCardFromDeck(Game Ankhmorpork){
+
+		Integer cardIndexNumber = PresentationUtility.returnRandomNumber(1, Ankhmorpork.lstGreenCards.size());
+		GreenCard greenCardAccessed = Ankhmorpork.lstGreenCards.get(cardIndexNumber);
+		return greenCardAccessed.GetCardID();	
+		
 	}
 }
