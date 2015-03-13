@@ -135,18 +135,18 @@ public class Game {
 		 * @param MinionID the minion id
 		 * @return the array list
 		 */
-		public static ArrayList<Minion> GetMinionsByMinionID(int MinionID)
+		public static Minion GetMinionsByMinionID(int MinionID)
 		{
-			ArrayList<Minion> Minions = new ArrayList<Minion>();
+			Minion Minion = new Minion();
 			for(Minion objMinion : lstMinions)
 			{
 				if(objMinion.getMinion_id()== MinionID)
 				{
-					Minions.add(objMinion);
+					Minion =objMinion;
 				}
 			}
 					
-			return Minions;
+			return Minion;
 		}
 		
 		/**
@@ -317,6 +317,21 @@ public class Game {
 			return success;
 		}
 		
+		public static boolean SetMinion(Minion Minion)
+		{
+			boolean success = false;
+			for(Minion objMinion : Game.lstMinions)
+			{
+				if(objMinion.getMinion_id()==Minion.getMinion_id())
+				{
+					objMinion = Minion;
+					success = true;
+					break;
+				}
+			}
+			return success;
+		}
+		
 		/**
 		 * Gets the buildings by building id.
 		 *
@@ -390,6 +405,22 @@ public class Game {
 					if(strAreaList.contains(Building.getArea_id()+","))
 					{
 						strAreaList.replace(Building.getArea_id()+",", "");
+					}
+				}
+			}
+			return strAreaList;
+		}
+		
+		public static String AreaWithNoMinion()
+		{
+			String strAreaList = "1,2,3,4,5,6,7,8,9,10,11,12,";
+			for(Minion Minion : Game.lstMinions)
+			{
+				if(Minion.getArea_id()!=0)
+				{
+					if(strAreaList.contains(Minion.getArea_id()+","))
+					{
+						strAreaList.replace(Minion.getArea_id()+",", "");
 					}
 				}
 			}

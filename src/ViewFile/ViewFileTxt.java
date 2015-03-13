@@ -301,7 +301,7 @@ public class ViewFileTxt {
 		int i = players.size()-1;
 		for(Player player: players){
 			playerDetails += "\nPlayer "+(players.size() -i)+"'s current Inventory:";
-			playerDetails += "\n\n\t- "+player.lstMinions.size()+" minions, "+player.lstBuildings.size()+" buildings, "+player.getPlayerAmount()+" dollars ";
+			playerDetails += "\n\n\t- "+Game.lstMinions.size()+" minions, "+Game.lstBuildings.size()+" buildings, "+player.getPlayerAmount()+" dollars ";
 			playerDetails += "\n\n\t-City Area Cards: \n\n\t\t" +PresentationUtility.getCityAreaCardNameById(Integer.parseInt(player.getCityAreaCardsListCommaSeparated()));
 			playerDetails += "\n\n\t-Player Cards: ";
 			playerDetails += "\n\t\tGreen Cards: "+ player.getGreenCardListCommaSeparated();

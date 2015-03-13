@@ -400,8 +400,12 @@ public class discworldboard extends Component {
 		{	
 			if(grnCard.getPlayerID()==objPlayer.getPlayer_id())
 			{
-				sbValidIDs.append(grnCard.GetCardID());			
-				System.out.println(grnCard.CardID + " : " + grnCard.getName());
+				sbValidIDs.append(grnCard.GetCardID());		
+				String ActionList = Game.GetGreenCardActions(grnCard.GetCardID());
+				System.out.printf("%-10s%-15s%-5s%-15s%-15s\n",grnCard.CardID ,  " : " ,  grnCard.getName() , " : " , ActionList);
+				
+				//System.out.println("Card '" + grnCard.getName() + "' has following actions :");
+				//System.out.print(ActionList);
 			}
 		}
 		
