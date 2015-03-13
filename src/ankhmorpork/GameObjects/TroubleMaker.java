@@ -19,12 +19,20 @@ public class TroubleMaker {
 	private Boolean active;
 		
 
+	/**
+	 * Instantiates a new trouble maker.
+	 *
+	 * @param ID the id
+	 */
 	public TroubleMaker(int ID) {
 		this.setTm_id(ID);
 		this.setActive(true);		
 		// TODO Auto-generated constructor stub
 	}
 
+	/**
+	 * Instantiates a new trouble maker.
+	 */
 	public TroubleMaker() {
 		// TODO Auto-generated constructor stub
 	}

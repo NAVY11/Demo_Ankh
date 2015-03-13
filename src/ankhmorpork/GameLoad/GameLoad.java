@@ -23,8 +23,19 @@ import org.json.simple.JSONObject;
 import org.json.simple.parser.JSONParser;
 import org.json.simple.parser.ParseException;
 
+// TODO: Auto-generated Javadoc
+/**
+ * The Class GameLoad.
+ */
 public class GameLoad {
 
+	/**
+	 * Load game.
+	 *
+	 * @param objFilereader the obj filereader
+	 * @throws IOException Signals that an I/O exception has occurred.
+	 * @throws ParseException the parse exception
+	 */
 	public static void LoadGame(FileReader objFilereader) throws IOException, ParseException
 	{
 
@@ -65,16 +76,17 @@ public class GameLoad {
 				{
 					CityAreaCard objCityAreaCard = new CityAreaCard();
 					JSONObject jsonCityAreaCard = (JSONObject)iCityAreaCard.next();
-					objCityAreaCard.SetAreaID(Integer.parseInt(jsonCityAreaCard.get("AreaID").toString()));
-					objCityAreaCard.setPlayerID(Integer.parseInt(jsonCityAreaCard.get("PlayerID").toString()));
-					objCityAreaCard.SetCost(Integer.parseInt(jsonCityAreaCard.get("Cost").toString()));
+					System.out.println(jsonCityAreaCard);
+					//objCityAreaCard.SetAreaID(Integer.parseInt(jsonCityAreaCard.get("AreaID").toString()));
+					objCityAreaCard.setPlayerID(Integer.parseInt(jsonCityAreaCard.get("playerID").toString()));
+					//objCityAreaCard.SetCost(Integer.parseInt(jsonCityAreaCard.get("Cost").toString()));
 
-					objCityAreaCard.SetCardID((jsonCityAreaCard.get("CardID").toString()));
-					objCityAreaCard.SetActionID((jsonCityAreaCard.get("ActionID").toString()));
-					objCityAreaCard.SetName((jsonCityAreaCard.get("AreaName").toString()));			
-					objCityAreaCard.SetActionDescription((jsonCityAreaCard.get("ActionDescription").toString()));			
-					objCityAreaCard.SetIsPlayed((Boolean)jsonCityAreaCard.get("IsPlayed"));
-					objCityAreaCard.setName((jsonCityAreaCard.get("Name").toString()));			
+					//objCityAreaCard.SetCardID((jsonCityAreaCard.get("CardID").toString()));
+					//objCityAreaCard.SetActionID((jsonCityAreaCard.get("ActionID").toString()));
+					//objCityAreaCard.SetName((jsonCityAreaCard.get("AreaName").toString()));			
+					//objCityAreaCard.SetActionDescription((jsonCityAreaCard.get("ActionDescription").toString()));			
+					//objCityAreaCard.SetIsPlayed((Boolean)jsonCityAreaCard.get("IsPlayed"));
+					//objCityAreaCard.setName((jsonCityAreaCard.get("Name").toString()));			
 
 					Game.lstCityAreaCards.add(objCityAreaCard);
 				}
@@ -86,12 +98,12 @@ public class GameLoad {
 				{
 					GreenCard objGreenCard = new GreenCard();
 					JSONObject jsonGreenCard = (JSONObject)iGreenCard.next();
-					objGreenCard.SetCardID((jsonGreenCard.get("CardID").toString()));
-					objGreenCard.setPlayerID(Integer.parseInt(jsonGreenCard.get("PlayerID").toString()));
-					objGreenCard.SetAction((jsonGreenCard.get("ActionID").toString().split(",")));
-					objGreenCard.SetActionDescription((jsonGreenCard.get("ActionDescription").toString()));			
-					objGreenCard.SetIsPlayed((Boolean)jsonGreenCard.get("IsPlayed"));
-					objGreenCard.setName((jsonGreenCard.get("Name").toString()));			
+					//objGreenCard.SetCardID((jsonGreenCard.get("CardID").toString()));
+					objGreenCard.setPlayerID(Integer.parseInt(jsonGreenCard.get("playerID").toString()));
+					//objGreenCard.SetAction((jsonGreenCard.get("ActionID").toString().split(",")));
+					//objGreenCard.SetActionDescription((jsonGreenCard.get("ActionDescription").toString()));			
+					//objGreenCard.SetIsPlayed((Boolean)jsonGreenCard.get("IsPlayed"));
+					objGreenCard.setName((jsonGreenCard.get("name").toString()));			
 
 					Game.lstGreenCards.add(objGreenCard);
 				}
@@ -115,36 +127,40 @@ public class GameLoad {
 				
 				//Loading PersonalityCards
 				JSONArray PersonalityCard = (JSONArray)json.get("PersonalityCards");
-				Iterator iPersonalityCard = PersonalityCard.iterator();
-				while (iPersonalityCard.hasNext())
-				{
-					PersonalityCard objPersonalityCard = new PersonalityCard();
-					JSONObject jsonPersonalityCard = (JSONObject)iPersonalityCard.next();
-					objPersonalityCard.SetCardID((jsonPersonalityCard.get("CardID").toString()));
-					objPersonalityCard.setPlayerID(Integer.parseInt(jsonPersonalityCard.get("PlayerID").toString()));
-					objPersonalityCard.SetPersonalityName((jsonPersonalityCard.get("PersonalityName").toString()));
-					objPersonalityCard.SetPersonalityMotive((jsonPersonalityCard.get("PersonalityMotive").toString()));			
-					objPersonalityCard.SetIsPlayed((Boolean)jsonPersonalityCard.get("IsPlayed"));
-					objPersonalityCard.setName((jsonPersonalityCard.get("Name").toString()));			
-
-					Game.lstPersonalityCard.add(objPersonalityCard);
+				if(PersonalityCard.size() > 0){
+					Iterator iPersonalityCard = PersonalityCard.iterator();
+					while (iPersonalityCard.hasNext())
+					{
+						PersonalityCard objPersonalityCard = new PersonalityCard();
+						JSONObject jsonPersonalityCard = (JSONObject)iPersonalityCard.next();
+						//objPersonalityCard.SetCardID((jsonPersonalityCard.get("CardID").toString()));
+						//objPersonalityCard.setPlayerID(Integer.parseInt(jsonPersonalityCard.get("PlayerID").toString()));
+						//objPersonalityCard.SetPersonalityName((jsonPersonalityCard.get("PersonalityName").toString()));
+						//objPersonalityCard.SetPersonalityMotive((jsonPersonalityCard.get("PersonalityMotive").toString()));			
+						//objPersonalityCard.SetIsPlayed((Boolean)jsonPersonalityCard.get("IsPlayed"));
+						//objPersonalityCard.setName((jsonPersonalityCard.get("Name").toString()));			
+	
+						Game.lstPersonalityCard.add(objPersonalityCard);
+					}
 				}
 				
 				//Loading RandomEventCards
 				JSONArray RandomEventCard = (JSONArray)json.get("RandomEventCards");
-				Iterator iRandomEventCard = RandomEventCard.iterator();
-				while (iRandomEventCard.hasNext())
-				{
-					RandomEventCard objRandomEventCard = new RandomEventCard();
-					JSONObject jsonBrownCard = (JSONObject)iRandomEventCard.next();
-					objRandomEventCard.SetCardID((jsonBrownCard.get("CardID").toString()));
-					objRandomEventCard.setPlayerID(Integer.parseInt(jsonBrownCard.get("PlayerID").toString()));
-					objRandomEventCard.SetEventID((jsonBrownCard.get("EventID").toString()));
-					objRandomEventCard.SetEventDescription((jsonBrownCard.get("EventDescription").toString()));			
-					objRandomEventCard.SetIsPlayed((Boolean)jsonBrownCard.get("IsPlayed"));
-					objRandomEventCard.setName((jsonBrownCard.get("Name").toString()));			
-
-					Game.lstRandomEventCards.add(objRandomEventCard);
+				if(RandomEventCard.size() > 0){
+					Iterator iRandomEventCard = RandomEventCard.iterator();
+					while (iRandomEventCard.hasNext())
+					{
+						RandomEventCard objRandomEventCard = new RandomEventCard();
+						JSONObject jsonBrownCard = (JSONObject)iRandomEventCard.next();
+						//objRandomEventCard.SetCardID((jsonBrownCard.get("CardID").toString()));
+						objRandomEventCard.setPlayerID(Integer.parseInt(jsonBrownCard.get("playerID").toString()));
+						//objRandomEventCard.SetEventID((jsonBrownCard.get("EventID").toString()));
+						//objRandomEventCard.SetEventDescription((jsonBrownCard.get("EventDescription").toString()));			
+						//objRandomEventCard.SetIsPlayed((Boolean)jsonBrownCard.get("IsPlayed"));
+						//objRandomEventCard.setName((jsonBrownCard.get("Name").toString()));			
+	
+						Game.lstRandomEventCards.add(objRandomEventCard);
+					}
 				}
 				
 				
@@ -198,12 +214,12 @@ public class GameLoad {
 					//Loading Player GOLD COINS
 					//JSONObject jsonGoldCoin = (JSONObject)json.get("GoldCoins_"+Player.getPlayer_id());
 					Player.objGoldCoin.setCoin_Type(Constants.GoldCoin());
-					Player.objGoldCoin.setCoin_Available(Integer.parseInt(json.get("GoldCoins_Avail_"+Player.getPlayer_id()).toString()));
+					//Player.objGoldCoin.setCoin_Available(Integer.parseInt(json.get("GoldCoins_Avail_"+Player.getPlayer_id()).toString()));
 					Player.objGoldCoin.setCoin_Val(Constants.GoldCoinValue());
 					
 					//Loading Player SILVER COINS															
 					Player.objSilverCoin.setCoin_Type(Constants.SilverCoin());
-					Player.objSilverCoin.setCoin_Available(Integer.parseInt(json.get("SilverCoins_Avail_"+Player.getPlayer_id()).toString()));
+					//Player.objSilverCoin.setCoin_Available(Integer.parseInt(json.get("SilverCoins_Avail_"+Player.getPlayer_id()).toString()));
 					Player.objSilverCoin.setCoin_Val(Constants.SilverCoinValue());
 															
 					Game.lstPlayers.add(Player);
@@ -223,6 +239,14 @@ public class GameLoad {
 	}
 	
 
+	/**
+	 * Load new game_ cards.
+	 *
+	 * @throws FileNotFoundException the file not found exception
+	 * @throws IOException Signals that an I/O exception has occurred.
+	 * @throws ParseException the parse exception
+	 * @throws JSONException the JSON exception
+	 */
 	public static void LoadNewGame_Cards() throws FileNotFoundException, IOException, ParseException, JSONException 
 	{
 	    Object obj;
@@ -240,9 +264,9 @@ public class GameLoad {
 			objCityAreaCard.SetActionID((String)cityAreaCards.get("ActionID"));
 			objCityAreaCard.SetName((String)cityAreaCards.get("AreaName"));
 			objCityAreaCard.SetActionDescription((String)cityAreaCards.get("ActionDescription"));
-			System.out.println(cityAreaCards.get("AreaID"));
+			//System.out.println(cityAreaCards.get("AreaID"));
 			objCityAreaCard.SetAreaID(Integer.parseInt(cityAreaCards.get("AreaID").toString()));
-			System.out.println(cityAreaCards.get("Cost"));
+			//System.out.println(cityAreaCards.get("Cost"));
 			objCityAreaCard.SetCost(Integer.parseInt(cityAreaCards.get("Cost").toString()));
 
 			Game.lstCityAreaCards.add(objCityAreaCard);

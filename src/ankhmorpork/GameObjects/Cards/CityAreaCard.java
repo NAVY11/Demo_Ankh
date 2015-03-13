@@ -7,88 +7,180 @@ import java.util.ArrayList;
 
 import PresentationUtilityCommon.PresentationUtility;
 import ankhmorpork.Game.Game;
+import ankhmorpork.GameObjects.GameCards;
 import ankhmorpork.GameObjects.Minion;
 import ankhmorpork.GameObjects.Player;
+import ankhmorpork.GameObjects.Troll;
 import ankhmorpork.GameObjects.TroubleMaker;
 
 
+// TODO: Auto-generated Javadoc
+/**
+ * The Class CityAreaCard.
+ */
 public class CityAreaCard extends Cards{
+	
+	/** The Action id. */
 	private String ActionID;
+	
+	/** The Action description. */
 	private String ActionDescription;
+	
+	/** The Area id. */
 	private int AreaID;
+	
+	/** The Area name. */
 	private String AreaName;
+	
+	/** The Cost. */
 	private int Cost;
 	
+	/**
+	 * Sets the card id.
+	 *
+	 * @param ID the id
+	 */
 	public void SetCardID(String ID)
 	{
 		this.CardID = ID;
 	}
 	
+	/**
+	 * Gets the card id.
+	 *
+	 * @return the string
+	 */
 	public String GetCardID()
 	{
 		return this.CardID;
 	}
 		
+	/**
+	 * Sets the is played.
+	 *
+	 * @param IsPlayed the is played
+	 */
 	public void SetIsPlayed(boolean IsPlayed)
 	{
 		this.IsPlayed = IsPlayed;
 	}
 	
+	/**
+	 * Gets the is played.
+	 *
+	 * @return true, if successful
+	 */
 	public boolean GetIsPlayed()
 	{
 		return this.IsPlayed;
 	}
 	
+	/**
+	 * Sets the action id.
+	 *
+	 * @param ID the id
+	 */
 	public void SetActionID(String ID)
 	{
 		this.ActionID = ID;
 	}
 	
+	/**
+	 * Gets the action id.
+	 *
+	 * @return the string
+	 */
 	public String GetActionID()
 	{
 		return this.ActionID;
 	}
 	
+	/**
+	 * Sets the action description.
+	 *
+	 * @param EventDescription the event description
+	 */
 	public void SetActionDescription(String EventDescription)
 	{
 		this.ActionDescription = EventDescription;
 	}
 	
+	/**
+	 * Gets the action description.
+	 *
+	 * @return the string
+	 */
 	public String GetActionDescription()
 	{
 		return this.ActionDescription;
 	}
 	
+	/**
+	 * Sets the area id.
+	 *
+	 * @param ID the id
+	 */
 	public void SetAreaID(int ID)
 	{
 		this.AreaID = ID;
 	}
 	
+	/**
+	 * Gets the area id.
+	 *
+	 * @return the int
+	 */
 	public int GetAreaID()
 	{
 		return this.AreaID;
 	}
 	
+	/**
+	 * Sets the name.
+	 *
+	 * @param AreaName the area name
+	 */
 	public void SetName(String AreaName)
 	{
 		this.AreaName = AreaName;
 	}
 	
+	/**
+	 * Gets the cost.
+	 *
+	 * @return the int
+	 */
 	public int GetCost()
 	{
 		return this.Cost;
 	}
 	
+	/**
+	 * Sets the cost.
+	 *
+	 * @param Cost the cost
+	 */
 	public void SetCost(int Cost)
 	{
 		this.Cost = Cost;
 	}
 	
+	/**
+	 * Gets the area name.
+	 *
+	 * @return the string
+	 */
 	public String GetAreaName()
 	{
 		return this.AreaName;
 	}
 	
+	/**
+	 * Longwall action.
+	 *
+	 * @param objPlayer the obj player
+	 * @return true, if successful
+	 */
 	public boolean LongwallAction(Player objPlayer)
 	{
 		boolean status = false;
@@ -98,87 +190,80 @@ public class CityAreaCard extends Cards{
 			String userinput = br.readLine();
 			if (userinput.equals('Y') || userinput.equals('y'))
 			{
-				int noOfSilverCoins = Game.GameBank.objSilverCoin.getCoin_Available();
-				if (noOfSilverCoins > 0 )
-				{
-					int noOfPlayerCoins = objPlayer.objSilverCoin.getCoin_Available();
-					noOfPlayerCoins = noOfPlayerCoins + 1;
-					objPlayer.objSilverCoin.setCoin_Available(noOfPlayerCoins);
-				}
-				noOfSilverCoins = noOfSilverCoins - 1;
-				Game.GameBank.objSilverCoin.setCoin_Available(noOfSilverCoins);
+				int playerID = objPlayer.getPlayer_id();
+				Game.PaymentFromBank(playerID, 1);
+				System.out.print("Action Performed Successfully");
 				status = true;
 			}
+		
 		} catch (IOException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 	}
-		
 	return status;
 	}
 	
+	/**
+	 * Seven sleepers action.
+	 *
+	 * @param objPlayer the obj player
+	 * @return true, if successful
+	 */
 	public boolean SevenSleepersAction(Player objPlayer)
 	{
 		boolean status = false;
-		
 		try {
-			
 			BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
 			System.out.println("Would you like to perform this action : Y/N ");
 			String userinput = br.readLine();
 			if (userinput.equals('Y') || userinput.equals('y'))
 			{
-				int noOfSilverCoins = Game.GameBank.objSilverCoin.getCoin_Available();
-				if (noOfSilverCoins > 0 )
-				{
-					
-					int noOfPlayerCoins = objPlayer.objSilverCoin.getCoin_Available();
-					noOfPlayerCoins = noOfPlayerCoins + 3;
-					objPlayer.objSilverCoin.setCoin_Available(noOfPlayerCoins);
-				}
-				noOfSilverCoins = noOfSilverCoins - 3;
-				Game.GameBank.objSilverCoin.setCoin_Available(noOfSilverCoins);
+				int playerID = objPlayer.getPlayer_id();
+				Game.PaymentFromBank(playerID, 3);
+				System.out.print("Action Performed Successfully");
 				status = true;
 			}
 		} catch (IOException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 	}
-		
 	return status;
 	}
 	
+	/**
+	 * Nap hill action.
+	 *
+	 * @param objPlayer the obj player
+	 * @return true, if successful
+	 */
 	public boolean NapHillAction(Player objPlayer)
 	{
 		boolean status = false;
 		try {
-			
  			BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
 			System.out.println("Would you like to perform this action : Y/N ");
 			String userinput;
 			userinput = br.readLine();
 			if (userinput.equals('Y') || userinput.equals('y'))
 			{
-				int noOfSilverCoins = Game.GameBank.objSilverCoin.getCoin_Available();
-				if (noOfSilverCoins > 0 )
-				{
-					int noOfPlayerCoins = objPlayer.objSilverCoin.getCoin_Available();
-					noOfPlayerCoins = noOfPlayerCoins + 1;
-					objPlayer.objSilverCoin.setCoin_Available(noOfPlayerCoins);
-				}
-				noOfSilverCoins = noOfSilverCoins - 1;
-				Game.GameBank.objSilverCoin.setCoin_Available(noOfSilverCoins);
+				int playerID = objPlayer.getPlayer_id();
+				Game.PaymentFromBank(playerID, 1);
+				System.out.print("Action Performed Successfully");
 				status = true;
 			}
 		} catch (IOException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 	}
-		
 	return status;
 	}
 	
-	
+	/**
+	 * The hippo action.
+	 *
+	 * @param objPlayer the obj player
+	 * @return true, if successful
+	 */
 	public boolean TheHippoAction(Player objPlayer)
 	{
 		boolean status = false;
@@ -189,15 +274,9 @@ public class CityAreaCard extends Cards{
 			userinput = br.readLine();
 			if (userinput.equals('Y') || userinput.equals('y'))
 			{
-				int noOfSilverCoins = Game.GameBank.objSilverCoin.getCoin_Available();
-				if (noOfSilverCoins > 0 )
-				{
-					int noOfPlayerCoins = objPlayer.objSilverCoin.getCoin_Available();
-					noOfPlayerCoins = noOfPlayerCoins + 2;
-					objPlayer.objSilverCoin.setCoin_Available(noOfPlayerCoins);
-				}
-				noOfSilverCoins = noOfSilverCoins - 2;
-				Game.GameBank.objSilverCoin.setCoin_Available(noOfSilverCoins);
+				int playerID = objPlayer.getPlayer_id();
+				Game.PaymentFromBank(playerID, 2);
+				System.out.print("Action Performed Successfully");
 				status = true;
 			}
 		} catch (IOException e) {
@@ -207,6 +286,12 @@ public class CityAreaCard extends Cards{
 	return status;
 	}
 	
+	/**
+	 * Dragon landing action.
+	 *
+	 * @param objPlayer the obj player
+	 * @return true, if successful
+	 */
 	public boolean DragonLandingAction(Player objPlayer)
 	{
 		boolean status = false;		
@@ -217,15 +302,9 @@ public class CityAreaCard extends Cards{
 			userinput = br.readLine();
 			if (userinput.equals('Y') || userinput.equals('y'))
 			{
-				int noOfSilverCoins = Game.GameBank.objSilverCoin.getCoin_Available();
-				if (noOfSilverCoins > 0 )
-				{
-					int noOfPlayerCoins = objPlayer.objSilverCoin.getCoin_Available();
-					noOfPlayerCoins = noOfPlayerCoins + 2;
-					objPlayer.objSilverCoin.setCoin_Available(noOfPlayerCoins);
-				}
-				noOfSilverCoins = noOfSilverCoins - 2;
-				Game.GameBank.objSilverCoin.setCoin_Available(noOfSilverCoins);
+				int playerID = objPlayer.getPlayer_id();
+				Game.PaymentFromBank(playerID, 2);
+				System.out.print("Action Performed Successfully");
 				status = true;
 			}
 		} catch (IOException e) {
@@ -235,6 +314,12 @@ public class CityAreaCard extends Cards{
 	return status;
 	}
 	
+	/**
+	 * Dimwell action.
+	 *
+	 * @param objPlayer the obj player
+	 * @return true, if successful
+	 */
 	public boolean DimwellAction(Player objPlayer)
 	{
 		boolean status = false;
@@ -244,6 +329,8 @@ public class CityAreaCard extends Cards{
 			String userinput = br.readLine();
 			if (userinput.equals('Y') || userinput.equals('y'))
 			{
+				int playerID = objPlayer.getPlayer_id();
+				Game.PaymentToBank(playerID, 3);
 				ArrayList<Minion> minionsByPlayerList = Game.GetMinionsNotOnBoardByPlayerID(objPlayer.getPlayer_id());
 				//System.out.println(" Minions not on board List" + );
 				//	minionsByPlayerList.get(0).setPlayer_id(objPlayer.getPlayer_id());
@@ -253,18 +340,9 @@ public class CityAreaCard extends Cards{
 				int areaIdToPlace = Integer.parseInt(areaidinput.readLine());
 				if(PresentationUtility.canMinionBePlacedInAdjacentArea(objPlayer.getPlayer_id(), minionsByPlayerList.get(0).getMinion_id(), 0, areaIdToPlace)){
 					minionsByPlayerList.get(0).setArea_id(areaIdToPlace);
-			}
-				
-			int noOfSilverCoins = Game.GameBank.objSilverCoin.getCoin_Available();
-			if (noOfSilverCoins > 0 )
-			{
-				int noOfPlayerCoins = objPlayer.objSilverCoin.getCoin_Available();
-				noOfPlayerCoins = noOfPlayerCoins + 3;
-				objPlayer.objSilverCoin.setCoin_Available(noOfPlayerCoins);
-			}
-			noOfSilverCoins = noOfSilverCoins - 3;
-			Game.GameBank.objSilverCoin.setCoin_Available(noOfSilverCoins);
-				status = true;
+				}
+				System.out.print("Action Performed Successfully");
+				status = true;	
 			}
 		} catch (IOException e) {
 			// TODO Auto-generated catch block
@@ -273,6 +351,12 @@ public class CityAreaCard extends Cards{
 	return status;
 }
 
+/**
+ * Dolly sister action.
+ *
+ * @param objPlayer the obj player
+ * @return true, if successful
+ */
 public boolean DollySisterAction(Player objPlayer)
 	{
 		boolean status = false;
@@ -282,27 +366,19 @@ public boolean DollySisterAction(Player objPlayer)
 			String userinput = br.readLine();
 			if (userinput.equals('Y') || userinput.equals('y'))
 			{
+				int playerID = objPlayer.getPlayer_id();
+				Game.PaymentToBank(playerID, 3);
 				ArrayList<Minion> minionsByPlayerList = Game.GetMinionsNotOnBoardByPlayerID(objPlayer.getPlayer_id());
-				
-			//System.out.println(" Minions not on board List" + );
-			//	minionsByPlayerList.get(0).setPlayer_id(objPlayer.getPlayer_id());
-			//	Minion objPlayerMinionId = new Minion();
+				//System.out.println(" Minions not on board List" + );
+				//	minionsByPlayerList.get(0).setPlayer_id(objPlayer.getPlayer_id());
+				//	Minion objPlayerMinionId = new Minion();
 				System.out.println("Enter AreaId where you want to place the minion 1,3,2,12 : ");
 				BufferedReader br1 = new BufferedReader(new InputStreamReader(System.in));
 				int areaIdToPlace = Integer.parseInt(br1.readLine());
 				if(PresentationUtility.canMinionBePlacedInAdjacentArea(objPlayer.getPlayer_id(), minionsByPlayerList.get(0).getMinion_id(), 0, areaIdToPlace)){
 					minionsByPlayerList.get(0).setArea_id(areaIdToPlace);
 				}
-
-				int noOfSilverCoins = Game.GameBank.objSilverCoin.getCoin_Available();
-				if (noOfSilverCoins > 0 )
-				{
-					int noOfPlayerCoins = objPlayer.objSilverCoin.getCoin_Available();
-					noOfPlayerCoins = noOfPlayerCoins + 3;
-					objPlayer.objSilverCoin.setCoin_Available(noOfPlayerCoins);
-				}
-				noOfSilverCoins = noOfSilverCoins - 3;
-				Game.GameBank.objSilverCoin.setCoin_Available(noOfSilverCoins);
+				System.out.print("Action Performed Successfully");
 				status = true;
 			}
 		} catch (IOException e) {
@@ -312,33 +388,41 @@ public boolean DollySisterAction(Player objPlayer)
 		return status;
 }
 
+/**
+ * The scours action.
+ *
+ * @param objPlayer the obj player
+ * @return true, if successful
+ * @throws IOException Signals that an I/O exception has occurred.
+ */
 public boolean TheScoursAction(Player objPlayer) throws IOException{
 	boolean status = false;
 	BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
 	System.out.println("Would you like to perform this action : Y/N ");
 	String userinput = br.readLine();
-	if (userinput.equals('Y') || userinput.equals('y'))
-	{
-	//String CardList = Game.getGreenCardIDForPlayer(objPlayer.getPlayer_id());
-	//System.out.println("Which card do you want to discard :" + CardList);
-	BufferedReader br1 = new BufferedReader(new InputStreamReader(System.in));
-	String cardID = br1.readLine();
-	GreenCard objGC = Game.GetGreenCard(cardID);
-	objGC.IsPlayed = true;
-	int noOfSilverCoins = Game.GameBank.objSilverCoin.getCoin_Available();
-	if (noOfSilverCoins > 0 )
-	{
-		int noOfPlayerCoins = objPlayer.objSilverCoin.getCoin_Available();
-		noOfPlayerCoins = noOfPlayerCoins + 3;
-		objPlayer.objSilverCoin.setCoin_Available(noOfPlayerCoins);
-	}
-	noOfSilverCoins = noOfSilverCoins - 3;
-	Game.GameBank.objSilverCoin.setCoin_Available(noOfSilverCoins);
-	status = true;
+	if (userinput.equals('Y') || userinput.equals('y')){
+		ArrayList<GreenCard> CardList = Game.GetGreenCardByPlayerID(objPlayer.getPlayer_id());
+		System.out.println("Which card do you want to discard :" + CardList);
+		BufferedReader br1 = new BufferedReader(new InputStreamReader(System.in));
+		String cardID = br1.readLine();
+		GreenCard objGC = Game.GetGreenCard(cardID);
+		objGC.IsPlayed = true;
+		int playerID = objPlayer.getPlayer_id();
+		Game.PaymentFromBank(playerID, 2);
+		status = true;
+		System.out.println("Action Performed Successfully");
 	}
 	return status;
 }
 
+/**
+ * The shades action.
+ *
+ * @param objPlayer the obj player
+ * @return true, if successful
+ * @throws NumberFormatException the number format exception
+ * @throws IOException Signals that an I/O exception has occurred.
+ */
 public boolean TheShadesAction(Player objPlayer) throws NumberFormatException, IOException{
 	boolean status = false;
 	BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
@@ -358,15 +442,30 @@ public boolean TheShadesAction(Player objPlayer) throws NumberFormatException, I
 					 TroubleMaker objTroubleMaker = Game.GetTroubleMakerNotOnBoard();
 					 objTroubleMaker.setArea_id(adjacentAreaID);
 					 status = true;
+					 System.out.println("Action Performed Successfully");
 	}
 	
 	return status;
 }
 
+/**
+ * Small gods action.
+ *
+ * @param objPlayer the obj player
+ * @return true, if successful
+ * @throws IOException Signals that an I/O exception has occurred.
+ */
 public boolean SmallGodsAction(Player objPlayer) throws IOException{
 		return true;
 }
 
+/**
+ * Isle of gods action.
+ *
+ * @param objPlayer the obj player
+ * @return true, if successful
+ * @throws IOException Signals that an I/O exception has occurred.
+ */
 public boolean IsleOfGodsAction(Player objPlayer) throws IOException{
 	boolean status = false;
 	BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
@@ -374,27 +473,28 @@ public boolean IsleOfGodsAction(Player objPlayer) throws IOException{
 	String userinput = br.readLine();
 	if (userinput.equals('Y') || userinput.equals('y'))
 	{
-		int noOfPlayerCoins = objPlayer.objSilverCoin.getCoin_Available();
-		if (noOfPlayerCoins > 0 )
-		{
-			int noOfSilverCoins = Game.GameBank.objSilverCoin.getCoin_Available();
-			noOfSilverCoins = noOfSilverCoins + 2;
-			Game.GameBank.objSilverCoin.setCoin_Available(noOfSilverCoins);
-		}
-		noOfPlayerCoins = noOfPlayerCoins - 2;
-		objPlayer.objSilverCoin.setCoin_Available(noOfPlayerCoins);
+		int playerID = objPlayer.getPlayer_id();
+		Game.PaymentToBank(playerID, 2);
 		String areaList = Game.GetTroubleMakerOnBoardAreaId();
 		System.out.println("Enter areaID from which area you want to remove trouble marker" + areaList);
 		BufferedReader br1 = new BufferedReader(new InputStreamReader(System.in));
 		int areaID = Integer.parseInt(br1.readLine());
 		if(Game.removeTroubleMarkerByAreaId(areaID)){
-			System.out.println("Action Performed Successfully");
+			status = true;
 		}
-		status = true;
+		System.out.println("Action Performed Successfully");
+		
 	}
 	return status;
 }
 
+/**
+ * Unreal estate.
+ *
+ * @param objPlayer the obj player
+ * @return true, if successful
+ * @throws IOException Signals that an I/O exception has occurred.
+ */
 public boolean UnrealEstate(Player objPlayer) throws IOException{
 	boolean status = false;
 	BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
@@ -413,6 +513,7 @@ public boolean UnrealEstate(Player objPlayer) throws IOException{
 	String cardID = br1.readLine();
 	GreenCard objGC = Game.GetGreenCard(cardID);
 	objGC.IsPlayed = true;
+	System.out.println("Action Performed Successfully");
 	status = true;
 	}
 	return status;

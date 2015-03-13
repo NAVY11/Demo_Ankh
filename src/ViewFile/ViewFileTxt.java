@@ -3,16 +3,18 @@
  */
 package ViewFile;
 
-import java.io.File;
-import java.io.FileWriter;
 import java.util.ArrayList;
-
-import javax.swing.JFileChooser;
 
 import PresentationUtilityCommon.PresentationUtility;
 import ankhmorpork.Game.Game;
 import ankhmorpork.GameObjects.Area;
+import ankhmorpork.GameObjects.Building;
+import ankhmorpork.GameObjects.Demon;
+import ankhmorpork.GameObjects.Minion;
 import ankhmorpork.GameObjects.Player;
+import ankhmorpork.GameObjects.Troll;
+import ankhmorpork.GameObjects.TroubleMaker;
+import ankhmorpork.GameObjects.Cards.CityAreaCard;
 
 // TODO: Auto-generated Javadoc
 /**
@@ -41,7 +43,6 @@ public class ViewFileTxt {
 	/**
 	 * View state.
 	 *
-	 * @param lstPlayers the lst players
 	 * @return the string
 	 */
 	public static String ViewState(){
@@ -50,21 +51,57 @@ public class ViewFileTxt {
 		ArrayList<Player> lstPlayers = Game.lstPlayers;
 		saveTheDetailsInTextFile += playerGeneralInfo(lstPlayers);
 		saveTheDetailsInTextFile += "\n\n";
-		saveTheDetailsInTextFile += currentAndNextPlayerTurn(lstPlayers);
-		saveTheDetailsInTextFile += "\n\n";
-		saveTheDetailsInTextFile += areaDetails();
-		saveTheDetailsInTextFile += "\n\n";
-		saveTheDetailsInTextFile += playerDetails(lstPlayers);
-		saveTheDetailsInTextFile += "\n\n";
-		saveTheDetailsInTextFile += totalAmountBankOwns();//to be chkd
 		
+		ArrayList<Minion> lstMinions = Game.lstMinions;
+		ArrayList<Building> lstBuildings = Game.lstBuildings;
+		ArrayList<Troll> lstTrolls = Game.lstTrolls;
+		ArrayList<Demon> lstDemons = Game.lstDemons;
+		ArrayList<TroubleMaker> lstTroubleMakers = Game.lstTroubleMaker;
+		ArrayList<CityAreaCard> lstCityAreaCards = Game.lstCityAreaCards;
+		
+		for(Minion minion : Game.lstMinions){
+			System.out.println("Minion Id : "+minion.getMinion_id());
+			System.out.println("Minion Belongs To : "+minion.getPlayer_id());
+			System.out.println("Minion Area Id : "+minion.getArea_id());
+		}
+		
+		for(Building building : Game.lstBuildings){
+			System.out.println("Building Id : "+building.getBuilding_id());
+			System.out.println("Building Belongs To : "+building.getPlayer_id());
+			System.out.println("Building Area Id : "+building.getArea_id());
+		}
+		
+		for(Troll troll : Game.lstTrolls){
+			System.out.println("Building Id : "+troll.getTroll_id());
+			System.out.println("Building Area Id : "+troll.getArea_id());
+		}
+		
+		for(Demon demon : Game.lstDemons){
+			System.out.println("Demon Id : "+demon.getDemon_id());
+			System.out.println("Demon Area Id : "+ demon.getArea_id());
+		}
+		
+		for(TroubleMaker troubleMaker : Game.lstTroubleMaker){
+			System.out.println("Troubler Maker Id : "+troubleMaker.getTm_id());
+			System.out.println("Demon Area Id : "+ troubleMaker.getArea_id());
+		}
+		
+		
+		
+//		//saveTheDetailsInTextFile += areaDetails();
+//		saveTheDetailsInTextFile += "\n\n";
+//		saveTheDetailsInTextFile += playerDetails(lstPlayers);
+//		saveTheDetailsInTextFile += "\n\n";
+//		saveTheDetailsInTextFile += totalAmountBankOwns();//to be chkd
+//		saveTheDetailsInTextFile += "\n\n";
+//		
 		return saveTheDetailsInTextFile;
 	}
 	
 	/**
 	 * Data to store in text file.
 	 *
-	 * @param lstPlayers the lst players
+	 * @param players the players
 	 * @return the string
 	 */
 //	public static String dataToStoreInTextFile(ArrayList<Player> lstPlayers){
@@ -166,11 +203,6 @@ public class ViewFileTxt {
 		playerGeneralInfoStr += "\nThere are "+players.size()+" players:";
 		
 		for(Player player: players){
-			//System.out.println("size " + players.size());
-			//System.out.println("colour " + player.getPlayer_color());
-			System.out.println(player.getPersonalityCardListCommaSeparated());
-			System.out.println("personality " + PresentationUtility.getPersonalityCardNameById(Integer.parseInt(player.getPersonalityCardListCommaSeparated())));
-
 			playerGeneralInfoStr += "\nPlayer "+(players.size() -i)+", "+player.getPlayer_name()+", "+ player.getPlayer_color()+", "+ PresentationUtility.getPersonalityCardNameById(Integer.parseInt(player.getPersonalityCardListCommaSeparated()));
 			i -= 1;
 		}
@@ -198,6 +230,12 @@ public class ViewFileTxt {
 		return currentAndNextPlayerTurnStr ;
 	}
 	
+	/**
+	 * Current player playing.
+	 *
+	 * @param players the players
+	 * @return the string
+	 */
 	public static String currentPlayerPlaying(ArrayList<Player> players){
 		String currentPlayerPlaying = "";
 		
@@ -263,7 +301,7 @@ public class ViewFileTxt {
 		int i = players.size()-1;
 		for(Player player: players){
 			playerDetails += "\nPlayer "+(players.size() -i)+"'s current Inventory:";
-			playerDetails += "\n\n\t- "+player.lstMinions.size()+" minions, "+player.lstBuildings.size()+" buildings, "+player.getPlayerAmount()+" dollars ";
+			playerDetails += "\n\n\t- "+Game.lstMinions.size()+" minions, "+Game.lstBuildings.size()+" buildings, "+player.getPlayerAmount()+" dollars ";
 			playerDetails += "\n\n\t-City Area Cards: \n\n\t\t" +PresentationUtility.getCityAreaCardNameById(Integer.parseInt(player.getCityAreaCardsListCommaSeparated()));
 			playerDetails += "\n\n\t-Player Cards: ";
 			playerDetails += "\n\t\tGreen Cards: "+ player.getGreenCardListCommaSeparated();

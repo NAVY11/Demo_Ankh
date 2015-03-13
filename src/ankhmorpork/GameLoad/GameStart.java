@@ -22,6 +22,7 @@ import ankhmorpork.GameObjects.Minion;
 import ankhmorpork.GameObjects.Player;
 import ankhmorpork.GameObjects.Troll;
 import ankhmorpork.GameObjects.TroubleMaker;
+import ankhmorpork.GameObjects.Cards.CityAreaCard;
 import ankhmorpork.GameObjects.Cards.GreenCard;
 
 // TODO: Auto-generated Javadoc
@@ -38,27 +39,27 @@ public class GameStart {
 	 * @param Players the players
 	 * @param Colors the colors
 	 * @param iNoOfPlayers the i no of players
-	 * @throws JSONException 
-	 * @throws ParseException 
-	 * @throws IOException 
-	 * @throws FileNotFoundException 
+	 * @throws FileNotFoundException the file not found exception
+	 * @throws IOException Signals that an I/O exception has occurred.
+	 * @throws ParseException the parse exception
+	 * @throws JSONException the JSON exception
 	 */
 	public static void StartNewGame(String Players[], String Colors[], int iNoOfPlayers) throws FileNotFoundException, IOException, ParseException, JSONException
 	{
-		Area[] AreaList = new Area[13];	
-		AreaList[0]=new Area(0,0,"Not on Board",0);
-		AreaList[1]=new Area(1,6,"Dolly Sisters",0);
-		AreaList[2]=new Area(2,18,"Unreal Estate",0);
-		AreaList[3]=new Area(3,12,"Dragon's Landing",0);
-		AreaList[4]=new Area(4,18,"Small Gods",0);
-		AreaList[5]=new Area(5,6,"The Scours",0);
-		AreaList[6]=new Area(6,12,"The Hippo",0);
-		AreaList[7]=new Area(7,6,"The Shades",0);
-		AreaList[8]=new Area(8,6,"Dimwel",0);
-		AreaList[9]=new Area(9,12,"Longwall",0);
-		AreaList[10]=new Area(10,12,"Isle of Gods",0);
-		AreaList[11]=new Area(11,18,"Seven Sleepers",0);
-		AreaList[12]=new Area(12,12,"Nap Hill",0);
+//		Area[] AreaList = new Area[13];	
+//		AreaList[0]=new Area(0,0,"Not on Board",0);
+//		AreaList[1]=new Area(1,6,"Dolly Sisters",0);
+//		AreaList[2]=new Area(2,18,"Unreal Estate",0);
+//		AreaList[3]=new Area(3,12,"Dragon's Landing",0);
+//		AreaList[4]=new Area(4,18,"Small Gods",0);
+//		AreaList[5]=new Area(5,6,"The Scours",0);
+//		AreaList[6]=new Area(6,12,"The Hippo",0);
+//		AreaList[7]=new Area(7,6,"The Shades",0);
+//		AreaList[8]=new Area(8,6,"Dimwel",0);
+//		AreaList[9]=new Area(9,12,"Longwall",0);
+//		AreaList[10]=new Area(10,12,"Isle of Gods",0);
+//		AreaList[11]=new Area(11,18,"Seven Sleepers",0);
+//		AreaList[12]=new Area(12,12,"Nap Hill",0);
 		
 		ArrayList<Integer> initializingBrownCardsArr = PresentationUtility.initializeAArrayWithValue(53);
 		ArrayList<Integer> initializingGreenCardsArr = PresentationUtility.initializeAArrayWithValue(48);
@@ -68,6 +69,9 @@ public class GameStart {
 		String getFiveDifferentBrownNumbers = "", getFiveDifferentGreenNumbers = "", getRandomCityAreaCardsForPlayers = "";
 		Integer getOneDifferentPersonalityCard;
 		GameLoad.LoadNewGame_Cards();
+		for(CityAreaCard areaCard : Game.lstCityAreaCards){
+			System.out.println(areaCard);
+		}
 			//New Game
 		//Game AnkhMorpork = new Game();
 		//Initialize Trolls and Players
@@ -155,7 +159,7 @@ public class GameStart {
 			System.out.println("Player "+ i + " Details");
 			System.out.println("Player ID: "+objPlayer.getPlayer_id()+" Player Name:"+objPlayer.getPlayer_name()+" Player Color:"+objPlayer.getPlayer_color());
 			System.out.println("Minion Details of Player "+i);
-			for(Minion objMinion:objPlayer.lstMinions)
+			for(Minion objMinion:Game.lstMinions)
 			{
 				System.out.println("MinionID:"+objMinion.getMinion_id()+" MinionArea: "+objMinion.getArea_id()+" MinionColor: "+objMinion.getColor()+" PlayerID: "+objMinion.getPlayer_id());
 			}
@@ -222,6 +226,12 @@ public class GameStart {
 				
 				if(randomNumberAtIndexNumberForCityAreaCard > 0){
 					getRandomCityAreaCardsForPlayers = randomNumberAtIndexNumberForCityAreaCard+",";
+					for(CityAreaCard cityAreaCard1 : Game.lstCityAreaCards){
+						if((cityAreaCard1.GetCardID()+",").equals("c"+getRandomCityAreaCardsForPlayers)){
+							cityAreaCard1.setPlayerID(objPlayer.getPlayer_id());
+							break;
+						}
+					}
 					countCityAreaCard += 1;
 					initializingCityAreaCardsArr.remove(randomNumberAtIndexNumberForCityAreaCard);
 					
@@ -256,7 +266,14 @@ public class GameStart {
 	}
 
 	//Method to get Bank Amounts
-		public static int getDefaultBankCoins(String CoinType, int iNoOfPlayers)
+		/**
+	 * Gets the default bank coins.
+	 *
+	 * @param CoinType the coin type
+	 * @param iNoOfPlayers the i no of players
+	 * @return the default bank coins
+	 */
+	public static int getDefaultBankCoins(String CoinType, int iNoOfPlayers)
 		{
 			if(CoinType==Constants.GoldCoin())
 			{
@@ -271,110 +288,4 @@ public class GameStart {
 			else return 0;
 		}
 
-//	public static void Set_Players_details(String Players[], String Colors[], int input)
-//	{
-//	
-//	Area[] AreaList = new Area[13];	
-//	AreaList[0]=new Area(0,0,"Not on Board",0);
-//	AreaList[1]=new Area(1,6,"Dolly Sisters",0);
-//	AreaList[2]=new Area(2,18,"Unreal Estate",0);
-//	AreaList[3]=new Area(3,12,"Dragon's Landing",0);
-//	AreaList[4]=new Area(4,18,"Small Gods",0);
-//	AreaList[5]=new Area(5,6,"The Scours",0);
-//	AreaList[6]=new Area(6,12,"The Hippo",0);
-//	AreaList[7]=new Area(7,6,"The Shades",0);
-//	AreaList[8]=new Area(8,6,"Dimwel",0);
-//	AreaList[9]=new Area(9,12,"Longwall",0);
-//	AreaList[10]=new Area(10,12,"Isle of Gods",0);
-//	AreaList[11]=new Area(11,18,"Seven Sleepers",0);
-//	AreaList[12]=new Area(12,12,"Nap Hill",0);
-//	
-//		//New Game
-//	Game Ankh = new Game();
-//	//Initialize Trolls and Players
-//	for(int i=1; i<4; i++)
-//	{
-//		Troll objTroll = new Troll(i);
-//		Ankh.lstTrolls.add(objTroll);
-//	}
-//	
-//	//Initialize Demons
-//	for(int i=1; i<5; i++)
-//	{
-//		Demon objDemon = new Demon(i);
-//		Ankh.lstDemons.add(objDemon);
-//	}
-//	
-//	BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
-//    
-//	
-//	
-//    //Initialize Players
-//	//System.out.println("Welcome to Ankh-Morpork");	
-//	//System.out.println("Enter number of Players:");
-//	//Integer input=0;
-//    //try {
-//	//	input = Integer.parseInt(br.readLine());
-//		
-//	//} catch (IOException e) {
-//	//	// TODO Auto-generated catch block
-//	//	e.printStackTrace();
-//	//}	
-//    
-//	for(int i=1;i<=input;i++)
-//	{
-//		//System.out.println("Enter Name for Player "+i);
-//		//String Name = br.readLine();
-//		//System.out.println("Enter Color for Player "+i);
-//		//String Color = br.readLine();
-//		String Name = Players[i];
-//		String Color = Colors[i];
-//		Player objPlayer = new Player(i,Name,Color);
-//		Ankh.lstPlayers.add(objPlayer);	
-//	}
-//	
-//	
-//	int i=1;
-//	for(Player objPlayer: Ankh.lstPlayers)
-//	{		
-//		System.out.println("Player "+ i + " Details");
-//		System.out.println("Player ID: "+objPlayer.getPlayer_id()+" Player Name:"+objPlayer.getPlayer_name()+" Player Color:"+objPlayer.getPlayer_color());
-//		System.out.println("Minion Details of Player "+i);
-//		for(Minion objMinion:objPlayer.lstMinions)
-//		{
-//			System.out.println("MinionID:"+objMinion.getMinion_id()+" MinionArea: "+objMinion.getArea_id()+" MinionColor: "+objMinion.getColor()+" PlayerID: "+objMinion.getPlayer_id());
-//		}
-//		i++;		
-//	}
-//	System.out.println("Similar for rest");
-//	//Know working directory
-//	String current = System.getProperty("user.dir");
-//    System.out.println("Current working directory in Java : " + current);
-//	System.out.println("Saving to jason file");
-//	try {
-//		GameSave.SaveGame("Ankh13",Ankh);
-//		System.out.println("Load Test");
-//		//ReLoading Ankh
-//		Ankh = GameLoad.LoadGame("Ankh12",Ankh);
-//		i=1;
-//		for(Player objPlayer: Ankh.lstPlayers)
-//		{		
-//			System.out.println("Player "+ i + " Details");
-//			System.out.println("Player ID: "+objPlayer.getPlayer_id()+" Player Name:"+objPlayer.getPlayer_name()+" Player Color:"+objPlayer.getPlayer_color());
-//			System.out.println("Player ID:"+objPlayer.getPlayer_id()+" Gold Coin Details: "+objPlayer.objGoldCoin.getCoin_Available());
-//			i++;
-//		}
-//	} catch (IOException e) {
-//		// TODO Auto-generated catch block
-//		e.printStackTrace();
-//	}
-//	 catch (JSONException e) {
-//		// TODO Auto-generated catch block
-//		e.printStackTrace();
-//	} 
-//	catch (ParseException e) {
-//		// TODO Auto-generated catch block
-//		e.printStackTrace();
-//	}
-//	}
 }

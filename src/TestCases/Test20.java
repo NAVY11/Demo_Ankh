@@ -6,8 +6,15 @@ import org.junit.Test;
 
 import PresentationUtilityCommon.PresentationUtility;
 
+// TODO: Auto-generated Javadoc
+/**
+ * The Class Test20.
+ */
 public class Test20 {
 
+	/**
+	 * Test.
+	 */
 	@Test
 	public void test() {
 		Integer amountToBeReturned = PresentationUtility.howMuchMoneyToTakeFromBank("g40");

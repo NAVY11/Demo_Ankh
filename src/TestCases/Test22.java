@@ -6,8 +6,15 @@ import org.junit.Test;
 
 import ankhmorpork.GameObjects.Player;
 
+// TODO: Auto-generated Javadoc
+/**
+ * The Class Test22.
+ */
 public class Test22 {
 
+	/**
+	 * Test.
+	 */
 	@Test
 	public void test() {
 		Player player = new Player();

@@ -18,11 +18,13 @@ import java.awt.event.ActionListener;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
 import java.io.BufferedReader;
+import java.io.File;
 import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.io.InputStreamReader;
 
+import javax.swing.JFileChooser;
 import javax.swing.JOptionPane;
 
 import org.json.JSONException;
@@ -34,6 +36,7 @@ import ViewFile.DisplayViewFile;
 import ViewFile.ViewFileTxt;
 import ankhmorpork.Game.Game;
 import ankhmorpork.GameObjects.*;
+import ankhmorpork.GameObjects.Cards.CityAreaCard;
 import ankhmorpork.GameObjects.Cards.GreenCard;
 import ankhmorpork.GameLoad.*;
 
@@ -44,19 +47,31 @@ import ankhmorpork.GameLoad.*;
  */
 public class discworldboard extends Component {
 	
+	/** The Width. */
 	private int Width  = 1200;
 	//yogesh
+	/** The Height. */
 	private int Height = 900;
 	
+	/** The discworld. */
 	private discworld discworld;
+	
+	/** The br. */
 	private static BufferedReader BR = new BufferedReader(new InputStreamReader(System.in));
+	
+	/** The Constant quit. */
 	static final Frame quit = new Frame("Are you sure?");
 	
+	/** The rolled. */
 	public boolean rolled = false;
 	
+		/** The Dice1. */
 		private int Dice1 = 0;
 
 
+		/**
+		 * Instantiates a new discworldboard.
+		 */
 		public discworldboard( ) {
 
 
@@ -244,14 +259,19 @@ public class discworldboard extends Component {
 		repaint();
 	}
 	//Method to decide who starts game
+	/**
+	 * Starting player.
+	 *
+	 * @param noOfPlayers the no of players
+	 * @return the int
+	 */
 	public int StartingPlayer(int noOfPlayers)
 	{
 		return (int)(Math.random()*noOfPlayers + 1);
 	}
+	
 	/**
 	 * View game state.
-	 *
-	 * @param lstPlayers the lst players
 	 */
 	public void ViewGameState(){
 		String viewStateData = ViewFileTxt.ViewState();
@@ -263,11 +283,10 @@ public class discworldboard extends Component {
 	 * Save game.
 	 *
 	 * @param objFileWriter the obj file writer
-	 * @param PlayedGame the played game
 	 * @throws IOException Signals that an I/O exception has occurred.
 	 * @throws JSONException the JSON exception
 	 */
-	public void SaveGame(FileWriter objFileWriter) throws IOException, JSONException{
+	public static void SaveGame(FileWriter objFileWriter) throws IOException, JSONException{
 		GameSave.SaveGame(objFileWriter);
 	}
 	
@@ -292,10 +311,9 @@ public class discworldboard extends Component {
 	 * Initialise game.
 	 *
 	 * @param iNoOfPlayers the i no of players
-	 * @param AnkhMorpork the ankh morpork
-	 * @throws IOException 
-	 * @throws JSONException 
-	 * @throws ParseException 
+	 * @throws IOException Signals that an I/O exception has occurred.
+	 * @throws ParseException the parse exception
+	 * @throws JSONException the JSON exception
 	 */
 	public void InitialiseGame(int iNoOfPlayers) throws IOException, ParseException, JSONException
 	{					
@@ -326,22 +344,68 @@ public class discworldboard extends Component {
 			
 			CurrentPlayer = PresentationUtility.nextPlayerTurn(CurrentPlayer, iNoOfPlayers); 
 		//Show Board
-		ViewFileTxt.ViewState();        
+		System.out.print(ViewFileTxt.ViewState());
 		//Play Game						
 		//Load Player details
 		Player objPlayer = Game.lstPlayers.get(CurrentPlayer - 1);
+		System.out.println("Enter 'saveGame' to save the Current State. Else write 'cont' to continue ");
+		BufferedReader brOption = new BufferedReader(new InputStreamReader(System.in));
+		String brOptionSelected = brOption.readLine();
+		if(brOptionSelected.equals("saveGame")){
+			JFileChooser chooser = new JFileChooser();
+			    chooser.setCurrentDirectory(new File("/home/me/Documents"));
+			    int retrival = chooser.showSaveDialog(null);
+			    if (retrival == JFileChooser.APPROVE_OPTION) {
+			        
+			            FileWriter objFileWriter = new FileWriter(chooser.getSelectedFile()+".txt");
+			            discworldboard.SaveGame(objFileWriter);
+
+			    }
+		}
 		System.out.println("It is "+objPlayer.getPlayer_name()+"'s turn");
 		//********Which Card to Play?
 		System.out.println("Which card to play?");
 		
-		//Show available cards
+		//Show available city area cards
+		StringBuilder sbValidCityAreaIDs = new StringBuilder();
+		boolean hasCityAreaCard = false;
+		for(CityAreaCard cityAreaCard : Game.lstCityAreaCards)
+		{	
+			if(cityAreaCard.getPlayerID()==objPlayer.getPlayer_id())
+			{
+				sbValidCityAreaIDs.append(cityAreaCard.GetCardID());
+				hasCityAreaCard = true;
+				System.out.println(cityAreaCard.CardID + " : " + cityAreaCard.getName());
+			}
+		}
+		
+		if(hasCityAreaCard){
+			//Accept City Area Card to play from Player
+			String CardID = null;
+			while(true)
+			{
+				System.out.println("Enter a City Area Card ID");
+				BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+				CardID = br.readLine().toString();
+				if((sbValidCityAreaIDs.toString()).contains(CardID))
+				{
+					break;
+				}
+			}
+		}
+
+		//Show available greeen cards
 		StringBuilder sbValidIDs = new StringBuilder();
 		for(GreenCard grnCard: Game.lstGreenCards)
 		{	
 			if(grnCard.getPlayerID()==objPlayer.getPlayer_id())
 			{
-				sbValidIDs.append(grnCard.GetCardID());			
-				System.out.println(grnCard.CardID + " : " + grnCard.getName());
+				sbValidIDs.append(grnCard.GetCardID());		
+				String ActionList = Game.GetGreenCardActions(grnCard.GetCardID());
+				System.out.printf("%-10s%-15s%-5s%-15s%-15s\n",grnCard.CardID ,  " : " ,  grnCard.getName() , " : " , ActionList);
+				
+				//System.out.println("Card '" + grnCard.getName() + "' has following actions :");
+				//System.out.print(ActionList);
 			}
 		}
 		
@@ -349,7 +413,7 @@ public class discworldboard extends Component {
 		String CardID = null;
 		while(true)
 		{
-			System.out.println("Enter a valid Card ID");
+			System.out.println("Enter a Green Card ID");
 			BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
 			CardID = br.readLine().toString();
 			if((sbValidIDs.toString()).contains(CardID))
@@ -363,10 +427,11 @@ public class discworldboard extends Component {
 				String ActionList = Game.GetGreenCardActions(CardID);
 				System.out.println("Card '" + grnCard.getName() + "' has following actions :");
 				System.out.println(ActionList);
+				boolean actionPerformed = false;
 				for(int i = 0; i<ActionArray.length; i++)
 				{
 					String ans = null;
-					if(i!=ActionArray.length-1)
+					if(i!=ActionArray.length-1 || actionPerformed)
 					{
 					System.out.println("Do you wish to perform " + ActionArray[i] + " action? Y/N");
 					while(true)
@@ -387,6 +452,7 @@ public class discworldboard extends Component {
 					}
 					if(ans.equalsIgnoreCase("Y"))
 					{
+						actionPerformed = true;
 						//Does a Player wish to interrupt? //TO DO
 						//If Yes : Which Player wants to interrupt?
 						//Perform Action

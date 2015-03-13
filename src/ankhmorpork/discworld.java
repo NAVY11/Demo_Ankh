@@ -45,49 +45,70 @@ public class discworld extends Applet implements ActionListener, WindowListener 
 	/** The Ankh morpork. */
 	Game AnkhMorpork = new Game();
 	
+	/** The Constant serialVersionUID. */
 	private static final long serialVersionUID = 1L;
 	
 	/** The Ankhmorpork frame. */
 	static Frame AnkhmorporkFrame = new Frame( " Ank Morpork " );
 	
+	/** The discworldboard. */
 	static discworldboard discworldboard = new discworldboard( );
 	
+	/** The Constant doublebufferpane. */
 	static final DoubleBufferPanel doublebufferpane = new DoubleBufferPanel();
 	
+	/** The Constant bufferpane. */
 	static final BufferPanel bufferpane = new BufferPanel();
 	
+	/** The Constant initframe. */
 	static final Frame initframe = new Frame();
 	
+	/** The Roll. */
 	private Button Roll  = new Button( "Roll Dice" );
 
+	/** The Constant start2. */
 	static final Button start2 = new Button( "Two Player" );		
 	
+	/** The Constant start3. */
 	static final Button start3 = new Button( "Three Player" );
 	
+	/** The Constant start4. */
 	static final Button start4 = new Button( "Four Player" );
 	
+	/** The Constant load. */
 	static final Button load = new Button( "Load Game!" );
 	
+	/** The Constant Quit. */
 	static final Button Quit = new Button ("Close");
 	
+	/** The Constant Exit. */
 	static final Button Exit = new Button ("Exit Game"); 
 	
+	/** The Constant ViewState. */
 	static final Button ViewState = new Button ("View State"); 
 	
+	/** The Constant Save. */
 	static final Button Save = new Button ("Save Game"); 
 	
+	/** The Constant Info. */
 	static final Button Info = new Button ("Rules");
 	
+	/** The back. */
 	Image back;
 	
+	/** The initializing brown cards arr. */
 	ArrayList<Integer> initializingBrownCardsArr = null;
 	
+	/** The initializing green cards arr. */
 	ArrayList<Integer> initializingGreenCardsArr = null;
 	
+	/** The initializing city area cards arr. */
 	ArrayList<Integer> initializingCityAreaCardsArr = null;
 	
+	/** The initializing personality arr. */
 	ArrayList<Integer> initializingPersonalityArr = null;
 	
+	/** The is loaded game initialized. */
 	public Boolean isLoadedGameInitialized = false;
 	
 	/**
@@ -103,6 +124,9 @@ public class discworld extends Applet implements ActionListener, WindowListener 
     }
 
 
+	/* (non-Javadoc)
+	 * @see java.applet.Applet#init()
+	 */
 	public void init() {
 
 		initframe.setSize( 380, 390 );
@@ -182,7 +206,7 @@ public class discworld extends Applet implements ActionListener, WindowListener 
 					} catch (ParseException e1) {
 						// TODO Auto-generated catch block
 						e1.printStackTrace();
-					}
+					} 
 					
 					
 			}

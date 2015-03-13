@@ -17,26 +17,61 @@ import ankhmorpork.GameObjects.Cards.GreenCard;
 import ankhmorpork.GameObjects.Cards.PersonalityCard;
 import ankhmorpork.GameObjects.Cards.RandomEventCard;
 
+// TODO: Auto-generated Javadoc
+/**
+ * The Class Game.
+ */
 public class Game {
 
+	/** The lst area. */
 	public static ArrayList<Area> lstArea = new ArrayList<Area>();
+	
+	/** The lst demons. */
 	public static ArrayList<Demon> lstDemons = new ArrayList<Demon>();
+	
+	/** The lst trolls. */
 	public static ArrayList<Troll> lstTrolls = new ArrayList<Troll>();
+	
+	/** The lst minions. */
 	public static ArrayList<Minion> lstMinions = new ArrayList<Minion>();
+	
+	/** The lst buildings. */
 	public static ArrayList<Building> lstBuildings = new ArrayList<Building>();
+	
+	/** The lst players. */
 	public static ArrayList<Player> lstPlayers = new ArrayList<Player>();
+	
+	/** The lst trouble maker. */
 	public static ArrayList<TroubleMaker> lstTroubleMaker = new ArrayList<TroubleMaker>();
+	
+	/** The lst city area cards. */
 	public static ArrayList<CityAreaCard> lstCityAreaCards = new ArrayList<CityAreaCard>();
+	
+	/** The lst green cards. */
 	public static ArrayList<GreenCard> lstGreenCards = new ArrayList<GreenCard>();
+	
+	/** The lst brown cards. */
 	public static ArrayList<BrownCard> lstBrownCards = new ArrayList<BrownCard>();
+	
+	/** The lst random event cards. */
 	public static ArrayList<RandomEventCard> lstRandomEventCards = new ArrayList<RandomEventCard>();
+	
+	/** The lst personality card. */
 	public static ArrayList<PersonalityCard> lstPersonalityCard = new ArrayList<PersonalityCard>();
+	
+	/** The Game bank. */
 	public static Bank GameBank = new Bank();
 		
 	
 	
 			
 	//Method to Get Player from Player ID
+	/**
+	 * Gets the player.
+	 *
+	 * @param PlayerID the player id
+	 * @return the player
+	 */
 	public static Player GetPlayer(int PlayerID)
 	{
 		Player Player = new Player();
@@ -53,6 +88,11 @@ public class Game {
 	}
 	
 	//Method to Set Player from Player ID
+	/**
+	 * Sets the player.
+	 *
+	 * @param Player the player
+	 */
 	public static void SetPlayer(Player Player)
 	{		
 		for(Player objPlayer : lstPlayers)
@@ -67,7 +107,13 @@ public class Game {
 	}
 	
 	//Method to Get Area from Area ID
-		public static Area GetArea(int AreaID)
+		/**
+	 * Gets the area.
+	 *
+	 * @param AreaID the area id
+	 * @return the area
+	 */
+	public static Area GetArea(int AreaID)
 		{
 			Area Area = new Area();
 			for(Area objArea : lstArea)
@@ -83,20 +129,32 @@ public class Game {
 		}
 		
 		//Method to Get Minion from Minion ID
-		public static ArrayList<Minion> GetMinionsByMinionID(int MinionID)
+		/**
+		 * Gets the minions by minion id.
+		 *
+		 * @param MinionID the minion id
+		 * @return the array list
+		 */
+		public static Minion GetMinionsByMinionID(int MinionID)
 		{
-			ArrayList<Minion> Minions = new ArrayList<Minion>();
+			Minion Minion = new Minion();
 			for(Minion objMinion : lstMinions)
 			{
 				if(objMinion.getMinion_id()== MinionID)
 				{
-					Minions.add(objMinion);
+					Minion =objMinion;
 				}
 			}
 					
-			return Minions;
+			return Minion;
 		}
 		
+		/**
+		 * Gets the minions by player id.
+		 *
+		 * @param PlayerID the player id
+		 * @return the array list
+		 */
 		public static ArrayList<Minion> GetMinionsByPlayerID(int PlayerID)
 		{
 			ArrayList<Minion> Minions = new ArrayList<Minion>();
@@ -110,6 +168,13 @@ public class Game {
 					
 			return Minions;
 		}
+		
+		/**
+		 * Gets the minions not on board by player id.
+		 *
+		 * @param PlayerID the player id
+		 * @return the array list
+		 */
 		public static ArrayList<Minion> GetMinionsNotOnBoardByPlayerID(int PlayerID)
 		{
 			ArrayList<Minion> Minions = new ArrayList<Minion>();
@@ -124,6 +189,12 @@ public class Game {
 			return Minions;
 		}
 		
+		/**
+		 * Gets the minions by area id.
+		 *
+		 * @param AreaID the area id
+		 * @return the array list
+		 */
 		public static ArrayList<Minion> GetMinionsByAreaID(int AreaID)
 		{
 			ArrayList<Minion> Minions = new ArrayList<Minion>();
@@ -139,6 +210,12 @@ public class Game {
 		}
 		
 		//Method to return comma separated String of Active Minion IDs in an Area
+		/**
+		 * Gets the active minions string by area id.
+		 *
+		 * @param AreaID the area id
+		 * @return the string
+		 */
 		public static String GetActiveMinionsStringByAreaID(int AreaID)
 		{
 			StringBuilder strActiveMinions = new StringBuilder();
@@ -155,6 +232,12 @@ public class Game {
 		}
 		
 		//Method to return comma separated String of Active Minion IDs of a Player
+		/**
+		 * Gets the active minions string by player id.
+		 *
+		 * @param PlayerID the player id
+		 * @return the string
+		 */
 		public static String GetActiveMinionsStringByPlayerID(int PlayerID)
 		{
 			StringBuilder strActiveMinions = new StringBuilder();
@@ -171,6 +254,12 @@ public class Game {
 		}
 		
 		//Method to return comma separated String of Active Minion IDs in an Area
+		/**
+		 * Gets the active buildings string by area id.
+		 *
+		 * @param AreaID the area id
+		 * @return the string
+		 */
 		public static String GetActiveBuildingsStringByAreaID(int AreaID)
 		{
 			StringBuilder strActiveBuildings = new StringBuilder();
@@ -186,6 +275,12 @@ public class Game {
 			return ActiveBuildings.substring(0,ActiveBuildings.length()-2);
 		}
 		//Method to return comma separated String of Active Building IDs of a Player
+		/**
+		 * Gets the active buildings string by player id.
+		 *
+		 * @param PlayerID the player id
+		 * @return the string
+		 */
 		public static String GetActiveBuildingsStringByPlayerID(int PlayerID)
 		{
 			StringBuilder strActiveBuildings = new StringBuilder();
@@ -201,6 +296,12 @@ public class Game {
 			return ActiveBuildings.substring(0,ActiveBuildings.length()-2);
 		}
 		
+		/**
+		 * Sets the building.
+		 *
+		 * @param Building the building
+		 * @return true, if successful
+		 */
 		public static boolean SetBuilding(Building Building)
 		{
 			boolean success = false;
@@ -216,6 +317,27 @@ public class Game {
 			return success;
 		}
 		
+		public static boolean SetMinion(Minion Minion)
+		{
+			boolean success = false;
+			for(Minion objMinion : Game.lstMinions)
+			{
+				if(objMinion.getMinion_id()==Minion.getMinion_id())
+				{
+					objMinion = Minion;
+					success = true;
+					break;
+				}
+			}
+			return success;
+		}
+		
+		/**
+		 * Gets the buildings by building id.
+		 *
+		 * @param BuildingID the building id
+		 * @return the building
+		 */
 		public static Building GetBuildingsByBuildingID(int BuildingID)
 		{
 			Building Building = new Building();
@@ -230,6 +352,12 @@ public class Game {
 			return Building;
 		}
 		
+		/**
+		 * Gets the buildings by area id.
+		 *
+		 * @param AreaID the area id
+		 * @return the array list
+		 */
 		public static ArrayList<Building> GetBuildingsByAreaID(int AreaID)
 		{
 			ArrayList<Building> Buildings = new ArrayList<Building>();
@@ -243,6 +371,12 @@ public class Game {
 			return Buildings;
 		}
 		
+		/**
+		 * Gets the buildings by player id.
+		 *
+		 * @param PlayerID the player id
+		 * @return the array list
+		 */
 		public static ArrayList<Building> GetBuildingsByPlayerID(int PlayerID)
 		{
 			ArrayList<Building> Buildings = new ArrayList<Building>();
@@ -256,6 +390,11 @@ public class Game {
 			return Buildings;
 		}
 		
+		/**
+		 * Area with no building.
+		 *
+		 * @return the string
+		 */
 		public static String AreaWithNoBuilding()
 		{
 			String strAreaList = "1,2,3,4,5,6,7,8,9,10,11,12,";
@@ -272,6 +411,28 @@ public class Game {
 			return strAreaList;
 		}
 		
+		public static String AreaWithNoMinion()
+		{
+			String strAreaList = "1,2,3,4,5,6,7,8,9,10,11,12,";
+			for(Minion Minion : Game.lstMinions)
+			{
+				if(Minion.getArea_id()!=0)
+				{
+					if(strAreaList.contains(Minion.getArea_id()+","))
+					{
+						strAreaList.replace(Minion.getArea_id()+",", "");
+					}
+				}
+			}
+			return strAreaList;
+		}
+		
+		/**
+		 * Gets the buildings not on board by player id.
+		 *
+		 * @param PlayerID the player id
+		 * @return the array list
+		 */
 		public static ArrayList<Building> GetBuildingsNotOnBoardByPlayerID(int PlayerID)
 		{
 			ArrayList<Building> Buildings = new ArrayList<Building>();
@@ -285,6 +446,12 @@ public class Game {
 			return Buildings;
 		}
 		
+		/**
+		 * Gets the troll by troll id.
+		 *
+		 * @param TrollID the troll id
+		 * @return the troll
+		 */
 		public static Troll GetTrollByTrollID(int TrollID)
 		{
 			Troll Troll = new Troll();
@@ -298,6 +465,12 @@ public class Game {
 			return Troll;
 		}
 		
+		/**
+		 * Gets the demon by demon id.
+		 *
+		 * @param DemonID the demon id
+		 * @return the demon
+		 */
 		public static Demon GetDemonByDemonID(int DemonID)
 		{
 			Demon Demon = new Demon();
@@ -311,6 +484,12 @@ public class Game {
 			return Demon;
 		}
 		
+		/**
+		 * Gets the demon by area id.
+		 *
+		 * @param AreaID the area id
+		 * @return the array list
+		 */
 		public static ArrayList<Demon> GetDemonByAreaID(int AreaID)
 		{
 			ArrayList<Demon> Demons = new ArrayList<Demon>();
@@ -324,6 +503,12 @@ public class Game {
 			return Demons;
 		}
 		
+		/**
+		 * Gets the troll by area id.
+		 *
+		 * @param AreaID the area id
+		 * @return the array list
+		 */
 		public static ArrayList<Troll> GetTrollByAreaID(int AreaID)
 		{
 			ArrayList<Troll> Trolls = new ArrayList<Troll>();
@@ -337,6 +522,12 @@ public class Game {
 			return Trolls;
 		}
 		
+		/**
+		 * Area has demon.
+		 *
+		 * @param AreaID the area id
+		 * @return true, if successful
+		 */
 		public static boolean AreaHasDemon(Integer AreaID) 
 		{
 			ArrayList<Demon> lstDemon = new ArrayList<Demon>();
@@ -347,6 +538,12 @@ public class Game {
 				return false;
 		}
 		
+		/**
+		 * Area has minion.
+		 *
+		 * @param AreaID the area id
+		 * @return true, if successful
+		 */
 		public static boolean AreaHasMinion(Integer AreaID) 
 		{
 			ArrayList<Minion> lstMinion = new ArrayList<Minion>();
@@ -357,6 +554,12 @@ public class Game {
 				return false;
 		}
 		
+		/**
+		 * Area has troll.
+		 *
+		 * @param AreaID the area id
+		 * @return true, if successful
+		 */
 		public static boolean AreaHasTroll(Integer AreaID) 
 		{
 			ArrayList<Troll> lstDemon = new ArrayList<Troll>();
@@ -367,6 +570,12 @@ public class Game {
 				return false;
 		}
 		
+		/**
+		 * Area has trouble marker.
+		 *
+		 * @param AreaID the area id
+		 * @return true, if successful
+		 */
 		public static boolean AreaHasTroubleMarker(Integer AreaID) 
 		{
 			boolean success=false;
@@ -384,6 +593,12 @@ public class Game {
 		}
 		
 		//Method to return TroubleMaker based on AreaID
+		/**
+		 * Gets the trouble marker.
+		 *
+		 * @param AreaID the area id
+		 * @return the trouble maker
+		 */
 		public static TroubleMaker GetTroubleMarker(int AreaID)
 		{
 			TroubleMaker objTroubleMaker = new TroubleMaker();
@@ -397,6 +612,12 @@ public class Game {
 			return objTroubleMaker;
 		}
 		
+		/**
+		 * Removes the trouble marker by area id.
+		 *
+		 * @param areaId the area id
+		 * @return true, if successful
+		 */
 		public static boolean removeTroubleMarkerByAreaId(int areaId){
 			boolean success = false;
 				for(TroubleMaker troubleMaker : Game.lstTroubleMaker){
@@ -408,6 +629,11 @@ public class Game {
 			return success;
 		}
 		
+		/**
+		 * Gets the trouble maker on board area id.
+		 *
+		 * @return the string
+		 */
 		public static String GetTroubleMakerOnBoardAreaId()
 		{
 			String sbAreaListStr = "";
@@ -430,6 +656,11 @@ public class Game {
 		
 		
 		//Method to return list of TroubleMakers
+		/**
+		 * Gets the trouble maker not on board.
+		 *
+		 * @return the trouble maker
+		 */
 		public static TroubleMaker GetTroubleMakerNotOnBoard()
 		{
 			TroubleMaker objTroubleMaker = new TroubleMaker();
@@ -446,6 +677,11 @@ public class Game {
 		}
 				
 		//Method to check whether Green cards are available in stack
+		/**
+		 * Checks if is green card in deck.
+		 *
+		 * @return true, if successful
+		 */
 		public static boolean IsGreenCardInDeck()
 		{
 			boolean found = false;
@@ -462,6 +698,12 @@ public class Game {
 		}
 		
 		//Method to get Green Card by Card ID
+		/**
+		 * Gets the green card.
+		 *
+		 * @param CardID the card id
+		 * @return the green card
+		 */
 		public static GreenCard GetGreenCard(String CardID)
 		{
 			GreenCard objGC = new GreenCard();
@@ -478,6 +720,12 @@ public class Game {
 		}
 		
 		//Method to set card played
+		/**
+		 * Sets the green card is played.
+		 *
+		 * @param CardID the card id
+		 * @param IsPlayed the is played
+		 */
 		public static void SetGreenCardIsPlayed(String CardID, boolean IsPlayed)
 		{
 			for(GreenCard GC : Game.lstGreenCards)
@@ -492,6 +740,11 @@ public class Game {
 		}
 		
 		//Method to Get GreenCardIDs in Deck
+		/**
+		 * Gets the green cards i ds from deck.
+		 *
+		 * @return the string
+		 */
 		public static String GetGreenCardsIDsFromDeck()
 		{
 			String CardList ="";
@@ -511,6 +764,11 @@ public class Game {
 		}
 		
 		//Method to assign random Green Card from Deck
+		/**
+		 * Gets the random green card from deck.
+		 *
+		 * @return the string
+		 */
 		public static String GetRandomGreenCardFromDeck()
 		{
 			String CardList = GetGreenCardsIDsFromDeck();			
@@ -521,6 +779,13 @@ public class Game {
 		}
 		
 		//Method to assign Green Card to player
+		/**
+		 * Sets the green card to player.
+		 *
+		 * @param CardID the card id
+		 * @param PlayerID the player id
+		 * @return true, if successful
+		 */
 		public static boolean SetGreenCardToPlayer(String CardID, int PlayerID)
 		{
 			boolean success=false;
@@ -537,6 +802,12 @@ public class Game {
 		}
 		
 		//Method to get Green CArd Actions
+		/**
+		 * Gets the green card actions.
+		 *
+		 * @param GreenCardID the green card id
+		 * @return the string
+		 */
 		public static String GetGreenCardActions(String GreenCardID)
 		{
 			GreenCard GC = Game.GetGreenCard(GreenCardID);
@@ -550,6 +821,12 @@ public class Game {
 			return sbActions.toString();
 		}
 		
+		/**
+		 * Gets the green card by player id.
+		 *
+		 * @param PlayerID the player id
+		 * @return the array list
+		 */
 		public static ArrayList<GreenCard> GetGreenCardByPlayerID(int PlayerID)
 		{
 			ArrayList<GreenCard> lstGreenCard = new ArrayList<GreenCard>();
@@ -568,6 +845,12 @@ public class Game {
 		
 
 		//Method to get Player Green Card count
+		/**
+		 * Gets the player green card count.
+		 *
+		 * @param PlayerID the player id
+		 * @return the int
+		 */
 		public static int GetPlayerGreenCardCount(int PlayerID)
 		{
 			int count = 0;
@@ -581,6 +864,12 @@ public class Game {
 			return count;
 		}
 		
+		/**
+		 * Gets the city area card by player id.
+		 *
+		 * @param PlayerID the player id
+		 * @return the array list
+		 */
 		public static ArrayList<CityAreaCard> GetCityAreaCardByPlayerID(int PlayerID)
 		{
 			ArrayList<CityAreaCard> lstCityAreaCard = new ArrayList<CityAreaCard>();
@@ -599,6 +888,12 @@ public class Game {
 		
 		
 		
+		/**
+		 * Gets the city area card by card id.
+		 *
+		 * @param CardID the card id
+		 * @return the city area card
+		 */
 		public static CityAreaCard GetCityAreaCardByCardID(String CardID)
 		{
 			CityAreaCard objCityAreaCard = new CityAreaCard();
@@ -614,6 +909,11 @@ public class Game {
 			return objCityAreaCard;
 		}
 		
+		/**
+		 * Sets the city area card.
+		 *
+		 * @param objCityAreaCard the obj city area card
+		 */
 		public static void SetCityAreaCard(CityAreaCard objCityAreaCard)
 		{
 			
@@ -627,6 +927,13 @@ public class Game {
 			}
 			
 		}
+		
+		/**
+		 * Gets the adjacent areas.
+		 *
+		 * @param areaID the area id
+		 * @return the adjacent areas
+		 */
 		public static String getAdjacentAreas(int areaID){
 			String adjacentAreasList = "";
 			if(areaID == 1){
@@ -658,6 +965,14 @@ public class Game {
 		}
 		
 		//Method to make Payment
+		/**
+		 * Payment player to player.
+		 *
+		 * @param PayToPlayerID the pay to player id
+		 * @param PaidByPlayer the paid by player
+		 * @param Amount the amount
+		 * @return true, if successful
+		 */
 		public static boolean PaymentPlayerToPlayer(int PayToPlayerID, int PaidByPlayer, int Amount)
 		{
 			Player objPayToPlayer = GetPlayer(PayToPlayerID);
@@ -694,6 +1009,13 @@ public class Game {
 		}
 		
 		//Method to make Payment to Bank
+		/**
+		 * Payment to bank.
+		 *
+		 * @param PaidByPlayer the paid by player
+		 * @param Amount the amount
+		 * @return true, if successful
+		 */
 		public static boolean PaymentToBank(int PaidByPlayer, int Amount)
 		{			
 			Player objPaidByPlayer =GetPlayer(PaidByPlayer);
@@ -712,7 +1034,14 @@ public class Game {
 		}
 		
 		//Method to take Payment from Bank
-				public static boolean PaymentFromBank(int PayToPlayer, int Amount)
+				/**
+		 * Payment from bank.
+		 *
+		 * @param PayToPlayer the pay to player
+		 * @param Amount the amount
+		 * @return true, if successful
+		 */
+		public static boolean PaymentFromBank(int PayToPlayer, int Amount)
 				{			
 					Player objPayToPlayer =GetPlayer(PayToPlayer);
 								

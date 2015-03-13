@@ -1,0 +1,529 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<class-diagram version="1.1.8" icons="true" always-add-relationships="false" generalizations="true" realizations="true" 
+  associations="true" dependencies="false" nesting-relationships="true">  
+  <class id="1" language="java" name="ankhmorpork.BufferPanel" project="AnkhMorpork_3_Feb_15" 
+    file="/AnkhMorpork_3_Feb_15/src/ankhmorpork/BufferPanel.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="-1" width="-1" x="79" y="71"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="2" language="java" name="ankhmorpork.discworld" project="AnkhMorpork_3_Feb_15" 
+    file="/AnkhMorpork_3_Feb_15/src/ankhmorpork/discworld.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="-1" width="-1" x="232" y="90"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="false" package="false" protected="false" private="false" static="true"/>      
+      <operations public="false" package="false" protected="false" private="false" static="true"/>    
+    </display>  
+  </class>  
+  <class id="3" language="java" name="ankhmorpork.discworldboard" project="AnkhMorpork_3_Feb_15" 
+    file="/AnkhMorpork_3_Feb_15/src/ankhmorpork/discworldboard.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="-1" width="-1" x="442" y="71"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="false" package="false" protected="false" private="false" static="true"/>    
+    </display>  
+  </class>  
+  <class id="4" language="java" name="ankhmorpork.DoubleBufferPanel" project="AnkhMorpork_3_Feb_15" 
+    file="/AnkhMorpork_3_Feb_15/src/ankhmorpork/DoubleBufferPanel.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="-1" width="-1" x="803" y="34"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="false" package="false" protected="false" private="false" static="true"/>    
+    </display>  
+  </class>  
+  <class id="5" language="java" name="ankhmorpork.Game.Game" project="AnkhMorpork_3_Feb_15" 
+    file="/AnkhMorpork_3_Feb_15/src/ankhmorpork/Game/Game.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="-1" width="-1" x="413" y="292"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="false" package="false" protected="false" private="false" static="false"/>      
+      <operations public="false" package="false" protected="false" private="false" static="true"/>    
+    </display>  
+  </class>  
+  <class id="6" language="java" name="ankhmorpork.GameConstants.Constants" project="AnkhMorpork_3_Feb_15" 
+    file="/AnkhMorpork_3_Feb_15/src/ankhmorpork/GameConstants/Constants.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="-1" width="-1" x="1174" y="506"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="false" package="false" protected="false" private="false" static="true"/>    
+    </display>  
+  </class>  
+  <class id="7" language="java" name="ankhmorpork.GameLoad.FileValidation" project="AnkhMorpork_3_Feb_15" 
+    file="/AnkhMorpork_3_Feb_15/src/ankhmorpork/GameLoad/FileValidation.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="-1" width="-1" x="1154" y="679"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="8" language="java" name="ankhmorpork.GameLoad.GameLoad" project="AnkhMorpork_3_Feb_15" 
+    file="/AnkhMorpork_3_Feb_15/src/ankhmorpork/GameLoad/GameLoad.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="-1" width="-1" x="1145" y="183"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="9" language="java" name="ankhmorpork.GameLoad.GameStart" project="AnkhMorpork_3_Feb_15" 
+    file="/AnkhMorpork_3_Feb_15/src/ankhmorpork/GameLoad/GameStart.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="-1" width="-1" x="1153" y="322"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="10" language="java" name="ankhmorpork.GameObjects.Area" project="AnkhMorpork_3_Feb_15" 
+    file="/AnkhMorpork_3_Feb_15/src/ankhmorpork/GameObjects/Area.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="-1" width="-1" x="354" y="639"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="false" package="false" protected="false" private="false" static="true"/>      
+      <operations public="false" package="false" protected="false" private="false" static="true"/>    
+    </display>  
+  </class>  
+  <class id="11" language="java" name="ankhmorpork.GameObjects.Bank" project="AnkhMorpork_3_Feb_15" 
+    file="/AnkhMorpork_3_Feb_15/src/ankhmorpork/GameObjects/Bank.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="-1" width="-1" x="260" y="457"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="false" package="false" protected="false" private="false" static="true"/>    
+    </display>  
+  </class>  
+  <class id="12" language="java" name="ankhmorpork.GameObjects.Building" project="AnkhMorpork_3_Feb_15" 
+    file="/AnkhMorpork_3_Feb_15/src/ankhmorpork/GameObjects/Building.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="-1" width="-1" x="643" y="284"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="false" package="false" protected="false" private="false" static="true"/>    
+    </display>  
+  </class>  
+  <class id="13" language="java" name="ankhmorpork.GameObjects.Coins" project="AnkhMorpork_3_Feb_15" 
+    file="/AnkhMorpork_3_Feb_15/src/ankhmorpork/GameObjects/Coins.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="-1" width="-1" x="51" y="635"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="false" package="false" protected="false" private="false" static="true"/>    
+    </display>  
+  </class>  
+  <class id="14" language="java" name="ankhmorpork.GameObjects.Demon" project="AnkhMorpork_3_Feb_15" 
+    file="/AnkhMorpork_3_Feb_15/src/ankhmorpork/GameObjects/Demon.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="-1" width="-1" x="585" y="121"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="false" package="false" protected="false" private="false" static="true"/>    
+    </display>  
+  </class>  
+  <interface id="15" language="java" name="ankhmorpork.GameObjects.GameCards" project="AnkhMorpork_3_Feb_15" 
+    file="/AnkhMorpork_3_Feb_15/src/ankhmorpork/GameObjects/GameCards.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="-1" width="-1" x="1173" y="54"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="false" package="false" protected="false" private="false" static="true"/>    
+    </display>  
+  </interface>  
+  <class id="16" language="java" name="ankhmorpork.GameObjects.Minion" project="AnkhMorpork_3_Feb_15" 
+    file="/AnkhMorpork_3_Feb_15/src/ankhmorpork/GameObjects/Minion.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="-1" width="-1" x="226" y="236"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="false" package="false" protected="false" private="false" static="true"/>    
+    </display>  
+  </class>  
+  <class id="17" language="java" name="ankhmorpork.GameObjects.Player" project="AnkhMorpork_3_Feb_15" 
+    file="/AnkhMorpork_3_Feb_15/src/ankhmorpork/GameObjects/Player.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="274" width="128" x="0" y="171"/>    
+    <display autosize="false" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="false" package="false" protected="false" private="false" static="true"/>    
+    </display>  
+  </class>  
+  <class id="18" language="java" name="ankhmorpork.GameObjects.Troll" project="AnkhMorpork_3_Feb_15" 
+    file="/AnkhMorpork_3_Feb_15/src/ankhmorpork/GameObjects/Troll.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="-1" width="-1" x="492" y="487"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="false" package="false" protected="false" private="false" static="true"/>    
+    </display>  
+  </class>  
+  <class id="19" language="java" name="ankhmorpork.GameObjects.TroubleMaker" project="AnkhMorpork_3_Feb_15" 
+    file="/AnkhMorpork_3_Feb_15/src/ankhmorpork/GameObjects/TroubleMaker.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="-1" width="-1" x="705" y="444"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="false" package="false" protected="false" private="false" static="true"/>    
+    </display>  
+  </class>  
+  <class id="20" language="java" name="ankhmorpork.GameObjects.Cards.BrownCard" project="AnkhMorpork_3_Feb_15" 
+    file="/AnkhMorpork_3_Feb_15/src/ankhmorpork/GameObjects/Cards/BrownCard.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="-1" width="-1" x="807" y="135"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="false" package="false" protected="false" private="false" static="true"/>    
+    </display>  
+  </class>  
+  <class id="21" language="java" name="ankhmorpork.GameObjects.Cards.Cards" project="AnkhMorpork_3_Feb_15" 
+    file="/AnkhMorpork_3_Feb_15/src/ankhmorpork/GameObjects/Cards/Cards.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="-1" width="-1" x="965" y="249"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="false" package="false" protected="false" private="false" static="true"/>    
+    </display>  
+  </class>  
+  <class id="22" language="java" name="ankhmorpork.GameObjects.Cards.CityAreaCard" project="AnkhMorpork_3_Feb_15" 
+    file="/AnkhMorpork_3_Feb_15/src/ankhmorpork/GameObjects/Cards/CityAreaCard.java" binary="false" 
+    corner="BOTTOM_RIGHT">    
+    <position height="-1" width="-1" x="800" y="265"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="false" package="false" protected="false" private="false" static="true"/>    
+    </display>  
+  </class>  
+  <class id="23" language="java" name="ankhmorpork.GameObjects.Cards.GreenCard" project="AnkhMorpork_3_Feb_15" 
+    file="/AnkhMorpork_3_Feb_15/src/ankhmorpork/GameObjects/Cards/GreenCard.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="-1" width="-1" x="617" y="668"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="false" package="false" protected="false" private="false" static="true"/>    
+    </display>  
+  </class>  
+  <class id="24" language="java" name="ankhmorpork.GameObjects.Cards.PersonalityCard" project="AnkhMorpork_3_Feb_15" 
+    file="/AnkhMorpork_3_Feb_15/src/ankhmorpork/GameObjects/Cards/PersonalityCard.java" binary="false" 
+    corner="BOTTOM_RIGHT">    
+    <position height="-1" width="-1" x="776" y="669"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="false" package="false" protected="false" private="false" static="true"/>    
+    </display>  
+  </class>  
+  <class id="25" language="java" name="ankhmorpork.GameObjects.Cards.RandomEventCard" project="AnkhMorpork_3_Feb_15" 
+    file="/AnkhMorpork_3_Feb_15/src/ankhmorpork/GameObjects/Cards/RandomEventCard.java" binary="false" 
+    corner="BOTTOM_RIGHT">    
+    <position height="-1" width="-1" x="964" y="668"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="false" package="false" protected="false" private="false" static="true"/>    
+    </display>  
+  </class>  
+  <class id="26" language="java" name="PresentationUtilityCommon.IConstants" project="AnkhMorpork_3_Feb_15" 
+    file="/AnkhMorpork_3_Feb_15/src/PresentationUtilityCommon/IConstants.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="-1" width="-1" x="1036" y="17"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="false" package="false" protected="false" private="false" static="true"/>      
+      <operations public="false" package="false" protected="false" private="false" static="true"/>    
+    </display>  
+  </class>  
+  <class id="27" language="java" name="PresentationUtilityCommon.PresentationUtility" project="AnkhMorpork_3_Feb_15" 
+    file="/AnkhMorpork_3_Feb_15/src/PresentationUtilityCommon/PresentationUtility.java" binary="false" 
+    corner="BOTTOM_RIGHT">    
+    <position height="-1" width="-1" x="1033" y="83"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="false" package="false" protected="false" private="false" static="true"/>      
+      <operations public="false" package="false" protected="false" private="false" static="true"/>    
+    </display>  
+  </class>  
+  <class id="28" language="java" name="PresentationUtilityCommon.PresentationUtilityTest" project="AnkhMorpork_3_Feb_15" 
+    file="/AnkhMorpork_3_Feb_15/src/PresentationUtilityCommon/PresentationUtilityTest.java" binary="false" 
+    corner="BOTTOM_RIGHT">    
+    <position height="-1" width="-1" x="983" y="470"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="false" package="false" protected="false" private="false" static="true"/>    
+    </display>  
+  </class>  
+  <association id="29">    
+    <end type="SOURCE" refId="5" navigable="false">      
+      <attribute id="30" name="lstPlayers">        
+        <position height="18" width="57" x="137" y="334"/>      
+      </attribute>      
+      <multiplicity id="31" minimum="0" maximum="2147483647">        
+        <position height="16" width="21" x="142" y="356"/>      
+      </multiplicity>    
+    </end>    
+    <end type="TARGET" refId="17" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <association id="32">    
+    <end type="SOURCE" refId="5" navigable="false">      
+      <attribute id="33" name="lstRandomEventCards"/>      
+      <multiplicity id="34" minimum="0" maximum="2147483647"/>    
+    </end>    
+    <end type="TARGET" refId="25" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <association id="35">    
+    <end type="SOURCE" refId="10" navigable="false">      
+      <attribute id="36" name="lstTroubleMakers"/>      
+      <multiplicity id="37" minimum="0" maximum="2147483647"/>    
+    </end>    
+    <end type="TARGET" refId="19" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <association id="38">    
+    <end type="SOURCE" refId="5" navigable="false">      
+      <attribute id="39" name="lstBrownCards"/>      
+      <multiplicity id="40" minimum="0" maximum="2147483647"/>    
+    </end>    
+    <end type="TARGET" refId="20" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <generalization id="41">    
+    <end type="SOURCE" refId="22"/>    
+    <end type="TARGET" refId="21"/>  
+  </generalization>  
+  <association id="42">    
+    <end type="SOURCE" refId="10" navigable="false">      
+      <attribute id="43" name="lstTrolls"/>      
+      <multiplicity id="44" minimum="0" maximum="2147483647"/>    
+    </end>    
+    <end type="TARGET" refId="18" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <association id="45">    
+    <end type="SOURCE" refId="5" navigable="false">      
+      <attribute id="46" name="GameBank"/>      
+      <multiplicity id="47" minimum="0" maximum="1"/>    
+    </end>    
+    <end type="TARGET" refId="11" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <association id="48">    
+    <end type="SOURCE" refId="5" navigable="false">      
+      <attribute id="49" name="lstCityAreaCards">        
+        <position height="18" width="92" x="626" y="188"/>      
+      </attribute>      
+      <multiplicity id="50" minimum="0" maximum="2147483647"/>    
+    </end>    
+    <end type="TARGET" refId="22" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <association id="51">    
+    <end type="SOURCE" refId="5" navigable="false">      
+      <attribute id="52" name="lstDemons"/>      
+      <multiplicity id="53" minimum="0" maximum="2147483647"/>    
+    </end>    
+    <end type="TARGET" refId="14" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <association id="54">    
+    <end type="SOURCE" refId="5" navigable="false">      
+      <attribute id="55" name="lstMinions">        
+        <position height="18" width="57" x="289" y="221"/>      
+      </attribute>      
+      <multiplicity id="56" minimum="0" maximum="2147483647"/>    
+    </end>    
+    <end type="TARGET" refId="16" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <association id="57">    
+    <end type="SOURCE" refId="5" navigable="false">      
+      <attribute id="58" name="lstTrolls"/>      
+      <multiplicity id="59" minimum="0" maximum="2147483647"/>    
+    </end>    
+    <end type="TARGET" refId="18" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <association id="60">    
+    <end type="SOURCE" refId="5" navigable="false">      
+      <attribute id="61" name="lstArea"/>      
+      <multiplicity id="62" minimum="0" maximum="2147483647"/>    
+    </end>    
+    <end type="TARGET" refId="10" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <generalization id="63">    
+    <end type="SOURCE" refId="23"/>    
+    <end type="TARGET" refId="21"/>  
+  </generalization>  
+  <association id="64">    
+    <end type="SOURCE" refId="2" navigable="false">      
+      <attribute id="65" name="discworldboard">        
+        <position height="18" width="86" x="281" y="51"/>      
+      </attribute>      
+      <multiplicity id="66" minimum="0" maximum="1"/>    
+    </end>    
+    <end type="TARGET" refId="3" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <association id="67">    
+    <end type="SOURCE" refId="2" navigable="false">      
+      <attribute id="68" name="bufferpane">        
+        <position height="18" width="64" x="162" y="34"/>      
+      </attribute>      
+      <multiplicity id="69" minimum="0" maximum="1"/>    
+    </end>    
+    <end type="TARGET" refId="1" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <generalization id="70">    
+    <end type="SOURCE" refId="20"/>    
+    <end type="TARGET" refId="21"/>  
+  </generalization>  
+  <generalization id="71">    
+    <end type="SOURCE" refId="24"/>    
+    <end type="TARGET" refId="21"/>  
+  </generalization>  
+  <association id="72">    
+    <end type="SOURCE" refId="11" navigable="false">      
+      <attribute id="73" name="objSilverCoin"/>      
+      <multiplicity id="74" minimum="0" maximum="1"/>    
+    </end>    
+    <end type="TARGET" refId="13" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <association id="75">    
+    <end type="SOURCE" refId="10" navigable="false">      
+      <attribute id="76" name="lstDemons"/>      
+      <multiplicity id="77" minimum="0" maximum="2147483647"/>    
+    </end>    
+    <end type="TARGET" refId="14" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <association id="78">    
+    <end type="SOURCE" refId="17" navigable="false">      
+      <attribute id="79" name="objSilverCoin">        
+        <position height="18" width="72" x="-33" y="525"/>      
+      </attribute>      
+      <multiplicity id="80" minimum="0" maximum="1"/>    
+    </end>    
+    <end type="TARGET" refId="13" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <generalization id="81">    
+    <end type="SOURCE" refId="25"/>    
+    <end type="TARGET" refId="21"/>  
+  </generalization>  
+  <association id="82">    
+    <end type="SOURCE" refId="2" navigable="false">      
+      <attribute id="83" name="doublebufferpane"/>      
+      <multiplicity id="84" minimum="0" maximum="1"/>    
+    </end>    
+    <end type="TARGET" refId="4" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <association id="85">    
+    <end type="SOURCE" refId="17" navigable="false">      
+      <attribute id="86" name="objGoldCoin"/>      
+      <multiplicity id="87" minimum="0" maximum="1"/>    
+    </end>    
+    <end type="TARGET" refId="13" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <association id="88">    
+    <end type="SOURCE" refId="2" navigable="false">      
+      <attribute id="89" name="AnkhMorpork">        
+        <position height="18" width="74" x="182" y="145"/>      
+      </attribute>      
+      <multiplicity id="90" minimum="0" maximum="1"/>    
+    </end>    
+    <end type="TARGET" refId="5" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <association id="91">    
+    <end type="SOURCE" refId="11" navigable="false">      
+      <attribute id="92" name="objGoldCoin"/>      
+      <multiplicity id="93" minimum="0" maximum="1"/>    
+    </end>    
+    <end type="TARGET" refId="13" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <association id="94">    
+    <end type="SOURCE" refId="10" navigable="false">      
+      <attribute id="95" name="lstMinions">        
+        <position height="18" width="57" x="290" y="196"/>      
+      </attribute>      
+      <multiplicity id="96" minimum="0" maximum="2147483647"/>    
+    </end>    
+    <end type="TARGET" refId="16" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <association id="97">    
+    <end type="SOURCE" refId="5" navigable="false">      
+      <attribute id="98" name="lstBuildings">        
+        <position height="18" width="64" x="507" y="245"/>      
+      </attribute>      
+      <multiplicity id="99" minimum="0" maximum="2147483647"/>    
+    </end>    
+    <end type="TARGET" refId="12" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <association id="100">    
+    <end type="SOURCE" refId="10" navigable="false">      
+      <attribute id="101" name="lstBuildings">        
+        <position height="18" width="64" x="506" y="319"/>      
+      </attribute>      
+      <multiplicity id="102" minimum="0" maximum="2147483647"/>    
+    </end>    
+    <end type="TARGET" refId="12" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <association id="103">    
+    <end type="SOURCE" refId="3" navigable="false">      
+      <attribute id="104" name="discworld">        
+        <position height="18" width="56" x="287" y="36"/>      
+      </attribute>      
+      <multiplicity id="105" minimum="0" maximum="1"/>    
+    </end>    
+    <end type="TARGET" refId="2" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <association id="106">    
+    <end type="SOURCE" refId="5" navigable="false">      
+      <attribute id="107" name="lstPersonalityCard"/>      
+      <multiplicity id="108" minimum="0" maximum="2147483647"/>    
+    </end>    
+    <end type="TARGET" refId="24" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <association id="109">    
+    <end type="SOURCE" refId="5" navigable="false">      
+      <attribute id="110" name="lstGreenCards"/>      
+      <multiplicity id="111" minimum="0" maximum="2147483647"/>    
+    </end>    
+    <end type="TARGET" refId="23" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <association id="112">    
+    <end type="SOURCE" refId="5" navigable="false">      
+      <attribute id="113" name="lstTroubleMaker">        
+        <position height="18" width="86" x="547" y="409"/>      
+      </attribute>      
+      <multiplicity id="114" minimum="0" maximum="2147483647"/>    
+    </end>    
+    <end type="TARGET" refId="19" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <classifier-display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+    sort-features="false" accessors="true" visibility="true">    
+    <attributes public="true" package="true" protected="true" private="true" static="true"/>    
+    <operations public="true" package="true" protected="true" private="true" static="true"/>  
+  </classifier-display>  
+  <association-display labels="true" multiplicity="true"/>
+</class-diagram>

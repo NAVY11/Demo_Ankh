@@ -54,22 +54,22 @@ public class Player {
 	
 	/** The personality card list comma separated. */
 	String personalityCardListCommaSeparated;
-	
-	/** The lst minions. */
-	public ArrayList<Minion> lstMinions = new ArrayList<Minion>();
-	
-	/** The lst buildings. */
-	public ArrayList<Building> lstBuildings = new ArrayList<Building>();	
-	
-	/** The lst Green Cards. */
-	public ArrayList<GreenCard> lstGreenCards = new ArrayList<GreenCard>();
-	
-	/** The lst BrownCards. */
-	public ArrayList<BrownCard> lstBrownCards = new ArrayList<BrownCard>();
-	
-	/** The lst Personality Card. */
-	public PersonalityCard PersonalityCard = new PersonalityCard();		
-	
+//	
+//	/** The lst minions. */
+//	public ArrayList<Minion> lstMinions = new ArrayList<Minion>();
+//	
+//	/** The lst buildings. */
+//	public ArrayList<Building> lstBuildings = new ArrayList<Building>();	
+//	
+//	/** The lst Green Cards. */
+//	public ArrayList<GreenCard> lstGreenCards = new ArrayList<GreenCard>();
+//	
+//	/** The lst BrownCards. */
+//	public ArrayList<BrownCard> lstBrownCards = new ArrayList<BrownCard>();
+//	
+//	/** The lst Personality Card. */
+//	public PersonalityCard PersonalityCard = new PersonalityCard();		
+//	
 	/** The obj gold coin. */
 	public Coins objGoldCoin = new Coins(Constants.GoldCoin());
 	
@@ -292,32 +292,33 @@ public class Player {
 		this.setPlayer_name(PlayerName);
 		this.setPlayer_color(PlayerColour);
 		this.setPlayer_active(true);
+		this.setPlayer_amount(getPlayerAmount());
 		
-		//Create minions for this Player
-		for(int i=1; i<=Constants.MinionsPerPlayer();i++)
-		{
-			Integer MinionID = 100*PlayerID + i;
-			Integer BuildingID = MinionID;
-			Integer AreaCode = 0;
-			if(i<4)
-			{
-				if(i==1)
-				{
-					AreaCode=1;
-				}
-				else if(i==2)
-				{
-					AreaCode=5;
-				}
-				else if(i==3)
-				{
-					AreaCode=7;
-				}
-			}
-			Minion objMinion = new Minion(MinionID,PlayerColour,AreaCode,PlayerID);
-			this.lstMinions.add(objMinion);
-			Building objBuilding = new Building(BuildingID,PlayerColour,0,PlayerID);
-			this.lstBuildings.add(objBuilding);
+//		//Create minions for this Player
+//		for(int i=1; i<=Constants.MinionsPerPlayer();i++)
+//		{
+//			Integer MinionID = 100*PlayerID + i;
+//			Integer BuildingID = MinionID;
+//			Integer AreaCode = 0;
+//			if(i<4)
+//			{
+//				if(i==1)
+//				{
+//					AreaCode=1;
+//				}
+//				else if(i==2)
+//				{
+//					AreaCode=5;
+//				}
+//				else if(i==3)
+//				{
+//					AreaCode=7;
+//				}
+//			}
+//			Minion objMinion = new Minion(MinionID,PlayerColour,AreaCode,PlayerID);
+//			this.lstMinions.add(objMinion);
+//			Building objBuilding = new Building(BuildingID,PlayerColour,0,PlayerID);
+//			this.lstBuildings.add(objBuilding);
 		}
 
 //		Coins GoldCoin = new Coins(Constants.GoldCoin());
@@ -325,7 +326,7 @@ public class Player {
 //		Coins SilverCoin = new Coins(Constants.SilverCoin());
 //		this.lstSilverCoin.add(SilverCoin);
 	
-	}
+//	}
 	
 	
 	
@@ -337,25 +338,31 @@ public class Player {
 	}
 	
 	//Get Active Minions List
-	public String GetActiveMinions()
-	{
-		StringBuilder strActiveMinions = new StringBuilder();
-		String activeMinionStr = "";
-		for(Minion objMinion : this.lstMinions)
-		{
-			if(objMinion.getActive()&& objMinion.getArea_id()!=0)
-			{
-				strActiveMinions.append(objMinion.getMinion_id() + ",");
-			}
-		}
-		activeMinionStr = strActiveMinions.toString();
-		if(activeMinionStr.endsWith(",")){
-			activeMinionStr = activeMinionStr.substring(0, activeMinionStr.length()-1);
-		}
-		return activeMinionStr;
-	}
-	
+//	public String GetActiveMinions()
+//	{
+//		StringBuilder strActiveMinions = new StringBuilder();
+//		String activeMinionStr = "";
+//		for(Minion objMinion : this.lstMinions)
+//		{
+//			if(objMinion.getActive()&& objMinion.getArea_id()!=0)
+//			{
+//				strActiveMinions.append(objMinion.getMinion_id() + ",");
+//			}
+//		}
+//		activeMinionStr = strActiveMinions.toString();
+//		if(activeMinionStr.endsWith(",")){
+//			activeMinionStr = activeMinionStr.substring(0, activeMinionStr.length()-1);
+//		}
+//		return activeMinionStr;
+//	}
+//	
 	//Method for Assassination
+	/**
+	 * Assassination.
+	 *
+	 * @return true, if successful
+	 * @throws IOException Signals that an I/O exception has occurred.
+	 */
 	public boolean Assassination() throws IOException
 	{			
 		String AreaID = null;
@@ -363,6 +370,8 @@ public class Player {
 		BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
 		//Dispaly Areas with Trouble Makers
 		System.out.println("Select an area to perform Assasination :");
+		//Read entered Area ID
+		AreaID = br.readLine() ;
 		boolean TMOnBoard = false;
 		StringBuilder sbValidAreas = new StringBuilder();
 		for(TroubleMaker objTM : Game.lstTroubleMaker)
@@ -385,9 +394,7 @@ public class Player {
 		{
 			
 			while(true)
-			{
-				//Read entered Area ID
-				AreaID = br.readLine() ;
+			{				
 				String[] ValidAreas = sbValidAreas.toString().split(",");
 				
 				if(PresentationUtility.ArrayHasElement(ValidAreas, AreaID))
@@ -567,6 +574,7 @@ public class Player {
 				
 		return success;
 	}
+	
 	//Assassinate Demon
 	public boolean AssassinateDemon(ArrayList<Demon> Demons) throws IOException
 	{
@@ -635,6 +643,7 @@ public class Player {
 						
 		return success;
 	}
+	
 	//Method to check if "other" Players have Minion in an Area
 	public ArrayList<Minion> GetOtherPlayersMinion(Player objPlayer, int AreaID)
 	{
@@ -870,6 +879,7 @@ public class Player {
 					}
 					return true;
 		}
+		
 		//Same Functionality of The Thieves' Guild
 		public boolean mrBoggisFunctionality(){
 			//1st Action to read scroll & then to place minion
@@ -1343,7 +1353,14 @@ public class Player {
 				return success;
 			}
 			
+	/**
+	 * Place a minion functionality.
+	 *
+	 * @return true, if successful
+	 * @throws IOException Signals that an I/O exception has occurred.
+	 */
 			public boolean placeAMinionFunctionality() throws IOException{
+				boolean success =false;
 				String placingAMinionStr = "";
 				for(Minion minionObj : Game.lstMinions){
 					if(minionObj.getPlayer_id() == this.getPlayer_id() && minionObj.getArea_id() == 0){
@@ -1352,19 +1369,52 @@ public class Player {
 					if(placingAMinionStr.endsWith(",")){
 						placingAMinionStr = placingAMinionStr.substring(0, placingAMinionStr.length()-1);
 					}
-					System.out.println("You are allowed to place these minions which are not on board : " + placingAMinionStr);
+	if(!placingAMinionStr.isEmpty())
+	{	
+	//System.out.println("You are allowed to place these minions which are not on board : " + placingAMinionStr);
 					System.out.println("Enter a area in which you want to keep the minion : ");
+	String AreaList = Game.AreaWithNoMinion();
+	System.out.println(AreaList);
 					BufferedReader brBuff = new BufferedReader(new InputStreamReader(System.in));
 					String br = brBuff.readLine();
-					ArrayList<Minion> placingMinionInNewObj = Game.GetMinionsByMinionID(Integer.parseInt(placingAMinionStr.substring(0)));
-					placingMinionInNewObj.get(0).setArea_id(Integer.parseInt(br.toString()));
-					return true;
+	if(AreaList.contains(br))
+	{
+	Minion objMinion = Game.GetMinionsByMinionID(Integer.parseInt(placingAMinionStr.substring(0,2)));
+	objMinion.setArea_id(Integer.parseInt(br.toString()));
+	TroubleMaker objTM = new TroubleMaker();
+	if(Game.AreaHasMinion(Integer.parseInt(br)))
+	{
+	if(Game.AreaHasTroubleMarker(Integer.parseInt(br)))
+	{
+	Game.removeTroubleMarkerByAreaId(Integer.parseInt(br));
+	System.out.println("Trouble Marker was removed");
+	Game.SetMinion(objMinion);
+	success= true;
+	}
+	else
+	{
+	PlaceATroubleMarkerInArea(Integer.parseInt(br));
+	System.out.println("Trouble Marker was placed");
+	Game.SetMinion(objMinion);
+	success= true;
+	}
+	
+	}
+	
+	}
+	}
 				}
-				return false;
+	return success;
 			}
 			
+	/**
+	 * Place a building functionality.
+	 *
+	 * @return true, if successful
+	 * @throws IOException Signals that an I/O exception has occurred.
+	 */
 			public boolean placeABuildingFunctionality() throws IOException{
-				boolean success = false;
+				boolean success = false;	
 				String placingABuidingStr = "";
 				for(Building buildingObj : Game.lstBuildings)
 				{
@@ -1416,10 +1466,45 @@ public class Player {
 				return success;
 			}
 			
-			public static void performCityAreaAction(String cityAreaId){
+	
+	public boolean PlaceATroubleMarkerInArea(int AreaID)
+	{
+	boolean success = false;
+	for(TroubleMaker TM : Game.lstTroubleMaker)
+	{
+	if(TM.getArea_id()==0)
+	{
+	TM.setArea_id(AreaID);
+	success = true;
+	break;
+	}
+	}
+	return success;
+	}
+	/**
+	 * Perform city area action.
+	 *
+	 * @param cityAreaId the city area id
+	 * @throws IOException Signals that an I/O exception has occurred.
+	 */
+	public void performCityAreaAction(String cityAreaId) throws IOException{
 				CityAreaCard cityAreaCard = new CityAreaCard();
-
+	switch(cityAreaId)
+	{
+					case "c6" : cityAreaCard.TheHippoAction(this);
+					case "c5" : cityAreaCard.TheScoursAction(this);
+					case "c4" : cityAreaCard.SmallGodsAction(this);
+					case "c3" : cityAreaCard.DragonLandingAction(this);
+					case "c2" : cityAreaCard.UnrealEstate(this);
+					case "c1" : cityAreaCard.DollySisterAction(this);
+					case "c7" : cityAreaCard.TheShadesAction(this);
+					case "c8" : cityAreaCard.DimwellAction(this);
+					case "c9" : cityAreaCard.LongwallAction(this);
+					case "c10" : cityAreaCard.IsleOfGodsAction(this);
+					case "c11" : cityAreaCard.SevenSleepersAction(this);
+					case "c12" : cityAreaCard.NapHillAction(this);
 			}
+	}
 			
 	
 }

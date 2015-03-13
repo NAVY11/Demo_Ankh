@@ -123,6 +123,9 @@ public class Area {
 		belongs_to=BelongsTo;
 	}
 	
+	/**
+	 * Instantiates a new area.
+	 */
 	public Area() {
 		// TODO Auto-generated constructor stub
 	}
