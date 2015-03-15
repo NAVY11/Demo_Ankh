@@ -72,12 +72,12 @@ public class Bank {
  	 *
  	 * @return the bank amount
  	 */
- 	public int getBankAmount()
-     {
-          int iTotalAmount = 0;
-          iTotalAmount = this.objGoldCoin.getCoin_Available()*this.objGoldCoin.getCoin_Val() + this.objSilverCoin.getCoin_Val()*this.objSilverCoin.getCoin_Available();
-          return iTotalAmount;
-     }
+// 	public int getBankAmount()
+//     {
+//          int iTotalAmount = 0;
+//          iTotalAmount = this.objGoldCoin.getCoin_Available()*this.objGoldCoin.getCoin_Val() + this.objSilverCoin.getCoin_Val()*this.objSilverCoin.getCoin_Available();
+//          return iTotalAmount;
+//     }
 
 	/**
 	 * Sets the bank amount.
@@ -89,5 +89,15 @@ public class Bank {
 		this.Bank_Amount = f;
 	}
 
-	
+	public float getBankAmount() {
+		// TODO Auto-generated method stub
+		return this.Bank_Amount;
+	}
+
+	public void SetInitialBankFunds() {
+		// TODO Auto-generated method stub
+      int iTotalAmount = 0;
+      iTotalAmount = this.objGoldCoin.getCoin_Available()*this.objGoldCoin.getCoin_Val() + this.objSilverCoin.getCoin_Val()*this.objSilverCoin.getCoin_Available();
+      setBankAmount(iTotalAmount);
+	}
 }

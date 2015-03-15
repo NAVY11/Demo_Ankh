@@ -26,6 +26,7 @@ public class TroubleMaker {
 	 */
 	public TroubleMaker(int ID) {
 		this.setTm_id(ID);
+		this.setArea_id(0);
 		this.setActive(true);		
 		// TODO Auto-generated constructor stub
 	}

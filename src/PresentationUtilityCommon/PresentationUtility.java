@@ -36,7 +36,7 @@ public class PresentationUtility {
 		boolean ElementFound = false;
 		for(int i=0; i < Array.length; i++)
 		{
-			if(Array[i]==Element)
+			if(Array[i].equals(Element))
 			{
 				ElementFound = true;
 				break;

@@ -250,7 +250,7 @@ public class Game {
 			}
 			String ActiveMinions = strActiveMinions.toString();
 			//Remove the trailing "," and return the string
-			return ActiveMinions.substring(0,ActiveMinions.length()-2);
+			return ActiveMinions.substring(0,ActiveMinions.length()-1);
 		}
 		
 		//Method to return comma separated String of Active Minion IDs in an Area
@@ -411,6 +411,51 @@ public class Game {
 			return strAreaList;
 		}
 		
+		public static boolean AreaHasABuilding(int AreaID)
+		{	
+			boolean Found = false;
+			for(Building Building : Game.lstBuildings)
+			{
+				if(Building.getArea_id()==AreaID)
+				{
+					Found = true;
+					break;
+				}
+			}
+			return Found;
+		}
+		
+		public static String GetValidAreasToPlaceBuilding(int PlayerID)
+		{
+			String strValidAreas = "";
+			for(Area objArea : Game.lstArea)
+			{
+				if(!AreaHasABuilding(objArea.getAreaID())&&!AreaHasTroubleMarker(objArea.getAreaID())&&AreaHasMinionOfPlayer(objArea.getAreaID(), PlayerID))
+				{
+					strValidAreas+=objArea.getAreaID()+",";
+				}
+			}
+			
+			if(!strValidAreas.isEmpty())
+			{
+				strValidAreas.substring(0,strValidAreas.length()-1);
+			}
+			return strValidAreas;
+		}
+		
+		public static String GetMinionIDsNotOnBoard(int PlayerID)
+		{
+			String placingAMinionStr = "";
+			for(Minion minionObj : Game.lstMinions){
+				if(minionObj.getPlayer_id() == PlayerID && minionObj.getArea_id() == 0){
+					placingAMinionStr += minionObj.getMinion_id() + ",";
+				}
+				if(placingAMinionStr.endsWith(",")){
+					placingAMinionStr = placingAMinionStr.substring(0, placingAMinionStr.length()-1);
+				}
+			}
+			return placingAMinionStr;
+		}
 		public static String AreaWithNoMinion()
 		{
 			String strAreaList = "1,2,3,4,5,6,7,8,9,10,11,12,";
@@ -433,6 +478,21 @@ public class Game {
 		 * @param PlayerID the player id
 		 * @return the array list
 		 */
+		
+		public static String GetBuildingIDsNotOnBoard(int PlayerID)
+		{
+			String placingABuidingStr="";
+			for(Building buildingObj : Game.lstBuildings)
+			{
+				if(buildingObj.getPlayer_id() == PlayerID && buildingObj.getArea_id() == 0){
+					placingABuidingStr += buildingObj.getBuilding_id() + ",";
+				}
+				if(placingABuidingStr.endsWith(",")){
+					placingABuidingStr = placingABuidingStr.substring(0, placingABuidingStr.length()-1);
+				}
+			}
+			return placingABuidingStr;
+		}
 		public static ArrayList<Building> GetBuildingsNotOnBoardByPlayerID(int PlayerID)
 		{
 			ArrayList<Building> Buildings = new ArrayList<Building>();
@@ -554,6 +614,21 @@ public class Game {
 				return false;
 		}
 		
+		public static boolean AreaHasMinionOfPlayer(Integer AreaID, int PlayerID) 
+		{			
+			boolean found = false;
+			ArrayList<Minion> lstMinion = new ArrayList<Minion>();
+			lstMinion = GetMinionsByAreaID(AreaID);
+			for(Minion Minion : lstMinion)
+			{
+				if(Minion.getPlayer_id()==PlayerID)
+				{
+					found = true;
+					break;
+				}
+			}
+			return found;
+		}
 		/**
 		 * Area has troll.
 		 *
@@ -758,7 +833,7 @@ public class Game {
 			}
 			
 			CardList = sbCardIDs.toString();
-			return CardList.substring(0, CardList.length()-2);
+			return CardList.substring(0, CardList.length()-1);
 			
 			
 		}
@@ -984,6 +1059,9 @@ public class Game {
 				objPayToPlayer.setPlayer_amount(objPayToPlayer.getPlayer_amount()+ Amount);
 				Game.SetPlayer(objPaidByPlayer);
 				Game.SetPlayer(objPayToPlayer);
+				System.out.println("Transaction successful. Transaction Amount :" + Amount);
+				System.out.println(objPaidByPlayer.getPlayer_name() + " available amount : " + objPaidByPlayer.getPlayer_amount());
+				System.out.println(objPayToPlayer.getPlayer_name() + " available amount : " + objPayToPlayer.getPlayer_amount());
 				return true;
 //				while(Amount/5 > 0 && objPaidByPlayer.objGoldCoin.getCoin_Available()>0)
 //				{
@@ -1025,6 +1103,9 @@ public class Game {
 				objPaidByPlayer.setPlayer_amount(objPaidByPlayer.getPlayer_amount()-Amount);
 				Game.GameBank.setBankAmount(Game.GameBank.getBankAmount()+ Amount);
 				Game.SetPlayer(objPaidByPlayer);
+				System.out.println("Transaction successful. Transaction Amount :" + Amount);
+				System.out.println(objPaidByPlayer.getPlayer_name() + " available amount : " + objPaidByPlayer.getPlayer_amount());
+				System.out.println("Bank available amount : " + Game.GameBank.getBankAmount());
 				return true;
 			}
 			else
@@ -1050,6 +1131,9 @@ public class Game {
 						objPayToPlayer.setPlayer_amount(objPayToPlayer.getPlayer_amount()+Amount);
 						Game.GameBank.setBankAmount(Game.GameBank.getBankAmount()- Amount);
 						Game.SetPlayer(objPayToPlayer);
+						System.out.println("Transaction successful. Transaction Amount :" + Amount);
+						System.out.println(objPayToPlayer.getPlayer_name() + " available amount : " + objPayToPlayer.getPlayer_amount());
+						System.out.println("Bank available amount : " + Game.GameBank.getBankAmount());
 						return true;
 					}
 					else

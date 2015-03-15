@@ -83,7 +83,7 @@ public class ViewFileTxt {
 		
 		for(TroubleMaker troubleMaker : Game.lstTroubleMaker){
 			System.out.println("Troubler Maker Id : "+troubleMaker.getTm_id());
-			System.out.println("Demon Area Id : "+ troubleMaker.getArea_id());
+			System.out.println("Troubler Area Id : "+ troubleMaker.getArea_id());
 		}
 		
 		

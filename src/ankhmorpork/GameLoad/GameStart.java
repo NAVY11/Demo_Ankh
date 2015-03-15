@@ -90,10 +90,18 @@ public class GameStart {
 		//Initialize Trouble Marker
 		for(int i=1; i<5; i++)
 		{
-			TroubleMaker objTroubleMarker = new TroubleMaker(i);
-			if(i==1 ||i==5||i==7)
+			TroubleMaker objTroubleMarker = new TroubleMaker(i);			
+			if(i==1)
 			{
 				objTroubleMarker.setArea_id(i);
+			}
+			else if(i==2)
+			{
+				objTroubleMarker.setArea_id(5);
+			}
+			else if(i==3)
+			{
+				objTroubleMarker.setArea_id(7);
 			}
 			Game.lstTroubleMaker.add(objTroubleMarker);
 		}
@@ -107,7 +115,7 @@ public class GameStart {
 		Game.GameBank.objGoldCoin.setCoin_Available(getDefaultBankCoins(Constants.GoldCoin(),iNoOfPlayers));
 		Game.GameBank.objSilverCoin = new Coins(Constants.SilverCoin());
 		Game.GameBank.objSilverCoin.setCoin_Available(getDefaultBankCoins(Constants.SilverCoin(),iNoOfPlayers));
-		
+		Game.GameBank.SetInitialBankFunds();
 	    //Initialize Players			    
 		for(int i=1;i<=iNoOfPlayers;i++)
 		{
@@ -170,28 +178,32 @@ public class GameStart {
 			int countBrownCard = 0;
 			int countGreenCard = 0;
 			int countCityAreaCard = 0;
-			while(true){
-				Integer randomIndexNumber = PresentationUtility.returnRandomNumber(1, initializingBrownCardsArr.size()-1);				
-				Integer randomNumberAtIndexNumber = initializingBrownCardsArr.get(randomIndexNumber);
-				//System.out.println("Random number : "+randomIndexNumber + " randomNumberAtIndexNumber "+randomNumberAtIndexNumber);
-				
-				if(randomNumberAtIndexNumber > 0){
-					getFiveDifferentBrownNumbers += randomNumberAtIndexNumber+",";
-					countBrownCard += 1;
-					initializingBrownCardsArr.remove(randomNumberAtIndexNumber);
-				
-					if(countBrownCard == 5){
-						if (getFiveDifferentBrownNumbers.endsWith(",")) {
-							getFiveDifferentBrownNumbers = getFiveDifferentBrownNumbers.substring(0, getFiveDifferentBrownNumbers.length() - 1);
-						}
-						
-						objPlayer.setBrownCardListCommaSeparated(getFiveDifferentBrownNumbers);
-						//Create Brown Card Object and assign cards
-						//System.out.print("PlayerId : "+ objPlayer.getPlayer_id() + " - Brown Card: " + getFiveDifferentBrownNumbers + "\n");
-						break;
-					}
-				}
-			}
+			
+			//******TO DO**** Schuffle Brown Cards in Deck Method
+			
+			//Not to distribute Brown Cards at Begining of game
+//			while(true){
+//				Integer randomIndexNumber = PresentationUtility.returnRandomNumber(1, initializingBrownCardsArr.size()-1);				
+//				Integer randomNumberAtIndexNumber = initializingBrownCardsArr.get(randomIndexNumber);
+//				//System.out.println("Random number : "+randomIndexNumber + " randomNumberAtIndexNumber "+randomNumberAtIndexNumber);
+//				
+//				if(randomNumberAtIndexNumber > 0){
+//					getFiveDifferentBrownNumbers += randomNumberAtIndexNumber+",";
+//					countBrownCard += 1;
+//					initializingBrownCardsArr.remove(randomNumberAtIndexNumber);
+//				
+//					if(countBrownCard == 5){
+//						if (getFiveDifferentBrownNumbers.endsWith(",")) {
+//							getFiveDifferentBrownNumbers = getFiveDifferentBrownNumbers.substring(0, getFiveDifferentBrownNumbers.length() - 1);
+//						}
+//						
+//						objPlayer.setBrownCardListCommaSeparated(getFiveDifferentBrownNumbers);
+//						//Create Brown Card Object and assign cards
+//						//System.out.print("PlayerId : "+ objPlayer.getPlayer_id() + " - Brown Card: " + getFiveDifferentBrownNumbers + "\n");
+//						break;
+//					}
+//				}
+//			}
 			while(true){
 				Integer randomIndexNumber = PresentationUtility.returnRandomNumber(1, initializingGreenCardsArr.size()-1);
 				Integer randomNumberAtIndexNumber = initializingGreenCardsArr.get(randomIndexNumber);
@@ -219,34 +231,36 @@ public class GameStart {
 					}
 				}
 			}
-			
-			while(true){
-				Integer randomIndexNumberForCityAreaCard = PresentationUtility.returnRandomNumber(1, initializingCityAreaCardsArr.size()-1);
-				Integer randomNumberAtIndexNumberForCityAreaCard = initializingCityAreaCardsArr.get(randomIndexNumberForCityAreaCard);
-				
-				if(randomNumberAtIndexNumberForCityAreaCard > 0){
-					getRandomCityAreaCardsForPlayers = randomNumberAtIndexNumberForCityAreaCard+",";
-					for(CityAreaCard cityAreaCard1 : Game.lstCityAreaCards){
-						if((cityAreaCard1.GetCardID()+",").equals("c"+getRandomCityAreaCardsForPlayers)){
-							cityAreaCard1.setPlayerID(objPlayer.getPlayer_id());
-							break;
-						}
-					}
-					countCityAreaCard += 1;
-					initializingCityAreaCardsArr.remove(randomNumberAtIndexNumberForCityAreaCard);
-					
-				
-					if(countCityAreaCard == 1){
-						if (getRandomCityAreaCardsForPlayers.endsWith(",")) {
-							getRandomCityAreaCardsForPlayers = getRandomCityAreaCardsForPlayers.substring(0, getRandomCityAreaCardsForPlayers.length() - 1);
-						}
-						objPlayer.setCityAreaCardsListCommaSeparated(getRandomCityAreaCardsForPlayers);
-						//Create Green Card Object and assign cards
-						System.out.print("PlayerId : "+ objPlayer.getPlayer_id() + " - City Area Card: " + getRandomCityAreaCardsForPlayers + "\n");
-						break;
-					}
-				}
-			}
+			//Not to distribute City Area Cards at Begining of game
+//			while(true)
+//			{
+//				Integer randomIndexNumberForCityAreaCard = PresentationUtility.returnRandomNumber(1, initializingCityAreaCardsArr.size()-1);
+//				Integer randomNumberAtIndexNumberForCityAreaCard = initializingCityAreaCardsArr.get(randomIndexNumberForCityAreaCard);
+//				
+//				if(randomNumberAtIndexNumberForCityAreaCard > 0){
+//					getRandomCityAreaCardsForPlayers = randomNumberAtIndexNumberForCityAreaCard+",";
+//					for(CityAreaCard cityAreaCard1 : Game.lstCityAreaCards){
+//						if((cityAreaCard1.GetCardID()+",").equals("c"+getRandomCityAreaCardsForPlayers)){
+//							cityAreaCard1.setPlayerID(objPlayer.getPlayer_id());
+//							break;
+//						}
+//					}
+//					countCityAreaCard += 1;
+//					initializingCityAreaCardsArr.remove(randomNumberAtIndexNumberForCityAreaCard);
+//					
+//				
+//					if(countCityAreaCard == 1)
+//					{
+//						if (getRandomCityAreaCardsForPlayers.endsWith(",")) {
+//							getRandomCityAreaCardsForPlayers = getRandomCityAreaCardsForPlayers.substring(0, getRandomCityAreaCardsForPlayers.length() - 1);
+//						}
+//						objPlayer.setCityAreaCardsListCommaSeparated(getRandomCityAreaCardsForPlayers);
+//						//Create Green Card Object and assign cards
+//						System.out.print("PlayerId : "+ objPlayer.getPlayer_id() + " - City Area Card: " + getRandomCityAreaCardsForPlayers + "\n");
+//						break;
+//					}
+//				}
+//			}
 
 			Integer randomIndexNumber = PresentationUtility.returnRandomNumber(1, initializingPersonalityArr.size()-1);
 			Integer randomNumberAtIndexNumber = initializingPersonalityArr.get(randomIndexNumber);
