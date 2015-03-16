@@ -46,33 +46,33 @@ import ankhmorpork.GameLoad.*;
  * The Class discworldboard.
  */
 public class discworldboard extends Component {
-	
+
 	/** The Width. */
 	private int Width  = 1200;
 	//yogesh
 	/** The Height. */
 	private int Height = 900;
-	
+
 	/** The discworld. */
 	private discworld discworld;
-	
+
 	/** The br. */
 	private static BufferedReader BR = new BufferedReader(new InputStreamReader(System.in));
-	
+
 	/** The Constant quit. */
 	static final Frame quit = new Frame("Are you sure?");
-	
+
 	/** The rolled. */
 	public boolean rolled = false;
-	
-		/** The Dice1. */
-		private int Dice1 = 0;
+
+	/** The Dice1. */
+	private int Dice1 = 0;
 
 
-		/**
-		 * Instantiates a new discworldboard.
-		 */
-		public discworldboard( ) {
+	/**
+	 * Instantiates a new discworldboard.
+	 */
+	public discworldboard( ) {
 
 
 		enableEvents( AWTEvent.MOUSE_EVENT_MASK );
@@ -81,54 +81,54 @@ public class discworldboard extends Component {
 	}
 
 
-	
-		/* (non-Javadoc)
-		 * @see java.awt.Component#paint(java.awt.Graphics)
-		 */
-		public void paint( Graphics g ) {
-			//Draw the board
-//			g.drawImage(board,1,1,this);
-			g.setColor( new Color( (80), (180), (210) ) ); 
-			
-//			g.setColor(Color.lightGray);
 
-			g.setColor( new Color( (100), (30), (100) ) );
-			g.fill3DRect( 10, 10, 200, 200, true );				//12
-			g.fill3DRect( 210, 10, 250, 100, true );				//12
+	/* (non-Javadoc)
+	 * @see java.awt.Component#paint(java.awt.Graphics)
+	 */
+	public void paint( Graphics g ) {
+		//Draw the board
+		//			g.drawImage(board,1,1,this);
+		g.setColor( new Color( (80), (180), (210) ) ); 
+
+		//			g.setColor(Color.lightGray);
+
+		g.setColor( new Color( (100), (30), (100) ) );
+		g.fill3DRect( 10, 10, 200, 200, true );				//12
+		g.fill3DRect( 210, 10, 250, 100, true );				//12
 
 
 
-			g.setColor( new Color( (100), (50), (50) ) );
-			g.fill3DRect( 460, 10, 200, 200, true );				//1
-			g.setColor( new Color( (80), (80), (80) ) );
-			g.fill3DRect( 10, 210, 200, 200, true );				//11
-			
-			g.setColor( new Color( (80), (180), (110) ) ); 
-			g.fill3DRect( 210, 110, 250, 150, true );				//2
-			
-			g.setColor( new Color( (80), (100), (210) ) ); 
-			g.fill3DRect( 210, 260, 150, 200, true );				//10
-			
+		g.setColor( new Color( (100), (50), (50) ) );
+		g.fill3DRect( 460, 10, 200, 200, true );				//1
+		g.setColor( new Color( (80), (80), (80) ) );
+		g.fill3DRect( 10, 210, 200, 200, true );				//11
 
-			g.setColor( new Color( (200), (30), (200) ) );
-			g.fill3DRect( 360, 210, 150, 160, true );				//4
-			g.setColor( new Color( (150), (50), (150) ) );
-			g.fill3DRect( 510, 210, 150, 140, true );				//3.
-			g.setColor( new Color( (120), (30), (200) ) );
+		g.setColor( new Color( (80), (180), (110) ) ); 
+		g.fill3DRect( 210, 110, 250, 150, true );				//2
 
-			g.fill3DRect( 10, 410, 200, 250, true );				//9
-			g.setColor( new Color( (70), (50), (140) ) );
+		g.setColor( new Color( (80), (100), (210) ) ); 
+		g.fill3DRect( 210, 260, 150, 200, true );				//10
 
-			g.fill3DRect( 210, 460, 150, 200, true );				//8	
 
-			g.setColor( new Color( (160), (30), (100) ) );
-			g.fill3DRect( 360, 370, 150, 150, true );				//5	
-			
-			g.setColor( new Color( (60), (30), (100) ) );
-			g.fill3DRect( 360, 520, 150, 140, true );				//7
-			
-			g.setColor( new Color( (100), (50), (60) ) );
-			g.fill3DRect( 510, 350, 150, 310, true );				//6
+		g.setColor( new Color( (200), (30), (200) ) );
+		g.fill3DRect( 360, 210, 150, 160, true );				//4
+		g.setColor( new Color( (150), (50), (150) ) );
+		g.fill3DRect( 510, 210, 150, 140, true );				//3.
+		g.setColor( new Color( (120), (30), (200) ) );
+
+		g.fill3DRect( 10, 410, 200, 250, true );				//9
+		g.setColor( new Color( (70), (50), (140) ) );
+
+		g.fill3DRect( 210, 460, 150, 200, true );				//8	
+
+		g.setColor( new Color( (160), (30), (100) ) );
+		g.fill3DRect( 360, 370, 150, 150, true );				//5	
+
+		g.setColor( new Color( (60), (30), (100) ) );
+		g.fill3DRect( 360, 520, 150, 140, true );				//7
+
+		g.setColor( new Color( (100), (50), (60) ) );
+		g.fill3DRect( 510, 350, 150, 310, true );				//6
 
 
 		//Draw the dice
@@ -136,15 +136,15 @@ public class discworldboard extends Component {
 		g.setFont( new Font( "verdana", Font.BOLD, 20) );
 		g.drawString("1",465, 35);
 		g.drawString("Dolly Sisters",495, 65);	
-		
+
 		g.drawString("2",215, 135);
 		g.drawString("Unreal Estate",245, 165);
 		g.drawString("Unreal Estate",245, 165);
-		
+
 
 		g.drawString("3",515, 235);
 		g.drawString("Dragon's",540, 255);
-		
+
 
 		g.drawString("4",365, 235);
 		g.drawString("Small Gods",370, 270);
@@ -182,9 +182,9 @@ public class discworldboard extends Component {
 
 
 	}
-	
 
-	
+
+
 	//The usual component methods
 	/* (non-Javadoc)
 	 * @see java.awt.Component#contains(int, int)
@@ -194,29 +194,29 @@ public class discworldboard extends Component {
 			return true;
 		return false;
 	}
-	
+
 	/* (non-Javadoc)
 	 * @see java.awt.Component#getPreferredSize()
 	 */
 	public Dimension getPreferredSize() {
 		return new Dimension( Width, Height );
 	}
-	
+
 	/* (non-Javadoc)
 	 * @see java.awt.Component#getMinimumSize()
 	 */
 	public Dimension getMinimumSize() {
 		return new Dimension( Width, Height );
 	}
-	
 
-		
+
+
 	//quiting the program;
 	/**
 	 * Quit.
 	 */
 	public void quit() {
-	final Frame quit = new Frame();
+		final Frame quit = new Frame();
 		final Label question = new Label("Are you sure you want to end this game?" );
 		final Button yes = new Button("Yes" );
 		final Button no = new Button( "NO" );
@@ -230,16 +230,16 @@ public class discworldboard extends Component {
 		no.addActionListener( new ActionListener() {
 			public void actionPerformed( ActionEvent e ) {
 				quit.setVisible(false);
-				}
-				
+			}
+
 		});
 		yes.addActionListener ( new ActionListener() {
-		    public void actionPerformed ( ActionEvent e) {
-			//System.out.println("quit");
-			quit.setVisible(false);
-			discworld.AnkhmorporkFrame.setVisible(false);//System.exit(0);
+			public void actionPerformed ( ActionEvent e) {
+				//System.out.println("quit");
+				quit.setVisible(false);
+				discworld.AnkhmorporkFrame.setVisible(false);//System.exit(0);
 			}
-			});
+		});
 		quit.addWindowListener( new WindowAdapter() {
 			public void windowClosing( WindowEvent e ) {
 				quit.setVisible( false );
@@ -254,7 +254,7 @@ public class discworldboard extends Component {
 	 */
 	public void Roll() {
 		Dice1 = ( int )( Math.random() * 12 + 1 );
-			rolled = true;
+		rolled = true;
 
 		repaint();
 	}
@@ -269,7 +269,7 @@ public class discworldboard extends Component {
 	{
 		return (int)(Math.random()*noOfPlayers + 1);
 	}
-	
+
 	/**
 	 * View game state.
 	 */
@@ -278,7 +278,7 @@ public class discworldboard extends Component {
 		DisplayViewFile abc = new DisplayViewFile();
 		abc.Viewer(viewStateData);
 	}
-	
+
 	/**
 	 * Save game.
 	 *
@@ -289,11 +289,11 @@ public class discworldboard extends Component {
 	public static void SaveGame(FileWriter objFileWriter) throws IOException, JSONException{
 		GameSave.SaveGame(objFileWriter);
 	}
-	
-//	public static JSONObjectLoadingBeforeSavingInfo()Game PlayedGame throws IOException, JSONException{
-//		return GameSave.jsonObjectWhileSavingGame()PlayedGame;
-//	}
-	
+
+	//	public static JSONObjectLoadingBeforeSavingInfo()Game PlayedGame throws IOException, JSONException{
+	//		return GameSave.jsonObjectWhileSavingGame()PlayedGame;
+	//	}
+
 	/**
 	 * Loadgamefetch.
 	 *
@@ -304,9 +304,9 @@ public class discworldboard extends Component {
 	 */
 	public void Loadgamefetch(FileReader objFileReader) throws IOException, ParseException
 	{
-		 GameLoad.LoadGame(objFileReader);
+		GameLoad.LoadGame(objFileReader);
 	}
-	
+
 	/**
 	 * Initialise game.
 	 *
@@ -322,16 +322,16 @@ public class discworldboard extends Component {
 		BufferedReader buffer = new BufferedReader(new InputStreamReader(System.in));
 		for(int i=1;i<=iNoOfPlayers;i++)
 		{
-		Players[i]= JOptionPane.showInputDialog("Please input Name for Player:" + i);
-		Colors[i] = JOptionPane.showInputDialog("Please input Color for Player:" + i);
+			Players[i]= JOptionPane.showInputDialog("Please input Name for Player:" + i);
+			Colors[i] = JOptionPane.showInputDialog("Please input Color for Player:" + i);
 		}
-	
+
 		GameStart.StartNewGame(Players, Colors, iNoOfPlayers);
 		ViewFileTxt viewFileText = new ViewFileTxt();
 		String currentPlayer = viewFileText.currentPlayerPlaying(Game.lstPlayers);
 		System.out.println("The current Player Playing is player "+ currentPlayer);
-		
-		
+
+
 		//Get Starting Player randomly
 		int CurrentPlayer = StartingPlayer(iNoOfPlayers);
 		//System.out.println("Player "+ CurrentPlayer + " starts game");
@@ -341,109 +341,112 @@ public class discworldboard extends Component {
 		System.out.println("===========================================================================================");
 		while(!GameEnds)
 		{
-			
-			CurrentPlayer = PresentationUtility.nextPlayerTurn(CurrentPlayer, iNoOfPlayers); 
-		//Show Board
-		System.out.print(ViewFileTxt.ViewState());
-		//Play Game						
-		//Load Player details
-		Player objPlayer = Game.lstPlayers.get(CurrentPlayer - 1);
-		System.out.println("Enter 'saveGame' to save the Current State. Else write 'cont' to continue ");
-		BufferedReader brOption = new BufferedReader(new InputStreamReader(System.in));
-		String brOptionSelected = brOption.readLine();
-		if(brOptionSelected.equals("saveGame")){
-			JFileChooser chooser = new JFileChooser();
-			    chooser.setCurrentDirectory(new File("/home/me/Documents"));
-			    int retrival = chooser.showSaveDialog(null);
-			    if (retrival == JFileChooser.APPROVE_OPTION) {
-			        
-			            FileWriter objFileWriter = new FileWriter(chooser.getSelectedFile()+".txt");
-			            discworldboard.SaveGame(objFileWriter);
 
-			    }
-		}
-		System.out.println("It is "+objPlayer.getPlayer_name()+"'s turn");
-		//********Which Card to Play?
-		System.out.println("Which card to play?");
-		
-		//Show available city area cards
-		StringBuilder sbValidCityAreaIDs = new StringBuilder();
-		boolean hasCityAreaCard = false;
-		for(CityAreaCard cityAreaCard : Game.lstCityAreaCards)
-		{	
-			if(cityAreaCard.getPlayerID()==objPlayer.getPlayer_id())
-			{
-				sbValidCityAreaIDs.append(cityAreaCard.GetCardID());
-				hasCityAreaCard = true;
-				System.out.println(cityAreaCard.CardID + " : " + cityAreaCard.getName());
-			}
-		}
-		
-		if(hasCityAreaCard){
-			//Accept City Area Card to play from Player
-			String CardID = null;
-			while(true)
-			{
-				System.out.println("Enter a City Area Card ID");
-				BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
-				CardID = br.readLine().toString();
-				if((sbValidCityAreaIDs.toString()).contains(CardID))
-				{
-					break;
+			CurrentPlayer = PresentationUtility.nextPlayerTurn(CurrentPlayer, iNoOfPlayers); 
+			//Show Board
+			System.out.print(ViewFileTxt.ViewState());
+			//Play Game						
+			//Load Player details
+			Player objPlayer = Game.lstPlayers.get(CurrentPlayer - 1);
+			System.out.println("Enter 'saveGame' to save the Current State. Else write 'cont' to continue ");
+			BufferedReader brOption = new BufferedReader(new InputStreamReader(System.in));
+			String brOptionSelected = brOption.readLine();
+			if(brOptionSelected.equals("saveGame")){
+				JFileChooser chooser = new JFileChooser();
+				chooser.setCurrentDirectory(new File("/home/me/Documents"));
+				int retrival = chooser.showSaveDialog(null);
+				if (retrival == JFileChooser.APPROVE_OPTION) {
+
+					FileWriter objFileWriter = new FileWriter(chooser.getSelectedFile()+".txt");
+					discworldboard.SaveGame(objFileWriter);
+
 				}
 			}
-		}
+			System.out.println("It is "+objPlayer.getPlayer_name()+"'s turn");
+			//********Which Card to Play?
+			System.out.println("Which card to play?");
 
-		//Show available greeen cards
-		StringBuilder sbValidIDs = new StringBuilder();
-		for(GreenCard grnCard: Game.lstGreenCards)
-		{	
-			if(grnCard.getPlayerID()==objPlayer.getPlayer_id())
-			{
-				sbValidIDs.append(grnCard.GetCardID());		
-				String ActionList = Game.GetGreenCardActions(grnCard.GetCardID());
-				System.out.printf("%-10s%-15s%-5s%-15s%-15s\n",grnCard.CardID ,  " : " ,  grnCard.getName() , " : " , ActionList);
-				
-				//System.out.println("Card '" + grnCard.getName() + "' has following actions :");
-				//System.out.print(ActionList);
+			//Show available city area cards
+			StringBuilder sbValidCityAreaIDs = new StringBuilder();
+			boolean hasCityAreaCard = false;
+			for(CityAreaCard cityAreaCard : Game.lstCityAreaCards)
+			{	
+				if(cityAreaCard.getPlayerID()==objPlayer.getPlayer_id())
+				{
+					sbValidCityAreaIDs.append(cityAreaCard.GetCardID());
+					hasCityAreaCard = true;
+					System.out.println(cityAreaCard.CardID + " : " + cityAreaCard.getName());
+				}
 			}
-		}
-		
-		//Accept Card to play from Player
-		String CardID = null;
-		while(true)
-		{
-			System.out.println("Enter a Green Card ID");
-			BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
-			CardID = br.readLine().toString();
-			if((sbValidIDs.toString()).contains(CardID))
-			{
-				break;
+
+			if(hasCityAreaCard){
+				//Accept City Area Card to play from Player
+				String CardID = null;
+				while(true)
+				{
+					System.out.println("Enter a City Area Card ID");
+					BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+					CardID = br.readLine().toString();
+					if((sbValidCityAreaIDs.toString()).contains(CardID))
+					{
+						break;
+					}
+				}
 			}
-		}
+
+			//Show available greeen cards
+			boolean success = false;
+			while(!success)
+			{
+				StringBuilder sbValidIDs = new StringBuilder();
+				for(GreenCard grnCard: Game.lstGreenCards)
+				{	
+					if(grnCard.getPlayerID()==objPlayer.getPlayer_id())
+					{
+						sbValidIDs.append(grnCard.GetCardID());		
+						String ActionList = Game.GetGreenCardActions(grnCard.GetCardID());
+						System.out.printf("%-5s%-5s%-40s%-5s%-50s%-5s%-60s\n",grnCard.CardID ,  " : " ,  grnCard.getName() , " : " , ActionList," : ","Scroll Action : "+grnCard.GetActionDescription());
+
+						//System.out.println("Card '" + grnCard.getName() + "' has following actions :");
+						//System.out.print(ActionList);
+					}
+				}
+
+				//Accept Card to play from Player
+				String CardID = null;
+				while(true)
+				{
+					System.out.println("Enter a Green Card ID");
+					BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+					CardID = br.readLine().toString();
+					if((sbValidIDs.toString()).contains(CardID))
+					{
+						break;
+					}
+				}
 				//Which Action to perform?
 				GreenCard grnCard = Game.GetGreenCard(CardID);
 				String[] ActionArray = grnCard.GetAction();
 				String ActionList = Game.GetGreenCardActions(CardID);
 				System.out.println("Card '" + grnCard.getName() + "' has following actions :");
 				System.out.println(ActionList);
-				boolean actionPerformed = false;
+				boolean actionPerformed = false;				
 				for(int i = 0; i<ActionArray.length; i++)
 				{
 					String ans = null;
 					if(i!=ActionArray.length-1 || actionPerformed)
 					{
-					System.out.println("Do you wish to perform " + ActionArray[i] + " action? Y/N");
-					while(true)
-					{						
-						ans = BR.readLine();
-						if(ans.equalsIgnoreCase("Y") || ans.equalsIgnoreCase("N"))
-						{
-							break;
+						System.out.println("Do you wish to perform " + ActionArray[i] + " action? Y/N");
+						while(true)
+						{						
+							ans = BR.readLine();
+							if(ans.equalsIgnoreCase("Y") || ans.equalsIgnoreCase("N"))
+							{
+								break;
+							}
+							else
+								System.out.println("Incorrect input. Please try again.");
 						}
-						else
-							System.out.println("Incorrect input. Please try again.");
-					}
 					}
 					else
 					{
@@ -456,29 +459,37 @@ public class discworldboard extends Component {
 						//Does a Player wish to interrupt? //TO DO
 						//If Yes : Which Player wants to interrupt?
 						//Perform Action
-						objPlayer.PerformCardAction(ActionArray[i], CardID);
-						
+						success = objPlayer.PerformCardAction(ActionArray[i], CardID);
+
 					}
 					else
 						continue;
 				}
+
+				if(success)
+				{							
 					//Set Current card as 'Played'
 					Game.SetGreenCardIsPlayed(CardID, true);
 					//Get number of Green Crads available with Player
 					int CardsInHand = Game.GetPlayerGreenCardCount(objPlayer.getPlayer_id());
-					
+
 					//Pick as many cards from deck so that the Player holds 5 Cards
 					for(int i=0; i< 5 - CardsInHand;i++)
 					{
-					//Pick a GreenCardFromDeck
-					String PickNewCardID = Game.GetRandomGreenCardFromDeck();
-					Game.SetGreenCardToPlayer(PickNewCardID, objPlayer.getPlayer_id());
+						//Pick a GreenCardFromDeck
+						String PickNewCardID = Game.GetRandomGreenCardFromDeck();
+						Game.SetGreenCardToPlayer(PickNewCardID, objPlayer.getPlayer_id());
 					}
-										
-							
+				}
+				else
+				{
+					System.out.println("Opss! Acion failed. Please try again.");
+				}
+
+			}					
 		}
 	}
-	
-	
+
+
 }
 

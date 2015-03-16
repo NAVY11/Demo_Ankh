@@ -20,10 +20,10 @@ public class PresentationUtility {
 
 	/** The number already being used in game. */
 	static List<Integer> numberAlreadyBeingUsedInGame = new ArrayList<Integer>();
-	
+
 	/** The random number a. */
 	static Integer randomNumberA = 0;
-	
+
 	/**
 	 * Method to check if an element exists in a String array.
 	 *
@@ -42,11 +42,11 @@ public class PresentationUtility {
 				break;
 			}				
 		}
-		
+
 		return ElementFound;
 	}
-	
-	
+
+
 	/**
 	 * Random integer generator.
 	 *
@@ -55,17 +55,17 @@ public class PresentationUtility {
 	 * @return true, if successful
 	 */
 	public static boolean randomIntegerGenerator(Integer startNumber, Integer endNumber){
-		
+
 		int randomNumber = 0;
 		if (startNumber > endNumber) {
-		      throw new IllegalArgumentException("Start cannot exceed End.");
+			throw new IllegalArgumentException("Start cannot exceed End.");
 		}
 		Random random = new Random();
 		long range = (long)endNumber - (long)startNumber + 1;
-	    long fraction = (long)(range * random.nextDouble());
-	    randomNumber =  (int)(fraction + startNumber); 
-	    randomNumberA = randomNumber;
-		
+		long fraction = (long)(range * random.nextDouble());
+		randomNumber =  (int)(fraction + startNumber); 
+		randomNumberA = randomNumber;
+
 		if(!(numberAlreadyBeingUsedInGame.size() == 0)){
 			if(numberAlreadyBeingUsedInGame.contains(randomNumber)){
 				return false;
@@ -78,7 +78,7 @@ public class PresentationUtility {
 			return true;
 		}
 	}
-	
+
 	/**
 	 * Return random number.
 	 *
@@ -94,7 +94,7 @@ public class PresentationUtility {
 		}
 		return 0;
 	}
-	
+
 	/**
 	 * The main method.
 	 *
@@ -104,8 +104,8 @@ public class PresentationUtility {
 		for(int i = 1; i<=10; i++){
 			returnRandomNumber(1, 3);
 		}
-    }
-	
+	}
+
 	/**
 	 * Gets the personality card name by id.
 	 *
@@ -113,16 +113,37 @@ public class PresentationUtility {
 	 * @return the personality card name by id
 	 */
 	public static String getPersonalityCardNameById(Integer personalityCardId){
-		
+
 		switch (personalityCardId) {
-	        case 1:  return IConstants.PersonalityCard1;
-	        case 2:  return IConstants.PersonalityCard2;
-	        case 3:  return IConstants.PersonalityCard3;
-	        case 4:  return IConstants.PersonalityCard4;
-	        case 5:  return IConstants.PersonalityCard5;
-	        case 6:  return IConstants.PersonalityCard6;
-	        default: return IConstants.PersonalityCard7;
+		case 1:  return IConstants.PersonalityCard1;
+		case 2:  return IConstants.PersonalityCard2;
+		case 3:  return IConstants.PersonalityCard3;
+		case 4:  return IConstants.PersonalityCard4;
+		case 5:  return IConstants.PersonalityCard5;
+		case 6:  return IConstants.PersonalityCard6;
+		default: return IConstants.PersonalityCard7;
 		}
+	}
+
+	//Get comma separated string with distinct values
+	public static String getDistinctCommaSeparatedValues(String strCommaSeparatedString)
+	{
+		String strDistinctValues = ",";
+		String[] arryDistinctValues = strCommaSeparatedString.split(",");
+		for(int i =0; i<arryDistinctValues.length;i++)
+		{
+			if(!strDistinctValues.contains(","+arryDistinctValues[i]+"," ))
+			{
+				strDistinctValues+=arryDistinctValues[i]+",";
+			}
+		}
+		
+		if(strDistinctValues.length()>1)
+		{
+			strDistinctValues = strDistinctValues.substring(1,strDistinctValues.length()-1);
+		}
+		
+		return strDistinctValues;
 	}
 	
 	/**
@@ -132,24 +153,24 @@ public class PresentationUtility {
 	 * @return the city area card name by id
 	 */
 	public static String getCityAreaCardNameById(Integer cityAreaCard){
-		
+
 		switch (cityAreaCard) {
-	        case 1:  return IConstants.cityCardArea1;
-	        case 2:  return IConstants.cityCardArea2;
-	        case 3:  return IConstants.cityCardArea3;
-	        case 4:  return IConstants.cityCardArea4;
-	        case 5:  return IConstants.cityCardArea5;
-	        case 6:  return IConstants.cityCardArea6;
-	        case 7:  return IConstants.cityCardArea7;
-	        case 8:  return IConstants.cityCardArea8;
-	        case 9:  return IConstants.cityCardArea9;
-	        case 10:  return IConstants.cityCardArea10;
-	        case 11:  return IConstants.cityCardArea11;
-	        case 12: return IConstants.cityCardArea12;
-	        default: return "";
+		case 1:  return IConstants.cityCardArea1;
+		case 2:  return IConstants.cityCardArea2;
+		case 3:  return IConstants.cityCardArea3;
+		case 4:  return IConstants.cityCardArea4;
+		case 5:  return IConstants.cityCardArea5;
+		case 6:  return IConstants.cityCardArea6;
+		case 7:  return IConstants.cityCardArea7;
+		case 8:  return IConstants.cityCardArea8;
+		case 9:  return IConstants.cityCardArea9;
+		case 10:  return IConstants.cityCardArea10;
+		case 11:  return IConstants.cityCardArea11;
+		case 12: return IConstants.cityCardArea12;
+		default: return "";
 		}
 	}
-	
+
 	/**
 	 * Gets the green card name by id.
 	 *
@@ -157,58 +178,58 @@ public class PresentationUtility {
 	 * @return the green card name by id
 	 */
 	public static String getGreenCardNameById(Integer greenCardId){
-		
+
 		switch (greenCardId) {
-	        case 1:  return IConstants.g1Str;
-	        case 2:  return IConstants.g2Str;
-	        case 3:  return IConstants.g3Str;
-	        case 4:  return IConstants.g4Str;
-	        case 5:  return IConstants.g5Str;
-	        case 6:  return IConstants.g6Str;
-	        case 7:  return IConstants.g7Str;
-	        case 8:  return IConstants.g8Str;
-	        case 9:  return IConstants.g9Str;
-	        case 10:  return IConstants.g10Str;
-	        case 11:  return IConstants.g11Str;
-	        case 12:  return IConstants.g12Str;
-	        case 13:  return IConstants.g13Str;
-	        case 14:  return IConstants.g14Str;
-	        case 15:  return IConstants.g15Str;
-	        case 16:  return IConstants.g16Str;
-	        case 17:  return IConstants.g17Str;
-	        case 18:  return IConstants.g18Str;
-	        case 19:  return IConstants.g19Str;
-	        case 20:  return IConstants.g20Str;
-	        case 21:  return IConstants.g21Str;
-	        case 22:  return IConstants.g22Str;
-	        case 23:  return IConstants.g23Str;
-	        case 24:  return IConstants.g24Str;
-	        case 25:  return IConstants.g25Str;
-	        case 26:  return IConstants.g26Str;
-	        case 27:  return IConstants.g27Str;
-	        case 28:  return IConstants.g28Str;
-	        case 29:  return IConstants.g29Str;
-	        case 30:  return IConstants.g30Str;
-	        case 31:  return IConstants.g31Str;
-	        case 32:  return IConstants.g32Str;
-	        case 33:  return IConstants.g33Str;
-	        case 34:  return IConstants.g34Str;
-	        case 35:  return IConstants.g35Str;
-	        case 36:  return IConstants.g36Str;
-	        case 37:  return IConstants.g37Str;
-	        case 38:  return IConstants.g38Str;
-	        case 39:  return IConstants.g39Str;
-	        case 40:  return IConstants.g40Str;
-	        case 41:  return IConstants.g41Str;
-	        case 42:  return IConstants.g42Str;
-	        case 43:  return IConstants.g43Str;
-	        case 44:  return IConstants.g44Str;
-	        case 45:  return IConstants.g45Str;
-	        case 46:  return IConstants.g46Str;
-	        default: return "";
+		case 1:  return IConstants.g1Str;
+		case 2:  return IConstants.g2Str;
+		case 3:  return IConstants.g3Str;
+		case 4:  return IConstants.g4Str;
+		case 5:  return IConstants.g5Str;
+		case 6:  return IConstants.g6Str;
+		case 7:  return IConstants.g7Str;
+		case 8:  return IConstants.g8Str;
+		case 9:  return IConstants.g9Str;
+		case 10:  return IConstants.g10Str;
+		case 11:  return IConstants.g11Str;
+		case 12:  return IConstants.g12Str;
+		case 13:  return IConstants.g13Str;
+		case 14:  return IConstants.g14Str;
+		case 15:  return IConstants.g15Str;
+		case 16:  return IConstants.g16Str;
+		case 17:  return IConstants.g17Str;
+		case 18:  return IConstants.g18Str;
+		case 19:  return IConstants.g19Str;
+		case 20:  return IConstants.g20Str;
+		case 21:  return IConstants.g21Str;
+		case 22:  return IConstants.g22Str;
+		case 23:  return IConstants.g23Str;
+		case 24:  return IConstants.g24Str;
+		case 25:  return IConstants.g25Str;
+		case 26:  return IConstants.g26Str;
+		case 27:  return IConstants.g27Str;
+		case 28:  return IConstants.g28Str;
+		case 29:  return IConstants.g29Str;
+		case 30:  return IConstants.g30Str;
+		case 31:  return IConstants.g31Str;
+		case 32:  return IConstants.g32Str;
+		case 33:  return IConstants.g33Str;
+		case 34:  return IConstants.g34Str;
+		case 35:  return IConstants.g35Str;
+		case 36:  return IConstants.g36Str;
+		case 37:  return IConstants.g37Str;
+		case 38:  return IConstants.g38Str;
+		case 39:  return IConstants.g39Str;
+		case 40:  return IConstants.g40Str;
+		case 41:  return IConstants.g41Str;
+		case 42:  return IConstants.g42Str;
+		case 43:  return IConstants.g43Str;
+		case 44:  return IConstants.g44Str;
+		case 45:  return IConstants.g45Str;
+		case 46:  return IConstants.g46Str;
+		default: return "";
 		}
 	}
-	
+
 	/**
 	 * Initialize a hashmap with value.
 	 *
@@ -216,15 +237,15 @@ public class PresentationUtility {
 	 * @return the hash map
 	 */
 	public static HashMap<Integer, Boolean> initializeAHashmapWithValue(Integer numberToInitialize){
-		
+
 		HashMap<Integer, Boolean> mapToIntialize = new HashMap<Integer, Boolean>();
-		
+
 		for (int i = 1; i<numberToInitialize; i++){
 			mapToIntialize.put(i, false);
 		}
 		return mapToIntialize;
 	}
-	
+
 	/**
 	 * Initialize a array with value.
 	 *
@@ -232,16 +253,16 @@ public class PresentationUtility {
 	 * @return the array list
 	 */
 	public static ArrayList<Integer> initializeAArrayWithValue(Integer numberToInitialize){
-		
+
 		ArrayList<Integer> arrToIntialize = new ArrayList<Integer>();
-		
+
 		for (int i = 1; i <= numberToInitialize; i++){
 			arrToIntialize.add(i);
 		}
-		
+
 		return arrToIntialize;
 	}
-	
+
 	/**
 	 * Next player turn.
 	 *
@@ -256,7 +277,7 @@ public class PresentationUtility {
 			return (currentPlayer+1);  
 		}
 	}
-	
+
 	/**
 	 * Adjacent Minion Categorization
 	 * 
@@ -281,7 +302,7 @@ public class PresentationUtility {
 	 * @return true, if successful
 	 */
 	public static boolean canMinionBePlacedInAdjacentArea(Integer currentPlayerId, Integer minionId, Integer currentAreaId, int areaToBePlacedIn){
-		
+
 		if(currentAreaId == 1){
 			if(areaToBePlacedIn == 2 || areaToBePlacedIn == 3 || areaToBePlacedIn == 12)
 				return true;
@@ -323,7 +344,27 @@ public class PresentationUtility {
 		}
 		return false;
 	}
-	
+
+	public static String GetAdjacentAreas(int iAreaID){
+
+		switch(iAreaID)
+		{
+		case 1 : return "2,3,12";
+		case 2 : return "1,3,4,11,12";
+		case 3 : return "1,2,4";
+		case 4 : return "2,3,5,6,10";
+		case 5 : return "4,6,7,8,10";
+		case 6 : return "4,5,7";
+		case 7 : return "5,6,8";
+		case 8 : return "1,9,5";
+		case 9 : return "8,10,11";
+		case 10 : return "2,4,5,9";
+		case 11 : return "2,9,12";
+		case 12 : return "1,2,12";	
+		default : return "";
+		}
+	}
+
 	/**
 	 * Gets the adjacent areas.
 	 *
@@ -360,7 +401,7 @@ public class PresentationUtility {
 		}
 		return adjacentAreasList;
 	}
-	
+
 	/**
 	 * Checks if is this green card assassination card.
 	 *
@@ -368,12 +409,12 @@ public class PresentationUtility {
 	 * @return true, if is this green card assassination card
 	 */
 	public static boolean isThisGreenCardAssassinationCard(int greenCardId){
-		
+
 		if(greenCardId == 7 || greenCardId == 12 || greenCardId == 22 || greenCardId == 28 || greenCardId == 47)
 			return true;
 		return false;
 	}
-	
+
 	/**
 	 * Checks if is this green card trouble maker card.
 	 *
@@ -381,12 +422,12 @@ public class PresentationUtility {
 	 * @return true, if is this green card trouble maker card
 	 */
 	public static boolean isThisGreenCardTroubleMakerCard(int greenCardId){
-		
+
 		if(greenCardId == 6 || greenCardId == 13 || greenCardId == 47)
 			return true;
 		return false;
 	}
-	
+
 	/**
 	 * Checks if is this green card placing a minion card.
 	 *
@@ -394,14 +435,14 @@ public class PresentationUtility {
 	 * @return true, if is this green card placing a minion card
 	 */
 	public static boolean isThisGreenCardPlacingAMinionCard(int greenCardId){
-		
+
 		if(greenCardId == 1 || greenCardId == 3 || greenCardId == 7 || greenCardId == 13 || greenCardId == 15 || greenCardId == 16 
 				|| greenCardId == 20 || greenCardId == 23 || greenCardId == 26 || greenCardId == 27 || greenCardId == 32 || greenCardId == 37 
 				|| greenCardId == 38 || greenCardId == 41 || greenCardId == 44 || greenCardId == 46 || greenCardId == 48)
 			return true;
 		return false;
 	}
-	
+
 	/**
 	 * Checks if is this green card placing a building card.
 	 *
@@ -409,13 +450,13 @@ public class PresentationUtility {
 	 * @return true, if is this green card placing a building card
 	 */
 	public static boolean isThisGreenCardPlacingABuildingCard(int greenCardId){
-		
+
 		if(greenCardId == 8 || greenCardId == 14 || greenCardId == 17 || greenCardId == 24 
 				|| greenCardId == 30 || greenCardId == 33 || greenCardId == 40 || greenCardId == 43)
 			return true;
 		return false;
 	}
-	
+
 	/**
 	 * Checks if is this green card interrupt card.
 	 *
@@ -423,12 +464,12 @@ public class PresentationUtility {
 	 * @return true, if is this green card interrupt card
 	 */
 	public static boolean isThisGreenCardInterruptCard(int greenCardId){
-		
+
 		if(greenCardId == 17 || greenCardId == 18 || greenCardId == 45)
 			return true;
 		return false;
 	}
-	
+
 	/**
 	 * Checks if is this green card random event card.
 	 *
@@ -436,12 +477,12 @@ public class PresentationUtility {
 	 * @return true, if is this green card random event card
 	 */
 	public static boolean isThisGreenCardRandomEventCard(int greenCardId){
-		
+
 		if(greenCardId == 39)
 			return true;
 		return false;
 	}
-	
+
 	/**
 	 * How much money to take from bank.
 	 *
@@ -449,7 +490,7 @@ public class PresentationUtility {
 	 * @return the integer
 	 */
 	public static Integer howMuchMoneyToTakeFromBank(String greenCardIdStr){
-		
+
 		if(greenCardIdStr.equals("g28") || greenCardIdStr.equals("g47"))
 			return 1;
 		else if(greenCardIdStr.equals("g7") || greenCardIdStr.equals("g22") || greenCardIdStr.equals("g33"))
@@ -460,7 +501,7 @@ public class PresentationUtility {
 			return 5;
 		return 0;
 	}
-	
+
 	/**
 	 * Gets the comma separated green card names.
 	 *
@@ -470,19 +511,19 @@ public class PresentationUtility {
 	public static String getCommaSeparatedGreenCardNames(String greenCardListCommaSeparated){
 		String namesOfGreenCardsList = "";
 		String[] greenCardListCommaSeparatedArr = greenCardListCommaSeparated.split(",");
-		
+
 		for(String greenCardListCommaSeparatedA : greenCardListCommaSeparatedArr){
 			int greenCardListCommaSeparatedInt = Integer.parseInt(greenCardListCommaSeparatedA);
 			namesOfGreenCardsList += getGreenCardNameById(greenCardListCommaSeparatedInt) + ", ";
 		}
-		
+
 		if (namesOfGreenCardsList.endsWith(", ")) {
 			namesOfGreenCardsList = namesOfGreenCardsList.substring(0, namesOfGreenCardsList.length()-2); 
 		}
-		
+
 		return namesOfGreenCardsList;
 	}
-	
+
 	/**
 	 * Draw as many card as needed.
 	 *
@@ -508,7 +549,7 @@ public class PresentationUtility {
 		}
 		return playerGreenCardUpdatedList;
 	}
-	
+
 	/**
 	 * Take one green card from deck.
 	 *
@@ -520,6 +561,6 @@ public class PresentationUtility {
 		Integer cardIndexNumber = PresentationUtility.returnRandomNumber(1, Ankhmorpork.lstGreenCards.size());
 		GreenCard greenCardAccessed = Ankhmorpork.lstGreenCards.get(cardIndexNumber);
 		return greenCardAccessed.GetCardID();	
-		
+
 	}
 }
