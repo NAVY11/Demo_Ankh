@@ -37,61 +37,61 @@ public class IConstants {
 	public static Integer cityCardAreaId1 = 1;
 	
 	/** The city card area1. */
-	public static String cityCardArea1	= "The Shades";
+	public static String cityCardArea1	= "Dolly Sisters";
 	
 	/** The city card area2. */
 	public static Integer cityCardAreaId2 = 2;
 	
 	/** The city card area2. */
-	public static String cityCardArea2	= "Dolly Sisters";
+	public static String cityCardArea2	= "Unreal Estate";
 	
 	/** The city card area3. */
 	public static Integer cityCardAreaId3 = 3;
 	
 	/** The city card area3. */
-	public static String cityCardArea3	= "The Scours";
+	public static String cityCardArea3	= "Dragon's Landing";
 	
 	/** The city card area4. */
 	public static Integer cityCardAreaId4 = 4;
 	
 	/** The city card area4. */
-	public static String cityCardArea4	= "Dimwell";
+	public static String cityCardArea4	= "Small Gods";
 	
 	/** The city card area5. */
 	public static Integer cityCardAreaId5 = 5;
 	
 	/** The city card area5. */
-	public static String cityCardArea5	= "Nap Hill ";
+	public static String cityCardArea5	= "The Scours";
 	
 	/** The city card area6. */
 	public static Integer cityCardAreaId6 = 6;
 	
 	/** The city card area6. */
-	public static String cityCardArea6	= "Longwall";
+	public static String cityCardArea6	= "The Hippo";
 	
 	/** The city card area7. */
 	public static Integer cityCardAreaId7 = 7;
 	
 	/** The city card area7. */
-	public static String cityCardArea7	= "The Hippo";
+	public static String cityCardArea7	= "The Shades";
 	
 	/** The city card area8. */
 	public static Integer cityCardAreaId8 = 8;
 	
 	/** The city card area8. */
-	public static String cityCardArea8	= "Dragon’s Landing";
+	public static String cityCardArea8	= "Dimwell";
 	
 	/** The city card area9. */
 	public static Integer cityCardAreaId9 = 9;
 	
 	/** The city card area9. */
-	public static String cityCardArea9	= "Isle of Gods";
+	public static String cityCardArea9	= "Longwall";
 	
 	/** The city card area10. */
 	public static Integer cityCardAreaId10 = 10;
 	
 	/** The city card area10. */
-	public static String cityCardArea10	= "Small Gods";
+	public static String cityCardArea10	= "Isle Of Gods";
 	
 	/** The city card area11. */
 	public static Integer cityCardAreaId11 = 11;
@@ -103,7 +103,7 @@ public class IConstants {
 	public static Integer cityCardAreaId12 = 12;
 	
 	/** The city card area12. */
-	public static String cityCardArea12	= "Unreal Estate";
+	public static String cityCardArea12	= "Nap Hills";
 	
 	//Constants for Coins
 	

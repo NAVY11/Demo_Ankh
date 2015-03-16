@@ -113,7 +113,7 @@ public class Game {
 	 * @param AreaID the area id
 	 * @return the area
 	 */
-	public static Area GetArea(int AreaID)
+		public static Area GetArea(int AreaID)
 		{
 			Area Area = new Area();
 			for(Area objArea : lstArea)
@@ -128,7 +128,7 @@ public class Game {
 			return Area;
 		}
 		
-		//Method to Get Minion from Minion ID
+				//Method to Get Minion from Minion ID
 		/**
 		 * Gets the minions by minion id.
 		 *
@@ -142,7 +142,7 @@ public class Game {
 			{
 				if(objMinion.getMinion_id()== MinionID)
 				{
-					Minion =objMinion;
+					return objMinion;
 				}
 			}
 					
@@ -155,6 +155,32 @@ public class Game {
 		 * @param PlayerID the player id
 		 * @return the array list
 		 */
+		public static ArrayList<Minion> GetMinionsArrByMinionID(int MinionID)
+		{
+			ArrayList<Minion> Minions = new ArrayList<Minion>();
+			for(Minion objMinion : lstMinions)
+			{
+				if(objMinion.getMinion_id()== MinionID)
+				{
+					Minions.add(objMinion);
+				}
+			}
+					
+			return Minions;
+		}
+		
+		public static Player getPlayerObjByMinionId(int minionId){
+			Player playerObj = null;
+			
+			for(Player objPlayer : lstPlayers){
+				Minion minionObj = GetMinionsByMinionID(minionId);
+				if(objPlayer.getPlayer_id() == minionObj.getPlayer_id()){
+					return objPlayer;
+				}
+			}
+			return playerObj;
+		}
+		
 		public static ArrayList<Minion> GetMinionsByPlayerID(int PlayerID)
 		{
 			ArrayList<Minion> Minions = new ArrayList<Minion>();
@@ -1122,7 +1148,7 @@ public class Game {
 		 * @param Amount the amount
 		 * @return true, if successful
 		 */
-		public static boolean PaymentFromBank(int PayToPlayer, int Amount)
+				public static boolean PaymentFromBank(int PayToPlayer, int Amount)
 				{			
 					Player objPayToPlayer =GetPlayer(PayToPlayer);
 								
