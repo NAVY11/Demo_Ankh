@@ -36,8 +36,8 @@ public class IConstants {
 	/** The city card area1. */
 	public static Integer cityCardAreaId1 = 1;
 	
-	/** The city card area1. */
-	public static String cityCardArea1	= "Dolly Sisters";
+	/** The city card area1. */	
+	public static String cityCardArea1	="Dolly Sisters";// "The Shades";
 	
 	/** The city card area2. */
 	public static Integer cityCardAreaId2 = 2;

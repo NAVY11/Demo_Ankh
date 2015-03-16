@@ -454,11 +454,15 @@ public class Game {
 		public static String GetValidAreasToPlaceBuilding(int PlayerID)
 		{
 			String strValidAreas = "";
-			for(Area objArea : Game.lstArea)
+			String strAreasHavingMinion = "";
+			strAreasHavingMinion = GetAreasHavingMinionOfPlayer(PlayerID);
+			String[] arryAreasHavingMinion = strAreasHavingMinion.split(",");
+			//String strValidAreas = "";
+			for(int i=0; i<arryAreasHavingMinion.length;i++)
 			{
-				if(!AreaHasABuilding(objArea.getAreaID())&&!AreaHasTroubleMarker(objArea.getAreaID())&&AreaHasMinionOfPlayer(objArea.getAreaID(), PlayerID))
+				if(!AreaHasABuilding(Integer.parseInt(arryAreasHavingMinion[i]))&&!AreaHasTroubleMarker(Integer.parseInt(arryAreasHavingMinion[i]))&&AreaHasMinionOfPlayer(Integer.parseInt(arryAreasHavingMinion[i]), PlayerID))
 				{
-					strValidAreas+=objArea.getAreaID()+",";
+					strValidAreas+=arryAreasHavingMinion[i]+",";
 				}
 			}
 			
@@ -468,6 +472,52 @@ public class Game {
 			}
 			return strValidAreas;
 		}
+		
+		public static String GetAreasHavingMinionOfPlayer(int PlayerID)
+		{
+			String strValidAreas = "";
+			for(Minion objMinion : Game.lstMinions)
+			{
+				if(objMinion.getPlayer_id()==PlayerID && objMinion.getArea_id()!=0)
+				{
+					if(!strValidAreas.contains(objMinion.getArea_id()+","))
+					{
+						strValidAreas+=objMinion.getArea_id()+",";
+					}
+				}
+			}
+			
+			if(!strValidAreas.isEmpty())
+			{
+				strValidAreas.substring(0,strValidAreas.length()-1);
+			}
+			
+			return strValidAreas;
+		}
+		
+		public static String GetValidAreasToPlaceMinion(int PlayerID)
+		{
+			String strValidAreas = "";
+			String strAreasHavingMinion = "";
+			strAreasHavingMinion = GetAreasHavingMinionOfPlayer(PlayerID);			
+			
+			if(!strAreasHavingMinion.isEmpty())
+			{
+				String[] arryAreasHavingMinion = strAreasHavingMinion.split(",");
+				for(int i =0; i<arryAreasHavingMinion.length;i++)
+				{
+					strValidAreas+=arryAreasHavingMinion[i]+","+PresentationUtility.GetAdjacentAreas(Integer.parseInt(arryAreasHavingMinion[i]))+",";
+				}
+			}
+			
+			if(!strValidAreas.isEmpty())
+			{
+				//Get distinct areas from strValidAreas
+				strValidAreas = PresentationUtility.getDistinctCommaSeparatedValues(strValidAreas.substring(0,strValidAreas.length()-1));
+			}
+			
+			return strValidAreas;
+		}			
 		
 		public static String GetMinionIDsNotOnBoard(int PlayerID)
 		{
@@ -519,6 +569,7 @@ public class Game {
 			}
 			return placingABuidingStr;
 		}
+		
 		public static ArrayList<Building> GetBuildingsNotOnBoardByPlayerID(int PlayerID)
 		{
 			ArrayList<Building> Buildings = new ArrayList<Building>();
@@ -533,8 +584,7 @@ public class Game {
 		}
 		
 		/**
-		 * Gets the troll by troll id.
-		 *
+		 * Gets the troll by troll id.		 
 		 * @param TrollID the troll id
 		 * @return the troll
 		 */
@@ -552,8 +602,7 @@ public class Game {
 		}
 		
 		/**
-		 * Gets the demon by demon id.
-		 *
+		 * Gets the demon by demon id.		 
 		 * @param DemonID the demon id
 		 * @return the demon
 		 */
@@ -984,11 +1033,7 @@ public class Game {
 			
 			return lstCityAreaCard;
 		}
-		
-		
-		
-		
-		
+									
 		/**
 		 * Gets the city area card by card id.
 		 *
@@ -1005,8 +1050,7 @@ public class Game {
 					objCityAreaCard = CityAreaCard;
 					break;
 				}
-			}
-			
+			}			
 			return objCityAreaCard;
 		}
 		

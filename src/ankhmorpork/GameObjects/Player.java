@@ -501,6 +501,7 @@ public class Player {
 							if(GameMinion.getMinion_id().toString().equals(MinionID))
 							{
 								GameMinion.setActive(false);
+								GameMinion.setArea_id(0);								
 								success = true;
 							}
 
@@ -528,7 +529,7 @@ public class Player {
 		}
 		if(success)
 			System.out.println("Minion assassinated successfully");
-		
+
 		return success;
 	}
 
@@ -625,7 +626,7 @@ public class Player {
 					}
 
 				}
-				
+
 				if(success)
 					break;
 
@@ -723,6 +724,11 @@ public class Player {
 				success = true;
 			}
 		}
+		if(success)
+		{
+			System.out.println("Trouble Marker was removed from "+PresentationUtility.getCityAreaCardNameById(AreaID));
+		}
+		
 		return success;
 	}
 
@@ -767,62 +773,62 @@ public class Player {
 	//Take money from bank
 	public boolean TakeMoneyFromBank(String CardID)
 	{
-		int getAmount = PresentationUtility.howMuchMoneyToTakeFromBank(CardID);
+		int iAmount = PresentationUtility.howMuchMoneyToTakeFromBank(CardID);
 		//this.
-		return true;
+		return Game.PaymentFromBank(this.getPlayer_id(), iAmount);
 	}
 	//Player performs action
 	public boolean PerformCardAction(String ActionID, String CardID) throws IOException
 	{
-		boolean success = true;
+		boolean success = false;
 		if(ActionID.equalsIgnoreCase("Scroll"))
 		{
 			switch(CardID)
 			{
-			case "g1" :this.mrBoggisFunctionality();break;
-			case "g2" :this.mrBentFunctionality();break;
-			case "g3" :this.theBeggersGuildFunctionality();break;
-			case "g4" :this.mrBentFunctionality();break;
-			case "g5" :this.theAnkhMorporkSunshineDragonSanctuaryFunctionality();break;								
-			case "g9" :this.theDuckmanFunctionality();break;
-			case "g10" :this.theDrumknottFunctionality();break;
-			case "g11" :this.theCMOTDibblerFunctionality();break;
-			case "g14" :this.theMrsCakeFunctionality();break;
-			case "g19" :this.theDuckmanFunctionality();break;
-			case "g20" :this.theFoolsGuildFunctionality();break;
-			case "g21" :this.theFireBrigadeFunctionality();break;
-			case "g23" :this.theHistoryMonksFunctionality();break;
-			//case "g24" : this.get
-			case "g25" :this.theCMOTDibblerFunctionality();break;
-			//case "g26" : this. harry king
-			case "g30" :this.theDyskFunctionality();break;
-			case "g31" :this.theNoobyNoobsFunctionality();break;
-			case "g32" :this.theModoFunctionality();break;
-			case "g34" :this.theLibrarianFunctionality();break;
-			case "g35" :this.theLibrarianFunctionality();break;
-			//case "g36" : this.thes shonky shop
-			case "g37" :this.theSacharissaCripslockFunctionality();break;
-			case "g38" :this.theRosiePalmFunctionality();break;
-			case "g39" :this.theDyskFunctionality();break;
-			case "g41" :this.theBeggersGuildFunctionality();break;
-			case "g43" :this.theZorgoTheRetroFunctionality();break;
-			case "g44" :this.theFoolsGuildFunctionality();break;
-			case "g46" :this.theRosiePalmFunctionality();break;
-			case "g48" :this.mrBoggisFunctionality();break;
+			case "g1" : return this.mrBoggisFunctionality();
+			case "g2" : return this.mrBentFunctionality();
+			case "g3" : return this.theBeggersGuildFunctionality();
+			case "g4" : return this.mrBentFunctionality();
+			case "g5" : return this.theAnkhMorporkSunshineDragonSanctuaryFunctionality();								
+			case "g9" : return this.theDuckmanFunctionality();
+			case "g10" : return this.theDrumknottFunctionality();
+			case "g11" : return this.theCMOTDibblerFunctionality();
+			case "g14" : return this.theMrsCakeFunctionality();
+			case "g19" : return this.theDuckmanFunctionality();
+			case "g20" : return this.theFoolsGuildFunctionality();
+			case "g21" : return this.theFireBrigadeFunctionality();
+			case "g23" : return this.theHistoryMonksFunctionality();
+			//case "g24" : return this.get
+			case "g25" : return this.theCMOTDibblerFunctionality();
+			//case "g26" : return this. harry king
+			case "g30" : return this.theDyskFunctionality();
+			case "g31" : return this.theNoobyNoobsFunctionality();
+			case "g32" : return this.theModoFunctionality();
+			case "g34" : return this.theLibrarianFunctionality();
+			case "g35" : return this.theLibrarianFunctionality();
+			//case "g36" : return this.thes shonky shop
+			case "g37" : return this.theSacharissaCripslockFunctionality();
+			case "g38" : return this.theRosiePalmFunctionality();
+			case "g39" : return this.theDyskFunctionality();
+			case "g41" : return this.theBeggersGuildFunctionality();
+			case "g43" : return this.theZorgoTheRetroFunctionality();
+			case "g44" : return this.theFoolsGuildFunctionality();
+			case "g46" : return this.theRosiePalmFunctionality();
+			case "g48" : return this.mrBoggisFunctionality();
 			}
 		}
 		else
 		{
 			switch(ActionID)
 			{
-			case "Assassination" : this.Assassination();break;
-			case "Remove one trouble marker" : this.UserRemoveOneTroubleMarker();break;
-			case "Take money" : this.TakeMoneyFromBank(CardID);break;
-			//				case "Random Event" : 
-			case "Play another card" : this.PlayAnotherCard(CardID);break;
-			//				case "Interrupt " : 
-			case "Place a Minion" : this.placeAMinionFunctionality();break;
-			case "Place a Building" : this.placeABuildingFunctionality();break;
+			case "Assassination" : return this.Assassination();
+			case "Remove one trouble marker" : return this.UserRemoveOneTroubleMarker();
+			case "Take money" : return this.TakeMoneyFromBank(CardID);
+			//				case "Random Event" : return 
+			case "Play another card" : return this.PlayAnotherCard(CardID);
+			//				case "Interrupt " : return 
+			case "Place a Minion" : return this.placeAMinionFunctionality();
+			case "Place a Building" : return this.placeABuildingFunctionality();
 			}
 		}
 		return success;			
@@ -1378,57 +1384,57 @@ public class Player {
 		boolean success =false;
 		String placingAMinionStr = "";
 		placingAMinionStr = Game.GetMinionIDsNotOnBoard(this.getPlayer_id());
-//		for(Minion minionObj : Game.lstMinions)
-//		{
-//			if(minionObj.getPlayer_id() == this.getPlayer_id() && minionObj.getArea_id() == 0){
-//				placingAMinionStr += minionObj.getMinion_id() + ",";
-//			}
-//			if(placingAMinionStr.endsWith(",")){
-//				placingAMinionStr = placingAMinionStr.substring(0, placingAMinionStr.length()-1);
-//			}
-			if(!placingAMinionStr.isEmpty())
-			{	
-				//System.out.println("You are allowed to place these minions which are not on board : " + placingAMinionStr);
-				System.out.println("Enter a area in which you want to keep the minion : ");
-				String AreaList = "1,2,3,4,5,6,7,8,9,10,11,12";//Game.AreaWithNoMinion();
-				System.out.println(AreaList);
-				BufferedReader brBuff = new BufferedReader(new InputStreamReader(System.in));
-				String br = brBuff.readLine();
-				System.out.println(br);
-				System.out.println(placingAMinionStr);
-				if(AreaList.contains(br))
-				{
-					Minion objMinion = Game.GetMinionsByMinionID(Integer.parseInt(placingAMinionStr.substring(0,2)));
-					objMinion.setArea_id(Integer.parseInt(br.toString()));										
-					//Place or Remove Trouble Marker on Addition of Minion
-					if(Game.AreaHasMinion(Integer.parseInt(br)))
-					{						
-						Game.SetMinion(objMinion);
-						System.out.println(this.getPlayer_name()+"'s Minion was palced in "+PresentationUtility.getCityAreaCardNameById(Integer.parseInt(br)));
-						success = true;
-						
-						if(Game.AreaHasTroubleMarker(Integer.parseInt(br)))
-						{
-							Game.removeTroubleMarkerByAreaId(Integer.parseInt(br));							
-							System.out.println("Trouble Marker was removed");													
-						}
-						else
-						{
-							PlaceATroubleMarkerInArea(Integer.parseInt(br));														
-							System.out.println("Trouble Marker was placed");																				
-						}
-											
+		//		for(Minion minionObj : Game.lstMinions)
+		//		{
+		//			if(minionObj.getPlayer_id() == this.getPlayer_id() && minionObj.getArea_id() == 0){
+		//				placingAMinionStr += minionObj.getMinion_id() + ",";
+		//			}
+		//			if(placingAMinionStr.endsWith(",")){
+		//				placingAMinionStr = placingAMinionStr.substring(0, placingAMinionStr.length()-1);
+		//			}
+		if(!placingAMinionStr.isEmpty())
+		{	
+			//System.out.println("You are allowed to place these minions which are not on board : " + placingAMinionStr);
+			System.out.println("Enter a area in which you want to keep the minion : ");
+			String AreaList = Game.GetValidAreasToPlaceMinion(this.getPlayer_id());//"1,2,3,4,5,6,7,8,9,10,11,12";//Game.AreaWithNoMinion();
+			System.out.println(AreaList);
+			BufferedReader brBuff = new BufferedReader(new InputStreamReader(System.in));
+			String br = brBuff.readLine();
+			System.out.println(br);
+			System.out.println(placingAMinionStr);
+			if(AreaList.contains(br))
+			{
+				Minion objMinion = Game.GetMinionsByMinionID(Integer.parseInt(placingAMinionStr.substring(0,2)));
+				objMinion.setArea_id(Integer.parseInt(br.toString()));										
+				//Place or Remove Trouble Marker on Addition of Minion
+				if(Game.AreaHasMinion(Integer.parseInt(br)))
+				{						
+					Game.SetMinion(objMinion);
+					System.out.println(this.getPlayer_name()+"'s Minion was palced in "+PresentationUtility.getCityAreaCardNameById(Integer.parseInt(br)));
+					success = true;
+
+					if(Game.AreaHasTroubleMarker(Integer.parseInt(br)))
+					{
+						Game.removeTroubleMarkerByAreaId(Integer.parseInt(br));							
+						System.out.println("Trouble Marker was removed");													
 					}
 					else
 					{
-						//Area has no minion previously so Trouble Marker won't cone in picture 
-						Game.SetMinion(objMinion);
-						System.out.println(this.getPlayer_name()+"'s Minion was palced in "+PresentationUtility.getCityAreaCardNameById(Integer.parseInt(br)));
-						success = true;
+						PlaceATroubleMarkerInArea(Integer.parseInt(br));														
+						System.out.println("Trouble Marker was placed");																				
 					}
+
+				}
+				else
+				{
+					//Area has no minion previously so Trouble Marker won't cone in picture 
+					Game.SetMinion(objMinion);
+					System.out.println(this.getPlayer_name()+"'s Minion was palced in "+PresentationUtility.getCityAreaCardNameById(Integer.parseInt(br)));
+					success = true;
 				}
 			}
-	//	}
+		}
+		//	}
 		return success;
 	}
 
@@ -1444,12 +1450,15 @@ public class Player {
 		//for(Building buildingObj : Game.lstBuildings)
 		//{
 		placingABuidingStr = Game.GetBuildingIDsNotOnBoard(this.getPlayer_id());
-			if(!placingABuidingStr.isEmpty())
+		if(!placingABuidingStr.isEmpty())
+		{
+			//System.out.println("You are allowed to place these buildings which are not on board : " + placingABuidingStr);
+
+			//Get Valid Areas where current Player can place a building
+			String AreaList = Game.GetValidAreasToPlaceBuilding(this.getPlayer_id());
+			if(!AreaList.isEmpty())
 			{
-				//System.out.println("You are allowed to place these buildings which are not on board : " + placingABuidingStr);
 				System.out.println("Enter an area in which you want to keep the building  : ");
-				//Get Valid Areas where current Player can place a building
-				String AreaList = Game.GetValidAreasToPlaceBuilding(this.getPlayer_id());
 				System.out.println(AreaList);
 				BufferedReader brBuff = new BufferedReader(new InputStreamReader(System.in));
 				String br = brBuff.readLine();
@@ -1478,16 +1487,22 @@ public class Player {
 				}
 				else
 				{
-					System.out.println("You have no Building to palce");
+					System.out.println("Incorrect Area ID. Please try again.");
 					success = false;
 				}
 
 			}
 			else
 			{
-				System.out.println("No Area available to place Building");
+				System.out.println("No Area available to place Building");				
 				success = false;
 			}
+		}
+		else
+		{			
+			System.out.println("You do not have a building piece to place.");
+			success = false;
+		}
 		//}
 		return success;
 	}
