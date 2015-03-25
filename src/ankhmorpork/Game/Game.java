@@ -235,6 +235,22 @@ public class Game {
 			return Minions;
 		}
 		
+		//Method to get one Player Minion form an Area
+		public static Minion GetPlayerMinionFromArea(int iPlayerID, int iAreaID)
+		{
+			Minion objMinion = new Minion();
+			for(Minion Minion : lstMinions)
+			{
+				if(Minion.getArea_id()==iAreaID && Minion.getPlayer_id()==iPlayerID)
+				{
+					objMinion = Minion;
+					break;
+				}
+			}
+			
+			return objMinion;
+		}
+		
 		//Method to return comma separated String of Active Minion IDs in an Area
 		/**
 		 * Gets the active minions string by area id.
@@ -341,7 +357,7 @@ public class Game {
 				}
 			}
 			return success;
-		}
+		}			
 		
 		public static boolean SetMinion(Minion Minion)
 		{
@@ -518,6 +534,28 @@ public class Game {
 			
 			return strValidAreas;
 		}			
+		
+		//Display Area names to User
+		public static void DisplayAreas(String strAreaIDsCommaSeparated)
+		{
+			String[] AreaID = strAreaIDsCommaSeparated.split(",");
+			
+			for(int i = 0; i<AreaID.length; i++)
+			{
+				System.out.println(AreaID[i] + " : " + PresentationUtility.getCityAreaCardNameById(Integer.parseInt(AreaID[i])));
+			}
+		}
+		
+//		//Display Area names to User
+//		public static void DisplayGreenCards(String strGCIDsCommaSeparated)
+//		{
+//			String[] GreenCardID = strGCIDsCommaSeparated.split(",");
+//			
+//			for(int i = 0; i<GreenCardID.length; i++)
+//			{
+//				System.out.println(GreenCardID[i] + " : " + getG)));
+//			}
+//		}
 		
 		public static String GetMinionIDsNotOnBoard(int PlayerID)
 		{

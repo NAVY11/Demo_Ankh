@@ -728,7 +728,7 @@ public class Player {
 		{
 			System.out.println("Trouble Marker was removed from "+PresentationUtility.getCityAreaCardNameById(AreaID));
 		}
-		
+
 		return success;
 	}
 
@@ -800,13 +800,13 @@ public class Player {
 			case "g23" : return this.theHistoryMonksFunctionality();
 			//case "g24" : return this.get
 			case "g25" : return this.theCMOTDibblerFunctionality();
-			//case "g26" : return this. harry king
+			case "g26" : return this.theHarryKingOrShonkyShopFunctionality(CardID, 2);
 			case "g30" : return this.theDyskFunctionality();
 			case "g31" : return this.theNoobyNoobsFunctionality();
 			case "g32" : return this.theModoFunctionality();
 			case "g34" : return this.theLibrarianFunctionality();
 			case "g35" : return this.theLibrarianFunctionality();
-			//case "g36" : return this.thes shonky shop
+			case "g36" : return this.theHarryKingOrShonkyShopFunctionality(CardID, 1);
 			case "g37" : return this.theSacharissaCripslockFunctionality();
 			case "g38" : return this.theRosiePalmFunctionality();
 			case "g39" : return this.theDyskFunctionality();
@@ -1256,6 +1256,7 @@ public class Player {
 		return success;
 	}
 
+	//Functionality -- You may exchange your personality card with one drawn randomly from those not in use
 	public boolean theZorgoTheRetroFunctionality(){
 		//1st Action to read scroll & then play another card
 		boolean success = false;
@@ -1329,49 +1330,78 @@ public class Player {
 		return success;
 	}
 
-	public boolean theHarryKingFunctionality() throws IOException{
+	//Discard as many cards as you wish and take $2 / $1 for each one discarded
+	public boolean theHarryKingOrShonkyShopFunctionality(String CardID, int Amount) throws IOException{
 		//1st Action to read scroll & then play another card
 		boolean success = false;
 		System.out.println("Do you want to continue? Please enter 'y' : ");
 		BufferedReader brBuff = new BufferedReader(new InputStreamReader(System.in));
 		String br = brBuff.readLine();
 		if(br.toString().equals("y") || br.toString().equals("Y")){
-			System.out.print("You have these green cards available : " + this.getGreenCardListCommaSeparated());
-			String[] playerGreenCardArr = this.getGreenCardListCommaSeparated().split(",");
-			for(int i = 0; i < playerGreenCardArr.length; i++){
-				System.out.print("Do you want to discard Card Number : " + playerGreenCardArr[i]);
+			//Set Current card as 'Played'
+			Game.SetGreenCardIsPlayed(CardID, true);
+			ArrayList<GreenCard> GCList = Game.GetGreenCardByPlayerID(this.getPlayer_id());
+			int iDiscardCount = 0;
+			for(GreenCard grnCard : GCList)
+			{
+				while(true)
+				{
+				String ActionList = Game.GetGreenCardActions(grnCard.GetCardID());
+				System.out.print("Do you want to discard below Card :(Y/N) ");
+				System.out.printf("%-5s%-5s%-40s%-5s%-50s%-5s%-60s\n",grnCard.CardID ,  " : " ,  grnCard.getName() , " : " , ActionList," : ","Scroll Action : "+grnCard.GetActionDescription());
 				BufferedReader brCard1SelectedBuff = new BufferedReader(new InputStreamReader(System.in));
-				String brCard1Selected = brCard1SelectedBuff.readLine();
-				if(brCard1Selected.toString().endsWith("y") || brCard1Selected.toString().endsWith("Y")){
-					this.setGreenCardListCommaSeparated(removeOneCardFromCommaSeparatedString(this.getGreenCardListCommaSeparated(), playerGreenCardArr[i].toString()));
-					this.setPlayer_amount((float) this.getPlayer_amount() + 2);
+				String Input = brCard1SelectedBuff.readLine();
+				if(Input.equalsIgnoreCase("Y"))
+				{
+					//Discard Card -- Set isPlayed to true
+					Game.SetGreenCardIsPlayed(grnCard.GetCardID(), true);
+					iDiscardCount++;
+					success = true;
+					break;
+				}
+				else if(Input.equalsIgnoreCase("N"))
+				{
+					success = true;
+					break;
+				}
+				else
+				{
+					System.out.print("Invalid Input. Please try again.");
+				}
 				}
 			}
+			
+			if(iDiscardCount>0)
+			{
+				//Make payment to Player
+				Game.PaymentFromBank(this.getPlayer_id(), iDiscardCount*Amount);
+				success = true;
+			}			
 		}
 		return success;
 	}
 
-	public boolean theShonkyShopFunctionality() throws IOException{
-		//1st Action to read scroll & then play another card
-		boolean success = false;
-		System.out.println("Do you want to continue? Please enter 'y' : ");
-		BufferedReader brBuff = new BufferedReader(new InputStreamReader(System.in));
-		String br = brBuff.readLine();
-		if(br.toString().equals("y") || br.toString().equals("Y")){
-			System.out.print("You have these green cards available : " + this.getGreenCardListCommaSeparated());
-			String[] playerGreenCardArr = this.getGreenCardListCommaSeparated().split(",");
-			for(int i = 0; i < playerGreenCardArr.length; i++){
-				System.out.print("Do you want to discard Card Number : " + playerGreenCardArr[i]);
-				BufferedReader brCard1SelectedBuff = new BufferedReader(new InputStreamReader(System.in));
-				String brCard1Selected = brCard1SelectedBuff.readLine();
-				if(brCard1Selected.toString().endsWith("y") || brCard1Selected.toString().endsWith("Y")){
-					this.setGreenCardListCommaSeparated(removeOneCardFromCommaSeparatedString(this.getGreenCardListCommaSeparated(), playerGreenCardArr[i].toString()));
-					this.setPlayer_amount((float) this.getPlayer_amount() + 1);
-				}
-			}
-		}
-		return success;
-	}
+//	public boolean theShonkyShopFunctionality() throws IOException{
+//		//1st Action to read scroll & then play another card
+//		boolean success = false;
+//		System.out.println("Do you want to continue? Please enter 'y' : ");
+//		BufferedReader brBuff = new BufferedReader(new InputStreamReader(System.in));
+//		String br = brBuff.readLine();
+//		if(br.toString().equals("y") || br.toString().equals("Y")){
+//			System.out.print("You have these green cards available : " + this.getGreenCardListCommaSeparated());
+//			String[] playerGreenCardArr = this.getGreenCardListCommaSeparated().split(",");
+//			for(int i = 0; i < playerGreenCardArr.length; i++){
+//				System.out.print("Do you want to discard Card Number : " + playerGreenCardArr[i]);
+//				BufferedReader brCard1SelectedBuff = new BufferedReader(new InputStreamReader(System.in));
+//				String brCard1Selected = brCard1SelectedBuff.readLine();
+//				if(brCard1Selected.toString().endsWith("y") || brCard1Selected.toString().endsWith("Y")){
+//					this.setGreenCardListCommaSeparated(removeOneCardFromCommaSeparatedString(this.getGreenCardListCommaSeparated(), playerGreenCardArr[i].toString()));
+//					this.setPlayer_amount((float) this.getPlayer_amount() + 1);
+//				}
+//			}
+//		}
+//		return success;
+//	}
 
 	/**
 	 * Place a minion functionality.
@@ -1384,27 +1414,21 @@ public class Player {
 		boolean success =false;
 		String placingAMinionStr = "";
 		placingAMinionStr = Game.GetMinionIDsNotOnBoard(this.getPlayer_id());
-		//		for(Minion minionObj : Game.lstMinions)
-		//		{
-		//			if(minionObj.getPlayer_id() == this.getPlayer_id() && minionObj.getArea_id() == 0){
-		//				placingAMinionStr += minionObj.getMinion_id() + ",";
-		//			}
-		//			if(placingAMinionStr.endsWith(",")){
-		//				placingAMinionStr = placingAMinionStr.substring(0, placingAMinionStr.length()-1);
-		//			}
+		//Check whether the Player has unused Minions in hand
 		if(!placingAMinionStr.isEmpty())
 		{	
 			//System.out.println("You are allowed to place these minions which are not on board : " + placingAMinionStr);
 			System.out.println("Enter a area in which you want to keep the minion : ");
 			String AreaList = Game.GetValidAreasToPlaceMinion(this.getPlayer_id());//"1,2,3,4,5,6,7,8,9,10,11,12";//Game.AreaWithNoMinion();
-			System.out.println(AreaList);
+			//System.out.println(AreaList);
+			Game.DisplayAreas(AreaList);
 			BufferedReader brBuff = new BufferedReader(new InputStreamReader(System.in));
 			String br = brBuff.readLine();
 			System.out.println(br);
 			System.out.println(placingAMinionStr);
 			if(AreaList.contains(br))
 			{
-				Minion objMinion = Game.GetMinionsByMinionID(Integer.parseInt(placingAMinionStr.substring(0,2)));
+				Minion objMinion = Game.GetMinionsByMinionID(Integer.parseInt(placingAMinionStr.substring(0,3)));
 				objMinion.setArea_id(Integer.parseInt(br.toString()));										
 				//Place or Remove Trouble Marker on Addition of Minion
 				if(Game.AreaHasMinion(Integer.parseInt(br)))
@@ -1416,25 +1440,74 @@ public class Player {
 					if(Game.AreaHasTroubleMarker(Integer.parseInt(br)))
 					{
 						Game.removeTroubleMarkerByAreaId(Integer.parseInt(br));							
-						System.out.println("Trouble Marker was removed");													
+						System.out.println("Trouble Marker was removed from : "+PresentationUtility.getCityAreaCardNameById(Integer.parseInt(br)));													
 					}
 					else
 					{
 						PlaceATroubleMarkerInArea(Integer.parseInt(br));														
-						System.out.println("Trouble Marker was placed");																				
+						System.out.println("Trouble Marker was placed in : "+PresentationUtility.getCityAreaCardNameById(Integer.parseInt(br)));																				
 					}
 
 				}
 				else
 				{
-					//Area has no minion previously so Trouble Marker won't cone in picture 
+					//Area has no minion previously so Trouble Marker won't come in picture 
 					Game.SetMinion(objMinion);
 					System.out.println(this.getPlayer_name()+"'s Minion was palced in "+PresentationUtility.getCityAreaCardNameById(Integer.parseInt(br)));
 					success = true;
 				}
 			}
 		}
-		//	}
+		//If the Player has no Minions in hand(All his Minions are on Board)
+		else
+		{
+			//Ask the Player to move a Minion from existing areas having Minion
+			System.out.println("Enter the Area ID from which you wish to move the Minion:");
+			String strAreasHavingPlayerMinions = Game.GetAreasHavingMinionOfPlayer(this.getPlayer_id());
+			Game.DisplayAreas(strAreasHavingPlayerMinions);
+			String strMoveFromArea = PresentationUtility.GetValidAnswerFromUser(strAreasHavingPlayerMinions);
+			String strAdjcentAreas = PresentationUtility.GetAdjacentAreas(Integer.parseInt(strMoveFromArea));
+			System.out.println("Minion can be moved to following adjacent areas:");
+			Game.DisplayAreas(strAdjcentAreas);
+			System.out.println("Enter the Area ID where you wish to move the Minion:");
+			String strMoveToArea = PresentationUtility.GetValidAnswerFromUser(strAdjcentAreas);
+			Minion objMinion = Game.GetPlayerMinionFromArea(this.getPlayer_id(), Integer.parseInt(strMoveFromArea));
+			//Place/Remove Trouble marker from area from where Minion is removed
+			if(Game.AreaHasTroubleMarker(Integer.parseInt(strMoveFromArea)))
+			{
+				Game.removeTroubleMarkerByAreaId(Integer.parseInt(strMoveFromArea));							
+				System.out.println("Trouble Marker was removed from : "+PresentationUtility.getCityAreaCardNameById(Integer.parseInt(strMoveFromArea)));													
+			}
+			else
+			{
+				PlaceATroubleMarkerInArea(Integer.parseInt(strMoveFromArea));														
+				System.out.println("Trouble Marker was placed in : " + PresentationUtility.getCityAreaCardNameById(Integer.parseInt(strMoveFromArea)));																				
+			}
+			//Place/Remove a Trouble marker where Minion is placed
+			if(Game.AreaHasMinion(Integer.parseInt(strMoveToArea)))
+			{
+				//Set Minion Area
+				objMinion.setArea_id(Integer.parseInt(strMoveToArea));
+				Game.SetMinion(objMinion);
+				//Adjust Trouble MArker
+				if(Game.AreaHasTroubleMarker(Integer.parseInt(strMoveToArea)))
+				{
+					Game.removeTroubleMarkerByAreaId(Integer.parseInt(strMoveToArea));							
+					System.out.println("Trouble Marker was removed From : "+PresentationUtility.getCityAreaCardNameById(Integer.parseInt(strMoveToArea)));													
+				}
+				else
+				{
+					PlaceATroubleMarkerInArea(Integer.parseInt(strMoveToArea));														
+					System.out.println("Trouble Marker was placed in : " + PresentationUtility.getCityAreaCardNameById(Integer.parseInt(strMoveToArea)));																				
+				}
+			}
+			else
+			{
+				//Set Minion in Game List
+				objMinion.setArea_id(Integer.parseInt(strMoveToArea));
+				Game.SetMinion(objMinion);
+			}
+		}
 		return success;
 	}
 
