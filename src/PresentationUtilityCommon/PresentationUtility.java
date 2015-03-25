@@ -3,6 +3,9 @@
  */
 package PresentationUtilityCommon;
 
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStreamReader;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -171,6 +174,26 @@ public class PresentationUtility {
 		}
 	}
 
+	//Get valid answer from user
+	public static String GetValidAnswerFromUser(String strValidAnswersCommaSeparated) throws IOException	
+	{
+		String ans= "";
+		BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+		while(true)
+		{
+			ans = br.readLine();
+			if(strValidAnswersCommaSeparated.contains("," + ans.trim() + ","))
+			{
+				return ans;				
+			}
+			else
+			{
+				System.out.println("Invalid input. Please try again.");
+			}
+		}
+	}	
+	
+	
 	/**
 	 * Gets the green card name by id.
 	 *
