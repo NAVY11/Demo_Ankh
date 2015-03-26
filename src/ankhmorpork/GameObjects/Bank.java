@@ -26,6 +26,18 @@ public class Bank {
 	/** The obj gold coin. */
 	public Coins objGoldCoin = new Coins(Constants.GoldCoin());
 	
+	@Override
+	public String toString() {
+		return "Bank [player_amount=" + player_amount + ", Bank_Amount="
+				+ Bank_Amount + ", player_personality_card_id="
+				+ player_personality_card_id
+				+ ", cityAreaCardsListCommaSeparated="
+				+ cityAreaCardsListCommaSeparated
+				+ ", personalityCardListCommaSeparated="
+				+ personalityCardListCommaSeparated + ", objGoldCoin="
+				+ objGoldCoin + ", objSilverCoin=" + objSilverCoin + "]";
+	}
+
 	/** The obj silver coin. */
 	public Coins objSilverCoin = new Coins(Constants.SilverCoin());
 	

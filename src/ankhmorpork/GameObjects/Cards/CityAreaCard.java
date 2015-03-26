@@ -20,6 +20,15 @@ import ankhmorpork.GameObjects.TroubleMaker;
  */
 public class CityAreaCard extends Cards{
 	
+	@Override
+	public String toString() {
+		return "CityAreaCard [ActionID=" + ActionID + ", ActionDescription="
+				+ ActionDescription + ", AreaID=" + AreaID + ", AreaName="
+				+ AreaName + ", Cost=" + Cost + ", CardID=" + CardID
+				+ ", IsPlayed=" + IsPlayed + ", PlayerID="
+				+ PlayerID + "]";
+	}
+
 	/** The Action id. */
 	private String ActionID;
 	

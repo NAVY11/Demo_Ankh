@@ -13,6 +13,13 @@ import java.util.HashMap;
  */
 public class Area {
 
+	@Override
+	public String toString() {
+		return "Area [area_id=" + area_id + ", area_name=" + area_name
+				+ ", area_cost=" + area_cost + ", belongs_to=" + belongs_to
+				+ "]";
+	}
+
 	/** The area_id. */
 	private Integer area_id = 0;
 	

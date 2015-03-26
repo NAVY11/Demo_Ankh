@@ -23,6 +23,23 @@ import ankhmorpork.GameObjects.Cards.PersonalityCard;
  */
 public class Player {
 
+	@Override
+	public String toString() {
+		return "Player [player_id=" + player_id + ", player_name="
+				+ player_name + ", player_active=" + player_active
+				+ ", player_color=" + player_color + ", player_amount="
+				+ player_amount + ", player_comments=" + player_comments
+				+ ", player_personality_card_id=" + player_personality_card_id
+				+ ", brownCardListCommaSeparated="
+				+ brownCardListCommaSeparated
+				+ ", greenCardListCommaSeparated="
+				+ greenCardListCommaSeparated
+				+ ", cityAreaCardsListCommaSeparated="
+				+ cityAreaCardsListCommaSeparated
+				+ ", personalityCardListCommaSeparated="
+				+ personalityCardListCommaSeparated + ", objGoldCoin="
+				+ objGoldCoin + ", objSilverCoin=" + objSilverCoin + "]";
+	}
 	/** The player_id. */
 	Integer player_id;
 

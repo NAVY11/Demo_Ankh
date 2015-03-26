@@ -61,44 +61,45 @@ public class GameSave {
 		//FileWriter jsonWriter = new FileWriter(objFileWriter);
 		JSONObject jsonAddData = new JSONObject();
 		
-		//Saving TROLLS		
-		jsonAddData.put("Trolls",Game.lstTrolls);
+		//Saving TROLLS
+		jsonAddData.put("Trolls",Game.lstTrolls.toString());
 		
 		//Saving DEMONS		
-		jsonAddData.put("Demons",Game.lstDemons);
+		jsonAddData.put("Demons",Game.lstDemons.toString());
 				
 		//Saving Players		
-		jsonAddData.put("Players",Game.lstPlayers);
+		jsonAddData.put("Players",Game.lstPlayers.toString());
 		
 		//Saving Building
-		jsonAddData.put("Building",Game.lstBuildings);
+		jsonAddData.put("Building",Game.lstBuildings.toString());
 		
 		//Saving Area
-		jsonAddData.put("Area",Game.lstArea);
+		jsonAddData.put("Area",Game.lstArea.toString());
 		
 		//Saving TroubleMaker
-		jsonAddData.put("TroubleMaker",Game.lstTroubleMaker);
+		jsonAddData.put("TroubleMaker",Game.lstTroubleMaker.toString());
 		
 		//Saving CityAreaCard
-		jsonAddData.put("CityAreaCards",Game.lstCityAreaCards);
+		jsonAddData.put("CityAreaCards",Game.lstCityAreaCards.toString());
 		
 		//Saving GreenCard
-		jsonAddData.put("GreenCards",Game.lstGreenCards);
+		jsonAddData.put("GreenCards",Game.lstGreenCards.toString());
 		
-		//Saving BrownCard
-		jsonAddData.put("BrownCard",Game.lstBrownCards);
+		//Saving BrownCard -- Not needed now
+		//jsonAddData.put("BrownCard",Game.lstBrownCards.toString());
 		
 		//Saving RandomEventCard
-		jsonAddData.put("RandomEventCards",Game.lstRandomEventCards);
+		jsonAddData.put("RandomEventCards",Game.lstRandomEventCards.toString());
 		
 		//Saving BrownCard
-		jsonAddData.put("PersonalityCard",Game.lstPersonalityCard);
-
+		jsonAddData.put("PersonalityCard",Game.lstPersonalityCard.toString());
 		
-
+		//Saving Minions
+		jsonAddData.put("Minion", Game.lstMinions.toString());
+		
 		//Saving Bank Coin details
-		jsonAddData.put("GoldCoins_Avail_Bank",Game.GameBank.objGoldCoin.getCoin_Available());
-		jsonAddData.put("SilverCoins_Avail_Bank",Game.GameBank.objSilverCoin.getCoin_Available());
+		jsonAddData.put("GoldCoins_Avail_Bank",Game.GameBank.objGoldCoin.toString());
+		jsonAddData.put("SilverCoins_Avail_Bank",Game.GameBank.objSilverCoin.toString());
 		
 		return jsonAddData;
 		

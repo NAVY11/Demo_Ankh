@@ -9,6 +9,12 @@ package ankhmorpork.GameObjects;
  */
 public class Demon {
 
+	@Override
+	public String toString() {
+		return "Demon [demon_id=" + demon_id + ", active=" + active
+				+ ", area_id=" + area_id + "]";
+	}
+
 	/** The demon_id. */
 	Integer demon_id;	
 	

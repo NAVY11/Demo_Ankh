@@ -7,6 +7,14 @@ package ankhmorpork.GameObjects.Cards;
  */
 public class PersonalityCard extends Cards{
 	
+	@Override
+	public String toString() {
+		return "PersonalityCard [PersonalityName=" + PersonalityName
+				+ ", PersonalityMotive=" + PersonalityMotive + ", CardID="
+				+ CardID + ", IsPlayed=" + IsPlayed + ", Name=" + Name
+				+ ", PlayerID=" + PlayerID + "]";
+	}
+
 	/** The Personality name. */
 	private String PersonalityName;
 	

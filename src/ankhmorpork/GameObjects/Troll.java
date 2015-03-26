@@ -9,6 +9,12 @@ package ankhmorpork.GameObjects;
  */
 public class Troll {
 
+	@Override
+	public String toString() {
+		return "Troll [troll_id=" + troll_id + ", active=" + active
+				+ ", area_id=" + area_id + "]";
+	}
+
 	/** The troll_id. */
 	Integer troll_id;	
 	

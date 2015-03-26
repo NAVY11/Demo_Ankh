@@ -8,6 +8,14 @@ import java.util.Arrays;
  * The Class GreenCard.
  */
 public class GreenCard extends Cards {
+	@Override
+	public String toString() {
+		return "GreenCard [ActionID=" + Arrays.toString(ActionID)
+				+ ", ActionDescription=" + ActionDescription + ", CardID="
+				+ CardID + ", IsPlayed=" + IsPlayed + ", Name=" + Name
+				+ ", PlayerID=" + PlayerID + "]";
+	}
+
 	//private int ActionID;
 	/** The Action id. */
 	private String[] ActionID;

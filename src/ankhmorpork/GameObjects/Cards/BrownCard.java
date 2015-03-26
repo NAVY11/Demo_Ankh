@@ -1,5 +1,7 @@
 package ankhmorpork.GameObjects.Cards;
 
+import java.util.Arrays;
+
 
 // TODO: Auto-generated Javadoc
 /**
@@ -7,6 +9,14 @@ package ankhmorpork.GameObjects.Cards;
  */
 public class BrownCard extends Cards{
 	
+	@Override
+	public String toString() {
+		return "BrownCard [ActionID=" + Arrays.toString(ActionID)
+				+ ", ActionDescription=" + ActionDescription + ", CardID="
+				+ CardID + ", IsPlayed=" + IsPlayed + ", Name=" + Name
+				+ ", PlayerID=" + PlayerID + "]";
+	}
+
 	/** The Action id. */
 	private String ActionID[];
 	
