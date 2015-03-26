@@ -95,15 +95,15 @@ public class ViewFileTxt {
 		boolean isTroubleMakerInArea = false;
 		
 		for(TroubleMaker building : troubleMakers){ // TODO: Have to verify this condition, whether it is working perfectly or not
-			if(building.getArea_id() > 0){
-				if(!(troubleMakerDetails.get(building.getArea_id())))
+			if(building.getArea_id() > 0 && troubleMakerDetails.size() > 0){
+				if(troubleMakerDetails.containsKey(building.getArea_id()) && !(troubleMakerDetails.get(building.getArea_id())))
 					isTroubleMakerInArea = true;
 			}
 			troubleMakerDetails.put(building.getArea_id(), isTroubleMakerInArea);
 		}
 		
 		for(int i = 1; i <=12; i++){
-			troubleMakerGeneralInfoStr += "\n" + PresentationUtility.getCityAreaCardNameById(i) + " : " + (troubleMakerDetails.get(i) ? "yes": "no");
+			troubleMakerGeneralInfoStr += "\n" + PresentationUtility.getCityAreaCardNameById(i) + " : " + (troubleMakerDetails.get(i) != null && troubleMakerDetails.get(i) ? "yes": "no");
 		}
 		
 		return troubleMakerGeneralInfoStr;
@@ -118,15 +118,15 @@ public class ViewFileTxt {
 		boolean isBuildingInArea = false;
 		
 		for(Building building : buildings){ // TODO: Have to verify this condition, whether it is working perfectly or not
-			if(building.getArea_id() > 0){
-				if(!(buildingDetails.get(building.getArea_id())))
+			if(building.getArea_id() > 0 && buildingDetails.size() > 0){
+				if(buildingDetails.containsKey(building.getArea_id()) && !(buildingDetails.get(building.getArea_id())))
 						isBuildingInArea = true;
 			}
 			buildingDetails.put(building.getArea_id(), isBuildingInArea);
 		}
 		
 		for(int i = 1; i <=12; i++){
-			buildingGeneralInfoStr += "\n" + PresentationUtility.getCityAreaCardNameById(i) + " : " + (buildingDetails.get(i) ? "yes": "no");
+			buildingGeneralInfoStr += "\n" + PresentationUtility.getCityAreaCardNameById(i) + " : " + (buildingDetails.get(i) != null && buildingDetails.get(i) ? "yes": "no");
 		}
 		
 		return buildingGeneralInfoStr;
@@ -141,7 +141,7 @@ public class ViewFileTxt {
 		int countOfTrollsInArea = 0;
 		
 		for(Troll troll : trolls){ // TODO: Have to verify this condition, whether it is working perfectly or not
-			if(troll.getArea_id() > 0){
+			if(troll.getArea_id() > 0 && trollDetails.size() > 0){
 				if(trollDetails.get(troll.getArea_id()) > 0)
 					countOfTrollsInArea = trollDetails.get(troll.getArea_id()) + 1 ;
 			}
@@ -149,7 +149,7 @@ public class ViewFileTxt {
 		}
 		
 		for(int i = 1; i <=12; i++){
-			trollGeneralInfoStr += "\n" + PresentationUtility.getCityAreaCardNameById(i) + " : " + (trollDetails.get(i));
+			trollGeneralInfoStr += "\n" + PresentationUtility.getCityAreaCardNameById(i) + " : " + (trollDetails.get(i) != null ? true : false);
 		}
 		
 		return trollGeneralInfoStr;
@@ -164,7 +164,7 @@ public class ViewFileTxt {
 		int countOfDemonsInArea = 0;
 		
 		for(Demon demon : demons){ // TODO: Have to verify this condition, whether it is working perfectly or not
-			if(demon.getArea_id() > 0){
+			if(demon.getArea_id() > 0 && demonDetails.size() > 0){
 				if(demonDetails.get(demon.getArea_id()) > 0)
 					countOfDemonsInArea = demonDetails.get(demon.getArea_id()) + 1 ;
 			}
@@ -172,7 +172,7 @@ public class ViewFileTxt {
 		}
 		
 		for(int i = 1; i <=12; i++){
-			demonGeneralInfoStr += "\n" + PresentationUtility.getCityAreaCardNameById(i) + " : " + (demonDetails.get(i));
+			demonGeneralInfoStr += "\n" + PresentationUtility.getCityAreaCardNameById(i) + " : " + (demonDetails.get(i) != null ? true : false);
 		}
 		
 		return demonGeneralInfoStr;
