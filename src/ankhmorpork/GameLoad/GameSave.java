@@ -38,13 +38,13 @@ public class GameSave {
 	 * @throws IOException Signals that an I/O exception has occurred.
 	 * @throws JSONException the JSON exception
 	 */
-	public static void SaveGame(FileWriter objFileWriter) throws IOException, JSONException
+	public static void SaveGame(FileWriter objFileWriter, Player objPlayer) throws IOException, JSONException
 	{												
 			//Player Player1 = NewGame.lstPlayers.get(0);						
 			
 			//jsonWriter.write(jsonGame.toString());
 			//jsonWriter.write(jsonPlayerMinionsXX.toString());
-		objFileWriter.write(jsonObjectWhileSavingGame().toString());
+		objFileWriter.write(jsonObjectWhileSavingGame(objPlayer).toString());
 		objFileWriter.flush();
 		objFileWriter.close();											
 
@@ -57,7 +57,7 @@ public class GameSave {
 	 * @throws IOException Signals that an I/O exception has occurred.
 	 * @throws JSONException the JSON exception
 	 */
-	public static JSONObject jsonObjectWhileSavingGame()throws IOException, JSONException{
+	public static JSONObject jsonObjectWhileSavingGame(Player objPlayer)throws IOException, JSONException{
 		//FileWriter jsonWriter = new FileWriter(objFileWriter);
 		JSONObject jsonAddData = new JSONObject();
 		
@@ -100,6 +100,9 @@ public class GameSave {
 		//Saving Bank Coin details
 		jsonAddData.put("GoldCoins_Avail_Bank",Game.GameBank.objGoldCoin.toString());
 		jsonAddData.put("SilverCoins_Avail_Bank",Game.GameBank.objSilverCoin.toString());
+		
+		//Current Player Playing
+		jsonAddData.put("currentPlayerId", objPlayer.getPlayer_id());
 		
 		return jsonAddData;
 		

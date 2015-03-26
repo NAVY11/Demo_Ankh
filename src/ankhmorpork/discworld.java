@@ -305,7 +305,7 @@ public class discworld extends Applet implements ActionListener, WindowListener 
 	 							    if (retrival == JFileChooser.APPROVE_OPTION) {
 	 							        
 	 							            FileWriter objFileWriter = new FileWriter(chooser.getSelectedFile()+".txt");
-	 							            discworldboard.SaveGame(objFileWriter);
+	 							            discworldboard.SaveGame(objFileWriter, new Player());
 	
 	 							    } 
  								}else{

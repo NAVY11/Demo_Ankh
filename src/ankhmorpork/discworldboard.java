@@ -286,8 +286,8 @@ public class discworldboard extends Component {
 	 * @throws IOException Signals that an I/O exception has occurred.
 	 * @throws JSONException the JSON exception
 	 */
-	public static void SaveGame(FileWriter objFileWriter) throws IOException, JSONException{
-		GameSave.SaveGame(objFileWriter);
+	public static void SaveGame(FileWriter objFileWriter, Player objPlayer) throws IOException, JSONException{
+		GameSave.SaveGame(objFileWriter, objPlayer);
 	}
 
 	//	public static JSONObjectLoadingBeforeSavingInfo()Game PlayedGame throws IOException, JSONException{
@@ -327,13 +327,13 @@ public class discworldboard extends Component {
 		}
 
 		GameStart.StartNewGame(Players, Colors, iNoOfPlayers);
-		ViewFileTxt viewFileText = new ViewFileTxt();
-		String currentPlayer = viewFileText.currentPlayerPlaying(Game.lstPlayers);
-		System.out.println("The current Player Playing is player "+ currentPlayer);
+//		ViewFileTxt viewFileText = new ViewFileTxt();
+//		String currentPlayer = viewFileText.currentPlayerPlaying(Game.lstPlayers);
+//		System.out.println("The current Player Playing is player "+ currentPlayer);
 
 
 		//Get Starting Player randomly
-		int CurrentPlayer = StartingPlayer(iNoOfPlayers);
+		int currentPlayerTurn = StartingPlayer(iNoOfPlayers);
 		//System.out.println("Player "+ CurrentPlayer + " starts game");
 		boolean GameEnds = false;
 		System.out.println("===========================================================================================");
@@ -342,12 +342,12 @@ public class discworldboard extends Component {
 		while(!GameEnds)
 		{
 
-			CurrentPlayer = PresentationUtility.nextPlayerTurn(CurrentPlayer, iNoOfPlayers); 
+			currentPlayerTurn = PresentationUtility.nextPlayerTurn(currentPlayerTurn, iNoOfPlayers); 
 			//Show Board
 			System.out.print(ViewFileTxt.ViewState());
 			//Play Game						
 			//Load Player details
-			Player objPlayer = Game.lstPlayers.get(CurrentPlayer - 1);
+			Player objPlayer = Game.lstPlayers.get(currentPlayerTurn - 1);
 			System.out.println("Enter 'saveGame' to save the Current State. Else write 'cont' to continue ");
 			BufferedReader brOption = new BufferedReader(new InputStreamReader(System.in));
 			String brOptionSelected = brOption.readLine();
@@ -358,7 +358,7 @@ public class discworldboard extends Component {
 				if (retrival == JFileChooser.APPROVE_OPTION) {
 
 					FileWriter objFileWriter = new FileWriter(chooser.getSelectedFile()+".txt");
-					discworldboard.SaveGame(objFileWriter);
+					discworldboard.SaveGame(objFileWriter, objPlayer);
 
 				}
 			}
