@@ -49,11 +49,6 @@ public class Coins {
 			return this.coin_val;
 		}
 		
-		@Override
-		public String toString() {
-			return "Coins [coin_type=" + coin_type + ", coin_val=" + coin_val
-					+ ", coin_available=" + coin_available + "]";
-		}
 
 		/**
 		 * Sets the coin_ val.

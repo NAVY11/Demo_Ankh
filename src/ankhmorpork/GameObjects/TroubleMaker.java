@@ -11,8 +11,8 @@ public class TroubleMaker {
 	
 	@Override
 	public String toString() {
-		return "TroubleMaker [tm_id=" + tm_id + ", area_id=" + area_id
-				+ ", active=" + active + "]";
+		return "{tm_id:" + tm_id + ", area_id:" + area_id
+				+ ", active:" + active + "}";
 	}
 
 	/** The tm_id. */

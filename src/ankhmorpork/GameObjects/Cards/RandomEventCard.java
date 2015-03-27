@@ -9,9 +9,9 @@ public class RandomEventCard extends Cards{
 
 	@Override
 	public String toString() {
-		return "RandomEventCard [EventID=" + EventID + ", EventDescription="
-				+ EventDescription + ", CardID=" + CardID + ", IsPlayed="
-				+ IsPlayed + ", Name=" + Name + ", PlayerID=" + PlayerID + "]";
+		return "{\"EventID\":" +"\""+ EventID +"\""+ ", \"EventDescription\":"
+				+"\""+ EventDescription +"\""+ ", \"CardID\":" + "\""+CardID + "\""+", \"IsPlayed\":"
+				+ IsPlayed + ", \"Name\":" +"\""+ Name + "\""+", \"PlayerID\":" + PlayerID + "}";
 	}
 
 	/** The Event id. */

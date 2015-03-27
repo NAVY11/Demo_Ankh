@@ -11,9 +11,9 @@ public class Minion {
 
 	@Override
 	public String toString() {
-		return "Minion [minion_id=" + minion_id + ", player_id=" + player_id
-				+ ", color=" + color + ", active=" + active + ", area_id="
-				+ area_id + "]";
+		return "{minion_id:" + minion_id + ", player_id:" + player_id
+				+ ", color:" + color + ", active:" + active + ", area_id:"
+				+ area_id + "}";
 	}
 
 	/** The minion_id. */

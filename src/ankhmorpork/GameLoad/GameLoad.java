@@ -69,6 +69,66 @@ public class GameLoad {
 					Game.lstDemons.add(objDemon);
 				}
 				
+				//Loading Building
+				JSONArray Buildings = (JSONArray)json.get("Building");
+				Iterator iBuilding = Buildings.iterator();
+				while (iBuilding.hasNext())
+				{
+										
+					Building objBuilding = new Building();				
+					JSONObject jsonBuilding = (JSONObject)iBuilding.next();				
+					objBuilding.setBuilding_id(Integer.parseInt(jsonBuilding.get("building_id").toString()));
+					objBuilding.setActive((Boolean)jsonBuilding.get("active"));
+					objBuilding.setArea_id(Integer.parseInt(jsonBuilding.get("area_id").toString()));
+					objBuilding.setColor((String)jsonBuilding.get("color"));				
+					objBuilding.setPlayer_id(Integer.parseInt(jsonBuilding.get("player_id").toString()));
+					Game.lstBuildings.add(objBuilding);
+				}
+				
+				//Loading TroubleMarker
+				JSONArray TroubleMaker = (JSONArray)json.get("TroubleMaker");
+				Iterator iTroubleMaker = TroubleMaker.iterator();
+				while (iTroubleMaker.hasNext())
+				{
+										
+					TroubleMaker objTroubleMaker = new TroubleMaker();				
+					JSONObject jsonTroubleMaker = (JSONObject)iTroubleMaker.next();				
+					objTroubleMaker.setTm_id(Integer.parseInt(jsonTroubleMaker.get("tm_id").toString()));
+					objTroubleMaker.setActive((Boolean)jsonTroubleMaker.get("active"));
+					objTroubleMaker.setArea_id(Integer.parseInt(jsonTroubleMaker.get("area_id").toString()));
+					Game.lstTroubleMaker.add(objTroubleMaker);
+				}
+				
+				//Loading Area
+//				JSONArray Area = (JSONArray)json.get("Area");
+//				Iterator iArea = Area.iterator();
+//				while (iArea.hasNext())
+//				{
+//										
+//					Area objArea = new Area();				
+//					JSONObject jsonArea = (JSONObject)iTroubleMaker.next();				
+//					objArea.setAreaCost(Integer.parseInt(jsonArea.get("area_cost").toString()));
+//					objArea.setAreaID(Integer.parseInt(jsonArea.get("area_id").toString()));
+//					objArea.setAreaName((String)jsonArea.get("area_name"));
+//					objArea.setAreaBelongsTo(Integer.parseInt(jsonArea.get("belongs_to").toString()));
+//					Game.lstArea.add(objArea);
+//				}
+				
+				//Loading MINIONS
+				JSONArray Minions = (JSONArray)json.get("Minion");
+				Iterator iMinion = Minions.iterator();
+				while(iMinion.hasNext())
+				{
+					Minion objMinion = new Minion();
+					JSONObject jsonMinion = (JSONObject)iMinion.next();
+					objMinion.setActive((Boolean)jsonMinion.get("active"));
+					objMinion.setArea_id(Integer.parseInt(jsonMinion.get("area_id").toString()));
+					objMinion.setColor((String)jsonMinion.get("color"));
+					objMinion.setMinion_id(Integer.parseInt(jsonMinion.get("minion_id").toString()));
+					objMinion.setPlayer_id(Integer.parseInt(jsonMinion.get("player_id").toString()));
+					Game.lstMinions.add(objMinion);
+				}
+//				
 				//Loading CityAreaCards
 				JSONArray CityAreaCard = (JSONArray)json.get("CityAreaCards");
 				Iterator iCityAreaCard = CityAreaCard.iterator();
@@ -77,16 +137,16 @@ public class GameLoad {
 					CityAreaCard objCityAreaCard = new CityAreaCard();
 					JSONObject jsonCityAreaCard = (JSONObject)iCityAreaCard.next();
 					System.out.println(jsonCityAreaCard);
-					//objCityAreaCard.SetAreaID(Integer.parseInt(jsonCityAreaCard.get("AreaID").toString()));
-					objCityAreaCard.setPlayerID(Integer.parseInt(jsonCityAreaCard.get("playerID").toString()));
-					//objCityAreaCard.SetCost(Integer.parseInt(jsonCityAreaCard.get("Cost").toString()));
+					objCityAreaCard.SetAreaID(Integer.parseInt(jsonCityAreaCard.get("AreaID").toString()));
+					objCityAreaCard.setPlayerID(Integer.parseInt(jsonCityAreaCard.get("PlayerID").toString()));
+					objCityAreaCard.SetCost(Integer.parseInt(jsonCityAreaCard.get("Cost").toString()));
 
-					//objCityAreaCard.SetCardID((jsonCityAreaCard.get("CardID").toString()));
-					//objCityAreaCard.SetActionID((jsonCityAreaCard.get("ActionID").toString()));
-					//objCityAreaCard.SetName((jsonCityAreaCard.get("AreaName").toString()));			
-					//objCityAreaCard.SetActionDescription((jsonCityAreaCard.get("ActionDescription").toString()));			
-					//objCityAreaCard.SetIsPlayed((Boolean)jsonCityAreaCard.get("IsPlayed"));
-					//objCityAreaCard.setName((jsonCityAreaCard.get("Name").toString()));			
+					objCityAreaCard.SetCardID((jsonCityAreaCard.get("CardID").toString()));
+					objCityAreaCard.SetActionID((jsonCityAreaCard.get("ActionID").toString()));
+					objCityAreaCard.SetName((jsonCityAreaCard.get("AreaName").toString()));			
+					objCityAreaCard.SetActionDescription((jsonCityAreaCard.get("ActionDescription").toString()));			
+					objCityAreaCard.SetIsPlayed((Boolean)jsonCityAreaCard.get("IsPlayed"));
+					objCityAreaCard.setName((jsonCityAreaCard.get("CardID").toString()));			
 
 					Game.lstCityAreaCards.add(objCityAreaCard);
 				}
@@ -98,12 +158,12 @@ public class GameLoad {
 				{
 					GreenCard objGreenCard = new GreenCard();
 					JSONObject jsonGreenCard = (JSONObject)iGreenCard.next();
-					//objGreenCard.SetCardID((jsonGreenCard.get("CardID").toString()));
-					objGreenCard.setPlayerID(Integer.parseInt(jsonGreenCard.get("playerID").toString()));
-					//objGreenCard.SetAction((jsonGreenCard.get("ActionID").toString().split(",")));
-					//objGreenCard.SetActionDescription((jsonGreenCard.get("ActionDescription").toString()));			
-					//objGreenCard.SetIsPlayed((Boolean)jsonGreenCard.get("IsPlayed"));
-					objGreenCard.setName((jsonGreenCard.get("name").toString()));			
+					objGreenCard.SetCardID((jsonGreenCard.get("CardID").toString()));
+					objGreenCard.setPlayerID(Integer.parseInt(jsonGreenCard.get("PlayerID").toString()));
+					objGreenCard.SetAction((jsonGreenCard.get("ActionID").toString().split(",")));
+					objGreenCard.SetActionDescription((jsonGreenCard.get("ActionDescription").toString()));			
+					objGreenCard.SetIsPlayed((Boolean)jsonGreenCard.get("IsPlayed"));
+					objGreenCard.setName((jsonGreenCard.get("CardID").toString()));			
 
 					Game.lstGreenCards.add(objGreenCard);
 				}
@@ -126,24 +186,24 @@ public class GameLoad {
 //				}
 				
 				//Loading PersonalityCards
-				JSONArray PersonalityCard = (JSONArray)json.get("PersonalityCards");
-				if(PersonalityCard.size() > 0){
-					Iterator iPersonalityCard = PersonalityCard.iterator();
-					while (iPersonalityCard.hasNext())
-					{
-						PersonalityCard objPersonalityCard = new PersonalityCard();
-						JSONObject jsonPersonalityCard = (JSONObject)iPersonalityCard.next();
-						//objPersonalityCard.SetCardID((jsonPersonalityCard.get("CardID").toString()));
-						//objPersonalityCard.setPlayerID(Integer.parseInt(jsonPersonalityCard.get("PlayerID").toString()));
-						//objPersonalityCard.SetPersonalityName((jsonPersonalityCard.get("PersonalityName").toString()));
-						//objPersonalityCard.SetPersonalityMotive((jsonPersonalityCard.get("PersonalityMotive").toString()));			
-						//objPersonalityCard.SetIsPlayed((Boolean)jsonPersonalityCard.get("IsPlayed"));
-						//objPersonalityCard.setName((jsonPersonalityCard.get("Name").toString()));			
-	
-						Game.lstPersonalityCard.add(objPersonalityCard);
-					}
-				}
-				
+//				JSONArray PersonalityCard = (JSONArray)json.get("PersonalityCards");
+//				if(PersonalityCard.size() > 0){
+//					Iterator iPersonalityCard = PersonalityCard.iterator();
+//					while (iPersonalityCard.hasNext())
+//					{
+//						PersonalityCard objPersonalityCard = new PersonalityCard();
+//						JSONObject jsonPersonalityCard = (JSONObject)iPersonalityCard.next();
+//						//objPersonalityCard.SetCardID((jsonPersonalityCard.get("CardID").toString()));
+//						//objPersonalityCard.setPlayerID(Integer.parseInt(jsonPersonalityCard.get("PlayerID").toString()));
+//						//objPersonalityCard.SetPersonalityName((jsonPersonalityCard.get("PersonalityName").toString()));
+//						//objPersonalityCard.SetPersonalityMotive((jsonPersonalityCard.get("PersonalityMotive").toString()));			
+//						//objPersonalityCard.SetIsPlayed((Boolean)jsonPersonalityCard.get("IsPlayed"));
+//						//objPersonalityCard.setName((jsonPersonalityCard.get("Name").toString()));			
+//	
+//						Game.lstPersonalityCard.add(objPersonalityCard);
+//					}
+//				}
+//				
 				//Loading RandomEventCards
 				JSONArray RandomEventCard = (JSONArray)json.get("RandomEventCards");
 				if(RandomEventCard.size() > 0){
@@ -152,12 +212,12 @@ public class GameLoad {
 					{
 						RandomEventCard objRandomEventCard = new RandomEventCard();
 						JSONObject jsonBrownCard = (JSONObject)iRandomEventCard.next();
-						//objRandomEventCard.SetCardID((jsonBrownCard.get("CardID").toString()));
-						objRandomEventCard.setPlayerID(Integer.parseInt(jsonBrownCard.get("playerID").toString()));
-						//objRandomEventCard.SetEventID((jsonBrownCard.get("EventID").toString()));
-						//objRandomEventCard.SetEventDescription((jsonBrownCard.get("EventDescription").toString()));			
-						//objRandomEventCard.SetIsPlayed((Boolean)jsonBrownCard.get("IsPlayed"));
-						//objRandomEventCard.setName((jsonBrownCard.get("Name").toString()));			
+						objRandomEventCard.SetCardID((jsonBrownCard.get("CardID").toString()));
+						objRandomEventCard.setPlayerID(Integer.parseInt(jsonBrownCard.get("PlayerID").toString()));
+						objRandomEventCard.SetEventID((jsonBrownCard.get("EventID").toString()));
+						objRandomEventCard.SetEventDescription((jsonBrownCard.get("EventDescription").toString()));			
+						objRandomEventCard.SetIsPlayed((Boolean)jsonBrownCard.get("IsPlayed"));
+						objRandomEventCard.setName((jsonBrownCard.get("CardID").toString()));			
 	
 						Game.lstRandomEventCards.add(objRandomEventCard);
 					}
@@ -181,50 +241,11 @@ public class GameLoad {
 					Player.setCityAreaCardsListCommaSeparated((String) jsonPlayer.get("cityAreaCardsListCommaSeparated"));
 					Player.setPlayer_active((Boolean)jsonPlayer.get("player_active"));
 					
-//					//Loading MINIONS
-//					JSONArray Minions = (JSONArray)json.get("Minions_"+Player.getPlayer_id());
-//					Iterator iMinion = Minions.iterator();
-//					while(iMinion.hasNext())
-//					{
-//						Minion objMinion = new Minion();
-//						JSONObject jsonMinion = (JSONObject)iMinion.next();
-//						objMinion.setActive((Boolean)jsonMinion.get("active"));
-//						objMinion.setArea_id(Integer.parseInt(jsonMinion.get("area_id").toString()));
-//						objMinion.setColor((String)jsonMinion.get("color"));
-//						objMinion.setMinion_id(Integer.parseInt(jsonMinion.get("minion_id").toString()));
-//						objMinion.setPlayer_id(Integer.parseInt(jsonMinion.get("player_id").toString()));
-//						Player.lstMinions.add(objMinion);
-//					}
-//					
-//					//Loading BUILDINGS
-//					JSONArray Buildings = (JSONArray)json.get("Buildings_"+Player.getPlayer_id());
-//					Iterator iBuilding = Buildings.iterator();
-//					while(iBuilding.hasNext())
-//					{										
-//						Building objBuilding = new Building();				
-//						JSONObject jsonBuilding = (JSONObject)iBuilding.next();				
-//						objBuilding.setBuilding_id(Integer.parseInt(jsonBuilding.get("building_id").toString()));
-//						objBuilding.setActive((Boolean)jsonBuilding.get("active"));
-//						objBuilding.setArea_id(Integer.parseInt(jsonBuilding.get("area_id").toString()));
-//						objBuilding.setColor((String)jsonBuilding.get("color"));				
-//						objBuilding.setPlayer_id(Integer.parseInt(jsonBuilding.get("player_id").toString()));
-//						Player.lstBuildings.add(objBuilding);
-//					}
-					
-					//Loading Player GOLD COINS
-					//JSONObject jsonGoldCoin = (JSONObject)json.get("GoldCoins_"+Player.getPlayer_id());
-					Player.objGoldCoin.setCoin_Type(Constants.GoldCoin());
-					//Player.objGoldCoin.setCoin_Available(Integer.parseInt(json.get("GoldCoins_Avail_"+Player.getPlayer_id()).toString()));
-					Player.objGoldCoin.setCoin_Val(Constants.GoldCoinValue());
-					
-					//Loading Player SILVER COINS															
-					Player.objSilverCoin.setCoin_Type(Constants.SilverCoin());
-					//Player.objSilverCoin.setCoin_Available(Integer.parseInt(json.get("SilverCoins_Avail_"+Player.getPlayer_id()).toString()));
-					Player.objSilverCoin.setCoin_Val(Constants.SilverCoinValue());
 															
 					Game.lstPlayers.add(Player);
 					
 				}
+				
 				
 				//Loading BANK COINS
 				Game.GameBank.objGoldCoin.setCoin_Type(Constants.GoldCoin());
@@ -301,6 +322,7 @@ public class GameLoad {
 	    }
 
 
+		
 //		for(int i=1;i<54;i++)
 //	    {
 //			BrownCard objBrownCard = new BrownCard();

@@ -22,11 +22,17 @@ public class CityAreaCard extends Cards{
 	
 	@Override
 	public String toString() {
-		return "CityAreaCard [ActionID=" + ActionID + ", ActionDescription="
-				+ ActionDescription + ", AreaID=" + AreaID + ", AreaName="
-				+ AreaName + ", Cost=" + Cost + ", CardID=" + CardID
-				+ ", IsPlayed=" + IsPlayed + ", PlayerID="
-				+ PlayerID + "]";
+		String strCityAreaCard = "{\"ActionID\":" + ActionID + ", \"ActionDescription\":"
+				+"\""+ ActionDescription +"\""+ ", \"AreaID\":" + AreaID + ", \"AreaName\":"
+				+"\""+ AreaName + "\""+", \"Cost\":" + Cost + ", \"CardID\":" + "\""+CardID
+				+ "\""+", \"IsPlayed\":" + IsPlayed + ", \"PlayerID\":"
+				+ PlayerID + "}";
+		return strCityAreaCard.toString();		
+//		return "{\"ActionID\":" + ActionID + ", ActionDescription:"
+//				+ ActionDescription + ", AreaID:" + AreaID + ", AreaName:"
+//				+ AreaName + ", Cost:" + Cost + ", CardID:" + CardID
+//				+ ", IsPlayed:" + IsPlayed + ", PlayerID:"
+//				+ PlayerID + "}";
 	}
 
 	/** The Action id. */
@@ -511,8 +517,8 @@ public boolean UnrealEstate(Player objPlayer) throws IOException{
 	String userinput = br.readLine();
 	if (userinput.equals('Y') || userinput.equals('y'))
 	{	
-	//Game g1 = new Game();
-	String greenCard =Game.GetRandomGreenCardFromDeck(); //Player.takeOneGreenCardFromDeck(g1);
+		//Game g1 = new Game();
+		String greenCard =Game.GetRandomGreenCardFromDeck(); //Player.takeOneGreenCardFromDeck(g1);
 	objPlayer.setGreenCardListCommaSeparated(objPlayer.getGreenCardListCommaSeparated() + "," + greenCard);
 	//show list of cards
 	//System.out.println("Which Card you want to discard");

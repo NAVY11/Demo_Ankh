@@ -28,14 +28,14 @@ public class Bank {
 	
 	@Override
 	public String toString() {
-		return "Bank [player_amount=" + player_amount + ", Bank_Amount="
-				+ Bank_Amount + ", player_personality_card_id="
+		return "{player_amount:" + player_amount + ", Bank_Amount:"
+				+ Bank_Amount + ", player_personality_card_id:"
 				+ player_personality_card_id
-				+ ", cityAreaCardsListCommaSeparated="
+				+ ", cityAreaCardsListCommaSeparated:"
 				+ cityAreaCardsListCommaSeparated
-				+ ", personalityCardListCommaSeparated="
-				+ personalityCardListCommaSeparated + ", objGoldCoin="
-				+ objGoldCoin + ", objSilverCoin=" + objSilverCoin + "]";
+				+ ", personalityCardListCommaSeparated:"
+				+ personalityCardListCommaSeparated + ", objGoldCoin:"
+				+ objGoldCoin + ", objSilverCoin:" + objSilverCoin + "}";
 	}
 
 	/** The obj silver coin. */

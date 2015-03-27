@@ -11,8 +11,8 @@ public class Demon {
 
 	@Override
 	public String toString() {
-		return "Demon [demon_id=" + demon_id + ", active=" + active
-				+ ", area_id=" + area_id + "]";
+		return "{demon_id:" + demon_id + ", active:" + active
+				+ ", area_id:" + area_id + "}";
 	}
 
 	/** The demon_id. */

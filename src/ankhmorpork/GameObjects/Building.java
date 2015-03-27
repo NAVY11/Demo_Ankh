@@ -1,3 +1,4 @@
+
 /*
  * 
  */
@@ -11,9 +12,9 @@ public class Building {
 	
 	@Override
 	public String toString() {
-		return "Building [building_id=" + building_id + ", player_id="
-				+ player_id + ", color=" + color + ", active=" + active
-				+ ", area_id=" + area_id + "]";
+		return "{building_id:" + building_id + ", player_id:"
+				+ player_id + ", color:" + color + ", active:" + active
+				+ ", area_id:" + area_id + "}";
 	}
 
 	/** The building_id. */

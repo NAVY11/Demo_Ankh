@@ -44,7 +44,13 @@ public class GameSave {
 			
 			//jsonWriter.write(jsonGame.toString());
 			//jsonWriter.write(jsonPlayerMinionsXX.toString());
-		objFileWriter.write(jsonObjectWhileSavingGame(objPlayer).toString());
+		//",\"SilverCoins_Avail_Bank\":"+Game.GameBank.objSilverCoin.toString()+"," +"\"GoldCoins_Avail_Bank\":"+Game.GameBank.objGoldCoin.toString() +"," 
+		
+		String strCardDetails = 	",\"CityAreaCards\":"+Game.lstCityAreaCards.toString() +"," + "\"GreenCards\":"+Game.lstGreenCards.toString() +","+"\"RandomEventCards\":"+Game.lstRandomEventCards.toString()+","+"\"PersonalityCards\":"+Game.lstPersonalityCard.toString() +"}";
+		String json = jsonObjectWhileSavingGame(objPlayer).toString();
+		json = json.substring(0,json.length()-1);
+				
+		objFileWriter.write(json + strCardDetails);		
 		objFileWriter.flush();
 		objFileWriter.close();											
 
@@ -62,44 +68,29 @@ public class GameSave {
 		JSONObject jsonAddData = new JSONObject();
 		
 		//Saving TROLLS
-		jsonAddData.put("Trolls",Game.lstTrolls.toString());
+		jsonAddData.put("Trolls",Game.lstTrolls);
 		
 		//Saving DEMONS		
-		jsonAddData.put("Demons",Game.lstDemons.toString());
+		jsonAddData.put("Demons",Game.lstDemons);
 				
 		//Saving Players		
-		jsonAddData.put("Players",Game.lstPlayers.toString());
+		jsonAddData.put("Players",Game.lstPlayers);
 		
 		//Saving Building
-		jsonAddData.put("Building",Game.lstBuildings.toString());
+		jsonAddData.put("Building",Game.lstBuildings);
 		
 		//Saving Area
-		jsonAddData.put("Area",Game.lstArea.toString());
+		jsonAddData.put("Area",Game.lstArea);
 		
 		//Saving TroubleMaker
-		jsonAddData.put("TroubleMaker",Game.lstTroubleMaker.toString());
-		
-		//Saving CityAreaCard
-		jsonAddData.put("CityAreaCards",Game.lstCityAreaCards.toString());
-		
-		//Saving GreenCard
-		jsonAddData.put("GreenCards",Game.lstGreenCards.toString());
-		
-		//Saving BrownCard -- Not needed now
-		//jsonAddData.put("BrownCard",Game.lstBrownCards.toString());
-		
-		//Saving RandomEventCard
-		jsonAddData.put("RandomEventCards",Game.lstRandomEventCards.toString());
-		
-		//Saving BrownCard
-		jsonAddData.put("PersonalityCard",Game.lstPersonalityCard.toString());
+		jsonAddData.put("TroubleMaker",Game.lstTroubleMaker);
 		
 		//Saving Minions
-		jsonAddData.put("Minion", Game.lstMinions.toString());
+		jsonAddData.put("Minion", Game.lstMinions);
 		
 		//Saving Bank Coin details
-		jsonAddData.put("GoldCoins_Avail_Bank",Game.GameBank.objGoldCoin.toString());
-		jsonAddData.put("SilverCoins_Avail_Bank",Game.GameBank.objSilverCoin.toString());
+		jsonAddData.put("GoldCoins_Avail_Bank",Game.GameBank.objGoldCoin.getCoin_Available());
+		jsonAddData.put("SilverCoins_Avail_Bank",Game.GameBank.objSilverCoin.getCoin_Available());
 		
 		//Current Player Playing
 		jsonAddData.put("currentPlayerId", objPlayer.getPlayer_id());

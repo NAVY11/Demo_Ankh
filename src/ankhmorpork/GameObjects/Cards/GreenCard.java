@@ -10,10 +10,10 @@ import java.util.Arrays;
 public class GreenCard extends Cards {
 	@Override
 	public String toString() {
-		return "GreenCard [ActionID=" + Arrays.toString(ActionID)
-				+ ", ActionDescription=" + ActionDescription + ", CardID="
-				+ CardID + ", IsPlayed=" + IsPlayed + ", Name=" + Name
-				+ ", PlayerID=" + PlayerID + "]";
+		return "{\"ActionID\":" + "\""+Arrays.toString(ActionID)
+				+"\""+ ", \"ActionDescription\":" +"\""+ ActionDescription +"\""+ ", \"CardID\":"
+				+"\""+ CardID +"\""+ ", \"IsPlayed\":" + IsPlayed + ", \"Name\":" +"\""+ Name
+				+"\""+ ", \"PlayerID\":" + PlayerID + "}";
 	}
 
 	//private int ActionID;
@@ -22,6 +22,7 @@ public class GreenCard extends Cards {
 	
 	/** The Action description. */
 	private String ActionDescription = new String();
+	
 	
 	/**
 	 * Sets the card id.
