@@ -40,12 +40,7 @@ public class GameSave {
 	 */
 	public static void SaveGame(FileWriter objFileWriter, Player objPlayer) throws IOException, JSONException
 	{												
-			//Player Player1 = NewGame.lstPlayers.get(0);						
 			
-			//jsonWriter.write(jsonGame.toString());
-			//jsonWriter.write(jsonPlayerMinionsXX.toString());
-		//",\"SilverCoins_Avail_Bank\":"+Game.GameBank.objSilverCoin.toString()+"," +"\"GoldCoins_Avail_Bank\":"+Game.GameBank.objGoldCoin.toString() +"," 
-		
 		String strCardDetails = 	",\"CityAreaCards\":"+Game.lstCityAreaCards.toString() +"," + "\"GreenCards\":"+Game.lstGreenCards.toString() +","+"\"RandomEventCards\":"+Game.lstRandomEventCards.toString()+","+"\"PersonalityCards\":"+Game.lstPersonalityCard.toString() +"}";
 		String json = jsonObjectWhileSavingGame(objPlayer).toString();
 		json = json.substring(0,json.length()-1);
