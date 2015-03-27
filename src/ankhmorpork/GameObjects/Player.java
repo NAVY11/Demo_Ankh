@@ -815,14 +815,14 @@ public class Player {
 			case "g20" : return this.theFoolsGuildFunctionality();
 			case "g21" : return this.theFireBrigadeFunctionality();
 			case "g23" : return this.theHistoryMonksFunctionality();
-			//case "g24" : return this.get
+			case "g24" : return this.DrawRandomCardsFromDeck(3); //Draw 3 random cards from Deck
 			case "g25" : return this.theCMOTDibblerFunctionality();
 			case "g26" : return this.theHarryKingOrShonkyShopFunctionality(CardID, 2);
 			case "g30" : return this.theDyskFunctionality();
 			case "g31" : return this.theNoobyNoobsFunctionality();
-			case "g32" : return this.theModoFunctionality();
-			case "g34" : return this.theLibrarianFunctionality();
-			case "g35" : return this.theLibrarianFunctionality();
+			case "g32" : return this.theModoFunctionality(CardID);
+			case "g34" : return this.DrawRandomCardsFromDeck(4); //Draw 4 random cards from deck
+			case "g35" : return this.DrawRandomCardsFromDeck(4);
 			case "g36" : return this.theHarryKingOrShonkyShopFunctionality(CardID, 1);
 			case "g37" : return this.theSacharissaCripslockFunctionality();
 			case "g38" : return this.theRosiePalmFunctionality();
@@ -1171,127 +1171,336 @@ public class Player {
 	}
 
 	/* Have to implement functionality and keep track of the discarded cards as well*/
-
-	public boolean theHexFunctionality(){
-		//Read the scroll & play another card
+   //Take three cards from the deck
+//	public boolean theHexFunctionality(){
+//		//Read the scroll & play another card
+//		boolean success = false;
+//		for(int i = 1; i <=3; i++){
+//			if(Game.lstGreenCards.size() > (3-i+1)){
+//				int cardIndexNumber = PresentationUtility.returnRandomNumber(0, Game.lstGreenCards.size() -1);
+//				if(cardIndexNumber > 0){
+//					GreenCard cardToAdd = Game.lstGreenCards.get(cardIndexNumber);
+//					this.setGreenCardListCommaSeparated(this.getGreenCardListCommaSeparated()+","+cardToAdd);
+//					Game.lstGreenCards.remove(cardIndexNumber);
+//					success = true;
+//				}
+//			}
+//			success = true;
+//		}
+//		return success;
+//	}
+	//Take $3 from a player of your choice	
+	public boolean theNoobyNoobsFunctionality() throws IOException{
 		boolean success = false;
-		for(int i = 1; i <=3; i++){
-			if(Game.lstGreenCards.size() > (3-i+1)){
-				int cardIndexNumber = PresentationUtility.returnRandomNumber(0, Game.lstGreenCards.size() -1);
-				if(cardIndexNumber > 0){
-					GreenCard cardToAdd = Game.lstGreenCards.get(cardIndexNumber);
-					this.setGreenCardListCommaSeparated(this.getGreenCardListCommaSeparated()+","+cardToAdd);
-					Game.lstGreenCards.remove(cardIndexNumber);
-					success = true;
-				}
+		String strValidPlayerIDs = ","; 
+		System.out.println("Enter Player ID from whom you wish to take $3 : ");
+		for(Player objPlayer : Game.lstPlayers)
+		{
+			if(objPlayer.getPlayer_name() != this.getPlayer_name())
+			{
+				strValidPlayerIDs+=objPlayer.getPlayer_id()+",";
+				System.out.println(objPlayer.getPlayer_id()+" : "+objPlayer.getPlayer_name());
 			}
+		}
+
+		BufferedReader brPlayerBuff = new BufferedReader(new InputStreamReader(System.in));
+		String brPlayerID = "";
+		while(true)
+		{
+			brPlayerID = brPlayerBuff.readLine();
+			if(strValidPlayerIDs.contains(","+brPlayerID+","))
+			{
+				break;
+			}
+			else
+			{
+				System.out.println("Please enter a valid Player ID listed above:");
+			}
+
+		}
+		
+		if(Game.PaymentPlayerToPlayer(this.getPlayer_id(), Integer.parseInt(brPlayerID),3))
+		{
+			System.out.println("Payment of $3 successful.");
 			success = true;
 		}
 		return success;
 	}
-
-	public boolean theNoobyNoobsFunctionality() throws IOException{
+	
+//	public boolean theNoobyNoobsFunctionality() throws IOException{
+//		boolean success = false;
+//		System.out.println("Enter playerId from whom you want $3 : ");
+//		BufferedReader brPlayerBuff = new BufferedReader(new InputStreamReader(System.in));
+//		String brPlayer = brPlayerBuff.readLine();
+//		for(Player player : Game.lstPlayers){
+//			if(player.getPlayer_id() == Integer.parseInt(brPlayer.toString())){
+//				player.setPlayer_amount((float) player.getPlayer_amount() - 3);
+//				this.setPlayer_amount((float) this.getPlayerAmount() + 3);
+//				success = true;
+//			}
+//		}
+//		return success;
+//	}
+	
+	//Discard one card
+	public boolean theModoFunctionality(String CardID) throws IOException
+	{			
 		boolean success = false;
-		System.out.println("Enter playerId from whom you want $3 : ");
 		BufferedReader brPlayerBuff = new BufferedReader(new InputStreamReader(System.in));
-		String brPlayer = brPlayerBuff.readLine();
-		for(Player player : Game.lstPlayers){
-			if(player.getPlayer_id() == Integer.parseInt(brPlayer.toString())){
-				player.setPlayer_amount((float) player.getPlayer_amount() - 3);
-				this.setPlayer_amount((float) this.getPlayerAmount() + 3);
+		System.out.println("Please select a Green Card which you wish to Discard:");
+		String strValidGreenCardList = ",";
+		Game.SetGreenCardIsPlayed(CardID, true);
+		ArrayList<GreenCard> GCList = Game.GetGreenCardByPlayerID(this.getPlayer_id());
+		for(GreenCard grnCard : GCList)
+		{			
+			String ActionList = Game.GetGreenCardActions(grnCard.GetCardID());
+			strValidGreenCardList+=grnCard.GetCardID()+",";
+			System.out.printf("%-5s%-5s%-40s%-5s%-50s%-5s%-60s\n",grnCard.GetCardID() ,  " : " ,  grnCard.getName() , " : " , ActionList," : ","Scroll Action : "+grnCard.GetActionDescription());			
+		}		
+
+		String strGreenCardID = "";
+		while(true)
+		{
+			strGreenCardID = brPlayerBuff.readLine();
+			if(strValidGreenCardList.contains(","+strGreenCardID+","))
+			{
+				success = true;
+				break;
+			}
+			else
+			{
+				System.out.println("Please enter a valid Green Card ID listed above:");
+			}
+
+		}
+
+		Game.SetGreenCardIsPlayed(strGreenCardID, true);
+		return success;
+	}
+	
+//	public boolean theModoFunctionality(){
+//		boolean success = false;
+//		System.out.println("Do you want to continue? Please enter 'y' : ");
+//		BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+//		if(br.toString().equals("y") || br.toString().equals("Y")){
+//			System.out.println("Enter CardId which you want to discard from your Green Card : "+this.getGreenCardListCommaSeparated());
+//			BufferedReader brCardId = new BufferedReader(new InputStreamReader(System.in));
+//			this.setGreenCardListCommaSeparated(removeOneCardFromCommaSeparatedString(this.getGreenCardListCommaSeparated(), brCardId.toString()));
+//		}
+//		return success;
+//	}
+
+	//Functionality for Leonard of Quirm & theLibrarianFunctionality -- Draw 4 Cards
+	//theHexFunctionality -- Draw 3 Cards
+	//Take four cards from the draw deck	
+	public boolean DrawRandomCardsFromDeck(int NoOfCardsToDraw){
+		//Read the scroll & play another card
+		boolean success = false;
+		for(int i=0; i<NoOfCardsToDraw;i++)
+		{
+			//Pick a GreenCardFromDeck
+			String PickNewCardID = "";
+			PickNewCardID = Game.GetRandomGreenCardFromDeck();
+			if(PickNewCardID!="")
+			{
+				Game.SetGreenCardToPlayer(PickNewCardID, this.getPlayer_id());				
 				success = true;
 			}
 		}
+		if(success)
+			System.out.println(this.getPlayer_name() + " picked up new Green Cards");
 		return success;
 	}
 
-	public boolean theModoFunctionality(){
-		boolean success = false;
-		System.out.println("Do you want to continue? Please enter 'y' : ");
-		BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
-		if(br.toString().equals("y") || br.toString().equals("Y")){
-			System.out.println("Enter CardId which you want to discard from your Green Card : "+this.getGreenCardListCommaSeparated());
-			BufferedReader brCardId = new BufferedReader(new InputStreamReader(System.in));
-			this.setGreenCardListCommaSeparated(removeOneCardFromCommaSeparatedString(this.getGreenCardListCommaSeparated(), brCardId.toString()));
-		}
-		return success;
-	}
-
-	//Same Functionality for Leonard of Quirm 
-	public boolean theLibrarianFunctionality(){
-		//Read the scroll & play another card
-		boolean success = false;
-		BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
-		for(int i = 1; i <=4; i++){
-			if(Game.lstGreenCards.size() > (4-i+1)){
-				int cardIndexNumber = PresentationUtility.returnRandomNumber(0, Game.lstGreenCards.size() -1);
-				if(cardIndexNumber > 0){
-					GreenCard cardToAdd = Game.lstGreenCards.get(cardIndexNumber);
-					this.setGreenCardListCommaSeparated(this.getGreenCardListCommaSeparated()+","+cardToAdd);
-					Game.lstGreenCards.remove(cardIndexNumber);
-					success = true;
-				}
-			}
-			success = true;
-		}
-		return success;
-	}
-
+	
+//	public boolean theLibrarianFunctionality(){
+//		//Read the scroll & play another card
+//		boolean success = false;
+//		BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+//		for(int i = 1; i <=4; i++){
+//			if(Game.lstGreenCards.size() > (4-i+1)){
+//				int cardIndexNumber = PresentationUtility.returnRandomNumber(0, Game.lstGreenCards.size() -1);
+//				if(cardIndexNumber > 0){
+//					GreenCard cardToAdd = Game.lstGreenCards.get(cardIndexNumber);
+//					this.setGreenCardListCommaSeparated(this.getGreenCardListCommaSeparated()+","+cardToAdd);
+//					Game.lstGreenCards.remove(cardIndexNumber);
+//					success = true;
+//				}
+//			}
+//			success = true;
+//		}
+//		return success;
+//	}
+	
+	
+	//Earn $1 for each trouble maker on the board
 	public boolean theSacharissaCripslockFunctionality(){
 		//Read the scroll & play another card
-		boolean success = false;
+		boolean success = true;
 		int countMoneyToBeGivenToCurrentPlayer = 0;
 		for(TroubleMaker troubleMaker : Game.lstTroubleMaker){
 			if(troubleMaker.getActive() && troubleMaker.getArea_id() > 0){
 				countMoneyToBeGivenToCurrentPlayer += 1;
 			}
-			this.setPlayer_amount((float) this.getPlayerAmount() + (countMoneyToBeGivenToCurrentPlayer * 1));
+			//this.setPlayer_amount((float) this.getPlayerAmount() + (countMoneyToBeGivenToCurrentPlayer * 1));
+			//Using Payment method
+			Game.PaymentFromBank(this.getPlayer_id(), countMoneyToBeGivenToCurrentPlayer);
 		}
 		return success;
 	}
 
 	// Same functionality for The Seamstresses Guild
+	//Choose one player. Given them one of your cards. They must give you $2 in return
+
 	public boolean theRosiePalmFunctionality() throws IOException{
 		//1st Action to read scroll & then play another card
 		boolean success = false;
-		System.out.println("Enter playerId from whom you want to give $2 and give one card : ");
-		BufferedReader brPlayerBuff = new BufferedReader(new InputStreamReader(System.in));
-		String brPlayer = brPlayerBuff.readLine();
-		for(Player player : Game.lstPlayers){
-			if(player.getPlayer_id() == Integer.parseInt(brPlayer.toString())){
-				System.out.print("Enter one by one from the list of green card you have available : " + this.getGreenCardListCommaSeparated());
-				BufferedReader brCard1SelectedBuff = new BufferedReader(new InputStreamReader(System.in));
-				String brCard1Selected = brCard1SelectedBuff.readLine();
-				player.setGreenCardListCommaSeparated(player.getGreenCardListCommaSeparated() + "," +brCard1Selected.toString());
-				this.setGreenCardListCommaSeparated(removeOneCardFromCommaSeparatedString(this.getGreenCardListCommaSeparated(), brCard1Selected.toString()));
-
-				player.setPlayer_amount((float) player.getPlayer_amount());
-				this.setPlayer_amount((float) (this.getPlayer_amount() != null ? this.getPlayer_amount() : 0) + 2);
-				return (success = true);
+		String strValidPlayerNames = ","; 
+		System.out.println("Enter Player ID to whom you wish to give one Green card : ");
+		for(Player objPlayer : Game.lstPlayers)
+		{
+			if(objPlayer.getPlayer_name() != this.getPlayer_name())
+			{
+				strValidPlayerNames+=objPlayer.getPlayer_id()+",";
+				System.out.println(objPlayer.getPlayer_id()+" : "+objPlayer.getPlayer_name());
 			}
 		}
+
+		BufferedReader brPlayerBuff = new BufferedReader(new InputStreamReader(System.in));
+		String brPlayerID = "";
+		while(true)
+		{
+			brPlayerID = brPlayerBuff.readLine();
+			if(strValidPlayerNames.contains(","+brPlayerID+","))
+			{
+				break;
+			}
+			else
+			{
+				System.out.println("Please enter a valid Player ID listed above:");
+			}
+
+		}
+
+		System.out.println("Please select a Green Card which you wish to give:");
+		String strValidGreenCardList = ",";
+		//Game.SetGreenCardIsPlayed(CardID, true);
+		ArrayList<GreenCard> GCList = Game.GetGreenCardByPlayerID(this.getPlayer_id());
+		for(GreenCard grnCard : GCList)
+		{			
+			String ActionList = Game.GetGreenCardActions(grnCard.GetCardID());
+			strValidGreenCardList+=grnCard.GetCardID()+",";
+			System.out.printf("%-5s%-5s%-40s%-5s%-50s%-5s%-60s\n",grnCard.GetCardID() ,  " : " ,  grnCard.getName() , " : " , ActionList," : ","Scroll Action : "+grnCard.GetActionDescription());			
+		}
+
+		System.out.print("Please enter the Green Card ID which you wish to give:");
+
+		String strGreenCardID = "";
+		while(true)
+		{
+			strGreenCardID = brPlayerBuff.readLine();
+			if(strValidGreenCardList.contains(","+strGreenCardID+","))
+			{
+				break;
+			}
+			else
+			{
+				System.out.println("Please enter a valid Green Card ID listed above:");
+			}
+
+		}
+		//If payment is successful perform the Action
+		if(Game.PaymentPlayerToPlayer(this.getPlayer_id(),Integer.parseInt(brPlayerID),2))//Payment of $2
+		{
+			for(GreenCard grnCard : Game.lstGreenCards)
+			{	
+				if(grnCard.GetCardID()==strGreenCardID)
+				{
+					grnCard.setPlayerID(Integer.parseInt(brPlayerID));//Assign the Green Card to mentioned Player
+					success = true;
+					System.out.println("Card assigned successfully. Payment made $2.");
+					break;
+				}
+			}
+		}
+
 		return success;
 	}
+
+
+	//	public boolean theRosiePalmFunctionality() throws IOException{
+	//		//1st Action to read scroll & then play another card
+	//		boolean success = false;
+	//		System.out.println("Enter playerId from whom you want to give $2 and give one card : ");
+	//		BufferedReader brPlayerBuff = new BufferedReader(new InputStreamReader(System.in));
+	//		String brPlayer = brPlayerBuff.readLine();
+	//		for(Player player : Game.lstPlayers){
+	//			if(player.getPlayer_id() == Integer.parseInt(brPlayer.toString())){
+	//				System.out.print("Enter one by one from the list of green card you have available : " + this.getGreenCardListCommaSeparated());
+	//				BufferedReader brCard1SelectedBuff = new BufferedReader(new InputStreamReader(System.in));
+	//				String brCard1Selected = brCard1SelectedBuff.readLine();
+	//				player.setGreenCardListCommaSeparated(player.getGreenCardListCommaSeparated() + "," +brCard1Selected.toString());
+	//				this.setGreenCardListCommaSeparated(removeOneCardFromCommaSeparatedString(this.getGreenCardListCommaSeparated(), brCard1Selected.toString()));
+	//
+	//				player.setPlayer_amount((float) player.getPlayer_amount());
+	//				this.setPlayer_amount((float) (this.getPlayer_amount() != null ? this.getPlayer_amount() : 0) + 2);
+	//				return (success = true);
+	//			}
+	//		}
+	//		return success;
+	//	}
+
 
 	//Functionality -- You may exchange your personality card with one drawn randomly from those not in use
 	public boolean theZorgoTheRetroFunctionality(){
 		//1st Action to read scroll & then play another card
 		boolean success = false;
-		PersonalityCard personalityCard = new PersonalityCard();
-		if(Game.lstPersonalityCard.size() > 0){
-			int personalityCardIndexNumber = PresentationUtility.returnRandomNumber(0, Game.lstPersonalityCard.size() -1);
-			PersonalityCard personalityCard1 = Game.lstPersonalityCard.get(personalityCardIndexNumber);
-
-			personalityCard.SetCardID(this.getPlayer_personality_card_id().toString());
-			Game.lstPersonalityCard.add(personalityCard);
-
-			this.setPlayer_personality_card_id(Integer.parseInt(personalityCard1.GetCardID()));
-
-			Game.lstPersonalityCard.remove(personalityCardIndexNumber);
+		String strPersonalityCard = ""; 
+		for(PersonalityCard PC : Game.lstPersonalityCard)
+		{
+			if(PC.getPlayerID()==this.getPlayer_id())
+			{
+				strPersonalityCard = PC.GetCardID();
+				PC.setPlayerID(0); //Take away the Crad from Player
+				break;
+			}
 		}
+
+		for(PersonalityCard PC : Game.lstPersonalityCard)
+		{
+			if(PC.getPlayerID()==0 && PC.GetCardID()!=strPersonalityCard)
+			{				
+				PC.setPlayerID(this.getPlayer_id()); //Assign an unused Card to Player
+				System.out.println("Hi, "+ this.getPlayer_name()+" will now play as '" + PC.getName()+"'");
+				success = true; 
+				break;
+			}
+		}	
 		return success;
 	}
 
+	//	public boolean theZorgoTheRetroFunctionality(){
+	//		//1st Action to read scroll & then play another card
+	//		boolean success = false;
+	//		PersonalityCard personalityCard = new PersonalityCard();
+	//		if(Game.lstPersonalityCard.size() > 0){
+	//			int personalityCardIndexNumber = PresentationUtility.returnRandomNumber(0, Game.lstPersonalityCard.size() -1);
+	//			PersonalityCard personalityCard1 = Game.lstPersonalityCard.get(personalityCardIndexNumber);
+	//
+	//			personalityCard.SetCardID(this.getPlayer_personality_card_id().toString());
+	//			Game.lstPersonalityCard.add(personalityCard);
+	//
+	//			this.setPlayer_personality_card_id(Integer.parseInt(personalityCard1.GetCardID()));
+	//
+	//			Game.lstPersonalityCard.remove(personalityCardIndexNumber);
+	//		}
+	//		return success;
+	//	}
+
+
+	/*
+	 * 
+	 * USE Game.GetRandomGreenCardFromDeck(); instead of below Function	 
 
 	public static String takeOneGreenCardFromDeck(Game Ankhmorpork){
 
@@ -1300,52 +1509,91 @@ public class Player {
 		return greenCardAccessed.GetCardID();	
 
 	}
+	 */
 
+	//Shuffle the discard pile and draw four cards randomly. Place the remaining cards back as the discard pile
 	public boolean theHistoryMonksFunctionality() throws IOException{
 		boolean success = false;
-		List<Integer> discardedPileofGreenCardArr = new ArrayList<Integer>();
-		String discardedPileOfGreenCards = "";
-		String cardInDeckOrWithPlayer = "";
-		System.out.println("Do you want to continue? Please enter 'y' : ");
-		BufferedReader brBuff = new BufferedReader(new InputStreamReader(System.in));
-		String br = brBuff.readLine();
-		if(br.toString().equals("y") || br.toString().equals("Y")){
-			for(GreenCard greenCard : Game.lstGreenCards){
-				cardInDeckOrWithPlayer += greenCard.GetCardID() + ",";
-			}
-
-			for(Player greenCardToExtract : Game.lstPlayers){
-				cardInDeckOrWithPlayer += greenCardToExtract.getGreenCardListCommaSeparated() + ",";
-			}
-
-			if(cardInDeckOrWithPlayer.endsWith(",")){
-				cardInDeckOrWithPlayer = cardInDeckOrWithPlayer.substring(0, cardInDeckOrWithPlayer.length() -1);
-			}
-
-			char[] cardInDeckOrWithPlayerChar = cardInDeckOrWithPlayer.toCharArray();
-			Arrays.sort(cardInDeckOrWithPlayerChar);
-
-			String[] greenCardsInGameStrArr = cardInDeckOrWithPlayerChar.toString().split(",");
-
-			ArrayList<String> greenCardsInGameArr  = new ArrayList<String>();
-			for(String greenCardInGame : greenCardsInGameStrArr){
-				greenCardsInGameArr.add(greenCardInGame);
-			}
-
-			for(int i = 48; i <= 1; i--){
-				if(!(greenCardsInGameArr.contains(i))){
-					discardedPileofGreenCardArr.add(i);
+		int count=0;
+		//Check whether discarded pile has at least four Green Cards
+		for(GreenCard GC : Game.lstGreenCards)
+		{
+			if(GC.IsPlayed)
+			{				
+				count++;
+				if(count == 4)
+				{
+					success = true;
+					break;
 				}
 			}
-			if(discardedPileofGreenCardArr.size() > 0){
-				discardedPileOfGreenCards = discardedPileofGreenCardArr.toString().substring(0, 6);
+		}
+		//Check whether discarded pile has at least four Green Cards
+		if(success)
+		{
+			count = 0;
+			for(GreenCard GC : Game.lstGreenCards)
+			{
+				if(GC.IsPlayed)
+				{
+					GC.setPlayerID(this.getPlayer_id());
+					GC.IsPlayed = false;
+					count++;
+					if(count == 4)
+					{					
+						break;
+					}
+				}
 			}
-
-			this.setGreenCardListCommaSeparated(this.getGreenCardListCommaSeparated() + "," +discardedPileOfGreenCards);
-
 		}
 		return success;
 	}
+//	public boolean theHistoryMonksFunctionality() throws IOException{
+//		boolean success = false;
+//	
+		//		List<Integer> discardedPileofGreenCardArr = new ArrayList<Integer>();
+		//		String discardedPileOfGreenCards = "";
+		//		String cardInDeckOrWithPlayer = "";
+		//		System.out.println("Do you want to continue? Please enter 'y' : ");
+		//		BufferedReader brBuff = new BufferedReader(new InputStreamReader(System.in));
+		//		String br = brBuff.readLine();
+		//		if(br.toString().equals("y") || br.toString().equals("Y")){
+		//			for(GreenCard greenCard : Game.lstGreenCards){
+		//				cardInDeckOrWithPlayer += greenCard.GetCardID() + ",";
+		//			}
+		//
+		//			for(Player greenCardToExtract : Game.lstPlayers){
+		//				cardInDeckOrWithPlayer += greenCardToExtract.getGreenCardListCommaSeparated() + ",";
+		//			}
+		//
+		//			if(cardInDeckOrWithPlayer.endsWith(",")){
+		//				cardInDeckOrWithPlayer = cardInDeckOrWithPlayer.substring(0, cardInDeckOrWithPlayer.length() -1);
+		//			}
+		//
+		//			char[] cardInDeckOrWithPlayerChar = cardInDeckOrWithPlayer.toCharArray();
+		//			Arrays.sort(cardInDeckOrWithPlayerChar);
+		//
+		//			String[] greenCardsInGameStrArr = cardInDeckOrWithPlayerChar.toString().split(",");
+		//
+		//			ArrayList<String> greenCardsInGameArr  = new ArrayList<String>();
+		//			for(String greenCardInGame : greenCardsInGameStrArr){
+		//				greenCardsInGameArr.add(greenCardInGame);
+		//			}
+		//
+		//			for(int i = 48; i <= 1; i--){
+		//				if(!(greenCardsInGameArr.contains(i))){
+		//					discardedPileofGreenCardArr.add(i);
+		//				}
+		//			}
+		//			if(discardedPileofGreenCardArr.size() > 0){
+		//				discardedPileOfGreenCards = discardedPileofGreenCardArr.toString().substring(0, 6);
+		//			}
+		//
+		//			this.setGreenCardListCommaSeparated(this.getGreenCardListCommaSeparated() + "," +discardedPileOfGreenCards);
+		//
+		//		}
+//		return success;
+//	}
 
 	//Discard as many cards as you wish and take $2 / $1 for each one discarded
 	public boolean theHarryKingOrShonkyShopFunctionality(String CardID, int Amount) throws IOException{
@@ -1363,31 +1611,31 @@ public class Player {
 			{
 				while(true)
 				{
-				String ActionList = Game.GetGreenCardActions(grnCard.GetCardID());
-				System.out.print("Do you want to discard below Card :(Y/N) ");
-				System.out.printf("%-5s%-5s%-40s%-5s%-50s%-5s%-60s\n",grnCard.CardID ,  " : " ,  grnCard.getName() , " : " , ActionList," : ","Scroll Action : "+grnCard.GetActionDescription());
-				BufferedReader brCard1SelectedBuff = new BufferedReader(new InputStreamReader(System.in));
-				String Input = brCard1SelectedBuff.readLine();
-				if(Input.equalsIgnoreCase("Y"))
-				{
-					//Discard Card -- Set isPlayed to true
-					Game.SetGreenCardIsPlayed(grnCard.GetCardID(), true);
-					iDiscardCount++;
-					success = true;
-					break;
-				}
-				else if(Input.equalsIgnoreCase("N"))
-				{
-					success = true;
-					break;
-				}
-				else
-				{
-					System.out.print("Invalid Input. Please try again.");
-				}
+					String ActionList = Game.GetGreenCardActions(grnCard.GetCardID());
+					System.out.print("Do you want to discard below Card :(Y/N) ");
+					System.out.printf("%-5s%-5s%-40s%-5s%-50s%-5s%-60s\n",grnCard.CardID ,  " : " ,  grnCard.getName() , " : " , ActionList," : ","Scroll Action : "+grnCard.GetActionDescription());
+					BufferedReader brCard1SelectedBuff = new BufferedReader(new InputStreamReader(System.in));
+					String Input = brCard1SelectedBuff.readLine();
+					if(Input.equalsIgnoreCase("Y"))
+					{
+						//Discard Card -- Set isPlayed to true
+						Game.SetGreenCardIsPlayed(grnCard.GetCardID(), true);
+						iDiscardCount++;
+						success = true;
+						break;
+					}
+					else if(Input.equalsIgnoreCase("N"))
+					{
+						success = true;
+						break;
+					}
+					else
+					{
+						System.out.print("Invalid Input. Please try again.");
+					}
 				}
 			}
-			
+
 			if(iDiscardCount>0)
 			{
 				//Make payment to Player
@@ -1398,27 +1646,27 @@ public class Player {
 		return success;
 	}
 
-//	public boolean theShonkyShopFunctionality() throws IOException{
-//		//1st Action to read scroll & then play another card
-//		boolean success = false;
-//		System.out.println("Do you want to continue? Please enter 'y' : ");
-//		BufferedReader brBuff = new BufferedReader(new InputStreamReader(System.in));
-//		String br = brBuff.readLine();
-//		if(br.toString().equals("y") || br.toString().equals("Y")){
-//			System.out.print("You have these green cards available : " + this.getGreenCardListCommaSeparated());
-//			String[] playerGreenCardArr = this.getGreenCardListCommaSeparated().split(",");
-//			for(int i = 0; i < playerGreenCardArr.length; i++){
-//				System.out.print("Do you want to discard Card Number : " + playerGreenCardArr[i]);
-//				BufferedReader brCard1SelectedBuff = new BufferedReader(new InputStreamReader(System.in));
-//				String brCard1Selected = brCard1SelectedBuff.readLine();
-//				if(brCard1Selected.toString().endsWith("y") || brCard1Selected.toString().endsWith("Y")){
-//					this.setGreenCardListCommaSeparated(removeOneCardFromCommaSeparatedString(this.getGreenCardListCommaSeparated(), playerGreenCardArr[i].toString()));
-//					this.setPlayer_amount((float) this.getPlayer_amount() + 1);
-//				}
-//			}
-//		}
-//		return success;
-//	}
+	//	public boolean theShonkyShopFunctionality() throws IOException{
+	//		//1st Action to read scroll & then play another card
+	//		boolean success = false;
+	//		System.out.println("Do you want to continue? Please enter 'y' : ");
+	//		BufferedReader brBuff = new BufferedReader(new InputStreamReader(System.in));
+	//		String br = brBuff.readLine();
+	//		if(br.toString().equals("y") || br.toString().equals("Y")){
+	//			System.out.print("You have these green cards available : " + this.getGreenCardListCommaSeparated());
+	//			String[] playerGreenCardArr = this.getGreenCardListCommaSeparated().split(",");
+	//			for(int i = 0; i < playerGreenCardArr.length; i++){
+	//				System.out.print("Do you want to discard Card Number : " + playerGreenCardArr[i]);
+	//				BufferedReader brCard1SelectedBuff = new BufferedReader(new InputStreamReader(System.in));
+	//				String brCard1Selected = brCard1SelectedBuff.readLine();
+	//				if(brCard1Selected.toString().endsWith("y") || brCard1Selected.toString().endsWith("Y")){
+	//					this.setGreenCardListCommaSeparated(removeOneCardFromCommaSeparatedString(this.getGreenCardListCommaSeparated(), playerGreenCardArr[i].toString()));
+	//					this.setPlayer_amount((float) this.getPlayer_amount() + 1);
+	//				}
+	//			}
+	//		}
+	//		return success;
+	//	}
 
 	/**
 	 * Place a minion functionality.
