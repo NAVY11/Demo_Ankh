@@ -15,6 +15,8 @@ import ankhmorpork.GameObjects.Minion;
 import ankhmorpork.GameObjects.Player;
 import ankhmorpork.GameObjects.Troll;
 import ankhmorpork.GameObjects.TroubleMaker;
+import ankhmorpork.GameObjects.Cards.CityAreaCard;
+import ankhmorpork.GameObjects.Cards.GreenCard;
 
 // TODO: Auto-generated Javadoc
 /**
@@ -53,6 +55,17 @@ public class ViewFileTxt {
 		ArrayList<Troll> lstTrolls = Game.lstTrolls;
 		saveTheDetailsInTextFile += trollGeneralInfo(lstTrolls);
 		
+		for(Player player : Game.lstPlayers){
+			saveTheDetailsInTextFile += "\n";
+			saveTheDetailsInTextFile += "Player " + player.getPlayer_id() + "'s current inventory: \n";
+			saveTheDetailsInTextFile += playerDetailsMinBuildDollar(player.getPlayer_id());
+			saveTheDetailsInTextFile += playerDetailsCityAreaCards(player.getPlayer_id());
+			saveTheDetailsInTextFile += playerDetailsGreenCards(player.getPlayer_id());
+		}
+		
+		saveTheDetailsInTextFile += "\n";
+		saveTheDetailsInTextFile += totalAmountBankOwns();
+		saveTheDetailsInTextFile += "\n";
 		return saveTheDetailsInTextFile;
 	}
 	
@@ -103,7 +116,7 @@ public class ViewFileTxt {
 		}
 		
 		for(int i = 1; i <=12; i++){
-			troubleMakerGeneralInfoStr += "\n" + PresentationUtility.getCityAreaCardNameById(i) + " : " + (troubleMakerDetails.get(i) != null && troubleMakerDetails.get(i) ? "yes": "no");
+			troubleMakerGeneralInfoStr += "\n" + PresentationUtility.getCityAreaCardNameById(i) + " : " + (troubleMakerDetails.get(i) != null && troubleMakerDetails.get(i) ? "YES": "no");
 		}
 		
 		return troubleMakerGeneralInfoStr;
@@ -113,20 +126,26 @@ public class ViewFileTxt {
 		String buildingGeneralInfoStr = "\n";
 		
 		buildingGeneralInfoStr += "\n########## Building Details ##########";
-		HashMap<Integer, Boolean> buildingDetails = new HashMap<Integer, Boolean>();
+		HashMap<Integer, String> buildingDetails = new HashMap<Integer, String>();
 		
 		boolean isBuildingInArea = false;
+		String colorOfBuilding = "no";
 		
 		for(Building building : buildings){ // TODO: Have to verify this condition, whether it is working perfectly or not
 			if(building.getArea_id() > 0 && buildingDetails.size() > 0){
-				if(buildingDetails.containsKey(building.getArea_id()) && !(buildingDetails.get(building.getArea_id())))
-						isBuildingInArea = true;
+				if(buildingDetails.containsKey(building.getArea_id()))
+					for(Player player : Game.lstPlayers){
+						if(player.getPlayer_id() == building.getPlayer_id()){
+							colorOfBuilding = player.getPlayer_color().toUpperCase();
+						}
+					}
+					isBuildingInArea = true;
 			}
-			buildingDetails.put(building.getArea_id(), isBuildingInArea);
+			buildingDetails.put(building.getArea_id(), colorOfBuilding);
 		}
 		
 		for(int i = 1; i <=12; i++){
-			buildingGeneralInfoStr += "\n" + PresentationUtility.getCityAreaCardNameById(i) + " : " + (buildingDetails.get(i) != null && buildingDetails.get(i) ? "yes": "no");
+			buildingGeneralInfoStr += "\n" + PresentationUtility.getCityAreaCardNameById(i) + " : " + (buildingDetails.get(i) != null ? buildingDetails.get(i) : "no");
 		}
 		
 		return buildingGeneralInfoStr;
@@ -149,7 +168,7 @@ public class ViewFileTxt {
 		}
 		
 		for(int i = 1; i <=12; i++){
-			trollGeneralInfoStr += "\n" + PresentationUtility.getCityAreaCardNameById(i) + " : " + (trollDetails.get(i) != null ? true : false);
+			trollGeneralInfoStr += "\n" + PresentationUtility.getCityAreaCardNameById(i) + " : " + (trollDetails.get(i) != null ? "1" : "0");
 		}
 		
 		return trollGeneralInfoStr;
@@ -172,35 +191,45 @@ public class ViewFileTxt {
 		}
 		
 		for(int i = 1; i <=12; i++){
-			demonGeneralInfoStr += "\n" + PresentationUtility.getCityAreaCardNameById(i) + " : " + (demonDetails.get(i) != null ? true : false);
+			demonGeneralInfoStr += "\n" + PresentationUtility.getCityAreaCardNameById(i) + " : " + (demonDetails.get(i) != null ? "1" : "0");
 		}
 		
 		return demonGeneralInfoStr;
 	}
 	
-	/**
-	 * Data to store in text file.
-	 *
-	 * @param lstPlayers the lst players
-	 * @return the string
-	 */
-//	public static String dataToStoreInTextFile(ArrayList<Player> lstPlayers){
-//		String saveTheDetailsInTextFile = "";
-//		
-//		saveTheDetailsInTextFile += playerGeneralInfo(lstPlayers);
-//		saveTheDetailsInTextFile += "\n\n";
-//		saveTheDetailsInTextFile += currentAndNextPlayerTurn(lstPlayers);
-//		saveTheDetailsInTextFile += "\n\n";
-//		saveTheDetailsInTextFile += areaDetails();
-//		saveTheDetailsInTextFile += "\n\n";
-//		saveTheDetailsInTextFile += playerDetails(lstPlayers);
-//		saveTheDetailsInTextFile += "\n\n";
-//		saveTheDetailsInTextFile += totalAmountBankOwns(AnkhMorpork);
-//		
-//		return saveTheDetailsInTextFile;
-//	}
+	public static String playerDetailsMinBuildDollar(Integer playerId){
+		String playerDetailsMinBuildDollarStr = "\n\t";
+		
+		playerDetailsMinBuildDollarStr += "- "+Game.GetMinionsOnBoardByPlayerID(playerId).size() + " minion(s) "
+											+ Game.GetBuildingsByPlayerID(playerId).size() + " building(s) "
+											+ Game.GetPlayer(playerId).getPlayerAmount() + " Ankh-Morpork dollars";
+		
+		return playerDetailsMinBuildDollarStr;
+	}
 	
-
+	public static String playerDetailsCityAreaCards(Integer playerId){
+		String playerDetailsCityAreaCardsStr = "";
+		ArrayList<CityAreaCard> cityAreaCardsByPlayerId = Game.GetCityAreaCardByPlayerID(playerId);
+		if(cityAreaCardsByPlayerId.size() > 0){
+			playerDetailsCityAreaCardsStr = "\n\t";
+			playerDetailsCityAreaCardsStr += "- City Area Cards: ";
+			for(CityAreaCard cityAreaCard : cityAreaCardsByPlayerId){
+				playerDetailsCityAreaCardsStr += "\n\t" + cityAreaCard.getName();
+			}
+		}
+		return playerDetailsCityAreaCardsStr;
+	}
+	
+	public static String playerDetailsGreenCards(Integer playerId){
+		String playerDetailsGreenCardsStr = "\n\t";
+		playerDetailsGreenCardsStr += "- Player Cards: ";
+		ArrayList<GreenCard> greenCardsByPlayerId = Game.GetGreenCardByPlayerID(playerId);
+		for(GreenCard greenCard : greenCardsByPlayerId){
+			playerDetailsGreenCardsStr += "\n\t" + greenCard.getName();
+		}
+		return playerDetailsGreenCardsStr;
+	}
+	
 	/**
 	 * Current and next player turn.
 	 *

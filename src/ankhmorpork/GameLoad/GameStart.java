@@ -69,9 +69,9 @@ public class GameStart {
 		String getFiveDifferentBrownNumbers = "", getFiveDifferentGreenNumbers = "", getRandomCityAreaCardsForPlayers = "";
 		Integer getOneDifferentPersonalityCard;
 		GameLoad.LoadNewGame_Cards();
-		for(CityAreaCard areaCard : Game.lstCityAreaCards){
-			System.out.println(areaCard);
-		}
+//		for(CityAreaCard areaCard : Game.lstCityAreaCards){
+//			System.out.println(areaCard);
+//		}
 			//New Game
 		//Game AnkhMorpork = new Game();
 		//Initialize Trolls and Players
@@ -164,13 +164,13 @@ public class GameStart {
 		int i=1;
 		for(Player objPlayer: Game.lstPlayers)
 		{		
-			System.out.println("Player "+ i + " Details");
-			System.out.println("Player ID: "+objPlayer.getPlayer_id()+" Player Name:"+objPlayer.getPlayer_name()+" Player Color:"+objPlayer.getPlayer_color());
-			System.out.println("Minion Details of Player "+i);
-			for(Minion objMinion:Game.lstMinions)
-			{
-				System.out.println("MinionID:"+objMinion.getMinion_id()+" MinionArea: "+objMinion.getArea_id()+" MinionColor: "+objMinion.getColor()+" PlayerID: "+objMinion.getPlayer_id());
-			}
+			//System.out.println("Player "+ i + " Details");
+			//System.out.println("Player ID: "+objPlayer.getPlayer_id()+" Player Name:"+objPlayer.getPlayer_name()+" Player Color:"+objPlayer.getPlayer_color());
+			//System.out.println("Minion Details of Player "+i);
+//			for(Minion objMinion:Game.lstMinions)
+//			{
+//				System.out.println("MinionID:"+objMinion.getMinion_id()+" MinionArea: "+objMinion.getArea_id()+" MinionColor: "+objMinion.getColor()+" PlayerID: "+objMinion.getPlayer_id());
+//			}
 			getFiveDifferentBrownNumbers = "";
 			getFiveDifferentGreenNumbers = "";
 			getRandomCityAreaCardsForPlayers = "";
@@ -226,7 +226,7 @@ public class GameStart {
 						}
 						objPlayer.setGreenCardListCommaSeparated(getFiveDifferentGreenNumbers);
 						//Create Green Card Object and assign cards
-						System.out.print("PlayerId : "+ objPlayer.getPlayer_id() + " - Green Card: " + getFiveDifferentGreenNumbers + "\n");
+						//System.out.print("PlayerId : "+ objPlayer.getPlayer_id() + " - Green Card: " + getFiveDifferentGreenNumbers + "\n");
 						break;
 					}
 				}
@@ -270,12 +270,12 @@ public class GameStart {
 				initializingPersonalityArr.remove(randomNumberAtIndexNumber);
 				objPlayer.setPersonalityCardListCommaSeparated(getOneDifferentPersonalityCard+"");
 				//Create One Different Personality Card
-				System.out.print("PlayerId : "+ objPlayer.getPlayer_id() + " - Personality Card: " + getOneDifferentPersonalityCard + "\n");
+				//System.out.print("PlayerId : "+ objPlayer.getPlayer_id() + " - Personality Card: " + getOneDifferentPersonalityCard + "\n");
 			}
 			
 			i++;
 		}
-		
+		initializingGreenCards();
 		return;
 	}
 
@@ -301,5 +301,19 @@ public class GameStart {
 			}
 			else return 0;
 		}
+	
+	
+	public static void initializingGreenCards(){
+		for(Player player : Game.lstPlayers){
+			String[] greenCardArr = player.getGreenCardListCommaSeparated().split(",");
+			for(int i = 0; i < greenCardArr.length; i++){
+				for(GreenCard greenCard : Game.lstGreenCards){
+					if(greenCard.GetCardID().equals(greenCardArr[i])){
+						greenCard.setPlayerID(player.getPlayer_id());
+					}
+				}
+			}
+		}
+	}
 
 }

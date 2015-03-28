@@ -406,7 +406,7 @@ public class discworldboard extends Component {
 					{
 						sbValidIDs.append(grnCard.GetCardID());		
 						String ActionList = Game.GetGreenCardActions(grnCard.GetCardID());
-						System.out.printf("%-5s%-5s%-40s%-5s%-50s%-5s%-60s\n",grnCard.CardID ,  " : " ,  grnCard.getName() , " : " , ActionList," : ","Scroll Action : "+grnCard.GetActionDescription());
+						//System.out.printf("%-5s%-5s%-40s%-5s%-50s%-5s%-60s\n",grnCard.CardID ,  " : " ,  grnCard.getName() , " : " , ActionList," : ","Scroll Action : "+grnCard.GetActionDescription());
 
 						//System.out.println("Card '" + grnCard.getName() + "' has following actions :");
 						//System.out.print(ActionList);

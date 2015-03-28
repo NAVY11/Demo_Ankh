@@ -215,6 +215,20 @@ public class Game {
 			return Minions;
 		}
 		
+		public static ArrayList<Minion> GetMinionsOnBoardByPlayerID(int PlayerID)
+		{
+			ArrayList<Minion> Minions = new ArrayList<Minion>();
+			for(Minion objMinion : lstMinions)
+			{
+				if(objMinion.getPlayer_id()== PlayerID && objMinion.getActive() && objMinion.getArea_id() > 0)
+				{
+					Minions.add(objMinion);
+				}
+			}
+					
+			return Minions;
+		}
+		
 		/**
 		 * Gets the minions by area id.
 		 *
