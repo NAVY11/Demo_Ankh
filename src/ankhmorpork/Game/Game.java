@@ -25,7 +25,7 @@ public class Game {
 
 	/** The lst area. */
 	public static ArrayList<Area> lstArea = new ArrayList<Area>();
-	
+
 	/** The lst demons. */
 	public static ArrayList<Demon> lstDemons = new ArrayList<Demon>();
 	
@@ -558,48 +558,81 @@ public class Game {
 			{
 				System.out.println(AreaID[i] + " : " + PresentationUtility.getCityAreaCardNameById(Integer.parseInt(AreaID[i])));
 			}
-		}
-		
-//		//Display Area names to User
-//		public static void DisplayGreenCards(String strGCIDsCommaSeparated)
-//		{
-//			String[] GreenCardID = strGCIDsCommaSeparated.split(",");
-//			
-//			for(int i = 0; i<GreenCardID.length; i++)
-//			{
-//				System.out.println(GreenCardID[i] + " : " + getG)));
-//			}
-//		}
-		
-		public static String GetMinionIDsNotOnBoard(int PlayerID)
+	}
+
+	//Display Area names to User
+	public static void DisplayPlayers(String strPlayerIDsCommaSeparated)
+	{
+		if(strPlayerIDsCommaSeparated.startsWith(","))
 		{
-			String placingAMinionStr = "";
-			for(Minion minionObj : Game.lstMinions){
-				if(minionObj.getPlayer_id() == PlayerID && minionObj.getArea_id() == 0){
-					placingAMinionStr += minionObj.getMinion_id() + ",";
-				}
-				if(placingAMinionStr.endsWith(",")){
-					placingAMinionStr = placingAMinionStr.substring(0, placingAMinionStr.length()-1);
-				}
+			strPlayerIDsCommaSeparated=strPlayerIDsCommaSeparated.substring(1);
+		}
+		String[] PlayerID = strPlayerIDsCommaSeparated.split(",");
+
+		for(int i = 0; i<PlayerID.length; i++)
+		{
+			Player objPlayer = Game.GetPlayer(Integer.parseInt(PlayerID[i]));
+			System.out.println(PlayerID[i] + " : " + objPlayer.getPlayer_name());
+		}
+	}
+
+	//		//Display Area names to User
+	//		public static void DisplayGreenCards(String strGCIDsCommaSeparated)
+	//		{
+	//			String[] GreenCardID = strGCIDsCommaSeparated.split(",");
+	//			
+	//			for(int i = 0; i<GreenCardID.length; i++)
+	//			{
+	//				System.out.println(GreenCardID[i] + " : " + getG)));
+	//			}
+	//		}
+
+	public static String GetMinionIDsNotOnBoard(int PlayerID)
+	{
+		String placingAMinionStr = "";
+		for(Minion minionObj : Game.lstMinions){
+			if(minionObj.getPlayer_id() == PlayerID && minionObj.getArea_id() == 0){
+				placingAMinionStr += minionObj.getMinion_id() + ",";
 			}
-			return placingAMinionStr;
+			if(placingAMinionStr.endsWith(",")){
+				placingAMinionStr = placingAMinionStr.substring(0, placingAMinionStr.length()-1);
+			}
 		}
-		public static String AreaWithNoMinion()
+		return placingAMinionStr;
+	}
+	public static String AreaWithNoMinion()
+	{
+		String strAreaList = "1,2,3,4,5,6,7,8,9,10,11,12,";
+		for(Minion Minion : Game.lstMinions)
 		{
-			String strAreaList = "1,2,3,4,5,6,7,8,9,10,11,12,";
-			for(Minion Minion : Game.lstMinions)
+			if(Minion.getArea_id()!=0)
 			{
-				if(Minion.getArea_id()!=0)
+				if(strAreaList.contains(Minion.getArea_id()+","))
 				{
-					if(strAreaList.contains(Minion.getArea_id()+","))
-					{
-						strAreaList.replace(Minion.getArea_id()+",", "");
-					}
+					strAreaList.replace(Minion.getArea_id()+",", "");
 				}
 			}
-			return strAreaList;
 		}
-		
+		return strAreaList;
+	}
+	
+	public static String GetPlayerIDsHavingMinionsOnBoard()
+	{
+		String strPlayerID =",";			
+		for(Minion objMinion : Game.lstMinions)
+		{
+			if(objMinion.getPlayer_id()!=0)
+			{
+				if(!strPlayerID.contains(objMinion.getPlayer_id().toString()))
+				{
+					strPlayerID+=objMinion.getPlayer_id()+",";
+				}
+
+			}
+		}
+
+		return strPlayerID;
+	}
 		/**
 		 * Gets the buildings not on board by player id.
 		 *
@@ -635,6 +668,23 @@ public class Game {
 			return Buildings;
 		}
 		
+	public static String GetPlayerIDsHavingBuildingsOnBoard()
+	{
+		String strPlayerID =",";			
+		for(Building objBuilding : Game.lstBuildings)
+		{
+			if(objBuilding.getPlayer_id()!=0)
+			{
+				if(!strPlayerID.contains(objBuilding.getPlayer_id().toString()))
+				{
+					strPlayerID+=objBuilding.getPlayer_id()+",";
+				}
+
+			}
+		}
+
+		return strPlayerID;
+	}
 		/**
 		 * Gets the troll by troll id.		 
 		 * @param TrollID the troll id
@@ -993,7 +1043,7 @@ public class Game {
 			String CardList = GetGreenCardsIDsFromDeck();			
 				String[] lstCardID = CardList.split(",");
 				
-			Integer cardIndexNumber = PresentationUtility.returnRandomNumber(1,lstCardID.length);
+Integer cardIndexNumber = PresentationUtility.returnRandomNumber(0,lstCardID.length-1);
 			return lstCardID[cardIndexNumber];						
 		}
 		
