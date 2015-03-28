@@ -17,8 +17,10 @@ public class Chrysoprase implements WinningCondition {
     	for(Building b1 : lstOfBuilding){
     		if(b1.getArea_id() != 0){
     			int areaId = b1.getArea_id();
-    			objArea = Game.GetArea(areaId);
-    			totalAmtByBuilding += objArea.getAreaCost();
+    			if(!Game.AreaHasDemon(areaId)){
+    				objArea = Game.GetArea(areaId);
+    				totalAmtByBuilding += objArea.getAreaCost();
+    			}
     		}
     	
     	}

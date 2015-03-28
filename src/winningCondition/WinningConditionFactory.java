@@ -27,10 +27,10 @@ public class WinningConditionFactory {
   //   		return new LordSelRusWor();
 		else if (objPersonalityCard.getName().equals("DragonKingOfArms"))
        		return new DragonKingOfArms();
-  //	else if (personalityCardType.equals(PersonalityCards.get(5)))
-   //   	return new Chrysoprase();
+		else if (objPersonalityCard.getName().equals("Chrysoprase"))
+			return new Chrysoprase();
 		else if (objPersonalityCard.getName().equals("CommanderVimes"))
-      	return new CommanderVimes();
+			return new CommanderVimes();
 		return null;
 }
 
