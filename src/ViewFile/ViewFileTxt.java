@@ -56,11 +56,11 @@ public class ViewFileTxt {
 		saveTheDetailsInTextFile += trollGeneralInfo(lstTrolls);
 		
 		for(Player player : Game.lstPlayers){
-			saveTheDetailsInTextFile += "\n";
-			saveTheDetailsInTextFile += "Player " + player.getPlayer_id() + "'s current inventory: \n";
+			saveTheDetailsInTextFile += "\nPlayer " + player.getPlayer_id() + "'s current inventory:";
 			saveTheDetailsInTextFile += playerDetailsMinBuildDollar(player.getPlayer_id());
 			saveTheDetailsInTextFile += playerDetailsCityAreaCards(player.getPlayer_id());
 			saveTheDetailsInTextFile += playerDetailsGreenCards(player.getPlayer_id());
+			saveTheDetailsInTextFile += "\n";
 		}
 		
 		saveTheDetailsInTextFile += "\n";
@@ -92,8 +92,25 @@ public class ViewFileTxt {
 	
 	public static String minionGeneralInfo(ArrayList<Minion> minions){
 		String minionGeneralInfoStr = "\n";
+		HashMap<Integer, String> minionInfo = new HashMap<Integer, String>();
 		
 		minionGeneralInfoStr += "\n########## Minion Details ##########";
+		for(int i = 1; i <= 12; i++){
+			String minionsInAreaId = "";
+			for(Minion minion : minions){
+				if(i == minion.getArea_id()){
+					String color = minion.getColor().substring(0, 1);
+					minionsInAreaId += color.toUpperCase() + ",";
+				}
+			}
+			if(minionsInAreaId.endsWith(",")){
+				minionsInAreaId = minionsInAreaId.substring(0, minionsInAreaId.length()-1);
+			}
+			minionInfo.put(i, minionsInAreaId);
+		}
+		for(int i = 1; i <=12; i++){
+			minionGeneralInfoStr += "\n" + PresentationUtility.getCityAreaCardNameById(i) + " : " + (minionInfo.get(i) != null ? minionInfo.get(i) : "");
+		}
 		
 		
 		return minionGeneralInfoStr;
@@ -107,12 +124,12 @@ public class ViewFileTxt {
 		
 		boolean isTroubleMakerInArea = false;
 		
-		for(TroubleMaker building : troubleMakers){ // TODO: Have to verify this condition, whether it is working perfectly or not
-			if(building.getArea_id() > 0 && troubleMakerDetails.size() > 0){
-				if(troubleMakerDetails.containsKey(building.getArea_id()) && !(troubleMakerDetails.get(building.getArea_id())))
+		for(TroubleMaker troubleMaker : troubleMakers){ // TODO: Have to verify this condition, whether it is working perfectly or not
+			if(troubleMaker.getArea_id() > 0 && troubleMakerDetails.size() > 0){
+				if(troubleMakerDetails.containsKey(troubleMaker.getArea_id()) && !(troubleMakerDetails.get(troubleMaker.getArea_id())))
 					isTroubleMakerInArea = true;
 			}
-			troubleMakerDetails.put(building.getArea_id(), isTroubleMakerInArea);
+			troubleMakerDetails.put(troubleMaker.getArea_id(), isTroubleMakerInArea);
 		}
 		
 		for(int i = 1; i <=12; i++){
@@ -171,7 +188,7 @@ public class ViewFileTxt {
 			trollGeneralInfoStr += "\n" + PresentationUtility.getCityAreaCardNameById(i) + " : " + (trollDetails.get(i) != null ? "1" : "0");
 		}
 		
-		return trollGeneralInfoStr;
+		return trollGeneralInfoStr + "\n";
 	}
 	
 	public static String demonGeneralInfo(ArrayList<Demon> demons){
