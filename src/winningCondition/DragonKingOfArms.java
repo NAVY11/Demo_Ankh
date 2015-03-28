@@ -1,7 +1,5 @@
 package winningCondition;
 
-
-
 import java.util.ArrayList;
 
 import ankhmorpork.Game.Game;
