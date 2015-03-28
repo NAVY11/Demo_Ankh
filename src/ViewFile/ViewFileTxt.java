@@ -84,7 +84,7 @@ public class ViewFileTxt {
 		playerGeneralInfoStr += "\nThere are "+players.size()+" players:";
 		
 		for(Player player: players){
-			playerGeneralInfoStr += "\nPlayer "+(players.size() -i)+", "+player.getPlayer_name()+", "+ player.getPlayer_color()+", "+ PresentationUtility.getPersonalityCardNameById(Integer.parseInt(player.getPersonalityCardListCommaSeparated()));
+			playerGeneralInfoStr += "\nPlayer "+(players.size() -i)+", "+player.getPlayer_name()+" ("+ player.getPlayer_color()+") is playing as "+ PresentationUtility.getPersonalityCardNameById(Integer.parseInt(player.getPersonalityCardListCommaSeparated()));
 			i -= 1;
 		}
 		return playerGeneralInfoStr;
