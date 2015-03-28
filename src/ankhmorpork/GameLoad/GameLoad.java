@@ -1,4 +1,7 @@
 package ankhmorpork.GameLoad;
+import PresentationUtilityCommon.PresentationUtility;
+import ViewFile.ViewFileTxt;
+import ankhmorpork.discworldboard;
 import ankhmorpork.Game.Game;
 import ankhmorpork.GameObjects.*;
 import ankhmorpork.GameObjects.Cards.BrownCard;
@@ -8,12 +11,22 @@ import ankhmorpork.GameObjects.Cards.PersonalityCard;
 import ankhmorpork.GameObjects.Cards.RandomEventCard;
 import ankhmorpork.GameConstants.*;
 
+import java.io.BufferedReader;
+import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileReader;
+import java.io.FileWriter;
 import java.io.IOException;
+import java.io.InputStreamReader;
 import java.util.Iterator;
 
 
+
+
+
+
+import javax.swing.JFileChooser;
+import javax.swing.JOptionPane;
 
 
 //import org.json.JSONArray;
@@ -35,8 +48,9 @@ public class GameLoad {
 	 * @param objFilereader the obj filereader
 	 * @throws IOException Signals that an I/O exception has occurred.
 	 * @throws ParseException the parse exception
+	 * @throws JSONException 
 	 */
-	public static void LoadGame(FileReader objFilereader) throws IOException, ParseException
+	public static void LoadGame(FileReader objFilereader) throws IOException, ParseException, JSONException
 	{
 
 				//FileReader objFilereader = new FileReader(File);		
@@ -228,6 +242,7 @@ public class GameLoad {
 				//Loading PLAYERS
 				JSONArray Players = (JSONArray)json.get("Players");
 				Iterator iPlayer = Players.iterator();
+				int iNoOfPlayers = 0;
 				while (iPlayer.hasNext())
 				{
 					Player Player = new Player();
@@ -243,7 +258,7 @@ public class GameLoad {
 					
 															
 					Game.lstPlayers.add(Player);
-					
+					iNoOfPlayers++;
 				}
 				
 				
@@ -256,8 +271,175 @@ public class GameLoad {
 				Game.GameBank.objSilverCoin.setCoin_Val(Constants.SilverCoinValue());
 				Game.GameBank.objSilverCoin.setCoin_Available(Integer.parseInt(json.get("SilverCoins_Avail_Bank").toString()));
 				
-	
+				 int currentPlayerTurn = Integer.parseInt(json.get("currentPlayerId").toString());
+				 LoadedGame(iNoOfPlayers, currentPlayerTurn);
 	}
+	
+	public static void LoadedGame(int iNoOfPlayers, int currentPlayerTurn) throws IOException, ParseException, JSONException
+	{					
+
+
+
+		//Get Starting Player randomly
+		//System.out.println("Player "+ CurrentPlayer + " starts game");
+		BufferedReader BR = new BufferedReader(new InputStreamReader(System.in));
+
+		boolean GameEnds = false;
+		System.out.println("===========================================================================================");
+		System.out.println("Welcome to Ankh-Morpork, the largest, smelliest, and most ‘interesting’ city on Discworld.");
+		System.out.println("===========================================================================================");
+		while(!GameEnds)
+		{
+
+			currentPlayerTurn = PresentationUtility.nextPlayerTurn(currentPlayerTurn, iNoOfPlayers); 
+			//Show Board
+			System.out.print(ViewFileTxt.ViewState());
+			//Play Game						
+			//Load Player details
+			Player objPlayer = Game.lstPlayers.get(currentPlayerTurn - 1);
+			System.out.println("Enter 'saveGame' to save the Current State. Else write 'cont' to continue ");
+			BufferedReader brOption = new BufferedReader(new InputStreamReader(System.in));
+			String brOptionSelected = brOption.readLine();
+			if(brOptionSelected.equals("saveGame")){
+				JFileChooser chooser = new JFileChooser();
+				chooser.setCurrentDirectory(new File("/home/me/Documents"));
+				int retrival = chooser.showSaveDialog(null);
+				if (retrival == JFileChooser.APPROVE_OPTION) {
+
+					FileWriter objFileWriter = new FileWriter(chooser.getSelectedFile()+".txt");
+					discworldboard.SaveGame(objFileWriter, objPlayer);
+
+				}
+			}
+			System.out.println("It is "+objPlayer.getPlayer_name()+"'s turn");
+			//********Which Card to Play?
+			System.out.println("Which card to play?");
+
+			//Show available city area cards
+			StringBuilder sbValidCityAreaIDs = new StringBuilder();
+			boolean hasCityAreaCard = false;
+			for(CityAreaCard cityAreaCard : Game.lstCityAreaCards)
+			{	
+				if(cityAreaCard.getPlayerID()==objPlayer.getPlayer_id())
+				{
+					sbValidCityAreaIDs.append(cityAreaCard.GetCardID());
+					hasCityAreaCard = true;
+					System.out.println(cityAreaCard.CardID + " : " + cityAreaCard.getName());
+				}
+			}
+
+			if(hasCityAreaCard){
+				//Accept City Area Card to play from Player
+				String CardID = null;
+				while(true)
+				{
+					System.out.println("Enter a City Area Card ID");
+					BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+					CardID = br.readLine().toString();
+					if((sbValidCityAreaIDs.toString()).contains(CardID))
+					{
+						break;
+					}
+				}
+			}
+
+			//Show available greeen cards
+			boolean success = false;
+			while(!success)
+			{
+				StringBuilder sbValidIDs = new StringBuilder();
+				for(GreenCard grnCard: Game.lstGreenCards)
+				{	
+					if(grnCard.getPlayerID()==objPlayer.getPlayer_id())
+					{
+						sbValidIDs.append(grnCard.GetCardID());		
+						String ActionList = Game.GetGreenCardActions(grnCard.GetCardID());
+						System.out.printf("%-5s%-5s%-40s%-5s%-50s%-5s%-60s\n",grnCard.CardID ,  " : " ,  grnCard.getName() , " : " , ActionList," : ","Scroll Action : "+grnCard.GetActionDescription());
+
+						//System.out.println("Card '" + grnCard.getName() + "' has following actions :");
+						//System.out.print(ActionList);
+					}
+				}
+
+				//Accept Card to play from Player
+				String CardID = null;
+				while(true)
+				{
+					System.out.println("Enter a Green Card ID");
+					BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+					CardID = br.readLine().toString();
+					if((sbValidIDs.toString()).contains(CardID))
+					{
+						break;
+					}
+				}
+				//Which Action to perform?
+				GreenCard grnCard = Game.GetGreenCard(CardID);
+				String[] ActionArray = grnCard.GetAction();
+				String ActionList = Game.GetGreenCardActions(CardID);
+				System.out.println("Card '" + grnCard.getName() + "' has following actions :");
+				System.out.println(ActionList);
+				boolean actionPerformed = false;				
+				for(int i = 0; i<ActionArray.length; i++)
+				{
+					String ans = null;
+					if(i!=ActionArray.length-1 || actionPerformed)
+					{
+						System.out.println("Do you wish to perform " + ActionArray[i] + " action? Y/N");
+						while(true)
+						{						
+							ans = BR.readLine();
+							if(ans.equalsIgnoreCase("Y") || ans.equalsIgnoreCase("N"))
+							{
+								break;
+							}
+							else
+								System.out.println("Incorrect input. Please try again.");
+						}
+					}
+					else
+					{
+						System.out.println("Performing action "+ ActionArray[i]);
+						ans="Y";
+					}
+					if(ans.equalsIgnoreCase("Y"))
+					{
+						actionPerformed = true;
+						//Does a Player wish to interrupt? //TO DO
+						//If Yes : Which Player wants to interrupt?
+						//Perform Action
+						success = objPlayer.PerformCardAction(ActionArray[i], CardID);
+
+					}
+					else
+						continue;
+				}
+
+				if(success)
+				{							
+					//Set Current card as 'Played'
+					Game.SetGreenCardIsPlayed(CardID, true);
+					//Get number of Green Crads available with Player
+					int CardsInHand = Game.GetPlayerGreenCardCount(objPlayer.getPlayer_id());
+
+					//Pick as many cards from deck so that the Player holds 5 Cards
+					for(int i=0; i< 5 - CardsInHand;i++)
+					{
+						//Pick a GreenCardFromDeck
+						String PickNewCardID = Game.GetRandomGreenCardFromDeck();
+						Game.SetGreenCardToPlayer(PickNewCardID, objPlayer.getPlayer_id());
+					}
+				}
+				else
+				{
+					System.out.println("Opss! Acion failed. Please try again.");
+				}
+
+			}					
+		}
+	}
+
+
 	
 
 	/**

@@ -301,8 +301,9 @@ public class discworldboard extends Component {
 	 * @return the game
 	 * @throws IOException Signals that an I/O exception has occurred.
 	 * @throws ParseException the parse exception
+	 * @throws JSONException 
 	 */
-	public void Loadgamefetch(FileReader objFileReader) throws IOException, ParseException
+	public void Loadgamefetch(FileReader objFileReader) throws IOException, ParseException, JSONException
 	{
 		GameLoad.LoadGame(objFileReader);
 	}

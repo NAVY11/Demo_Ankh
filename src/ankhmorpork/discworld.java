@@ -186,15 +186,7 @@ public class discworld extends Applet implements ActionListener, WindowListener 
 					            FileReader objFileReader = new FileReader(chooser.getSelectedFile());
 					            discworldboard.Loadgamefetch(objFileReader);
 					            //AnkhMorpork = gameDetails;					            
-								int i=1;
-								for(Player objPlayer: AnkhMorpork.lstPlayers)
-								{		
-									System.out.println("Player "+ i + " Details");
-									System.out.println("Player ID: "+objPlayer.getPlayer_id()+" Player Name:"+objPlayer.getPlayer_name()+" Player Color:"+objPlayer.getPlayer_color());
-									System.out.println("Player ID:"+objPlayer.getPlayer_id()+" Gold Coin Details: "+objPlayer.objGoldCoin.getCoin_Available());
-									i++;
-								}
-								Framebuilder();
+								//Framebuilder();
 
 					    } 
 						
@@ -204,6 +196,9 @@ public class discworld extends Applet implements ActionListener, WindowListener 
 						// TODO Auto-generated catch block
 						e1.printStackTrace();
 					} catch (ParseException e1) {
+						// TODO Auto-generated catch block
+						e1.printStackTrace();
+					} catch (JSONException e1) {
 						// TODO Auto-generated catch block
 						e1.printStackTrace();
 					} 
