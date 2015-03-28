@@ -831,6 +831,23 @@ public class Game {
 			return success;
 		}
 		
+		
+		public static PersonalityCard GetPersonalityCardByPlayerID(int PlayerID)
+		{
+			PersonalityCard objPersonalityCard = new PersonalityCard();
+			for(PersonalityCard PersonalityCard : lstPersonalityCard)
+			{
+				if(PersonalityCard.getPlayerID()==PlayerID)
+				{
+					objPersonalityCard = PersonalityCard;
+					break;
+				}
+			}
+			
+			return objPersonalityCard;
+		
+		}
+		
 		/**
 		 * Gets the trouble maker on board area id.
 		 *
