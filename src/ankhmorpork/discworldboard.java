@@ -401,7 +401,7 @@ public class discworldboard extends Component {
 				StringBuilder sbValidIDs = new StringBuilder();
 				for(GreenCard grnCard: Game.lstGreenCards)
 				{	
-					if(grnCard.getPlayerID()==objPlayer.getPlayer_id())
+					if(grnCard.getPlayerID()==objPlayer.getPlayer_id() && !grnCard.IsPlayed)
 					{
 						sbValidIDs.append(grnCard.GetCardID());		
 						String ActionList = Game.GetGreenCardActions(grnCard.GetCardID());
