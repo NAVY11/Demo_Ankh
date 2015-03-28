@@ -271,6 +271,8 @@ public class GameLoad {
 				Game.GameBank.objSilverCoin.setCoin_Val(Constants.SilverCoinValue());
 				Game.GameBank.objSilverCoin.setCoin_Available(Integer.parseInt(json.get("SilverCoins_Avail_Bank").toString()));
 				
+				Game.GameBank.setBankAmount(Integer.parseInt(json.get("GoldCoins_Avail_Bank").toString())*5 + Integer.parseInt(json.get("SilverCoins_Avail_Bank").toString())*1 );
+				
 				 int currentPlayerTurn = Integer.parseInt(json.get("currentPlayerId").toString());
 				 LoadedGame(iNoOfPlayers, currentPlayerTurn);
 	}
