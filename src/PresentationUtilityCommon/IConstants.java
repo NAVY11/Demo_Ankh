@@ -420,6 +420,79 @@ public class IConstants {
 	
 	/** The g48 str. */
 	public static String g48Str = "The Thieves' Guild";
+	
+	/** The e1 */
+	public static Integer e1 = 1;
+	
+	/** The e1 str. */
+	public static String e1Str = "Fire";
+
+	/** The e2 */
+	public static Integer e2 = 2;
+	
+	/** The e2 str. */
+	public static String e2Str = "Fog";
+	
+	/** The e3 */
+	public static Integer e3 = 3;
+	
+	/** The e3 str. */
+	public static String e3Str = "Mysterious Murders";
+	
+	/** The e4 */
+	public static Integer e4 = 4;
+	
+	/** The e4 str. */
+	public static String e4Str = "Riots";
+	
+	/** The e5 */
+	public static Integer e5 = 5;
+	
+	/** The e5 str. */
+	public static String e5Str = "Subsidence";
+
+	/** The e6 */
+	public static Integer e6 = 6;
+	
+	/** The e6 str. */
+	public static String e6Str = "Trolls";
+	
+	/** The e7 */
+	public static Integer e7 = 7;
+	
+	/** The e7 str. */
+	public static String e7Str = "Bloody Stupid Johnson";
+	
+	/** The e8 */
+	public static Integer e8 = 8;
+	
+	/** The e8 str. */
+	public static String e8Str = "Demons from the Dungeon Dimensions";
+	
+	/** The e9 */
+	public static Integer e9 = 9;
+	
+	/** The e9 str. */
+	public static String e9Str = "The Dragon";
+
+	/** The e10 */
+	public static Integer e10 = 10;
+	
+	/** The e10 str. */
+	public static String e10Str = "Earthquake";
+	
+	/** The e11 */
+	public static Integer e11 = 11;
+	
+	/** The e11 str. */
+	public static String e11Str = "Explosion";
+	
+	/** The e12 */
+	public static Integer e12 = 12;
+	
+	/** The e12 str. */
+	public static String e12Str = "Flood";
+
 
 	
 	/** The green assassination cards. */

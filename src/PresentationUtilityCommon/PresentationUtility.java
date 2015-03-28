@@ -127,6 +127,25 @@ public class PresentationUtility {
 		default: return IConstants.PersonalityCard7;
 		}
 	}
+	
+	public static String getRandomEventCardNameById(Integer randomEventCardId){
+
+		switch (randomEventCardId) {
+		case 1:  return IConstants.e1Str;
+		case 2:  return IConstants.e2Str;
+		case 3:  return IConstants.e3Str;
+		case 4:  return IConstants.e4Str;
+		case 5:  return IConstants.e5Str;
+		case 6:  return IConstants.e6Str;
+		case 7:  return IConstants.e7Str;
+		case 8:  return IConstants.e8Str;
+		case 9:  return IConstants.e9Str;
+		case 10:  return IConstants.e10Str;
+		case 11:  return IConstants.e11Str;
+		case 12:  return IConstants.e12Str;
+		default: return IConstants.e2Str;
+		}
+	}
 
 	//Get comma separated string with distinct values
 	public static String getDistinctCommaSeparatedValues(String strCommaSeparatedString)

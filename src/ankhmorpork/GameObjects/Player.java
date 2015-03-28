@@ -2224,6 +2224,137 @@ public class Player {
 		case "c12" : cityAreaCard.NapHillAction(this);
 		}
 	}
+	
+	public void randomCardToPlay(){
+		String[] randomCardToSelect = new String[]{"2","4","6","9","10","11"};
+		System.out.println("Rolling Dice ");
+		Integer randomNumber = PresentationUtility.returnRandomNumber(1, randomCardToSelect.length);
+		String randomCardNumberSelected = randomCardToSelect[randomNumber == randomCardToSelect.length ? randomNumber -1 : randomNumber];
+		int randomCardNumberSelectedInt = Integer.parseInt(randomCardNumberSelected);
+		String randomEventCardName = PresentationUtility.getRandomEventCardNameById(randomCardNumberSelectedInt);
+		System.out.println("Random Event Card Selected by Rolling Dice : "+randomEventCardName);
+		switch(randomCardNumberSelectedInt){
+		case 2 : randomEventFog();
+		case 4 : randomEventRiots();
+		case 6 : randomEventTrolls();
+		case 9 : randomEventTheDragon();
+		case 10 : randomEventEarthquake();
+		case 11 : randomEventExplosion();
+		}
+	}
+	
+	public void randomEventFog(){
+		for(int i = 1; i <=5; i++){
+			String pickNewCardID = Game.GetRandomGreenCardFromDeck();
+			String cardName = PresentationUtility.getGreenCardNameById(Integer.parseInt(pickNewCardID));
+			System.out.println("Card picked : "+cardName);
+			for(GreenCard greenCard : Game.lstGreenCards){
+				if(greenCard.GetCardID().equals(pickNewCardID)){
+					greenCard.SetIsPlayed(true);
+					System.out.println(cardName + "discarded");
+				}
+			}
+		}
+	}
+	
+	public void randomEventRiots(){
+		Integer count = 0;
+		System.out.println("Have patience, checking Riots Random Event Card");
+		try {
+			System.getProperties().wait(3000);
+		} catch (InterruptedException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		for(TroubleMaker troubleMaker : Game.lstTroubleMaker){
+			if(troubleMaker.getArea_id() > 1){
+				count++;
+			}
+		}
+		if(count > 8){
+			System.out.println("There were more than 8 Trouble Makers on Board. Game will end now... ");
+			try {
+				System.getProperties().wait(1500);
+			} catch (InterruptedException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+			System.exit(0);
+		}else{
+			System.out.println("Your card went wasted because there weren't 8 or more Trouble Makers on board. ");
+		}
+	}
+	
+	public void randomEventTrolls(){
+		for(int i = 1; i <=3; i++){
+			System.out.println("Rolling Dice ");
+			Integer randomNumber = PresentationUtility.returnRandomNumber(1, 12);
+			System.out.println("Dice Value : " + randomNumber);
+			for(Troll troll : Game.lstTrolls){
+				if(troll.getArea_id() == 0){
+					troll.setArea_id(randomNumber);
+					System.out.println("Troll place in "+PresentationUtility.getCityAreaCardNameById(randomNumber));
+				}
+			}
+		}
+	}
+	
+	public void randomEventTheDragon(){
+		System.out.println("Rolling Dice ");
+		Integer randomNumber = PresentationUtility.returnRandomNumber(1, 12);
+		System.out.println("Dice Value : " + randomNumber);
+		for(Building building : Game.lstBuildings){
+			if(building.getArea_id() == randomNumber){
+				building.setArea_id(0);
+			}
+		}
+		System.out.println("Building(s) Successfully Removed from Area : " + PresentationUtility.getCityAreaCardNameById(randomNumber));
+		
+		for(Demon demon : Game.lstDemons){
+			if(demon.getArea_id() == randomNumber){
+				demon.setArea_id(0);
+			}
+		}
+		System.out.println("Demon(s) Successfully Removed from Area : " + PresentationUtility.getCityAreaCardNameById(randomNumber));
+		
+		for(Minion minion : Game.lstMinions){
+			if(minion.getArea_id() == randomNumber){
+				minion.setArea_id(0);
+			}
+		}
+		System.out.println("Minion(s) Successfully Removed from Area : " + PresentationUtility.getCityAreaCardNameById(randomNumber));
+		
+		for(Troll troll : Game.lstTrolls){
+			if(troll.getArea_id() == randomNumber){
+				troll.setArea_id(0);
+			}
+		}
+		System.out.println("Troll(s) Successfully Removed from Area : " + PresentationUtility.getCityAreaCardNameById(randomNumber));
+		
+		for(TroubleMaker troubleMaker : Game.lstTroubleMaker){
+			if(troubleMaker.getArea_id() == randomNumber){
+				troubleMaker.setArea_id(0);
+			}
+		}
+		System.out.println("TroubleMaker(s) Successfully Removed from Area : " + PresentationUtility.getCityAreaCardNameById(randomNumber));
+	}
 
-
+	public void randomEventEarthquake(){
+		randomEventExplosion();
+		randomEventExplosion();
+	}
+	
+	public void randomEventExplosion(){
+		System.out.println("Rolling Dice ");
+		Integer randomNumber = PresentationUtility.returnRandomNumber(1, 12);
+		System.out.println("Dice Value : " + randomNumber);
+		for(Building building : Game.lstBuildings){
+			if(building.getArea_id() == randomNumber){
+				building.setArea_id(0);
+				System.out.println("Building Successfully Removed from Area : " + PresentationUtility.getCityAreaCardNameById(randomNumber));
+				break;
+			}
+		}
+	}
+	
 }
