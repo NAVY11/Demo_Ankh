@@ -19,11 +19,9 @@ public class LordRustSelachiiWorde implements WinningCondition {
 		if (numberOfPlayers == 2)
 			return ControlledArea(objPlayer,7);
 	   else if (numberOfPlayers == 3)
-	        //Controlled Area
-		   return Boolean.TRUE;
+		   return ControlledArea(objPlayer,5);
 	   else if (numberOfPlayers == 4)
-	        //Controlled Area
-		   return Boolean.TRUE;
+		   return ControlledArea(objPlayer,4);
 	   return Boolean.FALSE;
 	}
 	

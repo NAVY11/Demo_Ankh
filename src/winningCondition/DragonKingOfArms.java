@@ -12,8 +12,8 @@ public class DragonKingOfArms implements WinningCondition {
       
 		int numberOfTroubleMarkers = 0;
         String troubleNotOnBoard = Game.GetTroubleMakerOnBoardAreaId();
-        String[] S1 = troubleNotOnBoard.split(",");
-        numberOfTroubleMarkers = S1.length;
+        String[] trblemkrNtonbrd = troubleNotOnBoard.split(",");
+        numberOfTroubleMarkers = trblemkrNtonbrd.length;
         if (numberOfTroubleMarkers == 8)
             return Boolean.TRUE;
         else

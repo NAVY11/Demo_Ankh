@@ -32,55 +32,5 @@ public class WinningConditionFactory {
 		else if (objPersonalityCard.getName().equals("CommanderVimes"))
 			return new CommanderVimes();
 		return null;
-}
-
-	
-//  public enum PersonalityCards {
-//  LordDeWorde(1),
-//  LordVetinari(2),
-//  LordSelachii(3),
-//  DragonKingOfArms(4),
-//  Chrysoprase(5),
-//  CommanderVimes(6),
-//  LordRust(7);
-	
-
-
-//  private static final Map<Integer, String> lookup
-//          = new HashMap<Integer, String>();
-//
-//  static {
-//      for (PersonalityCards s : EnumSet.allOf(PersonalityCards.class))
-//          lookup.put(s.getCode(), s.name());
-//  }
-//
-//  private int code;
-//
-//  private PersonalityCards(int code) {
-//      this.code = code;
-//  }
-//
-//  public int getCode() {
-//      return code;
-//  }
-//
-//  public static String get(int code) {
-//      return lookup.get(code);
-//  }
-//}
-
-//public static WinningCondition getWinningCircumstance(String PersonalityCard) {
-//  if (personalityCardType.equals(PersonalityCards.get(2)))
-//      return new LordVetinari();
-//  else if (personalityCardType.equals(PersonalityCards.get(1)) || personalityCardType.equals(PersonalityCards.get(3)) || personalityCardType.equals(PersonalityCards.get(7)))
-//      return new LordSelRusWor();
-//  else if (personalityCardType.equals(PersonalityCards.get(4)))
-//      return new DragonKingOfArms();
-//  else if (personalityCardType.equals(PersonalityCards.get(5)))
-//      return new Chrysoprase();
-//  else if (personalityCardType.equals(PersonalityCards.get(6)))
-//      return new CommanderVimes();
-//  return null;
-//}
-
+	}
 }
