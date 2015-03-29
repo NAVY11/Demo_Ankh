@@ -328,9 +328,9 @@ public class discworldboard extends Component {
 		}
 
 		GameStart.StartNewGame(Players, Colors, iNoOfPlayers);
-//		ViewFileTxt viewFileText = new ViewFileTxt();
-//		String currentPlayer = viewFileText.currentPlayerPlaying(Game.lstPlayers);
-//		System.out.println("The current Player Playing is player "+ currentPlayer);
+		//		ViewFileTxt viewFileText = new ViewFileTxt();
+		//		String currentPlayer = viewFileText.currentPlayerPlaying(Game.lstPlayers);
+		//		System.out.println("The current Player Playing is player "+ currentPlayer);
 
 
 		//Get Starting Player randomly
@@ -406,8 +406,7 @@ public class discworldboard extends Component {
 					{
 						sbValidIDs.append(grnCard.GetCardID());		
 						String ActionList = Game.GetGreenCardActions(grnCard.GetCardID());
-						//System.out.printf("%-5s%-5s%-40s%-5s%-50s%-5s%-60s\n",grnCard.CardID ,  " : " ,  grnCard.getName() , " : " , ActionList," : ","Scroll Action : "+grnCard.GetActionDescription());
-
+						System.out.printf("%-5s%-5s%-40s%-5s%-50s%-5s%-60s\n",grnCard.CardID ,  " : " ,  grnCard.getName() , " : " , ActionList," : ","Scroll Action : "+grnCard.GetActionDescription());
 						//System.out.println("Card '" + grnCard.getName() + "' has following actions :");
 						//System.out.print(ActionList);
 					}
@@ -434,37 +433,43 @@ public class discworldboard extends Component {
 				boolean actionPerformed = false;				
 				for(int i = 0; i<ActionArray.length; i++)
 				{
-					String ans = null;
-					if(i!=ActionArray.length-1 || actionPerformed)
+					if(!grnCard.GetIsPlayed())
 					{
-						System.out.println("Do you wish to perform " + ActionArray[i] + " action? Y/N");
-						while(true)
-						{						
-							ans = BR.readLine();
-							if(ans.equalsIgnoreCase("Y") || ans.equalsIgnoreCase("N"))
-							{
-								break;
+						String ans = null;
+						if(i!=ActionArray.length-1 || actionPerformed)
+						{
+							System.out.println("Do you wish to perform " + ActionArray[i] + " action? Y/N");
+							while(true)
+							{						
+								ans = BR.readLine();
+								if(ans.equalsIgnoreCase("Y") || ans.equalsIgnoreCase("N"))
+								{
+									break;
+								}
+								else
+									System.out.println("Incorrect input. Please try again.");
 							}
-							else
-								System.out.println("Incorrect input. Please try again.");
 						}
-					}
-					else
-					{
-						System.out.println("Performing action "+ ActionArray[i]);
-						ans="Y";
-					}
-					if(ans.equalsIgnoreCase("Y"))
-					{
-						actionPerformed = true;
-						//Does a Player wish to interrupt? //TO DO
-						//If Yes : Which Player wants to interrupt?
-						//Perform Action
-						success = objPlayer.PerformCardAction(ActionArray[i], CardID);
+						else
+						{
+							System.out.println("Performing action "+ ActionArray[i]);
+							ans="Y";
+						}
+						if(ans.equalsIgnoreCase("Y"))
+						{
+							actionPerformed = true;
+							//Does a Player wish to interrupt? //TO DO
+							//If Yes : Which Player wants to interrupt?
+							//Perform Action
+							success = objPlayer.PerformCardAction(ActionArray[i], CardID);
 
+						}
+						else
+							continue;
 					}
+
 					else
-						continue;
+						break; //if One of the Action causes the Player to Discard the Card then the Loop must not Continue, hence break;
 				}
 
 				if(success)
