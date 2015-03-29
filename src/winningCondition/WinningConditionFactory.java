@@ -17,14 +17,14 @@ import ankhmorpork.GameObjects.Cards.PersonalityCard;
  * To change this template use File | Settings | File Templates.
  */
 public class WinningConditionFactory {
-
+	
 	static int PlayerID = 0;
 	static PersonalityCard objPersonalityCard = Game.GetPersonalityCardByPlayerID(PlayerID);
 	public static WinningCondition getWinningCircumstance(String PersonalityCard) {
 		if ((objPersonalityCard.getName()).equals("LordVetinari"))
 			return new LordVetinari();
-//  	else if (personalityCardType.equals(PersonalityCards.get(1)) || personalityCardType.equals(PersonalityCards.get(3)) || personalityCardType.equals(PersonalityCards.get(7)))
-  //   		return new LordSelRusWor();
+		else if ((objPersonalityCard.getName()).equals("LordDeWorde") || (objPersonalityCard.getName()).equals("LordSelachii") || (objPersonalityCard.getName()).equals("LordRust"))
+     		return new LordRustSelachiiWorde();
 		else if (objPersonalityCard.getName().equals("DragonKingOfArms"))
        		return new DragonKingOfArms();
 		else if (objPersonalityCard.getName().equals("Chrysoprase"))
