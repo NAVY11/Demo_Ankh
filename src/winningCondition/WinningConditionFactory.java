@@ -6,6 +6,7 @@ import java.util.Map;
 
 import ankhmorpork.Game.Game;
 import ankhmorpork.GameObjects.Minion;
+import ankhmorpork.GameObjects.Player;
 import ankhmorpork.GameObjects.Cards.GreenCard;
 import ankhmorpork.GameObjects.Cards.PersonalityCard;
 
@@ -18,9 +19,11 @@ import ankhmorpork.GameObjects.Cards.PersonalityCard;
  */
 public class WinningConditionFactory {
 	
-	static int PlayerID = 0;
-	static PersonalityCard objPersonalityCard = Game.GetPersonalityCardByPlayerID(PlayerID);
-	public static WinningCondition getWinningCircumstance(String PersonalityCard) {
+//	static int PlayerID = 0;
+//	static PersonalityCard objPersonalityCard = Game.GetPersonalityCardByPlayerID(PlayerID);
+	public static WinningCondition getWinningCircumstance(Player objPlayer) {
+		int playeID = objPlayer.getPlayer_id();
+		PersonalityCard objPersonalityCard = Game.GetPersonalityCardByPlayerID(playeID);
 		if ((objPersonalityCard.getName()).equals("LordVetinari"))
 			return new LordVetinari();
 		else if ((objPersonalityCard.getName()).equals("LordDeWorde") || (objPersonalityCard.getName()).equals("LordSelachii") || (objPersonalityCard.getName()).equals("LordRust"))
