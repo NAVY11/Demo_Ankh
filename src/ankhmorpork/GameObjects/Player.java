@@ -844,7 +844,7 @@ public class Player {
 			{
 			case "Assassination" : return this.Assassination();
 			case "Remove one trouble marker" : return this.UserRemoveOneTroubleMarker();
-			case "Take money" : return this.TakeMoneyFromBank(CardID);
+			case "Take Money" : return this.TakeMoneyFromBank(CardID);
 			case "Random Event" : this.randomCardToPlay(); 
 			case "Play another card" : return this.PlayAnotherCard(CardID);
 			//				case "Interrupt " : return 
