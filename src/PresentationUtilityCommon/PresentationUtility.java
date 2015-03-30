@@ -127,7 +127,7 @@ public class PresentationUtility {
 		default: return IConstants.PersonalityCard7;
 		}
 	}
-	
+
 	public static String getRandomEventCardNameById(Integer randomEventCardId){
 
 		switch (randomEventCardId) {
@@ -159,15 +159,15 @@ public class PresentationUtility {
 				strDistinctValues+=arryDistinctValues[i]+",";
 			}
 		}
-		
+
 		if(strDistinctValues.length()>1)
 		{
 			strDistinctValues = strDistinctValues.substring(1,strDistinctValues.length()-1);
 		}
-		
+
 		return strDistinctValues;
 	}
-	
+
 	/**
 	 * Gets the city area card name by id.
 	 *
@@ -201,9 +201,16 @@ public class PresentationUtility {
 		while(true)
 		{
 			ans = br.readLine();
-			if(strValidAnswersCommaSeparated.contains("," + ans.trim() + ","))
+			if(ans.equals(null)||ans.equals(""))
 			{
-				return ans;				
+				if(strValidAnswersCommaSeparated.contains("," + ans.trim() + ","))
+				{
+					return ans;				
+				}
+				else
+				{
+					System.out.println("Invalid input. Please try again.");
+				}
 			}
 			else
 			{
@@ -211,8 +218,8 @@ public class PresentationUtility {
 			}
 		}
 	}	
-	
-	
+
+
 	/**
 	 * Gets the green card name by id.
 	 *
@@ -413,7 +420,7 @@ public class PresentationUtility {
 		}
 	}
 
-	
+
 
 	/**
 	 * Checks if is this green card assassination card.
