@@ -1179,16 +1179,12 @@ public class Player {
 				}
 
 				//Place or Remove Trouble Marker from New Area
-				if(Game.AreaHasTroubleMarker(Integer.parseInt(strMoveToArea)))
-				{
-					Game.removeTroubleMarkerByAreaId(Integer.parseInt(strMoveToArea));							
-					System.out.println("Trouble Marker was removed from : "+PresentationUtility.getCityAreaCardNameById(Integer.parseInt(strMoveToArea)));													
-				}
-				else
+				if(!Game.AreaHasTroubleMarker(Integer.parseInt(strMoveToArea)))
 				{
 					PlaceATroubleMarkerInArea(Integer.parseInt(strMoveToArea));														
-					System.out.println("Trouble Marker was placed in : "+PresentationUtility.getCityAreaCardNameById(Integer.parseInt(strMoveToArea)));																				
+					System.out.println("Trouble Marker was placed in : "+PresentationUtility.getCityAreaCardNameById(Integer.parseInt(strMoveToArea)));													
 				}
+				
 				System.out.println("Minion moved successfully!");
 				success = true;
 				break;//Important to break as this should happen for 1 Minion Only
@@ -2085,29 +2081,26 @@ public class Player {
 			if(AreaList.contains(br))
 			{
 				Minion objMinion = Game.GetMinionsByMinionID(Integer.parseInt(placingAMinionStr.substring(0,3)));
-				objMinion.setArea_id(Integer.parseInt(br.toString()));										
+				//objMinion.setArea_id(Integer.parseInt(br.toString()));										
 				//Place or Remove Trouble Marker on Addition of Minion
 				if(Game.AreaHasMinion(Integer.parseInt(br)))
 				{						
+					objMinion.setArea_id(Integer.parseInt(br.toString()));
 					Game.SetMinion(objMinion);
 					System.out.println(this.getPlayer_name()+"'s Minion was palced in "+PresentationUtility.getCityAreaCardNameById(Integer.parseInt(br)));
 					success = true;
 
-					if(Game.AreaHasTroubleMarker(Integer.parseInt(br)))
+					if(!Game.AreaHasTroubleMarker(Integer.parseInt(br)))
 					{
-						Game.removeTroubleMarkerByAreaId(Integer.parseInt(br));							
-						System.out.println("Trouble Marker was removed from : "+PresentationUtility.getCityAreaCardNameById(Integer.parseInt(br)));													
-					}
-					else
-					{
+						//Place a trouble Marker if not present initially
 						PlaceATroubleMarkerInArea(Integer.parseInt(br));														
-						System.out.println("Trouble Marker was placed in : "+PresentationUtility.getCityAreaCardNameById(Integer.parseInt(br)));																				
-					}
-
+						System.out.println("Trouble Marker was placed in : "+PresentationUtility.getCityAreaCardNameById(Integer.parseInt(br)));
+					}					
 				}
 				else
 				{
-					//Area has no minion previously so Trouble Marker won't come in picture 
+					//Area has no minion previously so Trouble Marker won't come in picture
+					objMinion.setArea_id(Integer.parseInt(br.toString()));
 					Game.SetMinion(objMinion);
 					System.out.println(this.getPlayer_name()+"'s Minion was palced in "+PresentationUtility.getCityAreaCardNameById(Integer.parseInt(br)));
 					success = true;
@@ -2144,23 +2137,18 @@ public class Player {
 					PlaceATroubleMarkerInArea(Integer.parseInt(strMoveFromArea));														
 					System.out.println("Trouble Marker was placed in : " + PresentationUtility.getCityAreaCardNameById(Integer.parseInt(strMoveFromArea)));																				
 				}
-				//Place/Remove a Trouble marker where Minion is placed
+				//Place a Trouble marker where Minion is placed
 				if(Game.AreaHasMinion(Integer.parseInt(strMoveToArea)))
 				{
 					//Set Minion Area
 					objMinion.setArea_id(Integer.parseInt(strMoveToArea));
 					Game.SetMinion(objMinion);
 					//Adjust Trouble MArker
-					if(Game.AreaHasTroubleMarker(Integer.parseInt(strMoveToArea)))
-					{
-						Game.removeTroubleMarkerByAreaId(Integer.parseInt(strMoveToArea));							
-						System.out.println("Trouble Marker was removed From : "+PresentationUtility.getCityAreaCardNameById(Integer.parseInt(strMoveToArea)));													
-					}
-					else
+					if(!Game.AreaHasTroubleMarker(Integer.parseInt(strMoveToArea)))
 					{
 						PlaceATroubleMarkerInArea(Integer.parseInt(strMoveToArea));														
-						System.out.println("Trouble Marker was placed in : " + PresentationUtility.getCityAreaCardNameById(Integer.parseInt(strMoveToArea)));																				
-					}
+						System.out.println("Trouble Marker was placed in : " + PresentationUtility.getCityAreaCardNameById(Integer.parseInt(strMoveToArea)));													
+					}					
 				}
 				else
 				{

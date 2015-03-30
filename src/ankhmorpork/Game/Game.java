@@ -552,7 +552,7 @@ public class Game {
 				String[] arryAreasHavingMinion = strAreasHavingMinion.split(",");
 				for(int i =0; i<arryAreasHavingMinion.length;i++)
 				{
-					strValidAreas+=arryAreasHavingMinion[i]+","+PresentationUtility.GetAdjacentAreas(Integer.parseInt(arryAreasHavingMinion[i]))+",";
+					strValidAreas+=arryAreasHavingMinion[i]+ PresentationUtility.GetAdjacentAreas(Integer.parseInt(arryAreasHavingMinion[i]));
 				}
 			}
 			
