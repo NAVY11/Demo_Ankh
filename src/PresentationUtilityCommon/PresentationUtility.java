@@ -197,6 +197,16 @@ public class PresentationUtility {
 	public static String GetValidAnswerFromUser(String strValidAnswersCommaSeparated) throws IOException	
 	{
 		String ans= "";
+		if(!strValidAnswersCommaSeparated.startsWith(","))
+		{
+			strValidAnswersCommaSeparated = ","+strValidAnswersCommaSeparated;
+		}
+		
+		if(!strValidAnswersCommaSeparated.endsWith(","))
+		{
+			strValidAnswersCommaSeparated = strValidAnswersCommaSeparated+",";
+		}
+		
 		BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
 		while(true)
 		{
