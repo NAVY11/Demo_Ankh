@@ -518,7 +518,7 @@ public class Game {
 		
 		public static String GetAreasHavingMinionOfPlayer(int PlayerID)
 		{
-			String strValidAreas = "";
+			String strValidAreas = ",";
 			for(Minion objMinion : Game.lstMinions)
 			{
 				if(objMinion.getPlayer_id()==PlayerID && objMinion.getArea_id()!=0)
@@ -569,6 +569,10 @@ public class Game {
 			{
 				strAreaIDsCommaSeparated=strAreaIDsCommaSeparated.substring(1);
 			}
+			if(strAreaIDsCommaSeparated.endsWith(","))
+			{
+				strAreaIDsCommaSeparated=strAreaIDsCommaSeparated.substring(1);
+			}
 			String[] AreaID = strAreaIDsCommaSeparated.split(",");
 			
 			for(int i = 0; i<AreaID.length; i++)
@@ -584,6 +588,11 @@ public class Game {
 		{
 			strPlayerIDsCommaSeparated=strPlayerIDsCommaSeparated.substring(1);
 		}
+		if(strPlayerIDsCommaSeparated.endsWith(","))
+		{
+			strPlayerIDsCommaSeparated=strPlayerIDsCommaSeparated.substring(1);
+		}
+		
 		String[] PlayerID = strPlayerIDsCommaSeparated.split(",");
 
 		for(int i = 0; i<PlayerID.length; i++)
