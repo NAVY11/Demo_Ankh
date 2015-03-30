@@ -552,6 +552,10 @@ public class Game {
 		//Display Area names to User
 		public static void DisplayAreas(String strAreaIDsCommaSeparated)
 		{
+			if(strAreaIDsCommaSeparated.startsWith(","))
+			{
+				strAreaIDsCommaSeparated=strAreaIDsCommaSeparated.substring(1);
+			}
 			String[] AreaID = strAreaIDsCommaSeparated.split(",");
 			
 			for(int i = 0; i<AreaID.length; i++)

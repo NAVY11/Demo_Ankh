@@ -88,7 +88,7 @@ public class GameStart {
 			Game.lstDemons.add(objDemon);
 		}
 		//Initialize Trouble Marker
-		for(int i=1; i<5; i++)
+		for(int i=1; i<13; i++)
 		{
 			TroubleMaker objTroubleMarker = new TroubleMaker(i);			
 			if(i==1)
@@ -155,8 +155,11 @@ public class GameStart {
 						Player objPlayer = Game.GetPlayer(PlayerID);
 						Minion objMinion = new Minion(MinionID,objPlayer.getPlayer_color(),AreaCode,PlayerID);
 						Game.lstMinions.add(objMinion);
+						if(i<7)//Only six buildings per Player
+						{
 						Building objBuilding = new Building(BuildingID,objPlayer.getPlayer_color(),0,PlayerID);
 						Game.lstBuildings.add(objBuilding);
+						}
 					}
 
 				}
