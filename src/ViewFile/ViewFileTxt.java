@@ -125,8 +125,7 @@ public class ViewFileTxt {
 		boolean isTroubleMakerInArea = false;
 		
 		for(TroubleMaker troubleMaker : troubleMakers){ // TODO: Have to verify this condition, whether it is working perfectly or not
-			if(troubleMaker.getArea_id() > 0 && troubleMakerDetails.size() > 0){
-				if(troubleMakerDetails.containsKey(troubleMaker.getArea_id()) && !(troubleMakerDetails.get(troubleMaker.getArea_id())))
+			if(troubleMaker.getArea_id() > 0){
 					isTroubleMakerInArea = true;
 			}
 			troubleMakerDetails.put(troubleMaker.getArea_id(), isTroubleMakerInArea);
