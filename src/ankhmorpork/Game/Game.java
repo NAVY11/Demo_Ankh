@@ -929,12 +929,12 @@ public class Game {
 		{
 			String sbAreaListStr = "";
 			StringBuilder sbAreaList = new StringBuilder();
-			TroubleMaker objTroubleMaker = new TroubleMaker();
+			
 			for(TroubleMaker objTM : Game.lstTroubleMaker)
 			{
 				if(objTM.getArea_id()!=0)
 				{
-					sbAreaList.append(objTroubleMaker.getArea_id()+ ",");					
+					sbAreaList.append(objTM.getArea_id()+ ",");					
 				}
 			}
 			

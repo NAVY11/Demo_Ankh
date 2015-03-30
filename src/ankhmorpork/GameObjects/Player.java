@@ -701,7 +701,7 @@ public class Player {
 		String[] arryAreaList = strAreaList.split(",");
 		for(int i = 0; i<arryAreaList.length;i++)
 		{
-			System.out.print(arryAreaList[i]+":"+PresentationUtility.getCityAreaCardNameById(Integer.parseInt(arryAreaList[i])));
+			System.out.println(arryAreaList[i]+":"+PresentationUtility.getCityAreaCardNameById(Integer.parseInt(arryAreaList[i])));
 		}
 		boolean Run = true;
 		String ans = "";
@@ -710,7 +710,7 @@ public class Player {
 			ans = BR.readLine();
 			for(int i=0;i<arryAreaList.length;i++)
 			{
-				if(arryAreaList[i]==ans)
+				if(arryAreaList[i].equalsIgnoreCase(ans))
 				{
 					Run=false;
 					break;
@@ -797,6 +797,7 @@ public class Player {
 	//Player performs action
 	public boolean PerformCardAction(String ActionID, String CardID) throws IOException
 	{
+		//ActionID ="Remove One Trouble Marker";
 		boolean success = false;
 		if(ActionID.equalsIgnoreCase("Scroll"))
 		{
