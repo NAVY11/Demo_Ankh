@@ -433,7 +433,8 @@ public class discworldboard extends Component {
 				boolean actionPerformed = false;				
 				for(int i = 0; i<ActionArray.length; i++)
 				{
-					if(!grnCard.GetIsPlayed())
+					//Check whether the Card still belongs to current Player and can it be played
+					if(!grnCard.GetIsPlayed() && grnCard.getPlayerID()==objPlayer.getPlayer_id())
 					{
 						String ans = null;
 						if(i!=ActionArray.length-1 || actionPerformed)
