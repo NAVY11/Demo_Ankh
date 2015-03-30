@@ -2277,7 +2277,8 @@ public class Player {
 		}
 	}
 	
-	public void randomCardToPlay(){
+	public boolean randomCardToPlay(){
+		boolean success = true;
 		String[] randomCardToSelect = new String[]{"2","4","6","9","10","11"};
 		System.out.println("Rolling Dice ");
 		Integer randomNumber = PresentationUtility.returnRandomNumber(1, randomCardToSelect.length);
@@ -2286,16 +2287,18 @@ public class Player {
 		String randomEventCardName = PresentationUtility.getRandomEventCardNameById(randomCardNumberSelectedInt);
 		System.out.println("Random Event Card Selected by Rolling Dice : "+randomEventCardName);
 		switch(randomCardNumberSelectedInt){
-		case 2 : randomEventFog();
-		case 4 : randomEventRiots();
-		case 6 : randomEventTrolls();
-		case 9 : randomEventTheDragon();
-		case 10 : randomEventEarthquake();
-		case 11 : randomEventExplosion();
+		case 2 : return randomEventFog();
+		case 4 : return randomEventRiots();
+		case 6 : return randomEventTrolls();
+		case 9 : return randomEventTheDragon();
+		case 10 : return randomEventEarthquake();
+		case 11 : return randomEventExplosion();
 		}
+		return success;
 	}
 	
-	public void randomEventFog(){
+	public boolean randomEventFog(){
+		boolean success = false;
 		for(int i = 1; i <=5; i++){
 			String pickNewCardID = Game.GetRandomGreenCardFromDeck();
 			String cardName = PresentationUtility.getGreenCardNameById(Integer.parseInt(pickNewCardID));
@@ -2303,14 +2306,17 @@ public class Player {
 			for(GreenCard greenCard : Game.lstGreenCards){
 				if(greenCard.GetCardID().equals(pickNewCardID)){
 					greenCard.SetIsPlayed(true);
+					success = true;
 					System.out.println(cardName + "discarded");
 				}
 			}
 		}
+		return success;
 	}
 	
-	public void randomEventRiots(){
+	public boolean randomEventRiots(){
 		Integer count = 0;
+		boolean success = false;
 		System.out.println("Have patience, checking Riots Random Event Card");
 		try {
 			System.getProperties().wait(3000);
@@ -2334,10 +2340,13 @@ public class Player {
 			System.exit(0);
 		}else{
 			System.out.println("Your card went wasted because there weren't 8 or more Trouble Makers on board. ");
+			return success;
 		}
+		return success;
 	}
 	
-	public void randomEventTrolls(){
+	public boolean randomEventTrolls(){
+		boolean success = false;
 		for(int i = 1; i <=3; i++){
 			System.out.println("Rolling Dice ");
 			Integer randomNumber = PresentationUtility.returnRandomNumber(1, 12);
@@ -2348,10 +2357,13 @@ public class Player {
 					System.out.println("Troll place in "+PresentationUtility.getCityAreaCardNameById(randomNumber));
 				}
 			}
+			success = true;
 		}
+		return success;
 	}
 	
-	public void randomEventTheDragon(){
+	public boolean randomEventTheDragon(){
+		boolean success = false;
 		System.out.println("Rolling Dice ");
 		Integer randomNumber = PresentationUtility.returnRandomNumber(1, 12);
 		System.out.println("Dice Value : " + randomNumber);
@@ -2386,27 +2398,34 @@ public class Player {
 		for(TroubleMaker troubleMaker : Game.lstTroubleMaker){
 			if(troubleMaker.getArea_id() == randomNumber){
 				troubleMaker.setArea_id(0);
+				success = true;
 			}
 		}
 		System.out.println("TroubleMaker(s) Successfully Removed from Area : " + PresentationUtility.getCityAreaCardNameById(randomNumber));
+		return success;
 	}
 
-	public void randomEventEarthquake(){
-		randomEventExplosion();
-		randomEventExplosion();
+	public boolean randomEventEarthquake(){
+		boolean success = false;
+		success = randomEventExplosion();
+		success = randomEventExplosion();
+		return success;
 	}
 	
-	public void randomEventExplosion(){
+	public boolean randomEventExplosion(){
+		boolean success = false;
 		System.out.println("Rolling Dice ");
 		Integer randomNumber = PresentationUtility.returnRandomNumber(1, 12);
 		System.out.println("Dice Value : " + randomNumber);
 		for(Building building : Game.lstBuildings){
 			if(building.getArea_id() == randomNumber){
 				building.setArea_id(0);
+				success = true;
 				System.out.println("Building Successfully Removed from Area : " + PresentationUtility.getCityAreaCardNameById(randomNumber));
 				break;
 			}
 		}
+		return success;
 	}
 	
 }
