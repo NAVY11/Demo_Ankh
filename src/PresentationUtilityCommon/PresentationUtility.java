@@ -387,62 +387,33 @@ public class PresentationUtility {
 		return false;
 	}
 
-	public static String GetAdjacentAreas(int iAreaID){
-
-		switch(iAreaID)
-		{
-		case 1 : return "2,3,12";
-		case 2 : return "1,3,4,11,12";
-		case 3 : return "1,2,4";
-		case 4 : return "2,3,5,6,10";
-		case 5 : return "4,6,7,8,10";
-		case 6 : return "4,5,7";
-		case 7 : return "5,6,8";
-		case 8 : return "1,9,5";
-		case 9 : return "8,10,11";
-		case 10 : return "2,4,5,9";
-		case 11 : return "2,9,12";
-		case 12 : return "1,2,12";	
-		default : return "";
-		}
-	}
-
 	/**
 	 * Gets the adjacent areas.
 	 *
 	 * @param areaId the area id
 	 * @return the adjacent areas
 	 */
-	public String getAdjacentAreas(String areaId){
-		String adjacentAreasList = "";
-		Integer currentAreaId = Integer.parseInt(areaId);
-		if(currentAreaId == 1){
-			adjacentAreasList = "2,3,12";
-		}else if(currentAreaId == 2){
-			adjacentAreasList = "1,3,4,10,11,12";
-		}else if(currentAreaId == 3){
-			adjacentAreasList = "1,2,4";
-		}else if(currentAreaId == 4){
-			adjacentAreasList = "2,3,5,6,10";
-		}else if(currentAreaId == 5){
-			adjacentAreasList = "4,6,7,8,10";
-		}else if(currentAreaId == 6){
-			adjacentAreasList = "4,5,7";
-		}else if(currentAreaId == 7){
-			adjacentAreasList = "5,6,8";
-		}else if(currentAreaId == 8){
-			adjacentAreasList = "5,7,9";
-		}else if(currentAreaId == 9){
-			adjacentAreasList = "8,10,11";
-		}else if(currentAreaId == 10){
-			adjacentAreasList = "2,4,5,9,11";
-		}else if(currentAreaId == 11){
-			adjacentAreasList = "2,9,10,12";
-		}else if(currentAreaId == 12){
-			adjacentAreasList = "1,2,11";
+	public static String GetAdjacentAreas(int iAreaID){
+
+		switch(iAreaID)
+		{
+		case 1 : return ",2,3,12,";
+		case 2 : return ",1,3,4,11,12,";
+		case 3 : return ",1,2,4,";
+		case 4 : return ",2,3,5,6,10,";
+		case 5 : return ",4,6,7,8,10,";
+		case 6 : return ",4,5,7,";
+		case 7 : return ",5,6,8,";
+		case 8 : return ",1,9,5,";
+		case 9 : return ",8,10,11,";
+		case 10 : return ",2,4,5,9,";
+		case 11 : return ",2,9,12,";
+		case 12 : return ",1,2,12,";	
+		default : return "";
 		}
-		return adjacentAreasList;
 	}
+
+	
 
 	/**
 	 * Checks if is this green card assassination card.
