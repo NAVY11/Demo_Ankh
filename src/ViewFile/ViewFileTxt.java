@@ -148,14 +148,13 @@ public class ViewFileTxt {
 		String colorOfBuilding = "no";
 		
 		for(Building building : buildings){ // TODO: Have to verify this condition, whether it is working perfectly or not
-			if(building.getArea_id() > 0 && buildingDetails.size() > 0){
-				if(buildingDetails.containsKey(building.getArea_id()))
-					for(Player player : Game.lstPlayers){
-						if(player.getPlayer_id() == building.getPlayer_id()){
-							colorOfBuilding = player.getPlayer_color().toUpperCase();
-						}
+			if(building.getArea_id() > 0){
+				for(Player player : Game.lstPlayers){
+					if(player.getPlayer_id() == building.getPlayer_id()){
+						colorOfBuilding = player.getPlayer_color().toUpperCase();
 					}
-					isBuildingInArea = true;
+				}
+				isBuildingInArea = true;
 			}
 			buildingDetails.put(building.getArea_id(), colorOfBuilding);
 		}
@@ -176,15 +175,14 @@ public class ViewFileTxt {
 		int countOfTrollsInArea = 0;
 		
 		for(Troll troll : trolls){ // TODO: Have to verify this condition, whether it is working perfectly or not
-			if(troll.getArea_id() > 0 && trollDetails.size() > 0){
-				if(trollDetails.get(troll.getArea_id()) > 0)
-					countOfTrollsInArea = trollDetails.get(troll.getArea_id()) + 1 ;
+			if(troll.getArea_id() > 0){
+				countOfTrollsInArea += 1 ;
 			}
 			trollDetails.put(troll.getArea_id(), countOfTrollsInArea);
 		}
 		
 		for(int i = 1; i <=12; i++){
-			trollGeneralInfoStr += "\n" + PresentationUtility.getCityAreaCardNameById(i) + " : " + (trollDetails.get(i) != null ? "1" : "0");
+			trollGeneralInfoStr += "\n" + PresentationUtility.getCityAreaCardNameById(i) + " : " + (trollDetails.get(i) != null && trollDetails.get(i) > 0? "1" : "0");
 		}
 		
 		return trollGeneralInfoStr + "\n";
@@ -216,8 +214,8 @@ public class ViewFileTxt {
 	public static String playerDetailsMinBuildDollar(Integer playerId){
 		String playerDetailsMinBuildDollarStr = "\n\t";
 		
-		playerDetailsMinBuildDollarStr += "- "+Game.GetMinionsOnBoardByPlayerID(playerId).size() + " minion(s) "
-											+ Game.GetBuildingsByPlayerID(playerId).size() + " building(s) "
+		playerDetailsMinBuildDollarStr += "- "+(12-Game.GetMinionsOnBoardByPlayerID(playerId).size()) + " minion(s) "
+											+ (6-Game.GetBuildingsByPlayerIDAndActiveAndOnBoard(playerId).size()) + " building(s) "
 											+ Game.GetPlayer(playerId).getPlayerAmount() + " Ankh-Morpork dollars";
 		
 		return playerDetailsMinBuildDollarStr;
@@ -230,7 +228,7 @@ public class ViewFileTxt {
 			playerDetailsCityAreaCardsStr = "\n\t";
 			playerDetailsCityAreaCardsStr += "- City Area Cards: ";
 			for(CityAreaCard cityAreaCard : cityAreaCardsByPlayerId){
-				playerDetailsCityAreaCardsStr += "\n\t" + cityAreaCard.getName();
+				playerDetailsCityAreaCardsStr += "\n\t" + cityAreaCard.GetAreaName();
 			}
 		}
 		return playerDetailsCityAreaCardsStr;

@@ -830,7 +830,7 @@ public class Player {
 			case "g36" : return this.theHarryKingOrShonkyShopFunctionality(CardID, 1);
 			case "g37" : return this.theSacharissaCripslockFunctionality();
 			case "g38" : return this.theRosiePalmFunctionality();
-			case "g39" : return this.theDyskFunctionality();
+			case "g39" : return this.theDuckmanFunctionality();
 			case "g41" : return this.theBeggersGuildFunctionality();
 			case "g43" : return this.theZorgoTheRetroFunctionality();
 			case "g44" : return this.theFoolsGuildFunctionality(CardID);
@@ -845,7 +845,7 @@ public class Player {
 			case "Assassination" : return this.Assassination();
 			case "Remove one trouble marker" : return this.UserRemoveOneTroubleMarker();
 			case "Take money" : return this.TakeMoneyFromBank(CardID);
-			//				case "Random Event" : return 
+			case "Random Event" : this.randomCardToPlay(); 
 			case "Play another card" : return this.PlayAnotherCard(CardID);
 			//				case "Interrupt " : return 
 			case "Place a Minion" : return this.placeAMinionFunctionality();

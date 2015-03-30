@@ -427,6 +427,19 @@ public class Game {
 			return Buildings;
 		}
 		
+		public static ArrayList<Building> GetBuildingsByPlayerIDAndActiveAndOnBoard(int PlayerID)
+		{
+			ArrayList<Building> Buildings = new ArrayList<Building>();
+			for(Building objBuilding : lstBuildings)
+			{
+				if(objBuilding.getPlayer_id()== PlayerID && objBuilding.getActive() && objBuilding.getArea_id() > 0)
+				{
+					Buildings.add(objBuilding);
+				}
+			}					
+			return Buildings;
+		}
+		
 		/**
 		 * Gets the buildings by player id.
 		 *
@@ -438,7 +451,7 @@ public class Game {
 			ArrayList<Building> Buildings = new ArrayList<Building>();
 			for(Building objBuilding : lstBuildings)
 			{
-				if(objBuilding.getArea_id()== PlayerID && objBuilding.getActive())
+				if(objBuilding.getPlayer_id()== PlayerID && objBuilding.getActive())
 				{
 					Buildings.add(objBuilding);
 				}
