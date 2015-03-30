@@ -493,7 +493,8 @@ public class discworldboard extends Component {
 				}
 				else
 				{
-					System.out.println("Opss! Acion failed. Please try again.");
+					System.out.println("Opss! Acion failed.");
+					actionPerformed = true;//Ignoring failure as no roll-back is available right now
 				}
 
 			}					
