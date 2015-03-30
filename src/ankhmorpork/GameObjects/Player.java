@@ -1255,9 +1255,7 @@ public class Player {
 	{
 		//Read the scroll
 		boolean success = false;
-		System.out.println("The Die has been rolled: ");
-		BufferedReader brChoiceBuff = new BufferedReader(new InputStreamReader(System.in));
-		String brChoice = brChoiceBuff.readLine();		
+		System.out.println("The Die has been rolled: ");						
 		Integer rollingDiceNumber = PresentationUtility.returnRandomNumber(1, 12);
 		System.out.println("It is a Roll of "+rollingDiceNumber+"!");
 		if(rollingDiceNumber >= 7)
