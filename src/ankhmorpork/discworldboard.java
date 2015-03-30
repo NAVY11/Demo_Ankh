@@ -473,10 +473,13 @@ public class discworldboard extends Component {
 						break; //if One of the Action causes the Player to Discard the Card then the Loop must not Continue, hence break;
 				}
 
-				if(success)
-				{							
-					//Set Current card as 'Played'
+				if(success && grnCard.getPlayerID()==objPlayer.getPlayer_id())
+				{
+					//Set Current card as 'Played' provided card still belongs to current Player
 					Game.SetGreenCardIsPlayed(CardID, true);
+				}
+				if(success)
+				{
 					//Get number of Green Crads available with Player
 					int CardsInHand = Game.GetPlayerGreenCardCount(objPlayer.getPlayer_id());
 

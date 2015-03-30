@@ -800,9 +800,11 @@ public class Player {
 		boolean success = false;
 		if(ActionID.equalsIgnoreCase("Scroll"))
 		{
+			CardID = "g20";
 			//this.theFireBrigadeFunctionality();
 			//this.theZorgoTheRetroFunctionality();
 			//this.mrBentFunctionality(CardID);
+			//this.theFoolsGuildFunctionality(CardID);
 			switch(CardID)
 			{
 			case "g1" : return this.mrBoggisFunctionality();

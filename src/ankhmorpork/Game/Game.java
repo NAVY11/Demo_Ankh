@@ -572,10 +572,7 @@ public class Game {
 			{
 				strAreaIDsCommaSeparated=strAreaIDsCommaSeparated.substring(1);
 			}
-			if(strAreaIDsCommaSeparated.endsWith(","))
-			{
-				strAreaIDsCommaSeparated=strAreaIDsCommaSeparated.substring(1);
-			}
+			
 			String[] AreaID = strAreaIDsCommaSeparated.split(",");
 			
 			for(int i = 0; i<AreaID.length; i++)
@@ -590,11 +587,7 @@ public class Game {
 		if(strPlayerIDsCommaSeparated.startsWith(","))
 		{
 			strPlayerIDsCommaSeparated=strPlayerIDsCommaSeparated.substring(1);
-		}
-		if(strPlayerIDsCommaSeparated.endsWith(","))
-		{
-			strPlayerIDsCommaSeparated=strPlayerIDsCommaSeparated.substring(1);
-		}
+		}		
 		
 		String[] PlayerID = strPlayerIDsCommaSeparated.split(",");
 

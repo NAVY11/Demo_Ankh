@@ -211,7 +211,7 @@ public class PresentationUtility {
 		while(true)
 		{
 			ans = br.readLine();
-			if(ans.equals(null)||ans.equals(""))
+			if(!ans.equals(null)||!ans.equals(""))
 			{
 				if(strValidAnswersCommaSeparated.contains("," + ans.trim() + ","))
 				{
