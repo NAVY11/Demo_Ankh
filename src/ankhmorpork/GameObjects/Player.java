@@ -845,10 +845,10 @@ public class Player {
 			switch(ActionID)
 			{
 			case "Assassination" : return this.Assassination();
-			case "Remove one trouble marker" : return this.UserRemoveOneTroubleMarker();
+			case "Remove One Trouble Marker" : return this.UserRemoveOneTroubleMarker();
 			case "Take Money" : return this.TakeMoneyFromBank(CardID);
 			case "Random Event" : this.randomCardToPlay(); 
-			case "Play another card" : return this.PlayAnotherCard(CardID);
+			case "Play Another Card" : return this.PlayAnotherCard(CardID);
 			//				case "Interrupt " : return 
 			case "Place a Minion" : return this.placeAMinionFunctionality();
 			case "Place a Building" : return this.placeABuildingFunctionality();
@@ -874,8 +874,10 @@ public class Player {
 		{	
 			if(grnCard.getPlayerID()==this.getPlayer_id() && !grnCard.GetIsPlayed())
 			{
-				sbValidIDs.append(grnCard.GetCardID());			
-				System.out.println(grnCard.CardID + " : " + grnCard.getName());
+				sbValidIDs.append(grnCard.GetCardID());	
+				String ActionList = Game.GetGreenCardActions(grnCard.GetCardID());
+				System.out.printf("%-5s%-5s%-40s%-5s%-50s%-5s%-60s\n",grnCard.CardID ,  " : " ,  grnCard.getName() , " : " , ActionList," : ","Scroll Action : "+grnCard.GetActionDescription());
+				//System.out.println(grnCard.CardID + " : " + grnCard.getName());
 			}
 		}
 
