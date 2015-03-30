@@ -801,13 +801,14 @@ public class Player {
 		if(ActionID.equalsIgnoreCase("Scroll"))
 		{
 			//this.theFireBrigadeFunctionality();
-			this.theZorgoTheRetroFunctionality();
+			//this.theZorgoTheRetroFunctionality();
+			//this.mrBentFunctionality(CardID);
 			switch(CardID)
 			{
 			case "g1" : return this.mrBoggisFunctionality();
-			case "g2" : return this.mrBentFunctionality();
+			case "g2" : return this.mrBentFunctionality(CardID);
 			case "g3" : return this.theBeggersGuildFunctionality();
-			case "g4" : return this.mrBentFunctionality();
+			case "g4" : return this.mrBentFunctionality(CardID);
 			case "g5" : return this.theAnkhMorporkSunshineDragonSanctuaryFunctionality();	
 			case "g8" : return this.theDyskFunctionality();
 			case "g9" : return this.theDuckmanFunctionality();
@@ -815,7 +816,7 @@ public class Player {
 			case "g11" : return this.theCMOTDibblerFunctionality();
 			case "g14" : return this.theMrsCakeFunctionality();
 			case "g19" : return this.theDuckmanFunctionality();
-			case "g20" : return this.theFoolsGuildFunctionality();
+			case "g20" : return this.theFoolsGuildFunctionality(CardID);
 			case "g21" : return this.theFireBrigadeFunctionality();
 			case "g23" : return this.theHistoryMonksFunctionality();
 			case "g24" : return this.DrawRandomCardsFromDeck(3); //Draw 3 random cards from Deck
@@ -832,7 +833,7 @@ public class Player {
 			case "g39" : return this.theDyskFunctionality();
 			case "g41" : return this.theBeggersGuildFunctionality();
 			case "g43" : return this.theZorgoTheRetroFunctionality();
-			case "g44" : return this.theFoolsGuildFunctionality();
+			case "g44" : return this.theFoolsGuildFunctionality(CardID);
 			case "g46" : return this.theRosiePalmFunctionality();
 			case "g48" : return this.mrBoggisFunctionality();
 			}
@@ -849,6 +850,7 @@ public class Player {
 			//				case "Interrupt " : return 
 			case "Place a Minion" : return this.placeAMinionFunctionality();
 			case "Place a Building" : return this.placeABuildingFunctionality();
+			case "No Action" : System.out.println("This card cannot be played."); return false;
 			}
 		}
 		return success;			
@@ -928,8 +930,8 @@ public class Player {
 		for(Player player : Game.lstPlayers){
 			if(!(player.getPlayer_id() == this.getPlayer_id())){
 				Game.PaymentPlayerToPlayer(this.getPlayer_id(), player.getPlayer_id(), 2);
-//				this.setPlayer_amount((float) (this.getPlayer_amount() != null ? this.getPlayer_amount() : 0) + 2);
-//				player.setPlayer_amount((float)(player.getPlayerAmount() - 2));
+				//				this.setPlayer_amount((float) (this.getPlayer_amount() != null ? this.getPlayer_amount() : 0) + 2);
+				//				player.setPlayer_amount((float)(player.getPlayerAmount() - 2));
 			}
 			success = true;
 		}
@@ -937,13 +939,15 @@ public class Player {
 	}
 
 	// Same Functionality for The Bank of Ankh-Morpork
-	public boolean mrBentFunctionality(){
+	public boolean mrBentFunctionality(String CardID){
 		//1st Action to read scroll & then play another card
 		boolean success = false;
 		Game.PaymentFromBank(this.getPlayer_id(), 10);
-//		this.setPlayer_amount((float)(this.getPlayer_amount() != null ? this.getPlayer_amount() : 0) + 10);
-//		Game.GameBank.setBankAmount((float)Game.GameBank.getBankAmount() - 10);
-		this.setPlayer_comments("You had played Mr. Bent/The Bank of AnkhMorpork You need to $12 back to Bank Or either you lose 15 points.");
+		//		this.setPlayer_amount((float)(this.getPlayer_amount() != null ? this.getPlayer_amount() : 0) + 10);
+		//		Game.GameBank.setBankAmount((float)Game.GameBank.getBankAmount() - 10);
+		this.setPlayer_comments("You had played Mr. Bent/The Bank of AnkhMorpork You need to pay $12 back to Bank Or either you lose 15 points.");
+		//Card placed in front of Bank 
+		Game.SetGreenCardIsPlayed(CardID, true);
 		success = true;
 		return success;
 	}
@@ -1377,27 +1381,75 @@ public class Player {
 		return success;
 	}
 
-	//************** To be handeled later**********
+	
 	// Same Functionality of Dr WhiteFace
-	public boolean theFoolsGuildFunctionality() throws IOException{
+	//Select another player. If they do not give you $5 then place this card in front of them. This card now counts towards their hand size of five cards when they come to refill their hands. They cannot get rid of this card
+	public boolean theFoolsGuildFunctionality(String CardID) throws IOException{
 		boolean success = false;
-		System.out.println("Enter playerId from whom you want $5 : ");
-		BufferedReader brPlayerBuff = new BufferedReader(new InputStreamReader(System.in));
-		String brPlayer = brPlayerBuff.readLine();
-		for(Player player : Game.lstPlayers){
-			if(player.getPlayer_id() == Integer.parseInt(brPlayer.toString())){
-				if(player.getPlayer_amount() > 5){
-					player.setPlayer_amount(player.getPlayer_amount() - 5);
-					this.setPlayer_amount((this.getPlayer_amount() != null ? this.getPlayer_amount() : 0) + 5);
-					success = true;
-					break;
-				}else{
-					player.setPlayer_comments("Have to give back $5 to player " + this.getPlayer_id());
-				}
+		GreenCard grnCard = Game.GetGreenCard(CardID);
+		//Get a List of Other Players
+		String strOtherPlayersCommaSep = ",";
+		for(Player objPlayer : Game.lstPlayers)
+		{
+			if(objPlayer.getPlayer_id()!=this.getPlayer_id())
+			{
+				strOtherPlayersCommaSep+=objPlayer.getPlayer_id()+",";
 			}
+		}
+		//Display the other Players
+		System.out.println("Choose a Player from whom you would like to take $5:");
+		Game.DisplayPlayers(strOtherPlayersCommaSep);
+		//Read User input
+		String strChosenPlayerID = PresentationUtility.GetValidAnswerFromUser(strOtherPlayersCommaSep);
+		Player objChosenPlayer = Game.GetPlayer(Integer.parseInt(strChosenPlayerID));
+		//Ask the chosen Player if he wish to pay $5
+		System.out.println("Hello, "+objChosenPlayer.getPlayer_name()+" do you wish to pay $5 to "+this.getPlayer_name()+"?(Y/N).");
+		System.out.println("If you chose not to pay "+this.getPlayer_name()+" will palce 'The Fools Guild' card in front of you & you cannot get rid of it later.");
+		String ans = PresentationUtility.GetValidAnswerFromUser(",Y,N,");
+		//if YES make payment
+		if(ans.equalsIgnoreCase("Y"))
+		{
+			if(Game.PaymentPlayerToPlayer(this.getPlayer_id(),objChosenPlayer.getPlayer_id(),5))
+			{
+				System.out.println("Payment made successfully");
+				success = true;
+			}
+
+		}
+
+		//if NO place the Card in front of the Chosen Player				
+		if(ans.equalsIgnoreCase("N") || !success)
+		{
+			String[] strAction = {"No Action"};
+			grnCard.SetAction(strAction);
+			grnCard.setPlayerID(objChosenPlayer.getPlayer_id());
+			grnCard.SetActionDescription("You cannot play this card.");
+			System.out.println("Card palced in front of "+ objChosenPlayer.getPlayer_name());
+			success = true;
 		}
 		return success;
 	}
+	//	public boolean theFoolsGuildFunctionality(String CardID) throws IOException{
+	//		boolean success = false;
+	//		GreenCard grnCard = Game.GetGreenCard(CardID);		
+	//		System.out.println("Enter playerId from whom you want $5 : ");
+	//		BufferedReader brPlayerBuff = new BufferedReader(new InputStreamReader(System.in));
+	//		String brPlayer = brPlayerBuff.readLine();
+	//		for(Player player : Game.lstPlayers){
+	//			if(player.getPlayer_id() == Integer.parseInt(brPlayer.toString())){
+	//				if(player.getPlayer_amount() > 5){
+	//					player.setPlayer_amount(player.getPlayer_amount() - 5);
+	//					this.setPlayer_amount((this.getPlayer_amount() != null ? this.getPlayer_amount() : 0) + 5);
+	//					success = true;
+	//					break;
+	//				}else{
+	//					
+	//					//player.setPlayer_comments("Have to give back $5 to player " + this.getPlayer_id());
+	//				}
+	//			}
+	//		}
+	//		return success;
+	//	}
 
 	//Choose a player. If he does not pay you $5 you can remove one of this buildings from the board.
 	public boolean theFireBrigadeFunctionality() throws IOException{
@@ -1679,7 +1731,7 @@ public class Player {
 			}
 			//this.setPlayer_amount((float) this.getPlayerAmount() + (countMoneyToBeGivenToCurrentPlayer * 1));
 			//Using Payment method
-			
+
 		}
 		Game.PaymentFromBank(this.getPlayer_id(), countMoneyToBeGivenToCurrentPlayer);
 		return success;
@@ -2067,50 +2119,61 @@ public class Player {
 		else
 		{
 			//Ask the Player to move a Minion from existing areas having Minion
-			System.out.println("Enter the Area ID from which you wish to move the Minion:");
-			String strAreasHavingPlayerMinions = Game.GetAreasHavingMinionOfPlayer(this.getPlayer_id());
-			Game.DisplayAreas(strAreasHavingPlayerMinions);
-			String strMoveFromArea = PresentationUtility.GetValidAnswerFromUser(strAreasHavingPlayerMinions);
-			String strAdjcentAreas = PresentationUtility.GetAdjacentAreas(Integer.parseInt(strMoveFromArea));
-			System.out.println("Minion can be moved to following adjacent areas:");
-			Game.DisplayAreas(strAdjcentAreas);
-			System.out.println("Enter the Area ID where you wish to move the Minion:");
-			String strMoveToArea = PresentationUtility.GetValidAnswerFromUser(strAdjcentAreas);
-			Minion objMinion = Game.GetPlayerMinionFromArea(this.getPlayer_id(), Integer.parseInt(strMoveFromArea));
-			//Place/Remove Trouble marker from area from where Minion is removed
-			if(Game.AreaHasTroubleMarker(Integer.parseInt(strMoveFromArea)))
+			System.out.println("You do not have a Minion in Hand!");
+			System.out.println("Do you wish to move a Minion on Board?(Y/N)");
+			String ans = PresentationUtility.GetValidAnswerFromUser(",Y,N,");
+			if(ans.equalsIgnoreCase("Y"))
 			{
-				Game.removeTroubleMarkerByAreaId(Integer.parseInt(strMoveFromArea));							
-				System.out.println("Trouble Marker was removed from : "+PresentationUtility.getCityAreaCardNameById(Integer.parseInt(strMoveFromArea)));													
-			}
-			else
-			{
-				PlaceATroubleMarkerInArea(Integer.parseInt(strMoveFromArea));														
-				System.out.println("Trouble Marker was placed in : " + PresentationUtility.getCityAreaCardNameById(Integer.parseInt(strMoveFromArea)));																				
-			}
-			//Place/Remove a Trouble marker where Minion is placed
-			if(Game.AreaHasMinion(Integer.parseInt(strMoveToArea)))
-			{
-				//Set Minion Area
-				objMinion.setArea_id(Integer.parseInt(strMoveToArea));
-				Game.SetMinion(objMinion);
-				//Adjust Trouble MArker
-				if(Game.AreaHasTroubleMarker(Integer.parseInt(strMoveToArea)))
+				System.out.println("Enter the Area ID from which you wish to move the Minion:");
+				String strAreasHavingPlayerMinions = Game.GetAreasHavingMinionOfPlayer(this.getPlayer_id());
+				Game.DisplayAreas(strAreasHavingPlayerMinions);
+				String strMoveFromArea = PresentationUtility.GetValidAnswerFromUser(strAreasHavingPlayerMinions);
+				String strAdjcentAreas = PresentationUtility.GetAdjacentAreas(Integer.parseInt(strMoveFromArea));
+				System.out.println("Minion can be moved to following adjacent areas:");
+				Game.DisplayAreas(strAdjcentAreas);
+				System.out.println("Enter the Area ID where you wish to move the Minion:");
+				String strMoveToArea = PresentationUtility.GetValidAnswerFromUser(strAdjcentAreas);
+				Minion objMinion = Game.GetPlayerMinionFromArea(this.getPlayer_id(), Integer.parseInt(strMoveFromArea));
+				//Place/Remove Trouble marker from area from where Minion is removed
+				if(Game.AreaHasTroubleMarker(Integer.parseInt(strMoveFromArea)))
 				{
-					Game.removeTroubleMarkerByAreaId(Integer.parseInt(strMoveToArea));							
-					System.out.println("Trouble Marker was removed From : "+PresentationUtility.getCityAreaCardNameById(Integer.parseInt(strMoveToArea)));													
+					Game.removeTroubleMarkerByAreaId(Integer.parseInt(strMoveFromArea));							
+					System.out.println("Trouble Marker was removed from : "+PresentationUtility.getCityAreaCardNameById(Integer.parseInt(strMoveFromArea)));													
 				}
 				else
 				{
-					PlaceATroubleMarkerInArea(Integer.parseInt(strMoveToArea));														
-					System.out.println("Trouble Marker was placed in : " + PresentationUtility.getCityAreaCardNameById(Integer.parseInt(strMoveToArea)));																				
+					PlaceATroubleMarkerInArea(Integer.parseInt(strMoveFromArea));														
+					System.out.println("Trouble Marker was placed in : " + PresentationUtility.getCityAreaCardNameById(Integer.parseInt(strMoveFromArea)));																				
+				}
+				//Place/Remove a Trouble marker where Minion is placed
+				if(Game.AreaHasMinion(Integer.parseInt(strMoveToArea)))
+				{
+					//Set Minion Area
+					objMinion.setArea_id(Integer.parseInt(strMoveToArea));
+					Game.SetMinion(objMinion);
+					//Adjust Trouble MArker
+					if(Game.AreaHasTroubleMarker(Integer.parseInt(strMoveToArea)))
+					{
+						Game.removeTroubleMarkerByAreaId(Integer.parseInt(strMoveToArea));							
+						System.out.println("Trouble Marker was removed From : "+PresentationUtility.getCityAreaCardNameById(Integer.parseInt(strMoveToArea)));													
+					}
+					else
+					{
+						PlaceATroubleMarkerInArea(Integer.parseInt(strMoveToArea));														
+						System.out.println("Trouble Marker was placed in : " + PresentationUtility.getCityAreaCardNameById(Integer.parseInt(strMoveToArea)));																				
+					}
+				}
+				else
+				{
+					//Set Minion in Game List
+					objMinion.setArea_id(Integer.parseInt(strMoveToArea));
+					Game.SetMinion(objMinion);
 				}
 			}
 			else
 			{
-				//Set Minion in Game List
-				objMinion.setArea_id(Integer.parseInt(strMoveToArea));
-				Game.SetMinion(objMinion);
+				System.out.println("'Place a Minion' action was not performed!");
+				success = false;
 			}
 		}
 		return success;
