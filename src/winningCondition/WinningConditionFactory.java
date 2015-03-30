@@ -24,15 +24,15 @@ public class WinningConditionFactory {
 	public static WinningCondition getWinningCircumstance(Player objPlayer) {
 		int playeID = objPlayer.getPlayer_id();
 		PersonalityCard objPersonalityCard = Game.GetPersonalityCardByPlayerID(playeID);
-		if ((objPersonalityCard.getName()).equals("LordVetinari"))
+		if ((objPersonalityCard.getName()).equals("Lord Vetinari"))
 			return new LordVetinari();
-		else if ((objPersonalityCard.getName()).equals("LordDeWorde") || (objPersonalityCard.getName()).equals("LordSelachii") || (objPersonalityCard.getName()).equals("LordRust"))
+		else if ((objPersonalityCard.getName()).equals("Lord de Worde") || (objPersonalityCard.getName()).equals("Lord Selachii") || (objPersonalityCard.getName()).equals("Lord Rust"))
      		return new LordRustSelachiiWorde();
-		else if (objPersonalityCard.getName().equals("DragonKingOfArms"))
+		else if (objPersonalityCard.getName().equals("Dragon King of Arms"))
        		return new DragonKingOfArms();
 		else if (objPersonalityCard.getName().equals("Chrysoprase"))
 			return new Chrysoprase();
-		else if (objPersonalityCard.getName().equals("CommanderVimes"))
+		else if (objPersonalityCard.getName().equals("Commander Vimes"))
 			return new CommanderVimes();
 		return null;
 	}

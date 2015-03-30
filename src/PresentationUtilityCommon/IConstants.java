@@ -20,7 +20,7 @@ public class IConstants {
 	public static String PersonalityCard3 = "Lord Rust";
 	
 	/** The Personality card4. */
-	public static String PersonalityCard4 = "Lord de Worde ";
+	public static String PersonalityCard4 = "Lord de Worde";
 	
 	/** The Personality card5. */
 	public static String PersonalityCard5 = "Dragon King of Arms";

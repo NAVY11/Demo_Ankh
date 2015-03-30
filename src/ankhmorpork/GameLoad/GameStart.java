@@ -24,6 +24,7 @@ import ankhmorpork.GameObjects.Troll;
 import ankhmorpork.GameObjects.TroubleMaker;
 import ankhmorpork.GameObjects.Cards.CityAreaCard;
 import ankhmorpork.GameObjects.Cards.GreenCard;
+import ankhmorpork.GameObjects.Cards.PersonalityCard;
 
 // TODO: Auto-generated Javadoc
 /**
@@ -272,6 +273,14 @@ public class GameStart {
 				getOneDifferentPersonalityCard = randomNumberAtIndexNumber;
 				initializingPersonalityArr.remove(randomNumberAtIndexNumber);
 				objPlayer.setPersonalityCardListCommaSeparated(getOneDifferentPersonalityCard+"");
+				PersonalityCard objPC = new PersonalityCard();
+				objPC.SetCardID(getOneDifferentPersonalityCard.toString());
+				objPC.SetIsPlayed(false);
+				objPC.setPlayerID(objPlayer.getPlayer_id());
+				objPC.SetPersonalityName(PresentationUtility.getPersonalityCardNameById(randomNumberAtIndexNumber));
+				objPC.setName(objPC.GetPersonalityName());
+				//objPC.SetPersonalityMotive();
+				Game.lstPersonalityCard.add(objPC);
 				//Create One Different Personality Card
 				//System.out.print("PlayerId : "+ objPlayer.getPlayer_id() + " - Personality Card: " + getOneDifferentPersonalityCard + "\n");
 			}

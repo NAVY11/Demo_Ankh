@@ -31,6 +31,8 @@ import org.json.JSONException;
 import org.json.JSONObject;
 import org.json.simple.parser.ParseException;
 
+import winningCondition.WinningCondition;
+import winningCondition.WinningConditionFactory;
 import PresentationUtilityCommon.PresentationUtility;
 import ViewFile.DisplayViewFile;
 import ViewFile.ViewFileTxt;
@@ -38,6 +40,7 @@ import ankhmorpork.Game.Game;
 import ankhmorpork.GameObjects.*;
 import ankhmorpork.GameObjects.Cards.CityAreaCard;
 import ankhmorpork.GameObjects.Cards.GreenCard;
+import ankhmorpork.GameObjects.Cards.PersonalityCard;
 import ankhmorpork.GameLoad.*;
 
 
@@ -364,7 +367,16 @@ public class discworldboard extends Component {
 				}
 			}
 			System.out.println("It is "+objPlayer.getPlayer_name()+"'s turn");
-			//********Which Card to Play?
+			
+			//Check Winning condition for Current Player
+			WinningCondition objWins = WinningConditionFactory.getWinningCircumstance(objPlayer);
+			if( objWins.isWinner(objPlayer.getPlayer_id()))
+			{
+				PersonalityCard objPC = Game.GetPersonalityCardByPlayerID(objPlayer.getPlayer_id());
+				System.out.println("Victory condition achieved! "+objPlayer.getPlayer_name()+" playing as "+ objPC.GetPersonalityName() + " wins the Game!" );
+			}
+			
+			//********Which Card to Play?			
 			System.out.println("Which card to play?");
 
 			//Show available city area cards
