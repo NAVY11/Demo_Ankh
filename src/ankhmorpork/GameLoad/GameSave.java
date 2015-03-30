@@ -86,6 +86,7 @@ public class GameSave {
 		//Saving Bank Coin details
 		jsonAddData.put("GoldCoins_Avail_Bank",Game.GameBank.objGoldCoin.getCoin_Available());
 		jsonAddData.put("SilverCoins_Avail_Bank",Game.GameBank.objSilverCoin.getCoin_Available());
+		jsonAddData.put("Total_Avail_Bank", Game.GameBank.getBankAmount());
 		
 		//Current Player Playing
 		jsonAddData.put("currentPlayerId", objPlayer.getPlayer_id());

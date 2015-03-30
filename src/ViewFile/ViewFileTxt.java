@@ -216,7 +216,7 @@ public class ViewFileTxt {
 		
 		playerDetailsMinBuildDollarStr += "- "+(12-Game.GetMinionsOnBoardByPlayerID(playerId).size()) + " minion(s) "
 											+ (6-Game.GetBuildingsByPlayerIDAndActiveAndOnBoard(playerId).size()) + " building(s) "
-											+ Game.GetPlayer(playerId).getPlayerAmount() + " Ankh-Morpork dollars";
+											+ Game.GetPlayer(playerId).getPlayer_amount() + " Ankh-Morpork dollars";
 		
 		return playerDetailsMinBuildDollarStr;
 	}
