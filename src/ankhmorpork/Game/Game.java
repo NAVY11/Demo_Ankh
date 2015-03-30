@@ -1259,7 +1259,7 @@ Integer cardIndexNumber = PresentationUtility.returnRandomNumber(0,lstCardID.len
 			Player objPayToPlayer = GetPlayer(PayToPlayerID);
 			Player objPaidByPlayer =GetPlayer(PaidByPlayer);
 						
-			if(objPaidByPlayer.getPlayerAmount()> Amount)
+			if(objPaidByPlayer.getPlayerAmount()>= Amount)
 			{
 				objPaidByPlayer.setPlayer_amount(objPaidByPlayer.getPlayer_amount()-Amount);
 				objPayToPlayer.setPlayer_amount(objPayToPlayer.getPlayer_amount()+ Amount);
@@ -1304,7 +1304,7 @@ Integer cardIndexNumber = PresentationUtility.returnRandomNumber(0,lstCardID.len
 		{			
 			Player objPaidByPlayer =GetPlayer(PaidByPlayer);
 						
-			if(objPaidByPlayer.getPlayerAmount()> Amount)
+			if(objPaidByPlayer.getPlayerAmount()>= Amount)
 			{
 				objPaidByPlayer.setPlayer_amount(objPaidByPlayer.getPlayer_amount()-Amount);
 				Game.GameBank.setBankAmount(Game.GameBank.getBankAmount()+ Amount);
@@ -1332,7 +1332,7 @@ Integer cardIndexNumber = PresentationUtility.returnRandomNumber(0,lstCardID.len
 				{			
 					Player objPayToPlayer =GetPlayer(PayToPlayer);
 								
-					if(Game.GameBank.getBankAmount()> Amount)
+					if(Game.GameBank.getBankAmount()>= Amount)
 					{
 						objPayToPlayer.setPlayer_amount(objPayToPlayer.getPlayer_amount()+Amount);
 						Game.GameBank.setBankAmount(Game.GameBank.getBankAmount()- Amount);

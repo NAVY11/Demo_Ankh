@@ -1058,11 +1058,12 @@ public class Player {
 				{
 					System.out.println("Enter a card ID you wish to give to " + this.getPlayer_name());
 					StringBuilder sbValidIDs = new StringBuilder();
+					sbValidIDs.append(",");
 					for(GreenCard grnCard: Game.lstGreenCards)
 					{	
 						if(grnCard.getPlayerID()==objPlayer.getPlayer_id() && !grnCard.GetIsPlayed())
 						{
-							sbValidIDs.append(grnCard.GetCardID());		
+							sbValidIDs.append(grnCard.GetCardID()+",");		
 							String ActionList = Game.GetGreenCardActions(grnCard.GetCardID());
 							System.out.printf("%-5s%-5s%-40s%-5s%-50s%-5s%-60s\n",grnCard.CardID ,  " : " ,  grnCard.getName() , " : " , ActionList," : ","Scroll Action : "+grnCard.GetActionDescription());
 						}
@@ -1657,7 +1658,6 @@ public class Player {
 			}
 
 		}
-
 		Game.SetGreenCardIsPlayed(strGreenCardID, true);
 		return success;
 	}
