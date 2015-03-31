@@ -435,40 +435,41 @@ public class Player {
 			//Display Minions, Demons, Trolls which can be Assassinated
 			if(!Minions.isEmpty())
 			{
-				System.out.print("Minions :");								
+				System.out.print("Minions ID :");								
 				for(Minion objMinion : Minions)
 				{					
-					System.out.print("ID : " + objMinion.getMinion_id() + " ");
+					System.out.print(objMinion.getMinion_id() + " ");
 				}
 			}
 
 			if(!Trolls.isEmpty())
 			{
-				System.out.println("Trolls :");
+				System.out.println("Trolls ID :");
 				for(Troll objTroll : Trolls)
 				{
-					System.out.print("ID : " + objTroll.getTroll_id() + " ");
+					System.out.print(objTroll.getTroll_id() + " ");
 				}
 			}
 
 			if(!Demons.isEmpty())
 			{
-				System.out.println("Demons :");
+				System.out.println("Demons ID :");
 				for(Demon objDemon : Demons)
 				{
-					System.out.print("ID : " + objDemon.getDemon_id() + " ");
+					System.out.print(objDemon.getDemon_id() + " ");
 				}
 			}
 			boolean Break = false;
 			while(true)
 			{
+				System.out.println("\n");
 				System.out.println("To assassinate Enter 'M' for Minion, 'D' for Demon, 'T' for Troll");
 				String input = br.readLine();
 				switch(input)
 				{
-				case "M" : if(AskForInterrupt()){if(GetInterrupter()){success = false; Break =true;}else{success = AssassinateMinion(Minions); Break = true;}}else{success = AssassinateMinion(Minions); Break = true;} break;						
-				case "T" : if(AskForInterrupt()){if(GetInterrupter()){success = false; Break =true;}else{success = AssassinateTroll(Trolls); Break = true;}}else{success = AssassinateTroll(Trolls); Break = true;} break;
-				case "D" : if(AskForInterrupt()){if(GetInterrupter()){success = false; Break =true;}else{success = AssassinateDemon(Demons); Break = true;}}else{success = AssassinateDemon(Demons); Break = true;}break;
+				case "M" :case "m" : if(AskForInterrupt()){if(GetInterrupter()){success = false; Break =true;}else{success = AssassinateMinion(Minions); Break = true;}}else{success = AssassinateMinion(Minions); Break = true;} break;						
+				case "T" :case "t" : if(AskForInterrupt()){if(GetInterrupter()){success = false; Break =true;}else{success = AssassinateTroll(Trolls); Break = true;}}else{success = AssassinateTroll(Trolls); Break = true;} break;
+				case "D" :case "d" : if(AskForInterrupt()){if(GetInterrupter()){success = false; Break =true;}else{success = AssassinateDemon(Demons); Break = true;}}else{success = AssassinateDemon(Demons); Break = true;}break;
 				default  : System.out.println("Incorrect input. Please try again.");
 				}
 				if(Break)
@@ -498,15 +499,16 @@ public class Player {
 		BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
 		if(!Minions.isEmpty())
 		{
-			System.out.println("Minions :");								
+			System.out.println("Minions ID :");								
 			for(Minion objMinion : Minions)
 			{				
-				System.out.print("ID : " + objMinion.getMinion_id() + " ");
+				System.out.print(objMinion.getMinion_id() + " ");
 			}
 
 			String MinionID = null;			
 			while(true)
 			{
+				System.out.println("\n");
 				System.out.println("Enter a Minion ID to assassinate:");
 				MinionID = br.readLine();
 				for(Minion objMinion : Minions)
@@ -556,15 +558,18 @@ public class Player {
 		BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
 		if(!Trolls.isEmpty())
 		{
-			System.out.println("Trolls :");								
+			System.out.println("\n");
+			System.out.println("Trolls ID :");								
 			for(Troll objTroll : Trolls)
 			{				
-				System.out.print("ID : " + objTroll.getTroll_id() + " ");
+				System.out.print(objTroll.getTroll_id() + " ");
 			}
 
 			String TrollID = null;			
 			while(true)
 			{
+				
+				System.out.println("Enter a Troll ID to assassinate:");
 				TrollID = br.readLine();
 				for(Troll objTroll : Trolls)
 				{
@@ -610,15 +615,17 @@ public class Player {
 		BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
 		if(!Demons.isEmpty())
 		{
-			System.out.println("Demons :");								
+			System.out.println("Demons ID :");								
 			for(Demon objDemon : Demons)
 			{				
-				System.out.print("ID : " + objDemon.getDemon_id() + " ");
+				System.out.print(objDemon.getDemon_id() + " ");
 			}
 
 			String DemonID = null;			
 			while(true)
 			{
+				System.out.println("\n");
+				System.out.println("Enter a Demon ID to assassinate:");
 				DemonID = br.readLine();
 				for(Demon objDemon : Demons)
 				{
@@ -799,7 +806,7 @@ public class Player {
 	{
 		//ActionID ="Remove One Trouble Marker";
 		boolean success = false;
-		if(ActionID.equalsIgnoreCase("Scroll"))
+		if(ActionID.equalsIgnoreCase("Scroll") || ActionID.equalsIgnoreCase(" Scroll") )
 		{
 			//CardID = "g20";
 			//this.theFireBrigadeFunctionality();
@@ -2266,18 +2273,18 @@ public class Player {
 		CityAreaCard cityAreaCard = new CityAreaCard();
 		switch(cityAreaId)
 		{
-		case "c6" : cityAreaCard.TheHippoAction(this);
-		case "c5" : cityAreaCard.TheScoursAction(this);
-		case "c4" : cityAreaCard.SmallGodsAction(this);
-		case "c3" : cityAreaCard.DragonLandingAction(this);
-		case "c2" : cityAreaCard.UnrealEstate(this);
-		case "c1" : cityAreaCard.DollySisterAction(this);
-		case "c7" : cityAreaCard.TheShadesAction(this);
-		case "c8" : cityAreaCard.DimwellAction(this);
-		case "c9" : cityAreaCard.LongwallAction(this);
-		case "c10" : cityAreaCard.IsleOfGodsAction(this);
-		case "c11" : cityAreaCard.SevenSleepersAction(this);
-		case "c12" : cityAreaCard.NapHillAction(this);
+		case "c6" : cityAreaCard.TheHippoAction(this); break;
+		case "c5" : cityAreaCard.TheScoursAction(this); break;
+		case "c4" : cityAreaCard.SmallGodsAction(this); break;
+		case "c3" : cityAreaCard.DragonLandingAction(this); break;
+		case "c2" : cityAreaCard.UnrealEstate(this); break;
+		case "c1" : cityAreaCard.DollySisterAction(this); break;
+		case "c7" : cityAreaCard.TheShadesAction(this);break;
+		case "c8" : cityAreaCard.DimwellAction(this); break;
+		case "c9" : cityAreaCard.LongwallAction(this); break;
+		case "c10" : cityAreaCard.IsleOfGodsAction(this); break;
+		case "c11" : cityAreaCard.SevenSleepersAction(this);break;
+		case "c12" : cityAreaCard.NapHillAction(this); break;
 		}
 	}
 	

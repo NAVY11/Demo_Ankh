@@ -314,7 +314,7 @@ public class GameLoad {
 			}
 			System.out.println("It is "+objPlayer.getPlayer_name()+"'s turn");
 			//********Which Card to Play?
-			System.out.println("Which card to play?");
+			//System.out.println("Which card to play?");
 
 			//Show available city area cards
 			StringBuilder sbValidCityAreaIDs = new StringBuilder();
@@ -325,7 +325,7 @@ public class GameLoad {
 				{
 					sbValidCityAreaIDs.append(cityAreaCard.GetCardID());
 					hasCityAreaCard = true;
-					System.out.println(cityAreaCard.CardID + " : " + cityAreaCard.GetAreaName());
+					System.out.println(cityAreaCard.CardID + " : " + cityAreaCard.GetAreaName() + " : " + cityAreaCard.GetActionDescription());
 				}
 			}
 
