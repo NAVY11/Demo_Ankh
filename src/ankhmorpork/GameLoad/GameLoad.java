@@ -25,8 +25,10 @@ import java.util.Iterator;
 
 
 
+
 import javax.swing.JFileChooser;
 import javax.swing.JOptionPane;
+
 
 
 //import org.json.JSONArray;
@@ -35,6 +37,9 @@ import org.json.JSONException;
 import org.json.simple.JSONObject;
 import org.json.simple.parser.JSONParser;
 import org.json.simple.parser.ParseException;
+
+import winningCondition.WinningCondition;
+import winningCondition.WinningConditionFactory;
 
 // TODO: Auto-generated Javadoc
 /**
@@ -56,6 +61,21 @@ public class GameLoad {
 				//FileReader objFilereader = new FileReader(File);		
 				JSONParser jsonParser = new JSONParser();		
 				JSONObject json = (JSONObject)jsonParser.parse(objFilereader);		
+
+				//Loading Personality
+				JSONArray PersonalityCards = (JSONArray)json.get("PersonalityCards");
+				Iterator iPersonalityCard = PersonalityCards.iterator();
+				while (iPersonalityCard.hasNext())
+				{
+					PersonalityCard objPersonalityCard = new PersonalityCard();
+					JSONObject jsonPersonalityCard = (JSONObject)iPersonalityCard.next();
+					objPersonalityCard.SetCardID(jsonPersonalityCard.get("CardID").toString());
+					objPersonalityCard.SetIsPlayed((Boolean)jsonPersonalityCard.get("IsPlayed"));
+					objPersonalityCard.setPlayerID(Integer.parseInt(jsonPersonalityCard.get("PlayerID").toString()));
+					objPersonalityCard.SetPersonalityName((jsonPersonalityCard.get("PersonalityName").toString()));
+					objPersonalityCard.setName((jsonPersonalityCard.get("Name").toString()));
+					Game.lstPersonalityCard.add(objPersonalityCard);
+				}
 				
 				//Loading TROLLS
 				JSONArray Trolls = (JSONArray)json.get("Trolls");
@@ -313,6 +333,14 @@ public class GameLoad {
 				}
 			}
 			System.out.println("It is "+objPlayer.getPlayer_name()+"'s turn");
+			//Check Winning condition for Current Player
+			WinningCondition objWins = WinningConditionFactory.getWinningCircumstance(objPlayer);
+			if( objWins.isWinner(objPlayer.getPlayer_id()))
+			{
+				PersonalityCard objPC = Game.GetPersonalityCardByPlayerID(objPlayer.getPlayer_id());
+				System.out.println("Victory condition achieved! "+objPlayer.getPlayer_name()+" playing as "+ objPC.GetPersonalityName() + " wins the Game!" );
+			}
+			
 			//********Which Card to Play?
 			//System.out.println("Which card to play?");
 
