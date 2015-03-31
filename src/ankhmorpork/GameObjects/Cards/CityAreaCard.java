@@ -204,7 +204,7 @@ public class CityAreaCard extends Cards{
 		if(playerID != null)
 		{
 			Game.PaymentFromBank(playerID, 1);
-			System.out.print("Action Performed");
+			System.out.println("Action Performed");
 			status = true;
 		}
 		else
@@ -228,7 +228,7 @@ public class CityAreaCard extends Cards{
 		Integer playerID = objPlayer.getPlayer_id();
 		if(playerID != null){
 			Game.PaymentFromBank(playerID, 3);
-			System.out.print("Action Performed");
+			System.out.println("Action Performed");
 			status = true;
 		}
 		else
@@ -253,7 +253,7 @@ public class CityAreaCard extends Cards{
 		if(playerID != null)
 		{
 			Game.PaymentFromBank(playerID, 1);
-			System.out.print("Action Performed");
+			System.out.println("Action Performed");
 			status = true;
 		}
 		else
@@ -278,7 +278,7 @@ public class CityAreaCard extends Cards{
 		if(playerID != null)
 		{
 			Game.PaymentFromBank(playerID, 2);
-			System.out.print("Action Performed");
+			System.out.println("Action Performed");
 			status = true;
 		}
 		else
@@ -303,7 +303,7 @@ public class CityAreaCard extends Cards{
 		if(playerID != null) 
 		{
 			Game.PaymentFromBank(playerID, 2);
-			System.out.print("Action Performed");
+			System.out.println("Action Performed");
 			status = true;
 		}
 		else
@@ -337,11 +337,11 @@ public class CityAreaCard extends Cards{
 				//System.out.println("You are allowed to place these minions which are not on board : " + placingAMinionStr);
 				String strAdjacentArea = Game.getAdjacentAreas(8);
 				strAdjacentArea += ",8";
-				Game.DisplayAreas(strAdjacentArea);
 				//String AreaList = Game.GetValidAreasToPlaceMinion(this.getPlayer_id());//"1,2,3,4,5,6,7,8,9,10,11,12";//Game.AreaWithNoMinion();
 				//System.out.println(AreaList);
 				//Game.DisplayAreas(AreaList);
 				System.out.println("Enter a area in which you want to keep the minion : ");
+				Game.DisplayAreas(strAdjacentArea);
 				BufferedReader brBuff = new BufferedReader(new InputStreamReader(System.in));
 				String br = brBuff.readLine();
 				System.out.println(br);
@@ -364,7 +364,7 @@ public class CityAreaCard extends Cards{
 							objPlayer.PlaceATroubleMarkerInArea(Integer.parseInt(br));														
 							System.out.println("Trouble Marker was placed in : "+PresentationUtility.getCityAreaCardNameById(Integer.parseInt(br)));
 						}
-						System.out.print("Action Performed");
+						System.out.println("Action Performed");
 					}
 					else
 					{
@@ -373,7 +373,7 @@ public class CityAreaCard extends Cards{
 						Game.SetMinion(objMinion);
 						System.out.println(objPlayer.getPlayer_name()+"'s Minion was palced in "+PresentationUtility.getCityAreaCardNameById(Integer.parseInt(br)));
 						status = true;
-						System.out.print("Action Performed");
+						System.out.println("Action Performed");
 					}
 				}
 			}
@@ -424,11 +424,11 @@ public class CityAreaCard extends Cards{
 				//System.out.println("You are allowed to place these minions which are not on board : " + placingAMinionStr);
 				String strAdjacentArea = Game.getAdjacentAreas(1);
 				strAdjacentArea += ",1";
-				Game.DisplayAreas(strAdjacentArea);
 				//String AreaList = Game.GetValidAreasToPlaceMinion(this.getPlayer_id());//"1,2,3,4,5,6,7,8,9,10,11,12";//Game.AreaWithNoMinion();
 				//System.out.println(AreaList);
 				//Game.DisplayAreas(AreaList);
 				System.out.println("Enter a area in which you want to keep the minion : ");
+				Game.DisplayAreas(strAdjacentArea);
 				BufferedReader brBuff = new BufferedReader(new InputStreamReader(System.in));
 				String br = brBuff.readLine();
 				System.out.println(br);
@@ -451,7 +451,7 @@ public class CityAreaCard extends Cards{
 							objPlayer.PlaceATroubleMarkerInArea(Integer.parseInt(br));														
 							System.out.println("Trouble Marker was placed in : "+PresentationUtility.getCityAreaCardNameById(Integer.parseInt(br)));
 						}
-						System.out.print("Action Performed");
+						System.out.println("Action Performed");
 					}
 					else
 					{
@@ -460,7 +460,7 @@ public class CityAreaCard extends Cards{
 						Game.SetMinion(objMinion);
 						System.out.println(objPlayer.getPlayer_name()+"'s Minion was palced in "+PresentationUtility.getCityAreaCardNameById(Integer.parseInt(br)));
 						status = true;
-						System.out.print("Action Performed");
+						System.out.println("Action Performed");
 					}
 				}
 			}
@@ -574,8 +574,10 @@ public class CityAreaCard extends Cards{
 			//System.out.println("Enter areaId :" + areaList);
 			//BufferedReader br1 = new BufferedReader(new InputStreamReader(System.in));
 			//int areaID = Integer.parseInt(br1.readLine());
-			String adjacentAreaidList = Game.getAdjacentAreas(7);
-			System.out.println("Enter the areaID among the list where you want place the troublemarker adjacent to it:" + adjacentAreaidList + ",7");
+			String strAdjacentArea = Game.getAdjacentAreas(7);
+			strAdjacentArea += ",7";
+			System.out.println("Enter the areaID where you want place the troublemarker:");
+			Game.DisplayAreas(strAdjacentArea);
 			BufferedReader br2 = new BufferedReader(new InputStreamReader(System.in));
 			int adjacentAreaID = Integer.parseInt(br2.readLine());
 			objPlayer.PlaceATroubleMarkerInArea(adjacentAreaID);														
@@ -640,27 +642,58 @@ public boolean IsleOfGodsAction(Player objPlayer) throws IOException{
  * @throws IOException Signals that an I/O exception has occurred.
  */
 public boolean UnrealEstate(Player objPlayer) throws IOException{
-	boolean status = false;
-	BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
-	System.out.println("Would you like to perform this action : Y/N ");
-	String userinput = br.readLine();
-	if (userinput.equals('Y') || userinput.equals('y'))
-	{	
-		//Game g1 = new Game();
-		String greenCard =Game.GetRandomGreenCardFromDeck(); //Player.takeOneGreenCardFromDeck(g1);
-	objPlayer.setGreenCardListCommaSeparated(objPlayer.getGreenCardListCommaSeparated() + "," + greenCard);
-	//show list of cards
-	//System.out.println("Which Card you want to discard");
-	ArrayList<GreenCard> CardList = Game.GetGreenCardByPlayerID(objPlayer.getPlayer_id());
-	System.out.println("Which card do you want to discard :" + CardList);
-	BufferedReader br1 = new BufferedReader(new InputStreamReader(System.in));
-	String cardID = br1.readLine();
-	GreenCard objGC = Game.GetGreenCard(cardID);
-	objGC.IsPlayed = true;
-	System.out.println("Action Performed Successfully");
-	status = true;
+	boolean status1 = false;
+	boolean status2 = false;
+	Boolean status = false;
+	String greenCard = Game.GetRandomGreenCardFromDeck(); //Player.takeOneGreenCardFromDeck(g1);
+	if(greenCard!="")
+	{
+		Game.SetGreenCardToPlayer(greenCard,objPlayer.getPlayer_id());	
+		System.out.println("One Card is taken from the Deck");
+		status1 = true;
 	}
+	//show list of cards
+	ArrayList<GreenCard> greenCardList = Game.GetGreenCardByPlayerID(objPlayer.getPlayer_id());
+	String strValidGreenCardList = ",";
+	System.out.println("Which Card do you want to discard");
+	for(GreenCard grnCard : greenCardList)
+	{
+		String ActionList = Game.GetGreenCardActions(grnCard.GetCardID());
+		strValidGreenCardList+=grnCard.GetCardID()+",";
+		System.out.printf("%-5s%-5s%-40s%-5s%-50s%-5s%-60s\n",grnCard.CardID ,  " : " ,  grnCard.getName() , " : " , ActionList," : ","Scroll Action : "+grnCard.GetActionDescription());
+	}
+	BufferedReader brCard1SelectedBuff = new BufferedReader(new InputStreamReader(System.in));
+	String cardId = "";
+	while(true)
+	{
+		cardId = brCard1SelectedBuff.readLine();
+		if(strValidGreenCardList.contains(","+cardId+","))
+		{
+			status2 = true;
+			break;
+		}
+		else
+		{
+			System.out.println("Please enter a valid Green Card ID listed above:");
+		}
+
+	}
+	Game.SetGreenCardIsPlayed(cardId, true);
+	//GreenCard objGC = Game.GetGreenCard(cardId);
+	//objGC.IsPlayed = true;
+	System.out.println("Selected Card is been discarded");
+	status2 = true;
+	if(status1 && status2){
+		System.out.println("Action Performed");
+		status = true;
+	}
+	else
+		System.out.println("Action failed");
+	status = false;
 	return status;
 }
-	
+//ArrayList<GreenCard> CardList = Game.GetGreenCardByPlayerID(objPlayer.getPlayer_id());
+//System.out.println("Which card do you want to discard :" + CardList);
+//BufferedReader br1 = new BufferedReader(new InputStreamReader(System.in));
+//String cardID = br1.readLine();
 }
