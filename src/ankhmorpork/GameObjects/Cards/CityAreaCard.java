@@ -7,6 +7,7 @@ import java.util.ArrayList;
 
 import PresentationUtilityCommon.PresentationUtility;
 import ankhmorpork.Game.Game;
+import ankhmorpork.GameObjects.Area;
 import ankhmorpork.GameObjects.GameCards;
 import ankhmorpork.GameObjects.Minion;
 import ankhmorpork.GameObjects.Player;
@@ -199,25 +200,22 @@ public class CityAreaCard extends Cards{
 	public boolean LongwallAction(Player objPlayer)
 	{
 		boolean status = false;
-		try {			
-			BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
-			System.out.println("Would you like to perform this action : Y/N ");
-			String userinput = br.readLine();
-			if (userinput.equals('Y') || userinput.equals('y'))
-			{
-				int playerID = objPlayer.getPlayer_id();
-				Game.PaymentFromBank(playerID, 1);
-				System.out.print("Action Performed Successfully");
-				status = true;
-			}
-		
-		} catch (IOException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
+		Integer playerID = objPlayer.getPlayer_id();
+		if(playerID != null)
+		{
+			Game.PaymentFromBank(playerID, 1);
+			System.out.print("Action Performed");
+			status = true;
+		}
+		else
+		{
+			System.out.println("PlayerId is Null");
+			System.out.println("Action Failed");
+			status = false;
+		}
+		return status;
 	}
-	return status;
-	}
-	
+
 	/**
 	 * Seven sleepers action.
 	 *
@@ -227,24 +225,21 @@ public class CityAreaCard extends Cards{
 	public boolean SevenSleepersAction(Player objPlayer)
 	{
 		boolean status = false;
-		try {
-			BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
-			System.out.println("Would you like to perform this action : Y/N ");
-			String userinput = br.readLine();
-			if (userinput.equals('Y') || userinput.equals('y'))
-			{
-				int playerID = objPlayer.getPlayer_id();
-				Game.PaymentFromBank(playerID, 3);
-				System.out.print("Action Performed Successfully");
-				status = true;
-			}
-		} catch (IOException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
+		Integer playerID = objPlayer.getPlayer_id();
+		if(playerID != null){
+			Game.PaymentFromBank(playerID, 3);
+			System.out.print("Action Performed");
+			status = true;
+		}
+		else
+		{
+			System.out.println("PlayerId is Null");
+			System.out.println("Action Failed");
+			status = false;
+		}
+		return status;
 	}
-	return status;
-	}
-	
+
 	/**
 	 * Nap hill action.
 	 *
@@ -254,25 +249,22 @@ public class CityAreaCard extends Cards{
 	public boolean NapHillAction(Player objPlayer)
 	{
 		boolean status = false;
-		try {
- 			BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
-			System.out.println("Would you like to perform this action : Y/N ");
-			String userinput;
-			userinput = br.readLine();
-			if (userinput.equals('Y') || userinput.equals('y'))
-			{
-				int playerID = objPlayer.getPlayer_id();
-				Game.PaymentFromBank(playerID, 1);
-				System.out.print("Action Performed Successfully");
-				status = true;
-			}
-		} catch (IOException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
+		Integer playerID = objPlayer.getPlayer_id();
+		if(playerID != null)
+		{
+			Game.PaymentFromBank(playerID, 1);
+			System.out.print("Action Performed");
+			status = true;
+		}
+		else
+		{
+			System.out.println("PlayerId is Null");
+			System.out.println("Action Failed");
+			status = false;
+		}
+		return status;
 	}
-	return status;
-	}
-	
+
 	/**
 	 * The hippo action.
 	 *
@@ -282,25 +274,22 @@ public class CityAreaCard extends Cards{
 	public boolean TheHippoAction(Player objPlayer)
 	{
 		boolean status = false;
-		try {
-			BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
-			System.out.println("Would you like to perform this action : Y/N ");
-			String userinput;
-			userinput = br.readLine();
-			if (userinput.equals('Y') || userinput.equals('y'))
-			{
-				int playerID = objPlayer.getPlayer_id();
-				Game.PaymentFromBank(playerID, 2);
-				System.out.print("Action Performed Successfully");
-				status = true;
-			}
-		} catch (IOException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
+		Integer playerID = objPlayer.getPlayer_id();
+		if(playerID != null)
+		{
+			Game.PaymentFromBank(playerID, 2);
+			System.out.print("Action Performed");
+			status = true;
+		}
+		else
+		{
+			System.out.println("PlayerId is Null");
+			System.out.println("Action Failed");
+			status = false;
+		}
+		return status;
 	}
-	return status;
-	}
-	
+
 	/**
 	 * Dragon landing action.
 	 *
@@ -310,99 +299,198 @@ public class CityAreaCard extends Cards{
 	public boolean DragonLandingAction(Player objPlayer)
 	{
 		boolean status = false;		
-		try {
-			BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
-			System.out.println("Would you like to perform this action : Y/N ");
-			String userinput;
-			userinput = br.readLine();
-			if (userinput.equals('Y') || userinput.equals('y'))
-			{
-				int playerID = objPlayer.getPlayer_id();
-				Game.PaymentFromBank(playerID, 2);
-				System.out.print("Action Performed Successfully");
-				status = true;
-			}
-		} catch (IOException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
+		Integer playerID = objPlayer.getPlayer_id();
+		if(playerID != null) 
+		{
+			Game.PaymentFromBank(playerID, 2);
+			System.out.print("Action Performed");
+			status = true;
+		}
+		else
+		{
+			System.out.println("PlayerId is Null");
+			System.out.println("Action Failed");
+			status = false;
+		}
+		return status;
 	}
-	return status;
-	}
-	
+
 	/**
 	 * Dimwell action.
 	 *
 	 * @param objPlayer the obj player
 	 * @return true, if successful
+	 * @throws IOException 
 	 */
-	public boolean DimwellAction(Player objPlayer)
+	public boolean DimwellAction(Player objPlayer) throws IOException
 	{
 		boolean status = false;
-		try {
-			BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
-			System.out.println("Would you like to perform this action : Y/N ");
-			String userinput = br.readLine();
-			if (userinput.equals('Y') || userinput.equals('y'))
-			{
-				int playerID = objPlayer.getPlayer_id();
-				Game.PaymentToBank(playerID, 3);
-				ArrayList<Minion> minionsByPlayerList = Game.GetMinionsNotOnBoardByPlayerID(objPlayer.getPlayer_id());
-				//System.out.println(" Minions not on board List" + );
-				//	minionsByPlayerList.get(0).setPlayer_id(objPlayer.getPlayer_id());
-				//	Minion objPlayerMinionId = new Minion();
-				System.out.println("Enter AreaId where you want to place the minion 8,7,9,5 : ");
-				BufferedReader areaidinput = new BufferedReader(new InputStreamReader(System.in));
-				int areaIdToPlace = Integer.parseInt(areaidinput.readLine());
-				if(PresentationUtility.canMinionBePlacedInAdjacentArea(objPlayer.getPlayer_id(), minionsByPlayerList.get(0).getMinion_id(), 0, areaIdToPlace)){
-					minionsByPlayerList.get(0).setArea_id(areaIdToPlace);
-				}
-				System.out.print("Action Performed Successfully");
-				status = true;	
-			}
-		} catch (IOException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-	}
-	return status;
-}
+		Integer playerID = objPlayer.getPlayer_id();
+		if(playerID != null)
+		{
+			Game.PaymentToBank(playerID, 3);
+			String placingAMinionStr = "";
+			placingAMinionStr = Game.GetMinionIDsNotOnBoard(objPlayer.getPlayer_id());
+			//Check whether the Player has unused Minions in hand
+			if(!placingAMinionStr.isEmpty())
+			{	
+				//System.out.println("You are allowed to place these minions which are not on board : " + placingAMinionStr);
+				String strAdjacentArea = Game.getAdjacentAreas(8);
+				strAdjacentArea += ",8";
+				Game.DisplayAreas(strAdjacentArea);
+				//String AreaList = Game.GetValidAreasToPlaceMinion(this.getPlayer_id());//"1,2,3,4,5,6,7,8,9,10,11,12";//Game.AreaWithNoMinion();
+				//System.out.println(AreaList);
+				//Game.DisplayAreas(AreaList);
+				System.out.println("Enter a area in which you want to keep the minion : ");
+				BufferedReader brBuff = new BufferedReader(new InputStreamReader(System.in));
+				String br = brBuff.readLine();
+				System.out.println(br);
+				System.out.println(placingAMinionStr);
+				if(strAdjacentArea.contains(br))
+				{
+					Minion objMinion = Game.GetMinionsByMinionID(Integer.parseInt(placingAMinionStr.substring(0,3)));
+					//objMinion.setArea_id(Integer.parseInt(br.toString()));										
+					//Place or Remove Trouble Marker on Addition of Minion
+					if(Game.AreaHasMinion(Integer.parseInt(br)))
+					{						
+						objMinion.setArea_id(Integer.parseInt(br.toString()));
+						Game.SetMinion(objMinion);
+						System.out.println(objPlayer.getPlayer_name()+"'s Minion was palced in "+PresentationUtility.getCityAreaCardNameById(Integer.parseInt(br)));
+						status = true;
 
+						if(!Game.AreaHasTroubleMarker(Integer.parseInt(br)))
+						{
+							//Place a trouble Marker if not present initially
+							objPlayer.PlaceATroubleMarkerInArea(Integer.parseInt(br));														
+							System.out.println("Trouble Marker was placed in : "+PresentationUtility.getCityAreaCardNameById(Integer.parseInt(br)));
+						}
+						System.out.print("Action Performed");
+					}
+					else
+					{
+						//Area has no minion previously so Trouble Marker won't come in picture
+						objMinion.setArea_id(Integer.parseInt(br.toString()));
+						Game.SetMinion(objMinion);
+						System.out.println(objPlayer.getPlayer_name()+"'s Minion was palced in "+PresentationUtility.getCityAreaCardNameById(Integer.parseInt(br)));
+						status = true;
+						System.out.print("Action Performed");
+					}
+				}
+			}
+			else
+			{
+				System.out.println("No minions available in hand");
+				System.out.println("Action failed");
+				status = false;
+			}
+		}
+		else
+		{
+			System.out.println("PlayerId is Null");
+			System.out.println("Action Failed");
+			status = false;
+		}
+		return status;
+	}
+
+	//String[] areaarray = strAdjacentArea.split(",");
+	//System.out.println("Enter AreaId where you want to place the minion 8,7,9,5 : ");
+	//BufferedReader areaidinput = new BufferedReader(new InputStreamReader(System.in));
+	//int areaIdToPlace = Integer.parseInt(areaidinput.readLine());
+	//if(PresentationUtility.canMinionBePlacedInAdjacentArea(objPlayer.getPlayer_id(), minionsByPlayerList.get(0).getMinion_id(), 0, areaIdToPlace)){
+	//	minionsByPlayerList.get(0).setArea_id(areaIdToPlace);
+	//}
+	//System.out.print("Action Performed Successfully");
+	//status = true;
 /**
  * Dolly sister action.
  *
  * @param objPlayer the obj player
  * @return true, if successful
+ * @throws IOException 
  */
-public boolean DollySisterAction(Player objPlayer)
+	public boolean DollySisterAction(Player objPlayer) throws IOException
 	{
 		boolean status = false;
-		try {
-			BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
-			System.out.println("Would you like to perform this action : Y/N ");
-			String userinput = br.readLine();
-			if (userinput.equals('Y') || userinput.equals('y'))
-			{
-				int playerID = objPlayer.getPlayer_id();
-				Game.PaymentToBank(playerID, 3);
-				ArrayList<Minion> minionsByPlayerList = Game.GetMinionsNotOnBoardByPlayerID(objPlayer.getPlayer_id());
-				//System.out.println(" Minions not on board List" + );
-				//	minionsByPlayerList.get(0).setPlayer_id(objPlayer.getPlayer_id());
-				//	Minion objPlayerMinionId = new Minion();
-				System.out.println("Enter AreaId where you want to place the minion 1,3,2,12 : ");
-				BufferedReader br1 = new BufferedReader(new InputStreamReader(System.in));
-				int areaIdToPlace = Integer.parseInt(br1.readLine());
-				if(PresentationUtility.canMinionBePlacedInAdjacentArea(objPlayer.getPlayer_id(), minionsByPlayerList.get(0).getMinion_id(), 0, areaIdToPlace)){
-					minionsByPlayerList.get(0).setArea_id(areaIdToPlace);
-				}
-				System.out.print("Action Performed Successfully");
-				status = true;
-			}
-		} catch (IOException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-	}
-		return status;
-}
+		Integer playerID = objPlayer.getPlayer_id();
+		if(playerID != null)
+		{
+			Game.PaymentToBank(playerID, 3);
+			String placingAMinionStr = "";
+			placingAMinionStr = Game.GetMinionIDsNotOnBoard(objPlayer.getPlayer_id());
+			//Check whether the Player has unused Minions in hand
+			if(!placingAMinionStr.isEmpty())
+			{	
+				//System.out.println("You are allowed to place these minions which are not on board : " + placingAMinionStr);
+				String strAdjacentArea = Game.getAdjacentAreas(1);
+				strAdjacentArea += ",1";
+				Game.DisplayAreas(strAdjacentArea);
+				//String AreaList = Game.GetValidAreasToPlaceMinion(this.getPlayer_id());//"1,2,3,4,5,6,7,8,9,10,11,12";//Game.AreaWithNoMinion();
+				//System.out.println(AreaList);
+				//Game.DisplayAreas(AreaList);
+				System.out.println("Enter a area in which you want to keep the minion : ");
+				BufferedReader brBuff = new BufferedReader(new InputStreamReader(System.in));
+				String br = brBuff.readLine();
+				System.out.println(br);
+				System.out.println(placingAMinionStr);
+				if(strAdjacentArea.contains(br))
+				{
+					Minion objMinion = Game.GetMinionsByMinionID(Integer.parseInt(placingAMinionStr.substring(0,3)));
+					//objMinion.setArea_id(Integer.parseInt(br.toString()));										
+					//Place or Remove Trouble Marker on Addition of Minion
+					if(Game.AreaHasMinion(Integer.parseInt(br)))
+					{						
+						objMinion.setArea_id(Integer.parseInt(br.toString()));
+						Game.SetMinion(objMinion);
+						System.out.println(objPlayer.getPlayer_name()+"'s Minion was palced in "+PresentationUtility.getCityAreaCardNameById(Integer.parseInt(br)));
+						status = true;
 
+						if(!Game.AreaHasTroubleMarker(Integer.parseInt(br)))
+						{
+							//Place a trouble Marker if not present initially
+							objPlayer.PlaceATroubleMarkerInArea(Integer.parseInt(br));														
+							System.out.println("Trouble Marker was placed in : "+PresentationUtility.getCityAreaCardNameById(Integer.parseInt(br)));
+						}
+						System.out.print("Action Performed");
+					}
+					else
+					{
+						//Area has no minion previously so Trouble Marker won't come in picture
+						objMinion.setArea_id(Integer.parseInt(br.toString()));
+						Game.SetMinion(objMinion);
+						System.out.println(objPlayer.getPlayer_name()+"'s Minion was palced in "+PresentationUtility.getCityAreaCardNameById(Integer.parseInt(br)));
+						status = true;
+						System.out.print("Action Performed");
+					}
+				}
+			}
+			else
+			{
+				System.out.println("No minions available in hand");
+				System.out.println("Action failed");
+				status = false;
+			}
+		}
+		else
+		{
+			System.out.println("PlayerId is Null");
+			System.out.println("Action Failed");
+			status = false;
+		}
+		return status;
+	}
+
+	//String[] areaarray = strAdjacentArea.split(",");
+	//System.out.println("Enter AreaId where you want to place the minion 8,7,9,5 : ");
+	//BufferedReader areaidinput = new BufferedReader(new InputStreamReader(System.in));
+	//int areaIdToPlace = Integer.parseInt(areaidinput.readLine());
+	//if(PresentationUtility.canMinionBePlacedInAdjacentArea(objPlayer.getPlayer_id(), minionsByPlayerList.get(0).getMinion_id(), 0, areaIdToPlace)){
+	//	minionsByPlayerList.get(0).setArea_id(areaIdToPlace);
+	//}
+	//System.out.print("Action Performed Successfully");
+	//status = true;
+	
+	
 /**
  * The scours action.
  *
@@ -410,25 +498,66 @@ public boolean DollySisterAction(Player objPlayer)
  * @return true, if successful
  * @throws IOException Signals that an I/O exception has occurred.
  */
-public boolean TheScoursAction(Player objPlayer) throws IOException{
-	boolean status = false;
-	BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
-	System.out.println("Would you like to perform this action : Y/N ");
-	String userinput = br.readLine();
-	if (userinput.equals('Y') || userinput.equals('y')){
-		ArrayList<GreenCard> CardList = Game.GetGreenCardByPlayerID(objPlayer.getPlayer_id());
-		System.out.println("Which card do you want to discard :" + CardList);
-		BufferedReader br1 = new BufferedReader(new InputStreamReader(System.in));
-		String cardID = br1.readLine();
-		GreenCard objGC = Game.GetGreenCard(cardID);
-		objGC.IsPlayed = true;
-		int playerID = objPlayer.getPlayer_id();
-		Game.PaymentFromBank(playerID, 2);
-		status = true;
-		System.out.println("Action Performed Successfully");
+	public boolean TheScoursAction(Player objPlayer) throws IOException{
+
+		boolean status = false;
+		Integer playerID = objPlayer.getPlayer_id();
+		if(playerID != null)
+		{
+			Game.PaymentFromBank(playerID, 2);
+			BufferedReader brPlayerBuff = new BufferedReader(new InputStreamReader(System.in));
+			System.out.println("Please select a Green Card which you wish to Discard:");
+			String strValidGreenCardList = ",";
+			Game.SetGreenCardIsPlayed(CardID, true);
+			ArrayList<GreenCard> greenCardList = Game.GetGreenCardByPlayerID(objPlayer.getPlayer_id());
+			for(GreenCard grnCard : greenCardList)
+			{			
+				String ActionList = Game.GetGreenCardActions(grnCard.GetCardID());
+				strValidGreenCardList+=grnCard.GetCardID()+",";
+				System.out.printf("%-5s%-5s%-40s%-5s%-50s%-5s%-60s\n",grnCard.GetCardID() ,  " : " ,  grnCard.getName() , " : " , ActionList," : ","Scroll Action : "+grnCard.GetActionDescription());			
+			}		
+			String strGreenCardID = "";
+			while(true)
+			{
+				strGreenCardID = brPlayerBuff.readLine();
+				if(strValidGreenCardList.contains(","+strGreenCardID+","))
+				{
+					status = true;
+					break;
+				}
+				else
+				{
+					System.out.println("Please enter a valid Green Card ID listed above:");
+				}
+
+			}
+			Game.SetGreenCardIsPlayed(strGreenCardID, true);
+			status = true;
+			System.out.println("Action Performed");
+		}
+		else
+		{
+			System.out.println("PlayeId is Null");
+			System.out.println("Action Failed");
+			status = false;
+		}
+		return status;
 	}
-	return status;
-}
+
+//	boolean status = false;
+//	ArrayList<GreenCard> CardList = Game.GetGreenCardByPlayerID(objPlayer.getPlayer_id());
+//	System.out.println("Which card do you want to discard :" + CardList);
+//	BufferedReader br1 = new BufferedReader(new InputStreamReader(System.in));
+//	String cardID = br1.readLine();
+//	GreenCard objGC = Game.GetGreenCard(cardID);
+//	objGC.IsPlayed = true;
+//	int playerID = objPlayer.getPlayer_id();
+//	Game.PaymentFromBank(playerID, 2);
+//	status = true;
+//	System.out.println("Action Performed Successfully");
+//
+//	return status;
+//}
 
 /**
  * The shades action.
@@ -438,30 +567,25 @@ public boolean TheScoursAction(Player objPlayer) throws IOException{
  * @throws NumberFormatException the number format exception
  * @throws IOException Signals that an I/O exception has occurred.
  */
-public boolean TheShadesAction(Player objPlayer) throws NumberFormatException, IOException{
-	boolean status = false;
-	BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
-	System.out.println("Would you like to perform this action : Y/N ");
-	String userinput = br.readLine();
-	if (userinput.equals('Y') || userinput.equals('y'))
-	{
-		//To draw one card from deck
-		//String areaList = Game.getAreaIDForPlayer(objPlayer.getPlayer_id());
-		//System.out.println("Enter areaId :" + areaList);
-		BufferedReader br1 = new BufferedReader(new InputStreamReader(System.in));
-		int areaID = Integer.parseInt(br1.readLine());
+	public boolean TheShadesAction(Player objPlayer) throws NumberFormatException, IOException{
+			boolean status = false;
+			//To draw one card from deck
+			//String areaList = Game.getAreaIDForPlayer(objPlayer.getPlayer_id());
+			//System.out.println("Enter areaId :" + areaList);
+			//BufferedReader br1 = new BufferedReader(new InputStreamReader(System.in));
+			//int areaID = Integer.parseInt(br1.readLine());
 			String adjacentAreaidList = Game.getAdjacentAreas(7);
-			System.out.println("Enter the areaID among the list you want place the troublemarker adjacent to it:" + adjacentAreaidList + 7);
-					BufferedReader br2 = new BufferedReader(new InputStreamReader(System.in));
-					int adjacentAreaID = Integer.parseInt(br2.readLine());
-					 TroubleMaker objTroubleMaker = Game.GetTroubleMakerNotOnBoard();
-					 objTroubleMaker.setArea_id(adjacentAreaID);
-					 status = true;
-					 System.out.println("Action Performed Successfully");
+			System.out.println("Enter the areaID among the list where you want place the troublemarker adjacent to it:" + adjacentAreaidList + ",7");
+			BufferedReader br2 = new BufferedReader(new InputStreamReader(System.in));
+			int adjacentAreaID = Integer.parseInt(br2.readLine());
+			objPlayer.PlaceATroubleMarkerInArea(adjacentAreaID);														
+			System.out.println("Trouble Marker was placed in : "+PresentationUtility.getCityAreaCardNameById(adjacentAreaID));
+			//TroubleMaker objTroubleMaker = Game.GetTroubleMakerNotOnBoard();
+			//objTroubleMaker.setArea_id(adjacentAreaID);
+			status = true;
+			System.out.println("Action Performed");
+		return status;
 	}
-	
-	return status;
-}
 
 /**
  * Small gods action.
@@ -483,25 +607,30 @@ public boolean SmallGodsAction(Player objPlayer) throws IOException{
  */
 public boolean IsleOfGodsAction(Player objPlayer) throws IOException{
 	boolean status = false;
-	BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
-	System.out.println("Would you like to perform this action : Y/N ");
-	String userinput = br.readLine();
-	if (userinput.equals('Y') || userinput.equals('y'))
+	Integer playerID = objPlayer.getPlayer_id();
+	if(playerID != null)
 	{
-		int playerID = objPlayer.getPlayer_id();
 		Game.PaymentToBank(playerID, 2);
-		String areaList = Game.GetTroubleMakerOnBoardAreaId();
-		System.out.println("Enter areaID from which area you want to remove trouble marker" + areaList);
-		BufferedReader br1 = new BufferedReader(new InputStreamReader(System.in));
-		int areaID = Integer.parseInt(br1.readLine());
-		if(Game.removeTroubleMarkerByAreaId(areaID)){
+		if(objPlayer.UserRemoveOneTroubleMarker())
+		{
+			System.out.println("Action Performed");
 			status = true;
 		}
-		System.out.println("Action Performed Successfully");
-		
+		else{
+			System.out.println("Action Failed");
+			status = false;
+		}
 	}
 	return status;
 }
+		//String areaList = Game.GetTroubleMakerOnBoardAreaId();
+		//System.out.println("Enter areaID from which area you want to remove trouble marker" + areaList);
+		//BufferedReader br1 = new BufferedReader(new InputStreamReader(System.in));
+		//int areaID = Integer.parseInt(br1.readLine());
+		//if(Game.removeTroubleMarkerByAreaId(areaID)){
+		//	status = true;
+		//}
+	
 
 /**
  * Unreal estate.
