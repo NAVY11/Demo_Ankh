@@ -9,9 +9,9 @@ public class PersonalityCard extends Cards{
 	
 	@Override
 	public String toString() {
-		return "{\"PersonalityName\":" + PersonalityName
+		return "{\"PersonalityName\":" +"\""+ PersonalityName +"\"" 
 				+ ", \"PersonalityMotive\":" + PersonalityMotive + ", \"CardID\":"
-				+ "\""+CardID + "\""+", \"IsPlayed\":" + IsPlayed + ", \"Name\":" + Name
+				+ "\""+CardID + "\""+", \"IsPlayed\":" + IsPlayed + ", \"Name\":" +"\""+ Name +"\""
 				+ ", \"PlayerID\":" + PlayerID + "}";
 	}
 

@@ -325,7 +325,7 @@ public class GameLoad {
 				{
 					sbValidCityAreaIDs.append(cityAreaCard.GetCardID());
 					hasCityAreaCard = true;
-					System.out.println(cityAreaCard.CardID + " : " + cityAreaCard.getName());
+					System.out.println(cityAreaCard.CardID + " : " + cityAreaCard.GetAreaName());
 				}
 			}
 
@@ -339,8 +339,10 @@ public class GameLoad {
 					CardID = br.readLine().toString();
 					if((sbValidCityAreaIDs.toString()).contains(CardID))
 					{
-						break;
+						objPlayer.performCityAreaAction(CardID);
+						
 					}
+					break;
 				}
 			}
 

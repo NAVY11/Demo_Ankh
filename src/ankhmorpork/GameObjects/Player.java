@@ -845,15 +845,15 @@ public class Player {
 		{
 			switch(ActionID)
 			{
-			case "Assassination" : return this.Assassination();
-			case "Remove One Trouble Marker" : return this.UserRemoveOneTroubleMarker();
-			case "Take Money" : return this.TakeMoneyFromBank(CardID);
-			case "Random Event" : this.randomCardToPlay(); 
-			case "Play Another Card" : return this.PlayAnotherCard(CardID);
+			case "Assassination": case " Assassination" : return this.Assassination();
+			case "Remove One Trouble Marker": case " Remove One Trouble Marker": return this.UserRemoveOneTroubleMarker();
+			case "Take Money": case " Take Money" : return this.TakeMoneyFromBank(CardID);
+			case "Random Event": case " Random Event" : this.randomCardToPlay(); 
+			case "Play Another Card": case " Play Another Card" : return this.PlayAnotherCard(CardID);
 			//				case "Interrupt " : return 
-			case "Place a Minion" : return this.placeAMinionFunctionality();
-			case "Place a Building" : return this.placeABuildingFunctionality();
-			case "No Action" : System.out.println("This card cannot be played."); return false;
+			case "Place a Minion": case " Place a Minion"  : return this.placeAMinionFunctionality();
+			case "Place a Building": case " Place a Building" : return this.placeABuildingFunctionality();
+			case "No Action": case " No Action" : System.out.println("This card cannot be played."); return false;
 			}
 		}
 		return success;			
