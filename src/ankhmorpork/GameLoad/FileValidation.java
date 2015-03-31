@@ -1,16 +1,5 @@
 package ankhmorpork.GameLoad;
 
-
-import ankhmorpork.Game.Game;
-import ankhmorpork.GameObjects.*;
-import ankhmorpork.GameObjects.Cards.BrownCard;
-import ankhmorpork.GameObjects.Cards.CityAreaCard;
-import ankhmorpork.GameObjects.Cards.GreenCard;
-import ankhmorpork.GameObjects.Cards.PersonalityCard;
-import ankhmorpork.GameObjects.Cards.RandomEventCard;
-import ankhmorpork.GameConstants.*;
-
-import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.IOException;
 import java.util.Iterator;
@@ -38,14 +27,15 @@ public class FileValidation {
 	 * @return true, if successful
 	 * @throws IOException Signals that an I/O exception has occurred.
 	 * @throws ParseException the parse exception
+	 * @throws JSONException 
 	 */
-	public static boolean Validate(FileReader objFilereader) throws IOException, ParseException
+	public static boolean Validate(FileReader objFilereader) throws IOException, ParseException, JSONException
 	{
 
-				//FileReader objFilereader = new FileReader(File);		
+				//FileReader objFilereader = new FileReader(File);
 				JSONParser jsonParser = new JSONParser();		
-				JSONObject json = (JSONObject)jsonParser.parse(objFilereader);	
-				int trollcount = 0, demoncount = 0, playercount = 0;
+				JSONObject json = (JSONObject)jsonParser.parse(objFilereader);		
+				int trollcount = 0, demoncount = 0, playercount = 0, minioncount = 0;
 				
 				//Loading TROLLS
 				JSONArray Trolls = (JSONArray)json.get("Trolls");
@@ -73,7 +63,20 @@ public class FileValidation {
 					playercount ++;
 				}
 				
-				if((trollcount>1 && trollcount <=12) && (demoncount ==4) && (playercount >1 && playercount<=4))
+				//Loading Minions
+				JSONArray Minions = (JSONArray)json.get("Minion");
+				Iterator iMinion = Minions.iterator();
+				while (iMinion.hasNext())
+				{
+					minioncount ++;
+				}
+				
+				System.out.println("troll count "+trollcount);
+				System.out.println("demon count "+demoncount);
+				System.out.println("players count "+playercount);
+				System.out.println("minion count "+minioncount);
+
+				if((trollcount==12) && (demoncount==4) && (playercount >1 && playercount<=4) && (minioncount==12 || minioncount==24 || minioncount==36 || minioncount==48))
 				{
 					return true;
 				}
@@ -86,5 +89,6 @@ public class FileValidation {
 
 	
 }
+
 
 
