@@ -334,7 +334,7 @@ public class GameLoad {
 				String CardID = null;
 				while(true)
 				{
-					System.out.println("Enter a City Area Card ID");
+					System.out.println("If you want to play your City Area Card then Input the Card ID else press 'Enter' to continue");
 					BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
 					CardID = br.readLine().toString();
 					if((sbValidCityAreaIDs.toString()).contains(CardID))
@@ -421,6 +421,24 @@ public class GameLoad {
 				if(success)
 				{							
 					//Set Current card as 'Played'
+					if(hasCityAreaCard){
+						//Accept City Area Card to play from Player
+						String CardID1 = null;
+						while(true)
+						{
+							System.out.println("City area cards : " +sbValidCityAreaIDs);
+							
+							System.out.println("If you want to play your City Area Card then Input the Card ID else press 'Enter' to continue");
+							BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+							CardID1 = br.readLine().toString();
+							if((sbValidCityAreaIDs.toString()).contains(CardID1))
+							{
+								objPlayer.performCityAreaAction(CardID1);
+								
+							}
+							break;
+						}
+					}
 					Game.SetGreenCardIsPlayed(CardID, true);
 					//Get number of Green Crads available with Player
 					int CardsInHand = Game.GetPlayerGreenCardCount(objPlayer.getPlayer_id());
