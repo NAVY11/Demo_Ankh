@@ -1122,8 +1122,9 @@ public class Player {
 			}
 			//			this.setPlayer_amount((float) (this.getPlayer_amount() != null ? this.getPlayer_amount() : 0) + (count*1) );
 			//			success = true;
-			success = Game.PaymentFromBank(this.getPlayer_id(), count);
+			
 		}
+		success = Game.PaymentFromBank(this.getPlayer_id(), count);
 		return success;
 	}
 
