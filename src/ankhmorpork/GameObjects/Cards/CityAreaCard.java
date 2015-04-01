@@ -574,10 +574,19 @@ public class CityAreaCard extends Cards{
 			//System.out.println("Enter areaId :" + areaList);
 			//BufferedReader br1 = new BufferedReader(new InputStreamReader(System.in));
 			//int areaID = Integer.parseInt(br1.readLine());
+			String strhasnotroblemarker = "";
 			String strAdjacentArea = Game.getAdjacentAreas(7);
 			strAdjacentArea += ",7";
+			String[] adjArea = strAdjacentArea.split(",");
+			for(int i = 0; i<adjArea.length; i++)
+			{
+				if(!Game.AreaHasTroubleMarker(Integer.parseInt(adjArea[i])))
+				{
+					strhasnotroblemarker += ","+adjArea[i];
+				}
+			}
 			System.out.println("Enter the areaID where you want place the troublemarker:");
-			Game.DisplayAreas(strAdjacentArea);
+			Game.DisplayAreas(strhasnotroblemarker);
 			BufferedReader br2 = new BufferedReader(new InputStreamReader(System.in));
 			int adjacentAreaID = Integer.parseInt(br2.readLine());
 			objPlayer.PlaceATroubleMarkerInArea(adjacentAreaID);														
