@@ -25,8 +25,10 @@ import java.util.Iterator;
 
 
 
+
 import javax.swing.JFileChooser;
 import javax.swing.JOptionPane;
+
 
 
 //import org.json.JSONArray;
@@ -35,6 +37,9 @@ import org.json.JSONException;
 import org.json.simple.JSONObject;
 import org.json.simple.parser.JSONParser;
 import org.json.simple.parser.ParseException;
+
+import winningCondition.WinningCondition;
+import winningCondition.WinningConditionFactory;
 
 // TODO: Auto-generated Javadoc
 /**
@@ -56,6 +61,21 @@ public class GameLoad {
 				//FileReader objFilereader = new FileReader(File);		
 				JSONParser jsonParser = new JSONParser();		
 				JSONObject json = (JSONObject)jsonParser.parse(objFilereader);		
+
+				//Loading Personality
+				JSONArray PersonalityCards = (JSONArray)json.get("PersonalityCards");
+				Iterator iPersonalityCard = PersonalityCards.iterator();
+				while (iPersonalityCard.hasNext())
+				{
+					PersonalityCard objPersonalityCard = new PersonalityCard();
+					JSONObject jsonPersonalityCard = (JSONObject)iPersonalityCard.next();
+					objPersonalityCard.SetCardID(jsonPersonalityCard.get("CardID").toString());
+					objPersonalityCard.SetIsPlayed((Boolean)jsonPersonalityCard.get("IsPlayed"));
+					objPersonalityCard.setPlayerID(Integer.parseInt(jsonPersonalityCard.get("PlayerID").toString()));
+					objPersonalityCard.SetPersonalityName((jsonPersonalityCard.get("PersonalityName").toString()));
+					objPersonalityCard.setName((jsonPersonalityCard.get("Name").toString()));
+					Game.lstPersonalityCard.add(objPersonalityCard);
+				}
 				
 				//Loading TROLLS
 				JSONArray Trolls = (JSONArray)json.get("Trolls");
@@ -313,8 +333,17 @@ public class GameLoad {
 				}
 			}
 			System.out.println("It is "+objPlayer.getPlayer_name()+"'s turn");
+			//Check Winning condition for Current Player
+			WinningCondition objWins = WinningConditionFactory.getWinningCircumstance(objPlayer);
+			if( objWins.isWinner(objPlayer.getPlayer_id()))
+			{
+				PersonalityCard objPC = Game.GetPersonalityCardByPlayerID(objPlayer.getPlayer_id());
+				System.out.println("Victory condition achieved! "+objPlayer.getPlayer_name()+" playing as "+ objPC.GetPersonalityName() + " wins the Game!" );
+				System.exit(0);
+			}
+			
 			//********Which Card to Play?
-			System.out.println("Which card to play?");
+			//System.out.println("Which card to play?");
 
 			//Show available city area cards
 			StringBuilder sbValidCityAreaIDs = new StringBuilder();
@@ -325,7 +354,7 @@ public class GameLoad {
 				{
 					sbValidCityAreaIDs.append(cityAreaCard.GetCardID());
 					hasCityAreaCard = true;
-					System.out.println(cityAreaCard.CardID + " : " + cityAreaCard.getName());
+					System.out.println(cityAreaCard.CardID + " : " + cityAreaCard.GetAreaName() + " : " + cityAreaCard.GetActionDescription());
 				}
 			}
 
@@ -334,13 +363,15 @@ public class GameLoad {
 				String CardID = null;
 				while(true)
 				{
-					System.out.println("Enter a City Area Card ID");
+					System.out.println("If you want to play your City Area Card then Input the Card ID else press 'Enter' to continue");
 					BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
 					CardID = br.readLine().toString();
 					if((sbValidCityAreaIDs.toString()).contains(CardID))
 					{
-						break;
+						objPlayer.performCityAreaAction(CardID);
+						
 					}
+					break;
 				}
 			}
 
@@ -419,6 +450,24 @@ public class GameLoad {
 				if(success)
 				{							
 					//Set Current card as 'Played'
+					if(hasCityAreaCard){
+						//Accept City Area Card to play from Player
+						String CardID1 = null;
+						while(true)
+						{
+							System.out.println("City area cards : " +sbValidCityAreaIDs);
+							
+							System.out.println("If you want to play your City Area Card then Input the Card ID else press 'Enter' to continue");
+							BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+							CardID1 = br.readLine().toString();
+							if((sbValidCityAreaIDs.toString()).contains(CardID1))
+							{
+								objPlayer.performCityAreaAction(CardID1);
+								
+							}
+							break;
+						}
+					}
 					Game.SetGreenCardIsPlayed(CardID, true);
 					//Get number of Green Crads available with Player
 					int CardsInHand = Game.GetPlayerGreenCardCount(objPlayer.getPlayer_id());

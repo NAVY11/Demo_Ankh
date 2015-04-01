@@ -308,6 +308,27 @@ public class discworldboard extends Component {
 	 */
 	public void Loadgamefetch(FileReader objFileReader) throws IOException, ParseException, JSONException
 	{
+		//boolean success = FileValidation.Validate(objFileReader);
+//		while(!success)
+//		{
+//			System.out.println("Invalid File. Please Choose valid file");
+//			try {
+//				JFileChooser chooser = new JFileChooser();
+//			    chooser.setCurrentDirectory(new File("/home/me/Documents"));
+//			    int retrival = chooser.showOpenDialog(null);
+//			    if (retrival == JFileChooser.APPROVE_OPTION) {
+//			    		
+//			             objFileReader = new FileReader(chooser.getSelectedFile());
+//			     		 success = FileValidation.Validate(objFileReader);
+//
+//			    } 			
+//			} catch (IOException e1) {
+//				// TODO Auto-generated catch block
+//				e1.printStackTrace();
+//			} 
+//			
+//			
+//		}
 		GameLoad.LoadGame(objFileReader);
 	}
 

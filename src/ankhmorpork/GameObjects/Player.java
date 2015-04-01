@@ -435,40 +435,41 @@ public class Player {
 			//Display Minions, Demons, Trolls which can be Assassinated
 			if(!Minions.isEmpty())
 			{
-				System.out.print("Minions :");								
+				System.out.print("Minions ID :");								
 				for(Minion objMinion : Minions)
 				{					
-					System.out.print("ID : " + objMinion.getMinion_id() + " ");
+					System.out.print(objMinion.getMinion_id() + " ");
 				}
 			}
 
 			if(!Trolls.isEmpty())
 			{
-				System.out.println("Trolls :");
+				System.out.println("Trolls ID :");
 				for(Troll objTroll : Trolls)
 				{
-					System.out.print("ID : " + objTroll.getTroll_id() + " ");
+					System.out.print(objTroll.getTroll_id() + " ");
 				}
 			}
 
 			if(!Demons.isEmpty())
 			{
-				System.out.println("Demons :");
+				System.out.println("Demons ID :");
 				for(Demon objDemon : Demons)
 				{
-					System.out.print("ID : " + objDemon.getDemon_id() + " ");
+					System.out.print(objDemon.getDemon_id() + " ");
 				}
 			}
 			boolean Break = false;
 			while(true)
 			{
+				System.out.println("\n");
 				System.out.println("To assassinate Enter 'M' for Minion, 'D' for Demon, 'T' for Troll");
 				String input = br.readLine();
 				switch(input)
 				{
-				case "M" : if(AskForInterrupt()){if(GetInterrupter()){success = false; Break =true;}else{success = AssassinateMinion(Minions); Break = true;}}else{success = AssassinateMinion(Minions); Break = true;} break;						
-				case "T" : if(AskForInterrupt()){if(GetInterrupter()){success = false; Break =true;}else{success = AssassinateTroll(Trolls); Break = true;}}else{success = AssassinateTroll(Trolls); Break = true;} break;
-				case "D" : if(AskForInterrupt()){if(GetInterrupter()){success = false; Break =true;}else{success = AssassinateDemon(Demons); Break = true;}}else{success = AssassinateDemon(Demons); Break = true;}break;
+				case "M" :case "m" : if(AskForInterrupt()){if(GetInterrupter()){success = false; Break =true;}else{success = AssassinateMinion(Minions); Break = true;}}else{success = AssassinateMinion(Minions); Break = true;} break;						
+				case "T" :case "t" : if(AskForInterrupt()){if(GetInterrupter()){success = false; Break =true;}else{success = AssassinateTroll(Trolls); Break = true;}}else{success = AssassinateTroll(Trolls); Break = true;} break;
+				case "D" :case "d" : if(AskForInterrupt()){if(GetInterrupter()){success = false; Break =true;}else{success = AssassinateDemon(Demons); Break = true;}}else{success = AssassinateDemon(Demons); Break = true;}break;
 				default  : System.out.println("Incorrect input. Please try again.");
 				}
 				if(Break)
@@ -498,42 +499,82 @@ public class Player {
 		BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
 		if(!Minions.isEmpty())
 		{
-			System.out.println("Minions :");								
+			System.out.println("Minions ID :");								
 			for(Minion objMinion : Minions)
 			{				
-				System.out.print("ID : " + objMinion.getMinion_id() + " ");
+				System.out.print(objMinion.getMinion_id() + " ");
 			}
 
 			String MinionID = null;			
 			while(true)
 			{
+				System.out.println("\n");
 				System.out.println("Enter a Minion ID to assassinate:");
 				MinionID = br.readLine();
 				for(Minion objMinion : Minions)
 				{
-					if(objMinion.getMinion_id().toString().equals(MinionID) )
-					{
-						for(Minion GameMinion : Game.lstMinions)
-						{
-							if(GameMinion.getMinion_id().toString().equals(MinionID))
-							{
-								GameMinion.setActive(false);
-								GameMinion.setArea_id(0);								
-								success = true;
+					Player playerObjOfMinion = Game.GetPlayer(objMinion.getPlayer_id()); //Put playerId here to get the player Object
+					ArrayList<GreenCard> greenCardPlayerObj = Game.GetGreenCardByPlayerID(playerObjOfMinion.getPlayer_id());
+					boolean minionSavedAndRemoved = false;
+					if(greenCardPlayerObj != null && greenCardPlayerObj.size() > 0){
+						ArrayList<Minion> minionByAreaId = Game.GetMinionsByAreaID(0); //getAreaId needed to make sure from where I have to remove the minion
+						Minion minionObj = minionByAreaId.get(0);
+						for(GreenCard greenCard : greenCardPlayerObj){
+							if(greenCard.GetCardID().equals("g17") || greenCard.GetCardID().equals("g18")){
+								if(greenCard.GetCardID().equals("g17")){
+									System.out.println(playerObjOfMinion.getPlayer_name() + ", Player "+ playerObjOfMinion.getPlayer_id()+"'s minion is to be assassinated. You have the Interrupt Card 'Gaspode'. Do you wish to Play it. Y/N ?");
+									String ans = PresentationUtility.GetValidAnswerFromUser(",Y,N,");
+									if(ans.equals("Y")){
+										System.out.println(playerObjOfMinion.getPlayer_name() + " Minion saved.");
+										greenCard.SetIsPlayed(true);
+										greenCard.setPlayerID(0);
+										minionSavedAndRemoved = true;
+										success = true;
+									}
+								}else if(greenCard.GetCardID().equals("g18")){
+									System.out.println(playerObjOfMinion.getPlayer_name() + ", Player "+ playerObjOfMinion.getPlayer_id()+"'s minion has been assassinated. You have the Interrupt Card 'Fresh Card Club'. Do you wish to Play it. Y/N ?");
+									String ans = PresentationUtility.GetValidAnswerFromUser(",Y,N,");
+									if(ans.equals("Y")){
+										System.out.println("You have to place it in a different area. Enter an areaId in which you want to place the assasinated minion :");
+										String areaIdStr = br.readLine();
+										Integer areaIdInt = Integer.parseInt(areaIdStr);
+										Minion minionToBePlaced = Game.GetMinionsByMinionID(minionObj.getMinion_id());
+										minionToBePlaced.setArea_id(areaIdInt);
+										System.out.println("Minion has been placed in Area : "+PresentationUtility.getCityAreaCardNameById(areaIdInt));
+										greenCard.SetIsPlayed(true);
+										greenCard.setPlayerID(0);
+										minionSavedAndRemoved = true;
+										success = true;
+									}
+								}
 							}
-
+						}
+					}
+					if(!minionSavedAndRemoved){
+						if(objMinion.getMinion_id().toString().equals(MinionID) )
+						{
+							for(Minion GameMinion : Game.lstMinions)
+							{
+								if(GameMinion.getMinion_id().toString().equals(MinionID))
+								{
+									GameMinion.setActive(false);
+									GameMinion.setArea_id(0);								
+									success = true;
+								}
+	
+								if(success)
+									break;
+							}
+	
+	
 							if(success)
 								break;
 						}
-
-
-						if(success)
-							break;
+						else
+						{
+							System.out.println("Invalid Minion ID");
+						}
 					}
-					else
-					{
-						System.out.println("Invalid Minion ID");
-					}									
 
 				}
 				if(success)
@@ -556,15 +597,18 @@ public class Player {
 		BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
 		if(!Trolls.isEmpty())
 		{
-			System.out.println("Trolls :");								
+			System.out.println("\n");
+			System.out.println("Trolls ID :");								
 			for(Troll objTroll : Trolls)
 			{				
-				System.out.print("ID : " + objTroll.getTroll_id() + " ");
+				System.out.print(objTroll.getTroll_id() + " ");
 			}
 
 			String TrollID = null;			
 			while(true)
 			{
+				
+				System.out.println("Enter a Troll ID to assassinate:");
 				TrollID = br.readLine();
 				for(Troll objTroll : Trolls)
 				{
@@ -610,15 +654,17 @@ public class Player {
 		BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
 		if(!Demons.isEmpty())
 		{
-			System.out.println("Demons :");								
+			System.out.println("Demons ID :");								
 			for(Demon objDemon : Demons)
 			{				
-				System.out.print("ID : " + objDemon.getDemon_id() + " ");
+				System.out.print(objDemon.getDemon_id() + " ");
 			}
 
 			String DemonID = null;			
 			while(true)
 			{
+				System.out.println("\n");
+				System.out.println("Enter a Demon ID to assassinate:");
 				DemonID = br.readLine();
 				for(Demon objDemon : Demons)
 				{
@@ -799,7 +845,7 @@ public class Player {
 	{
 		//ActionID ="Remove One Trouble Marker";
 		boolean success = false;
-		if(ActionID.equalsIgnoreCase("Scroll"))
+		if(ActionID.equalsIgnoreCase("Scroll") || ActionID.equalsIgnoreCase(" Scroll") )
 		{
 			//CardID = "g20";
 			//this.theFireBrigadeFunctionality();
@@ -845,15 +891,15 @@ public class Player {
 		{
 			switch(ActionID)
 			{
-			case "Assassination" : return this.Assassination();
-			case "Remove One Trouble Marker" : return this.UserRemoveOneTroubleMarker();
-			case "Take Money" : return this.TakeMoneyFromBank(CardID);
-			case "Random Event" : this.randomCardToPlay(); 
-			case "Play Another Card" : return this.PlayAnotherCard(CardID);
+			case "Assassination": case " Assassination" : return this.Assassination();
+			case "Remove One Trouble Marker": case " Remove One Trouble Marker": return this.UserRemoveOneTroubleMarker();
+			case "Take Money": case " Take Money" : return this.TakeMoneyFromBank(CardID);
+			case "Random Event": case " Random Event" : this.randomCardToPlay(); 
+			case "Play Another Card": case " Play Another Card" : return this.PlayAnotherCard(CardID);
 			//				case "Interrupt " : return 
-			case "Place a Minion" : return this.placeAMinionFunctionality();
-			case "Place a Building" : return this.placeABuildingFunctionality();
-			case "No Action" : System.out.println("This card cannot be played."); return false;
+			case "Place a Minion": case " Place a Minion"  : return this.placeAMinionFunctionality();
+			case "Place a Building": case " Place a Building" : return this.placeABuildingFunctionality();
+			case "No Action": case " No Action" : System.out.println("This card cannot be played."); return false;
 			}
 		}
 		return success;			
@@ -1170,30 +1216,50 @@ public class Player {
 		{
 			if(objMinion.getArea_id()==Integer.parseInt(strAreaID) && objMinion.getPlayer_id()==this.getPlayer_id())
 			{
-				objMinion.setArea_id(Integer.parseInt(strMoveToArea));
-				//Handle Trouble Markers
-				//Place or Remove Trouble Marker from Previous Area
-				if(Game.AreaHasTroubleMarker(Integer.parseInt(strAreaID)))
-				{
-					Game.removeTroubleMarkerByAreaId(Integer.parseInt(strAreaID));							
-					System.out.println("Trouble Marker was removed from : "+PresentationUtility.getCityAreaCardNameById(Integer.parseInt(strAreaID)));													
+				Player playerObjOfMinion = Game.GetPlayer(objMinion.getPlayer_id()); //Put playerId here to get the player Object
+				ArrayList<GreenCard> greenCardPlayerObj = Game.GetGreenCardByPlayerID(playerObjOfMinion.getPlayer_id());
+				if(greenCardPlayerObj != null && greenCardPlayerObj.size() > 0){
+					for(GreenCard greenCard : greenCardPlayerObj){
+						if(greenCard.GetCardID().equals("g17")){
+							System.out.println(playerObjOfMinion.getPlayer_name() + ", Player "+ playerObjOfMinion.getPlayer_id()+"'s minion is to be assassinated. You have the Interrupt Card 'Gaspode'. Do you wish to Play it. Y/N ?");
+							String ans = PresentationUtility.GetValidAnswerFromUser(",Y,N,");
+							if(ans.equals("Y")){
+								System.out.println(playerObjOfMinion.getPlayer_name() + " Minion saved.");
+								greenCard.SetIsPlayed(true);
+								greenCard.setPlayerID(0);
+								success = true;
+								break;
+							}
+						}
+					}
+					break;
 				}
-				else
-				{
-					PlaceATroubleMarkerInArea(Integer.parseInt(strAreaID));														
-					System.out.println("Trouble Marker was placed in : "+PresentationUtility.getCityAreaCardNameById(Integer.parseInt(strAreaID)));																				
+				if(!success){
+					objMinion.setArea_id(Integer.parseInt(strMoveToArea));
+					//Handle Trouble Markers
+					//Place or Remove Trouble Marker from Previous Area
+					if(Game.AreaHasTroubleMarker(Integer.parseInt(strAreaID)))
+					{
+						Game.removeTroubleMarkerByAreaId(Integer.parseInt(strAreaID));							
+						System.out.println("Trouble Marker was removed from : "+PresentationUtility.getCityAreaCardNameById(Integer.parseInt(strAreaID)));													
+					}
+					else
+					{
+						PlaceATroubleMarkerInArea(Integer.parseInt(strAreaID));														
+						System.out.println("Trouble Marker was placed in : "+PresentationUtility.getCityAreaCardNameById(Integer.parseInt(strAreaID)));																				
+					}
+	
+					//Place or Remove Trouble Marker from New Area
+					if(!Game.AreaHasTroubleMarker(Integer.parseInt(strMoveToArea)))
+					{
+						PlaceATroubleMarkerInArea(Integer.parseInt(strMoveToArea));														
+						System.out.println("Trouble Marker was placed in : "+PresentationUtility.getCityAreaCardNameById(Integer.parseInt(strMoveToArea)));													
+					}
+					
+					System.out.println("Minion moved successfully!");
+					success = true;
+					break;//Important to break as this should happen for 1 Minion Only
 				}
-
-				//Place or Remove Trouble Marker from New Area
-				if(!Game.AreaHasTroubleMarker(Integer.parseInt(strMoveToArea)))
-				{
-					PlaceATroubleMarkerInArea(Integer.parseInt(strMoveToArea));														
-					System.out.println("Trouble Marker was placed in : "+PresentationUtility.getCityAreaCardNameById(Integer.parseInt(strMoveToArea)));													
-				}
-				
-				System.out.println("Minion moved successfully!");
-				success = true;
-				break;//Important to break as this should happen for 1 Minion Only
 			}
 		}
 
@@ -2266,18 +2332,18 @@ public class Player {
 		CityAreaCard cityAreaCard = new CityAreaCard();
 		switch(cityAreaId)
 		{
-		case "c6" : cityAreaCard.TheHippoAction(this);
-		case "c5" : cityAreaCard.TheScoursAction(this);
-		case "c4" : cityAreaCard.SmallGodsAction(this);
-		case "c3" : cityAreaCard.DragonLandingAction(this);
-		case "c2" : cityAreaCard.UnrealEstate(this);
-		case "c1" : cityAreaCard.DollySisterAction(this);
-		case "c7" : cityAreaCard.TheShadesAction(this);
-		case "c8" : cityAreaCard.DimwellAction(this);
-		case "c9" : cityAreaCard.LongwallAction(this);
-		case "c10" : cityAreaCard.IsleOfGodsAction(this);
-		case "c11" : cityAreaCard.SevenSleepersAction(this);
-		case "c12" : cityAreaCard.NapHillAction(this);
+		case "c6" : cityAreaCard.TheHippoAction(this); break;
+		case "c5" : cityAreaCard.TheScoursAction(this); break;
+		case "c4" : cityAreaCard.SmallGodsAction(this); break;
+		case "c3" : cityAreaCard.DragonLandingAction(this); break;
+		case "c2" : cityAreaCard.UnrealEstate(this); break;
+		case "c1" : cityAreaCard.DollySisterAction(this); break;
+		case "c7" : cityAreaCard.TheShadesAction(this);break;
+		case "c8" : cityAreaCard.DimwellAction(this); break;
+		case "c9" : cityAreaCard.LongwallAction(this); break;
+		case "c10" : cityAreaCard.IsleOfGodsAction(this); break;
+		case "c11" : cityAreaCard.SevenSleepersAction(this);break;
+		case "c12" : cityAreaCard.NapHillAction(this); break;
 		}
 	}
 	
@@ -2425,7 +2491,7 @@ public class Player {
 			if(building.getArea_id() == randomNumber){
 				building.setArea_id(0);
 				success = true;
-				System.out.println("Building Successfully Removed from Area : " + PresentationUtility.getCityAreaCardNameById(randomNumber));
+				System.out.println("Building" + building.getBuilding_id()+"Successfully Removed from Area : " + PresentationUtility.getCityAreaCardNameById(randomNumber));
 				break;
 			}
 		}
