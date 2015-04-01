@@ -405,11 +405,11 @@ public class discworldboard extends Component {
 			StringBuilder sbPlayedCityAreaIDs = new StringBuilder();
 
 			boolean hasCityAreaCard = false;
-			System.out.println("                         City Area Cards ");
 			for(CityAreaCard cityAreaCard : Game.lstCityAreaCards)
 			{	
 				if(cityAreaCard.getPlayerID()==objPlayer.getPlayer_id())
 				{
+					System.out.println("                         City Area Cards ");
 					sbValidCityAreaIDs.append(cityAreaCard.GetCardID());
 					hasCityAreaCard = true;
 					System.out.printf("%-5s%-5s%-20s%-5s%-60s\n",cityAreaCard.CardID ,  " : " ,  cityAreaCard.GetAreaName(), " : "," Action Description : "+cityAreaCard.GetActionDescription());
@@ -527,7 +527,10 @@ public class discworldboard extends Component {
 						{
 							if(cityAreaCard.getPlayerID()==objPlayer.getPlayer_id())
 							{
-							System.out.printf("%-5s%-5s%-20s%-5s%-60s\n",cityAreaCard.CardID ,  " : " ,  cityAreaCard.GetAreaName(), " : "," Action Description : "+cityAreaCard.GetActionDescription());
+								if(sbPlayedCityAreaIDs.indexOf(cityAreaCard.CardID) == -1)
+								{
+									System.out.printf("%-5s%-5s%-20s%-5s%-60s\n",cityAreaCard.CardID ,  " : " ,  cityAreaCard.GetAreaName(), " : "," Action Description : "+cityAreaCard.GetActionDescription());
+								}
 							}
 						}
 						while(sbValidCityAreaIDs.length() != 0)
