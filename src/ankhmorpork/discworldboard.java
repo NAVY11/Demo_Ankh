@@ -490,6 +490,13 @@ public class discworldboard extends Component {
 					String ans = null;
 					if(i!=ActionArray.length-1 || actionPerformed)
 					{
+						if(ActionArray[i].equalsIgnoreCase("Random event"))
+						{
+							System.out.println("Performing Random Event Action:");
+							ans ="Y";
+						}
+						else
+						{
 						System.out.println("Do you wish to perform " + ActionArray[i] + " action? Y/N");
 						while(true)
 						{						
@@ -500,6 +507,7 @@ public class discworldboard extends Component {
 							}
 							else
 								System.out.println("Incorrect input. Please try again.");
+						}
 						}
 					}
 					else
@@ -557,7 +565,7 @@ public class discworldboard extends Component {
 						}
 					}
 					Game.SetGreenCardIsPlayed(CardID, true);
-					//Get number of Green Crads available with Player
+					//Get number of Green Cards available with Player
 					int CardsInHand = Game.GetPlayerGreenCardCount(objPlayer.getPlayer_id());
 
 					//Pick as many cards from deck so that the Player holds 5 Cards
