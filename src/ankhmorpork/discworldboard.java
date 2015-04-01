@@ -388,60 +388,77 @@ public class discworldboard extends Component {
 				}
 			}
 			System.out.println("It is "+objPlayer.getPlayer_name()+"'s turn");
-			
 			//Check Winning condition for Current Player
 			WinningCondition objWins = WinningConditionFactory.getWinningCircumstance(objPlayer);
 			if( objWins.isWinner(objPlayer.getPlayer_id()))
 			{
 				PersonalityCard objPC = Game.GetPersonalityCardByPlayerID(objPlayer.getPlayer_id());
 				System.out.println("Victory condition achieved! "+objPlayer.getPlayer_name()+" playing as "+ objPC.GetPersonalityName() + " wins the Game!" );
+				System.exit(0);
 			}
 			
-			//********Which Card to Play?			
-			System.out.println("Which card to play?");
+			//********Which Card to Play?
+			//System.out.println("Which card to play?");
 
 			//Show available city area cards
 			StringBuilder sbValidCityAreaIDs = new StringBuilder();
+			StringBuilder sbPlayedCityAreaIDs = new StringBuilder();
+
 			boolean hasCityAreaCard = false;
+			System.out.println("                         City Area Cards ");
 			for(CityAreaCard cityAreaCard : Game.lstCityAreaCards)
 			{	
 				if(cityAreaCard.getPlayerID()==objPlayer.getPlayer_id())
 				{
 					sbValidCityAreaIDs.append(cityAreaCard.GetCardID());
 					hasCityAreaCard = true;
-					System.out.println(cityAreaCard.CardID + " : " + cityAreaCard.getName());
+					System.out.printf("%-5s%-5s%-20s%-5s%-60s\n",cityAreaCard.CardID ,  " : " ,  cityAreaCard.GetAreaName(), " : "," Action Description : "+cityAreaCard.GetActionDescription());
+
+					//System.out.println(cityAreaCard.CardID + " : " + cityAreaCard.GetAreaName() + " : " + cityAreaCard.GetActionDescription());
 				}
 			}
 
-			if(hasCityAreaCard){
-				//Accept City Area Card to play from Player
-				String CardID = null;
-				while(true)
-				{
-					System.out.println("Enter a City Area Card ID");
-					BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
-					CardID = br.readLine().toString();
-					if((sbValidCityAreaIDs.toString()).contains(CardID))
-					{
-						break;
-					}
-				}
-			}
+
+			
 
 			//Show available greeen cards
+			System.out.println("                         Green Cards ");
 			boolean success = false;
 			while(!success)
 			{
 				StringBuilder sbValidIDs = new StringBuilder();
 				for(GreenCard grnCard: Game.lstGreenCards)
 				{	
-					if(grnCard.getPlayerID()==objPlayer.getPlayer_id() && !grnCard.IsPlayed)
+					if(grnCard.getPlayerID()==objPlayer.getPlayer_id())
 					{
 						sbValidIDs.append(grnCard.GetCardID());		
 						String ActionList = Game.GetGreenCardActions(grnCard.GetCardID());
-						System.out.printf("%-5s%-5s%-40s%-5s%-50s%-5s%-60s\n",grnCard.CardID ,  " : " ,  grnCard.getName() , " : " , ActionList," : ","Scroll Action : "+grnCard.GetActionDescription());
+						System.out.printf("%-5s%-5s%-20s%-5s%-50s%-5s%-50s\n",grnCard.CardID ,  " : " ,  grnCard.getName() , " : " , ActionList," : ","Scroll Action : "+grnCard.GetActionDescription());
+
 						//System.out.println("Card '" + grnCard.getName() + "' has following actions :");
 						//System.out.print(ActionList);
+					}
+				}
+				System.out.println("\n");
+				if(hasCityAreaCard){
+					//Accept City Area Card to play from Player
+					String CardID = null;
+					while(sbValidCityAreaIDs.length() != 0)
+					{
+						
+						System.out.println("If you want to play your City Area Cards then Input the Card ID else press 'Enter' to continue");
+						BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+						CardID = br.readLine().toString();
+						if((sbValidCityAreaIDs.toString()).contains(CardID) && !CardID.equals(""))
+						{
+							objPlayer.performCityAreaAction(CardID);
+							sbPlayedCityAreaIDs.append(CardID);
+							sbValidCityAreaIDs.delete(sbValidCityAreaIDs.indexOf(CardID),sbValidCityAreaIDs.indexOf(CardID) + 2 );
+
+						}
+						else if(CardID.equals(""))
+							break;
+						
 					}
 				}
 
@@ -466,53 +483,73 @@ public class discworldboard extends Component {
 				boolean actionPerformed = false;				
 				for(int i = 0; i<ActionArray.length; i++)
 				{
-					//Check whether the Card still belongs to current Player and can it be played
-					if(!grnCard.GetIsPlayed() && grnCard.getPlayerID()==objPlayer.getPlayer_id())
+					String ans = null;
+					if(i!=ActionArray.length-1 || actionPerformed)
 					{
-						String ans = null;
-						if(i!=ActionArray.length-1 || actionPerformed)
+						System.out.println("Do you wish to perform " + ActionArray[i] + " action? Y/N");
+						while(true)
+						{						
+							ans = BR.readLine();
+							if(ans.equalsIgnoreCase("Y") || ans.equalsIgnoreCase("N"))
+							{
+								break;
+							}
+							else
+								System.out.println("Incorrect input. Please try again.");
+						}
+					}
+					else
+					{
+						System.out.println("Performing action "+ ActionArray[i]);
+						ans="Y";
+					}
+					if(ans.equalsIgnoreCase("Y"))
+					{
+						actionPerformed = true;
+						//Does a Player wish to interrupt? //TO DO
+						//If Yes : Which Player wants to interrupt?
+						//Perform Action
+						success = objPlayer.PerformCardAction(ActionArray[i], CardID);
+
+					}
+					else
+						continue;
+				}
+
+				if(success)
+				{							
+					//Set Current card as 'Played'
+					if(hasCityAreaCard){
+						//Accept City Area Card to play from Player
+						String CardID1 = null;
+						System.out.println("                         City Area Cards ");
+						for(CityAreaCard cityAreaCard : Game.lstCityAreaCards)
 						{
-							System.out.println("Do you wish to perform " + ActionArray[i] + " action? Y/N");
-							while(true)
-							{						
-								ans = BR.readLine();
-								if(ans.equalsIgnoreCase("Y") || ans.equalsIgnoreCase("N"))
-								{
-									break;
-								}
-								else
-									System.out.println("Incorrect input. Please try again.");
+							if(cityAreaCard.getPlayerID()==objPlayer.getPlayer_id())
+							{
+							System.out.printf("%-5s%-5s%-20s%-5s%-60s\n",cityAreaCard.CardID ,  " : " ,  cityAreaCard.GetAreaName(), " : "," Action Description : "+cityAreaCard.GetActionDescription());
 							}
 						}
-						else
+						while(sbValidCityAreaIDs.length() != 0)
 						{
-							System.out.println("Performing action "+ ActionArray[i]);
-							ans="Y";
-						}
-						if(ans.equalsIgnoreCase("Y"))
-						{
-							actionPerformed = true;
-							//Does a Player wish to interrupt? //TO DO
-							//If Yes : Which Player wants to interrupt?
-							//Perform Action
-							success = objPlayer.PerformCardAction(ActionArray[i], CardID);
+							
+							System.out.println("If you want to play your City Area Cards then Input the Card ID else press 'Enter' to continue");
+							BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+							CardID1 = br.readLine().toString();
+							if((sbValidCityAreaIDs.toString()).contains(CardID1) && !CardID1.equals(""))
+							{
+								objPlayer.performCityAreaAction(CardID1);
+								sbPlayedCityAreaIDs.append(CardID1);
+								sbValidCityAreaIDs.delete(sbValidCityAreaIDs.indexOf(CardID1),sbValidCityAreaIDs.indexOf(CardID1) + 2 );
 
+							}
+							else 
+								if(CardID1.equals(""))
+								break;
+							
 						}
-						else
-							continue;
 					}
-
-					else
-						break; //if One of the Action causes the Player to Discard the Card then the Loop must not Continue, hence break;
-				}
-
-				if(success && grnCard.getPlayerID()==objPlayer.getPlayer_id())
-				{
-					//Set Current card as 'Played' provided card still belongs to current Player
 					Game.SetGreenCardIsPlayed(CardID, true);
-				}
-				if(success)
-				{
 					//Get number of Green Crads available with Player
 					int CardsInHand = Game.GetPlayerGreenCardCount(objPlayer.getPlayer_id());
 
@@ -526,8 +563,7 @@ public class discworldboard extends Component {
 				}
 				else
 				{
-					System.out.println("Opss! Acion failed.");
-					actionPerformed = true;//Ignoring failure as no roll-back is available right now
+					System.out.println("Opss! Acion failed. Please try again.");
 				}
 
 			}					

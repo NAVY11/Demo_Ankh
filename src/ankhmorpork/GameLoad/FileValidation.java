@@ -33,8 +33,8 @@ public class FileValidation {
 	{
 
 				//FileReader objFilereader = new FileReader(File);
-				JSONParser jsonParser = new JSONParser();		
-				JSONObject json = (JSONObject)jsonParser.parse(objFilereader);		
+				JSONParser jsonparser = new JSONParser();		
+				JSONObject json = (JSONObject)jsonparser.parse(objFilereader);		
 				int trollcount = 0, demoncount = 0, playercount = 0, minioncount = 0;
 				
 				//Loading TROLLS

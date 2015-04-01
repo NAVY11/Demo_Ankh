@@ -347,35 +347,27 @@ public class GameLoad {
 
 			//Show available city area cards
 			StringBuilder sbValidCityAreaIDs = new StringBuilder();
+			StringBuilder sbPlayedCityAreaIDs = new StringBuilder();
+
 			boolean hasCityAreaCard = false;
+			System.out.println("                         City Area Cards ");
 			for(CityAreaCard cityAreaCard : Game.lstCityAreaCards)
 			{	
 				if(cityAreaCard.getPlayerID()==objPlayer.getPlayer_id())
 				{
 					sbValidCityAreaIDs.append(cityAreaCard.GetCardID());
 					hasCityAreaCard = true;
-					System.out.println(cityAreaCard.CardID + " : " + cityAreaCard.GetAreaName() + " : " + cityAreaCard.GetActionDescription());
+					System.out.printf("%-5s%-5s%-20s%-5s%-60s\n",cityAreaCard.CardID ,  " : " ,  cityAreaCard.GetAreaName(), " : "," Action Description : "+cityAreaCard.GetActionDescription());
+
+					//System.out.println(cityAreaCard.CardID + " : " + cityAreaCard.GetAreaName() + " : " + cityAreaCard.GetActionDescription());
 				}
 			}
 
-			if(hasCityAreaCard){
-				//Accept City Area Card to play from Player
-				String CardID = null;
-				while(true)
-				{
-					System.out.println("If you want to play your City Area Card then Input the Card ID else press 'Enter' to continue");
-					BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
-					CardID = br.readLine().toString();
-					if((sbValidCityAreaIDs.toString()).contains(CardID))
-					{
-						objPlayer.performCityAreaAction(CardID);
-						
-					}
-					break;
-				}
-			}
+
+			
 
 			//Show available greeen cards
+			System.out.println("                         Green Cards ");
 			boolean success = false;
 			while(!success)
 			{
@@ -386,10 +378,32 @@ public class GameLoad {
 					{
 						sbValidIDs.append(grnCard.GetCardID());		
 						String ActionList = Game.GetGreenCardActions(grnCard.GetCardID());
-						System.out.printf("%-5s%-5s%-40s%-5s%-50s%-5s%-60s\n",grnCard.CardID ,  " : " ,  grnCard.getName() , " : " , ActionList," : ","Scroll Action : "+grnCard.GetActionDescription());
+						System.out.printf("%-5s%-5s%-20s%-5s%-50s%-5s%-50s\n",grnCard.CardID ,  " : " ,  grnCard.getName() , " : " , ActionList," : ","Scroll Action : "+grnCard.GetActionDescription());
 
 						//System.out.println("Card '" + grnCard.getName() + "' has following actions :");
 						//System.out.print(ActionList);
+					}
+				}
+				System.out.println("\n");
+				if(hasCityAreaCard){
+					//Accept City Area Card to play from Player
+					String CardID = null;
+					while(sbValidCityAreaIDs.length() != 0)
+					{
+						
+						System.out.println("If you want to play your City Area Cards then Input the Card ID else press 'Enter' to continue");
+						BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+						CardID = br.readLine().toString();
+						if((sbValidCityAreaIDs.toString()).contains(CardID) && !CardID.equals(""))
+						{
+							objPlayer.performCityAreaAction(CardID);
+							sbPlayedCityAreaIDs.append(CardID);
+							sbValidCityAreaIDs.delete(sbValidCityAreaIDs.indexOf(CardID),sbValidCityAreaIDs.indexOf(CardID) + 2 );
+
+						}
+						else if(CardID.equals(""))
+							break;
+						
 					}
 				}
 
@@ -453,19 +467,31 @@ public class GameLoad {
 					if(hasCityAreaCard){
 						//Accept City Area Card to play from Player
 						String CardID1 = null;
-						while(true)
+						System.out.println("                         City Area Cards ");
+						for(CityAreaCard cityAreaCard : Game.lstCityAreaCards)
 						{
-							System.out.println("City area cards : " +sbValidCityAreaIDs);
+							if(cityAreaCard.getPlayerID()==objPlayer.getPlayer_id())
+							{
+							System.out.printf("%-5s%-5s%-20s%-5s%-60s\n",cityAreaCard.CardID ,  " : " ,  cityAreaCard.GetAreaName(), " : "," Action Description : "+cityAreaCard.GetActionDescription());
+							}
+						}
+						while(sbValidCityAreaIDs.length() != 0)
+						{
 							
-							System.out.println("If you want to play your City Area Card then Input the Card ID else press 'Enter' to continue");
+							System.out.println("If you want to play your City Area Cards then Input the Card ID else press 'Enter' to continue");
 							BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
 							CardID1 = br.readLine().toString();
-							if((sbValidCityAreaIDs.toString()).contains(CardID1))
+							if((sbValidCityAreaIDs.toString()).contains(CardID1) && !CardID1.equals(""))
 							{
 								objPlayer.performCityAreaAction(CardID1);
-								
+								sbPlayedCityAreaIDs.append(CardID1);
+								sbValidCityAreaIDs.delete(sbValidCityAreaIDs.indexOf(CardID1),sbValidCityAreaIDs.indexOf(CardID1) + 2 );
+
 							}
-							break;
+							else 
+								if(CardID1.equals(""))
+								break;
+							
 						}
 					}
 					Game.SetGreenCardIsPlayed(CardID, true);
