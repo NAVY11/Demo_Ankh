@@ -340,12 +340,12 @@ public class CityAreaCard extends Cards{
 				//String AreaList = Game.GetValidAreasToPlaceMinion(this.getPlayer_id());//"1,2,3,4,5,6,7,8,9,10,11,12";//Game.AreaWithNoMinion();
 				//System.out.println(AreaList);
 				//Game.DisplayAreas(AreaList);
-				System.out.println("Enter a area in which you want to keep the minion : ");
+				System.out.println("Enter a areaId in which you want to keep the minion : ");
 				Game.DisplayAreas(strAdjacentArea);
 				BufferedReader brBuff = new BufferedReader(new InputStreamReader(System.in));
 				String br = brBuff.readLine();
-				System.out.println(br);
-				System.out.println(placingAMinionStr);
+				//System.out.println(br);
+				//System.out.println(placingAMinionStr);
 				if(strAdjacentArea.contains(br))
 				{
 					Minion objMinion = Game.GetMinionsByMinionID(Integer.parseInt(placingAMinionStr.substring(0,3)));
@@ -427,12 +427,12 @@ public class CityAreaCard extends Cards{
 				//String AreaList = Game.GetValidAreasToPlaceMinion(this.getPlayer_id());//"1,2,3,4,5,6,7,8,9,10,11,12";//Game.AreaWithNoMinion();
 				//System.out.println(AreaList);
 				//Game.DisplayAreas(AreaList);
-				System.out.println("Enter a area in which you want to keep the minion : ");
+				System.out.println("Enter a areaId in which you want to keep the minion : ");
 				Game.DisplayAreas(strAdjacentArea);
 				BufferedReader brBuff = new BufferedReader(new InputStreamReader(System.in));
 				String br = brBuff.readLine();
-				System.out.println(br);
-				System.out.println(placingAMinionStr);
+				//System.out.println(br);
+				//System.out.println(placingAMinionStr);
 				if(strAdjacentArea.contains(br))
 				{
 					Minion objMinion = Game.GetMinionsByMinionID(Integer.parseInt(placingAMinionStr.substring(0,3)));
@@ -585,12 +585,27 @@ public class CityAreaCard extends Cards{
 					strhasnotroblemarker += ","+adjArea[i];
 				}
 			}
-			System.out.println("Enter the areaID where you want place the troublemarker:");
+			System.out.println("Enter a areaID in which you want place a troublemarker:");
 			Game.DisplayAreas(strhasnotroblemarker);
 			BufferedReader br2 = new BufferedReader(new InputStreamReader(System.in));
-			int adjacentAreaID = Integer.parseInt(br2.readLine());
-			objPlayer.PlaceATroubleMarkerInArea(adjacentAreaID);														
-			System.out.println("Trouble Marker was placed in : "+PresentationUtility.getCityAreaCardNameById(adjacentAreaID));
+			String adjacentAreaID = "";
+			while(true)
+			{
+				adjacentAreaID = br2.readLine();
+				if(strhasnotroblemarker.contains(","+adjacentAreaID+","))
+				{
+					//status = true;
+					break;
+				}
+				else
+				{
+					System.out.println("Please enter a valid areaID listed above:");
+				}
+
+			}
+			
+			objPlayer.PlaceATroubleMarkerInArea(Integer.parseInt(adjacentAreaID));														
+			System.out.println("Trouble Marker was placed in : "+PresentationUtility.getCityAreaCardNameById(Integer.parseInt(adjacentAreaID)));
 			//TroubleMaker objTroubleMaker = Game.GetTroubleMakerNotOnBoard();
 			//objTroubleMaker.setArea_id(adjacentAreaID);
 			status = true;
@@ -605,8 +620,15 @@ public class CityAreaCard extends Cards{
  * @return true, if successful
  * @throws IOException Signals that an I/O exception has occurred.
  */
-public boolean SmallGodsAction(Player objPlayer) throws IOException{
-		return true;
+public boolean SmallGodsAction(Player objPlayer1, Player objPlayer2) throws IOException{
+	boolean status = false;
+	if(objPlayer1.getPlayer_id()!= null && objPlayer2.getPlayer_id() != null)
+	{
+		Game.PaymentPlayerToPlayer(objPlayer1.getPlayer_id(), objPlayer2.getPlayer_id(), 3);
+		System.out.println("Action Prformed");
+		status = true;
+	}
+	return status;
 }
 
 /**

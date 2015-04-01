@@ -2366,7 +2366,7 @@ public class Player {
 		{
 		case "c6" : cityAreaCard.TheHippoAction(this); break;
 		case "c5" : cityAreaCard.TheScoursAction(this); break;
-		case "c4" : cityAreaCard.SmallGodsAction(this); break;
+//		case "c4" : cityAreaCard.SmallGodsAction(this); break;
 		case "c3" : cityAreaCard.DragonLandingAction(this); break;
 		case "c2" : cityAreaCard.UnrealEstate(this); break;
 		case "c1" : cityAreaCard.DollySisterAction(this); break;
