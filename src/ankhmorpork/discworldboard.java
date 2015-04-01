@@ -424,7 +424,8 @@ public class discworldboard extends Component {
 			//Show available greeen cards
 			System.out.println("                         Green Cards ");
 			boolean success = false;
-			while(!success)
+			int iSuccessCount=0;
+			while(iSuccessCount==0)		//while(!success)
 			{
 				StringBuilder sbValidIDs = new StringBuilder();
 				for(GreenCard grnCard: Game.lstGreenCards)
@@ -484,7 +485,8 @@ public class discworldboard extends Component {
 				String ActionList = Game.GetGreenCardActions(CardID);
 				System.out.println("Card '" + grnCard.getName() + "' has following actions :");
 				System.out.println(ActionList);
-				boolean actionPerformed = false;				
+				boolean actionPerformed = false;
+				
 				for(int i = 0; i<ActionArray.length; i++)
 				{
 					String ans = null;
@@ -518,17 +520,22 @@ public class discworldboard extends Component {
 					if(ans.equalsIgnoreCase("Y"))
 					{
 						actionPerformed = true;
-						//Does a Player wish to interrupt? //TO DO
-						//If Yes : Which Player wants to interrupt?
 						//Perform Action
 						success = objPlayer.PerformCardAction(ActionArray[i], CardID);
-
+						if(success)
+						{
+							iSuccessCount++;
+						}
+						else
+						{
+							System.out.println("Action was not performed. Conditions not met.");
+						}
 					}
 					else
 						continue;
 				}
 
-				if(success)
+				if(iSuccessCount>0)//if(success)
 				{							
 					//Set Current card as 'Played'
 					if(hasCityAreaCard){
@@ -564,6 +571,25 @@ public class discworldboard extends Component {
 
 						}
 					}
+					
+//					Game.SetGreenCardIsPlayed(CardID, true);
+//					//Get number of Green Cards available with Player
+//					int CardsInHand = Game.GetPlayerGreenCardCount(objPlayer.getPlayer_id());
+//
+//					//Pick as many cards from deck so that the Player holds 5 Cards
+//					for(int i=0; i< 5 - CardsInHand;i++)
+//					{
+//						//Pick a GreenCardFromDeck
+//						String PickNewCardID = Game.GetRandomGreenCardFromDeck();
+//						Game.SetGreenCardToPlayer(PickNewCardID, objPlayer.getPlayer_id());
+//					}
+				}
+				else
+				{
+					System.out.println("Opss! Acion failed. Please try again.");
+				}
+				if(iSuccessCount>0)
+				{
 					Game.SetGreenCardIsPlayed(CardID, true);
 					//Get number of Green Cards available with Player
 					int CardsInHand = Game.GetPlayerGreenCardCount(objPlayer.getPlayer_id());
@@ -576,11 +602,6 @@ public class discworldboard extends Component {
 						Game.SetGreenCardToPlayer(PickNewCardID, objPlayer.getPlayer_id());
 					}
 				}
-				else
-				{
-					System.out.println("Opss! Acion failed. Please try again.");
-				}
-
 			}					
 		}
 	}
