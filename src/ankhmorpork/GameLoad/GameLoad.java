@@ -58,7 +58,6 @@ public class GameLoad {
 	public static void LoadGame(FileReader objFilereader) throws IOException, ParseException, JSONException
 	{
 
-				//FileReader objFilereader = new FileReader(File);		
 				JSONParser jsonParser = new JSONParser();		
 				JSONObject json = (JSONObject)jsonParser.parse(objFilereader);		
 
@@ -201,41 +200,7 @@ public class GameLoad {
 					Game.lstGreenCards.add(objGreenCard);
 				}
 				
-//				//Loading BrownCards
-//				JSONArray BrownCard = (JSONArray)json.get("BrownCards");
-//				Iterator iBrownCard = BrownCard.iterator();
-//				while (iBrownCard.hasNext())
-//				{
-//					BrownCard objBrownCard = new BrownCard();
-//					JSONObject jsonBrownCard = (JSONObject)iBrownCard.next();
-//					objBrownCard.SetCardID((jsonBrownCard.get("CardID").toString()));
-//					objBrownCard.setPlayerID(Integer.parseInt(jsonBrownCard.get("PlayerID").toString()));
-//					//objBrownCard.SetActionID((jsonBrownCard.get("ActionID").toString()));
-//					objBrownCard.SetActionDescription((jsonBrownCard.get("ActionDescription").toString()));			
-//					objBrownCard.SetIsPlayed((Boolean)jsonBrownCard.get("IsPlayed"));
-//					objBrownCard.setName((jsonBrownCard.get("Name").toString()));			
-//
-//					Game.lstBrownCards.add(objBrownCard);
-//				}
-				
-				//Loading PersonalityCards
-//				JSONArray PersonalityCard = (JSONArray)json.get("PersonalityCards");
-//				if(PersonalityCard.size() > 0){
-//					Iterator iPersonalityCard = PersonalityCard.iterator();
-//					while (iPersonalityCard.hasNext())
-//					{
-//						PersonalityCard objPersonalityCard = new PersonalityCard();
-//						JSONObject jsonPersonalityCard = (JSONObject)iPersonalityCard.next();
-//						//objPersonalityCard.SetCardID((jsonPersonalityCard.get("CardID").toString()));
-//						//objPersonalityCard.setPlayerID(Integer.parseInt(jsonPersonalityCard.get("PlayerID").toString()));
-//						//objPersonalityCard.SetPersonalityName((jsonPersonalityCard.get("PersonalityName").toString()));
-//						//objPersonalityCard.SetPersonalityMotive((jsonPersonalityCard.get("PersonalityMotive").toString()));			
-//						//objPersonalityCard.SetIsPlayed((Boolean)jsonPersonalityCard.get("IsPlayed"));
-//						//objPersonalityCard.setName((jsonPersonalityCard.get("Name").toString()));			
-//	
-//						Game.lstPersonalityCard.add(objPersonalityCard);
-//					}
-//				}
+
 //				
 				//Loading RandomEventCards
 				JSONArray RandomEventCard = (JSONArray)json.get("RandomEventCards");
@@ -388,7 +353,7 @@ public class GameLoad {
 				if(hasCityAreaCard){
 					//Accept City Area Card to play from Player
 					String CardID = null;
-					while(sbValidCityAreaIDs.length() != 0)
+					while(true)
 					{
 						
 						System.out.println("If you want to play your City Area Cards then Input the Card ID else press 'Enter' to continue");
@@ -398,8 +363,9 @@ public class GameLoad {
 						{
 							objPlayer.performCityAreaAction(CardID);
 							sbPlayedCityAreaIDs.append(CardID);
-							sbValidCityAreaIDs.delete(sbValidCityAreaIDs.indexOf(CardID),sbValidCityAreaIDs.indexOf(CardID) + 2 );
-
+							sbValidCityAreaIDs.delete(sbValidCityAreaIDs.indexOf(CardID),sbValidCityAreaIDs.indexOf(CardID) + CardID.length() );
+							if(sbValidCityAreaIDs.toString().equals(""))
+								break;
 						}
 						else if(CardID.equals(""))
 							break;
@@ -488,7 +454,7 @@ public class GameLoad {
 							{
 								objPlayer.performCityAreaAction(CardID1);
 								sbPlayedCityAreaIDs.append(CardID1);
-								sbValidCityAreaIDs.delete(sbValidCityAreaIDs.indexOf(CardID1),sbValidCityAreaIDs.indexOf(CardID1) + 2 );
+								sbValidCityAreaIDs.delete(sbValidCityAreaIDs.indexOf(CardID1),sbValidCityAreaIDs.indexOf(CardID1) + CardID.length() );
 
 							}
 							else 
@@ -582,32 +548,6 @@ public class GameLoad {
 
 	    }
 
-
-		
-//		for(int i=1;i<54;i++)
-//	    {
-//			BrownCard objBrownCard = new BrownCard();
-//			String card = "b"+i;
-//			obj = parser.parse(new FileReader("BrownCard.json"));
-//
-//			org.json.JSONObject jsonObject =  new org.json.JSONObject(obj.toString());
-//			org.json.JSONObject brown =  jsonObject.getJSONObject(card);
-//			
-//			String s = (String) brown.get("IsPlayed");
-//			objBrownCard.SetIsPlayed(Boolean.valueOf(Boolean.valueOf(s)));
-//			
-//			objBrownCard.SetActionDescription((String)brown.get("ActionDescription"));
-//			
-//			objBrownCard.setName((String) brown.get("Name"));
-//			
-//			objBrownCard.SetCardID(card);
-//			String a1 = (String) brown.get("Action");
-//			String[] a2 = a1.split(",");
-//			objBrownCard.SetActionID(a2);
-//			
-//			Game.lstBrownCards.add(objBrownCard);
-//
-//	    }
 
 
 		for(int i=1;i<13;i++)
