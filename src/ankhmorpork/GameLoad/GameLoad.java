@@ -444,7 +444,7 @@ public class GameLoad {
 								}
 							}
 						}
-						while(sbValidCityAreaIDs.length() != 0)
+						while(true)
 						{
 							
 							System.out.println("If you want to play your City Area Cards then Input the Card ID else press 'Enter' to continue");
@@ -454,11 +454,11 @@ public class GameLoad {
 							{
 								objPlayer.performCityAreaAction(CardID1);
 								sbPlayedCityAreaIDs.append(CardID1);
-								sbValidCityAreaIDs.delete(sbValidCityAreaIDs.indexOf(CardID1),sbValidCityAreaIDs.indexOf(CardID1) + CardID.length() );
-
+								sbValidCityAreaIDs.delete(sbValidCityAreaIDs.indexOf(CardID1),sbValidCityAreaIDs.indexOf(CardID1) + CardID1.length() );
+								if(sbValidCityAreaIDs.toString().equals(""))
+									break;
 							}
-							else 
-								if(CardID1.equals(""))
+							else if(CardID1.equals(""))
 								break;
 							
 						}

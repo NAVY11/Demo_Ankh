@@ -443,7 +443,7 @@ public class discworldboard extends Component {
 				if(hasCityAreaCard){
 					//Accept City Area Card to play from Player
 					String CardID = null;
-					while(sbValidCityAreaIDs.length() != 0)
+					while(true)
 					{
 						
 						System.out.println("If you want to play your City Area Cards then Input the Card ID else press 'Enter' to continue");
@@ -453,8 +453,9 @@ public class discworldboard extends Component {
 						{
 							objPlayer.performCityAreaAction(CardID);
 							sbPlayedCityAreaIDs.append(CardID);
-							sbValidCityAreaIDs.delete(sbValidCityAreaIDs.indexOf(CardID),sbValidCityAreaIDs.indexOf(CardID) + 2 );
-
+							sbValidCityAreaIDs.delete(sbValidCityAreaIDs.indexOf(CardID),sbValidCityAreaIDs.indexOf(CardID) + CardID.length() );
+							if(sbValidCityAreaIDs.toString().equals(""))
+								break;
 						}
 						else if(CardID.equals(""))
 							break;
@@ -533,7 +534,7 @@ public class discworldboard extends Component {
 								}
 							}
 						}
-						while(sbValidCityAreaIDs.length() != 0)
+						while(true)
 						{
 							
 							System.out.println("If you want to play your City Area Cards then Input the Card ID else press 'Enter' to continue");
@@ -543,11 +544,11 @@ public class discworldboard extends Component {
 							{
 								objPlayer.performCityAreaAction(CardID1);
 								sbPlayedCityAreaIDs.append(CardID1);
-								sbValidCityAreaIDs.delete(sbValidCityAreaIDs.indexOf(CardID1),sbValidCityAreaIDs.indexOf(CardID1) + 2 );
-
+								sbValidCityAreaIDs.delete(sbValidCityAreaIDs.indexOf(CardID1),sbValidCityAreaIDs.indexOf(CardID1) + CardID1.length() );
+								if(sbValidCityAreaIDs.toString().equals(""))
+									break;
 							}
-							else 
-								if(CardID1.equals(""))
+							else if(CardID1.equals(""))
 								break;
 							
 						}
