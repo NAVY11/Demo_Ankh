@@ -339,6 +339,7 @@ public class GameLoad {
 			{
 				PersonalityCard objPC = Game.GetPersonalityCardByPlayerID(objPlayer.getPlayer_id());
 				System.out.println("Victory condition achieved! "+objPlayer.getPlayer_name()+" playing as "+ objPC.GetPersonalityName() + " wins the Game!" );
+				System.exit(0);
 			}
 			
 			//********Which Card to Play?

@@ -1352,5 +1352,34 @@ Integer cardIndexNumber = PresentationUtility.returnRandomNumber(0,lstCardID.len
 						return false;
 					}
 				}
+				
+//				public static ArrayList<CityAreaCard> GetCityAreaCardByPlayerID(int PlayerID)
+//				{
+//					ArrayList<CityAreaCard> lstCityAreaCard = new ArrayList<CityAreaCard>();
+//					for(CityAreaCard CityAreaCard : lstCityAreaCards)
+//					{
+//						if(CityAreaCard.getPlayerID()==PlayerID)
+//						{
+//							lstCityAreaCard.add(CityAreaCard);
+//						}
+//					}
+//					
+//					return lstCityAreaCard;
+//				}
+//				
+				public static int GetCostByAreaID(int AreaID){
+					int iCost = 0 ;
+					ArrayList<CityAreaCard> lstCityAreaCard = new ArrayList<CityAreaCard>();
+					for(CityAreaCard CityAreaCard : lstCityAreaCards)
+					{
+						if(CityAreaCard.GetAreaID() == AreaID)
+						{
+							iCost = CityAreaCard.GetCost();
+						}
+					}
+					return iCost;
+					
+				}
+				
 
 }
