@@ -7,6 +7,7 @@ import ankhmorpork.GameObjects.Area;
 import ankhmorpork.GameObjects.Building;
 import ankhmorpork.GameObjects.Minion;
 import ankhmorpork.GameObjects.Player;
+import ankhmorpork.GameObjects.Troll;
 import ankhmorpork.GameObjects.Cards.CityAreaCard;
 
 public class LordRustSelachiiWorde implements WinningCondition {
@@ -15,7 +16,6 @@ public class LordRustSelachiiWorde implements WinningCondition {
 	public Boolean isWinner(int PlayerID) {
 		int numberOfPlayers = Game.lstPlayers.size();
 		Player objPlayer = Game.GetPlayer(PlayerID);
-		//ArrayList<CityAreaCard> lstCityAreaCard = Game.GetCityAreaCardByPlayerID(PlayerID);
 		if (numberOfPlayers == 2)
 			return ControlledArea(objPlayer,7);
 	   else if (numberOfPlayers == 3)
@@ -27,7 +27,17 @@ public class LordRustSelachiiWorde implements WinningCondition {
 	
 	private boolean ControlledArea(Player objPlayer,int controlledAreaChk)
 	{
-		//Area objArea = new Area();
+		int trollCount = 0 ;
+		//ArrayList<Troll> lstTrolls = Game.lstTrolls;
+		for(Troll objtroll : Game.lstTrolls )
+		{
+			if(objtroll.getArea_id()!=0)
+			{
+				trollCount++;
+			}
+		}
+		
+		
 		int buildingCounter = 0;
 		int minionCounter = 0;
 		ArrayList<Building> lstOfBuilding = Game.GetBuildingsByPlayerID(objPlayer.getPlayer_id());
@@ -52,11 +62,13 @@ public class LordRustSelachiiWorde implements WinningCondition {
 			}
 		}
 		
-		if((minionCounter > controlledAreaChk) && (buildingCounter > controlledAreaChk)){
-			
-			return Boolean.TRUE;
-		}
-			
+		//checks number of player minion or building is greater than no of troll in the game
+		if((minionCounter > trollCount) || (buildingCounter > trollCount) ){
+			//checks number of player minion or building is greater than controlled area condition in the game
+			if((minionCounter > controlledAreaChk) || (buildingCounter > controlledAreaChk)){
+				return Boolean.TRUE;
+			}
+		}	
 		return Boolean.FALSE;
 				
 	}

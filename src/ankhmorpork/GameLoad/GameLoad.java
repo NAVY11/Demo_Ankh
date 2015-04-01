@@ -299,7 +299,7 @@ public class GameLoad {
 			}
 			System.out.println("It is "+objPlayer.getPlayer_name()+"'s turn");
 			//Check Winning condition for Current Player
-			WinningCondition objWins = WinningConditionFactory.getWinningCircumstance(objPlayer);
+			WinningCondition objWins = WinningConditionFactory.getWinningCondition(objPlayer);
 			if( objWins.isWinner(objPlayer.getPlayer_id()))
 			{
 				PersonalityCard objPC = Game.GetPersonalityCardByPlayerID(objPlayer.getPlayer_id());

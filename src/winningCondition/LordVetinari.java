@@ -14,7 +14,6 @@ public class LordVetinari implements WinningCondition {
     public Boolean isWinner(int PlayerID) {
 		int numberOfPlayers = Game.lstPlayers.size();
 		Player objPlayer1 = Game.GetPlayer(PlayerID);
-//		ArrayList<CityAreaCard> lstCityAreaCard = Game.GetCityAreaCardByPlayerID(PlayerID);
 		int noOfcontrolledArea = ControlledArea(objPlayer1);
 		if (numberOfPlayers == 2 && noOfcontrolledArea == 11)
            return Boolean.TRUE;
@@ -29,7 +28,6 @@ public class LordVetinari implements WinningCondition {
 	
 	private int ControlledArea(Player objPlayer)
 	{
-		//Area objArea = new Area();
 		int minionCounter = 0;
 		ArrayList<Minion> lstOfMinion = Game.GetMinionsByPlayerID(objPlayer.getPlayer_id());
 		for(Minion objMinion : lstOfMinion){
