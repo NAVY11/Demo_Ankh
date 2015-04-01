@@ -309,26 +309,26 @@ public class discworldboard extends Component {
 	public void Loadgamefetch(FileReader objFileReader) throws IOException, ParseException, JSONException
 	{
 		//boolean success = FileValidation.Validate(objFileReader);
-//		while(!success)
-//		{
-//			System.out.println("Invalid File. Please Choose valid file");
-//			try {
-//				JFileChooser chooser = new JFileChooser();
-//			    chooser.setCurrentDirectory(new File("/home/me/Documents"));
-//			    int retrival = chooser.showOpenDialog(null);
-//			    if (retrival == JFileChooser.APPROVE_OPTION) {
-//			    		
-//			             objFileReader = new FileReader(chooser.getSelectedFile());
-//			     		 success = FileValidation.Validate(objFileReader);
-//
-//			    } 			
-//			} catch (IOException e1) {
-//				// TODO Auto-generated catch block
-//				e1.printStackTrace();
-//			} 
-//			
-//			
-//		}
+		//		while(!success)
+		//		{
+		//			System.out.println("Invalid File. Please Choose valid file");
+		//			try {
+		//				JFileChooser chooser = new JFileChooser();
+		//			    chooser.setCurrentDirectory(new File("/home/me/Documents"));
+		//			    int retrival = chooser.showOpenDialog(null);
+		//			    if (retrival == JFileChooser.APPROVE_OPTION) {
+		//			    		
+		//			             objFileReader = new FileReader(chooser.getSelectedFile());
+		//			     		 success = FileValidation.Validate(objFileReader);
+		//
+		//			    } 			
+		//			} catch (IOException e1) {
+		//				// TODO Auto-generated catch block
+		//				e1.printStackTrace();
+		//			} 
+		//			
+		//			
+		//		}
 		GameLoad.LoadGame(objFileReader);
 	}
 
@@ -396,7 +396,7 @@ public class discworldboard extends Component {
 				System.out.println("Victory condition achieved! "+objPlayer.getPlayer_name()+" playing as "+ objPC.GetPersonalityName() + " wins the Game!" );
 				System.exit(0);
 			}
-			
+
 			//********Which Card to Play?
 			//System.out.println("Which card to play?");
 
@@ -419,7 +419,7 @@ public class discworldboard extends Component {
 			}
 
 
-			
+
 
 			//Show available greeen cards
 			System.out.println("                         Green Cards ");
@@ -433,8 +433,11 @@ public class discworldboard extends Component {
 					{
 						sbValidIDs.append(grnCard.GetCardID());		
 						String ActionList = Game.GetGreenCardActions(grnCard.GetCardID());
-						System.out.printf("%-5s%-5s%-20s%-5s%-50s%-5s%-50s\n",grnCard.CardID ,  " : " ,  grnCard.getName() , " : " , ActionList," : ","Scroll Action : "+grnCard.GetActionDescription());
-
+						//Display Cards if it is Not interrupt card
+						if(!(grnCard.GetCardID().equals("g17")||grnCard.GetCardID().equals("g18")||grnCard.GetCardID().equals("g45")))
+						{
+							System.out.printf("%-5s%-5s%-20s%-5s%-50s%-5s%-50s\n",grnCard.CardID ,  " : " ,  grnCard.getName() , " : " , ActionList," : ","Scroll Action : "+grnCard.GetActionDescription());
+						}
 						//System.out.println("Card '" + grnCard.getName() + "' has following actions :");
 						//System.out.print(ActionList);
 					}
@@ -445,7 +448,7 @@ public class discworldboard extends Component {
 					String CardID = null;
 					while(true)
 					{
-						
+
 						System.out.println("If you want to play your City Area Cards then Input the Card ID else press 'Enter' to continue");
 						BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
 						CardID = br.readLine().toString();
@@ -459,7 +462,7 @@ public class discworldboard extends Component {
 						}
 						else if(CardID.equals(""))
 							break;
-						
+
 					}
 				}
 
@@ -536,7 +539,7 @@ public class discworldboard extends Component {
 						}
 						while(true)
 						{
-							
+
 							System.out.println("If you want to play your City Area Cards then Input the Card ID else press 'Enter' to continue");
 							BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
 							CardID1 = br.readLine().toString();
@@ -550,7 +553,7 @@ public class discworldboard extends Component {
 							}
 							else if(CardID1.equals(""))
 								break;
-							
+
 						}
 					}
 					Game.SetGreenCardIsPlayed(CardID, true);

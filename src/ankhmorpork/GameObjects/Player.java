@@ -923,8 +923,11 @@ public class Player {
 			{
 				sbValidIDs.append(grnCard.GetCardID());	
 				String ActionList = Game.GetGreenCardActions(grnCard.GetCardID());
+				if(!(grnCard.GetCardID().equals("g17")||grnCard.GetCardID().equals("g18")||grnCard.GetCardID().equals("g45")))
+				{
 				System.out.printf("%-5s%-5s%-40s%-5s%-50s%-5s%-60s\n",grnCard.CardID ,  " : " ,  grnCard.getName() , " : " , ActionList," : ","Scroll Action : "+grnCard.GetActionDescription());
 				//System.out.println(grnCard.CardID + " : " + grnCard.getName());
+				}
 			}
 		}
 
@@ -1045,8 +1048,9 @@ public class Player {
 				if(grnCard.getPlayerID()==objChosenPlayer.getPlayer_id() && !grnCard.GetIsPlayed())
 				{
 					sbValidIDs.append(grnCard.GetCardID()+",");		
-					String ActionList = Game.GetGreenCardActions(grnCard.GetCardID());
+					String ActionList = Game.GetGreenCardActions(grnCard.GetCardID());					
 					System.out.printf("%-5s%-5s%-40s%-5s%-50s%-5s%-60s\n",grnCard.CardID ,  " : " ,  grnCard.getName() , " : " , ActionList," : ","Scroll Action : "+grnCard.GetActionDescription());
+					
 				}
 			}
 
@@ -1116,8 +1120,9 @@ public class Player {
 						if(grnCard.getPlayerID()==objPlayer.getPlayer_id() && !grnCard.GetIsPlayed())
 						{
 							sbValidIDs.append(grnCard.GetCardID()+",");		
-							String ActionList = Game.GetGreenCardActions(grnCard.GetCardID());
+							String ActionList = Game.GetGreenCardActions(grnCard.GetCardID());							
 							System.out.printf("%-5s%-5s%-40s%-5s%-50s%-5s%-60s\n",grnCard.CardID ,  " : " ,  grnCard.getName() , " : " , ActionList," : ","Scroll Action : "+grnCard.GetActionDescription());
+							
 						}
 					}					
 					String strGreenCardID = PresentationUtility.GetValidAnswerFromUser(sbValidIDs.toString());
@@ -1708,8 +1713,9 @@ public class Player {
 		for(GreenCard grnCard : GCList)
 		{			
 			String ActionList = Game.GetGreenCardActions(grnCard.GetCardID());
-			strValidGreenCardList+=grnCard.GetCardID()+",";
-			System.out.printf("%-5s%-5s%-40s%-5s%-50s%-5s%-60s\n",grnCard.GetCardID() ,  " : " ,  grnCard.getName() , " : " , ActionList," : ","Scroll Action : "+grnCard.GetActionDescription());			
+			strValidGreenCardList+=grnCard.GetCardID()+",";			
+			System.out.printf("%-5s%-5s%-40s%-5s%-50s%-5s%-60s\n",grnCard.GetCardID() ,  " : " ,  grnCard.getName() , " : " , ActionList," : ","Scroll Action : "+grnCard.GetActionDescription());
+			
 		}		
 
 		String strGreenCardID = "";
@@ -1845,8 +1851,9 @@ public class Player {
 		for(GreenCard grnCard : GCList)
 		{			
 			String ActionList = Game.GetGreenCardActions(grnCard.GetCardID());
-			strValidGreenCardList+=grnCard.GetCardID()+",";
-			System.out.printf("%-5s%-5s%-40s%-5s%-50s%-5s%-60s\n",grnCard.GetCardID() ,  " : " ,  grnCard.getName() , " : " , ActionList," : ","Scroll Action : "+grnCard.GetActionDescription());			
+			strValidGreenCardList+=grnCard.GetCardID()+",";			
+			System.out.printf("%-5s%-5s%-40s%-5s%-50s%-5s%-60s\n",grnCard.GetCardID() ,  " : " ,  grnCard.getName() , " : " , ActionList," : ","Scroll Action : "+grnCard.GetActionDescription());
+			
 		}
 
 		System.out.print("Please enter the Green Card ID which you wish to give:");
