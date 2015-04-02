@@ -2511,7 +2511,7 @@ public class Player {
 	public boolean randomEventTheDragon(){
 		boolean success = false;
 		System.out.println("Rolling Dice ");
-		Integer randomNumber = PresentationUtility.returnRandomNumber(1, 12);
+		Integer randomNumber = PresentationUtility.returnRandomNumber(1, 12)+1;
 		//System.out.println("Dice Value : " + randomNumber);
 		System.out.println("Randomly Selected Area By Rolling Dice : " + PresentationUtility.getCityAreaCardNameById(randomNumber));
 		for(Building building : Game.lstBuildings){
