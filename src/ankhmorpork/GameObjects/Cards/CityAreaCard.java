@@ -532,6 +532,13 @@ public class CityAreaCard extends Cards{
 
 			}
 			Game.SetGreenCardIsPlayed(strGreenCardID, true);
+			ArrayList<GreenCard> greenCardList1 = Game.GetGreenCardByPlayerID(objPlayer.getPlayer_id());
+			for(GreenCard grnCard : greenCardList1)
+			{			
+				String ActionList = Game.GetGreenCardActions(grnCard.GetCardID());
+				strValidGreenCardList+=grnCard.GetCardID()+",";
+				System.out.printf("%-5s%-5s%-40s%-5s%-50s%-5s%-60s\n",grnCard.GetCardID() ,  " : " ,  grnCard.getName() , " : " , ActionList," : ","Scroll Action : "+grnCard.GetActionDescription());			
+			}
 			status = true;
 			System.out.println("Action Performed");
 		}
@@ -578,11 +585,12 @@ public class CityAreaCard extends Cards{
 			String strAdjacentArea = Game.getAdjacentAreas(7);
 			strAdjacentArea += ",7,";
 			String[] adjArea = strAdjacentArea.split(",");
+			strhasnotroblemarker +=",";
 			for(int i = 0; i<adjArea.length; i++)
 			{
 				if(!Game.AreaHasTroubleMarker(Integer.parseInt(adjArea[i])))
 				{
-					strhasnotroblemarker += ","+adjArea[i]+",";
+					strhasnotroblemarker += adjArea[i]+",";
 				}
 			}
 			System.out.println("Enter a areaID in which you want place a troublemarker:");
