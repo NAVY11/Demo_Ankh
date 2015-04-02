@@ -70,6 +70,7 @@ public class GameStart {
 		String getFiveDifferentBrownNumbers = "", getFiveDifferentGreenNumbers = "", getRandomCityAreaCardsForPlayers = "";
 		Integer getOneDifferentPersonalityCard;
 		GameLoad.LoadNewGame_Cards();
+		
 //		for(CityAreaCard areaCard : Game.lstCityAreaCards){
 //			System.out.println(areaCard);
 //		}
@@ -117,7 +118,9 @@ public class GameStart {
 		Game.GameBank.objSilverCoin = new Coins(Constants.SilverCoin());
 		Game.GameBank.objSilverCoin.setCoin_Available(getDefaultBankCoins(Constants.SilverCoin(),iNoOfPlayers));
 		Game.GameBank.SetInitialBankFunds();
-	    //Initialize Players			    
+	    //Initialize Players
+		if(iNoOfPlayers==2)
+			Game.lstPersonalityCard.remove(5);
 		for(int i=1;i<=iNoOfPlayers;i++)
 		{
 			//System.out.println("Enter Name for Player "+i);
@@ -273,6 +276,7 @@ public class GameStart {
 				getOneDifferentPersonalityCard = randomNumberAtIndexNumber;
 				initializingPersonalityArr.remove(randomNumberAtIndexNumber);
 				objPlayer.setPersonalityCardListCommaSeparated(getOneDifferentPersonalityCard+"");
+				
 				Game.lstPersonalityCard.get(getOneDifferentPersonalityCard-1).setPlayerID(objPlayer.getPlayer_id());
 				//Create One Different Personality Card
 				//System.out.print("PlayerId : "+ objPlayer.getPlayer_id() + " - Personality Card: " + getOneDifferentPersonalityCard + "\n");
