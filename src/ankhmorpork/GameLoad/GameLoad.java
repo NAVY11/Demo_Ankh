@@ -27,8 +27,10 @@ import java.util.Iterator;
 
 
 
+
 import javax.swing.JFileChooser;
 import javax.swing.JOptionPane;
+
 
 
 
@@ -310,7 +312,7 @@ public class GameLoad {
 				System.out.println("Victory condition achieved! "+objPlayer.getPlayer_name()+" playing as "+ objPC.GetPersonalityName() + " wins the Game!" );
 				System.exit(0);
 			}
-			
+
 			//********Which Card to Play?
 			//System.out.println("Which card to play?");
 
@@ -324,6 +326,7 @@ public class GameLoad {
 			{	
 				if(cityAreaCard.getPlayerID()==objPlayer.getPlayer_id())
 				{
+					
 					sbValidCityAreaIDs.append(cityAreaCard.GetCardID());
 					hasCityAreaCard = true;
 					System.out.printf("%-5s%-5s%-20s%-5s%-60s\n",cityAreaCard.CardID ,  " : " ,  cityAreaCard.GetAreaName(), " : "," Action Description : "+cityAreaCard.GetActionDescription());
@@ -333,12 +336,13 @@ public class GameLoad {
 			}
 
 
-			
+
 
 			//Show available greeen cards
 			System.out.println("                         Green Cards ");
 			boolean success = false;
-			while(!success)
+			int iSuccessCount=0;
+			while(iSuccessCount==0)		//while(!success)
 			{
 				StringBuilder sbValidIDs = new StringBuilder();
 				for(GreenCard grnCard: Game.lstGreenCards)
@@ -347,8 +351,11 @@ public class GameLoad {
 					{
 						sbValidIDs.append(grnCard.GetCardID());		
 						String ActionList = Game.GetGreenCardActions(grnCard.GetCardID());
-						System.out.printf("%-5s%-5s%-20s%-5s%-50s%-5s%-50s\n",grnCard.CardID ,  " : " ,  grnCard.getName() , " : " , ActionList," : ","Scroll Action : "+grnCard.GetActionDescription());
-
+						//Display Cards if it is Not interrupt card
+						if(!(grnCard.GetCardID().equals("g17")||grnCard.GetCardID().equals("g18")||grnCard.GetCardID().equals("g45")))
+						{
+							System.out.printf("%-5s%-5s%-20s%-5s%-50s%-5s%-50s\n",grnCard.CardID ,  " : " ,  grnCard.getName() , " : " , ActionList," : ","Scroll Action : "+grnCard.GetActionDescription());
+						}
 						//System.out.println("Card '" + grnCard.getName() + "' has following actions :");
 						//System.out.print(ActionList);
 					}
@@ -359,7 +366,7 @@ public class GameLoad {
 					String CardID = null;
 					while(true)
 					{
-						
+
 						System.out.println("If you want to play your City Area Cards then Input the Card ID else press 'Enter' to continue");
 						BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
 						CardID = br.readLine().toString();
@@ -373,7 +380,7 @@ public class GameLoad {
 						}
 						else if(CardID.equals(""))
 							break;
-						
+
 					}
 				}
 
@@ -384,7 +391,7 @@ public class GameLoad {
 					System.out.println("Enter a Green Card ID");
 					BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
 					CardID = br.readLine().toString();
-					if((sbValidIDs.toString()).contains(CardID))
+					if((sbValidIDs.toString()).contains(CardID) && !CardID.equals(""))
 					{
 						break;
 					}
@@ -395,12 +402,20 @@ public class GameLoad {
 				String ActionList = Game.GetGreenCardActions(CardID);
 				System.out.println("Card '" + grnCard.getName() + "' has following actions :");
 				System.out.println(ActionList);
-				boolean actionPerformed = false;				
+				boolean actionPerformed = false;
+				
 				for(int i = 0; i<ActionArray.length; i++)
 				{
 					String ans = null;
 					if(i!=ActionArray.length-1 || actionPerformed)
 					{
+						if(ActionArray[i].equalsIgnoreCase("Random event"))
+						{
+							System.out.println("Performing Random Event Action:");
+							ans ="Y";
+						}
+						else
+						{
 						System.out.println("Do you wish to perform " + ActionArray[i] + " action? Y/N");
 						while(true)
 						{						
@@ -412,6 +427,7 @@ public class GameLoad {
 							else
 								System.out.println("Incorrect input. Please try again.");
 						}
+						}
 					}
 					else
 					{
@@ -421,17 +437,39 @@ public class GameLoad {
 					if(ans.equalsIgnoreCase("Y"))
 					{
 						actionPerformed = true;
-						//Does a Player wish to interrupt? //TO DO
-						//If Yes : Which Player wants to interrupt?
 						//Perform Action
 						success = objPlayer.PerformCardAction(ActionArray[i], CardID);
-
+						if(success)
+						{
+//							if(iSuccessCount==0)
+//								Game.SetGreenCardIsPlayed(grnCard.GetCardID(),true);
+							iSuccessCount++;
+						}
+						else
+						{
+							System.out.println("Action was not performed. Conditions not met.");
+						}
 					}
 					else
 						continue;
 				}
+				//Set Green Card Played
+				if(iSuccessCount>0)
+				{
+					Game.SetGreenCardIsPlayed(CardID, true);
+					//Get number of Green Cards available with Player
+					int CardsInHand = Game.GetPlayerGreenCardCount(objPlayer.getPlayer_id());
 
-				if(success)
+					//Pick as many cards from deck so that the Player holds 5 Cards
+					for(int i=0; i< 5 - CardsInHand;i++)
+					{
+						//Pick a GreenCardFromDeck
+						String PickNewCardID = Game.GetRandomGreenCardFromDeck();
+						Game.SetGreenCardToPlayer(PickNewCardID, objPlayer.getPlayer_id());
+					}
+				}
+				
+				if(iSuccessCount>0)//if(success)
 				{							
 					//Set Current card as 'Played'
 					if(hasCityAreaCard){
@@ -452,7 +490,7 @@ public class GameLoad {
 						}
 						while(true)
 						{
-							
+
 							System.out.println("If you want to play your City Area Cards then Input the Card ID else press 'Enter' to continue");
 							BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
 							CardID1 = br.readLine().toString();
@@ -466,29 +504,30 @@ public class GameLoad {
 							}
 							else if(CardID1.equals(""))
 								break;
-							
+
 						}
 						if(CardID1.equals(""))
-								break;
+							break;
 						}
 					}
-					Game.SetGreenCardIsPlayed(CardID, true);
-					//Get number of Green Crads available with Player
-					int CardsInHand = Game.GetPlayerGreenCardCount(objPlayer.getPlayer_id());
-
-					//Pick as many cards from deck so that the Player holds 5 Cards
-					for(int i=0; i< 5 - CardsInHand;i++)
-					{
-						//Pick a GreenCardFromDeck
-						String PickNewCardID = Game.GetRandomGreenCardFromDeck();
-						Game.SetGreenCardToPlayer(PickNewCardID, objPlayer.getPlayer_id());
-					}
+					
+//					Game.SetGreenCardIsPlayed(CardID, true);
+//					//Get number of Green Cards available with Player
+//					int CardsInHand = Game.GetPlayerGreenCardCount(objPlayer.getPlayer_id());
+//
+//					//Pick as many cards from deck so that the Player holds 5 Cards
+//					for(int i=0; i< 5 - CardsInHand;i++)
+//					{
+//						//Pick a GreenCardFromDeck
+//						String PickNewCardID = Game.GetRandomGreenCardFromDeck();
+//						Game.SetGreenCardToPlayer(PickNewCardID, objPlayer.getPlayer_id());
+//					}
 				}
 				else
 				{
 					System.out.println("Opss! Acion failed. Please try again.");
 				}
-
+				
 			}					
 		}
 	}

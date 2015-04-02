@@ -403,13 +403,13 @@ public class discworldboard extends Component {
 			//Show available city area cards
 			StringBuilder sbValidCityAreaIDs = new StringBuilder();
 			StringBuilder sbPlayedCityAreaIDs = new StringBuilder();
-
+			System.out.println("                         City Area Cards ");
 			boolean hasCityAreaCard = false;
 			for(CityAreaCard cityAreaCard : Game.lstCityAreaCards)
 			{	
 				if(cityAreaCard.getPlayerID()==objPlayer.getPlayer_id())
 				{
-					System.out.println("                         City Area Cards ");
+					
 					sbValidCityAreaIDs.append(cityAreaCard.GetCardID());
 					hasCityAreaCard = true;
 					System.out.printf("%-5s%-5s%-20s%-5s%-60s\n",cityAreaCard.CardID ,  " : " ,  cityAreaCard.GetAreaName(), " : "," Action Description : "+cityAreaCard.GetActionDescription());
@@ -474,7 +474,7 @@ public class discworldboard extends Component {
 					System.out.println("Enter a Green Card ID");
 					BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
 					CardID = br.readLine().toString();
-					if((sbValidIDs.toString()).contains(CardID))
+					if((sbValidIDs.toString()).contains(CardID) && !CardID.equals(""))
 					{
 						break;
 					}
@@ -524,6 +524,8 @@ public class discworldboard extends Component {
 						success = objPlayer.PerformCardAction(ActionArray[i], CardID);
 						if(success)
 						{
+							if(iSuccessCount==0)
+								Game.SetGreenCardIsPlayed(grnCard.GetCardID(),true);
 							iSuccessCount++;
 						}
 						else
