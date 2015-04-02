@@ -508,14 +508,10 @@ public class Player {
 	public boolean AssassinateMinion(ArrayList<Minion> Minions, int AreaID) throws IOException
 	{
 		boolean success = false;
+		boolean minionSavedAndRemoved = false;
 		BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
 		if(!Minions.isEmpty())
 		{
-			//			System.out.println("Minions ID :");								
-			//			for(Minion objMinion : Minions)
-			//			{				
-			//				System.out.print(objMinion.getMinion_id() + " ");
-			//			}
 			String strValidPlayerIDs=",";
 			System.out.println("Enter Player ID whose Minion you wish to assasinate:");
 			for(Minion objMinion : Minions)
@@ -531,16 +527,12 @@ public class Player {
 			String MinionID = null;			
 			while(true)
 			{
-				//				System.out.println("\n");
-				//				System.out.println("Enter a Minion ID to assassinate:");
-				//				MinionID = br.readLine();
 				for(Minion objMinion : Minions)
 				{
 					if(objMinion.getPlayer_id()==Integer.parseInt(strPlayerID))
 					{
 						Player playerObjOfMinion = Game.GetPlayer(objMinion.getPlayer_id()); //Put playerId here to get the player Object
 						ArrayList<GreenCard> greenCardPlayerObj = Game.GetGreenCardByPlayerID(playerObjOfMinion.getPlayer_id());
-						boolean minionSavedAndRemoved = false;
 						if(greenCardPlayerObj != null && greenCardPlayerObj.size() > 0){
 							ArrayList<Minion> minionByAreaId = Game.GetMinionsByAreaID(AreaID); //getAreaId needed to make sure from where I have to remove the minion
 							Minion minionObj = minionByAreaId.get(0);
@@ -894,6 +886,7 @@ public class Player {
 			case "g24" : return this.DrawRandomCardsFromDeck(3); //Draw 3 random cards from Deck
 			case "g25" : return this.theCMOTDibblerFunctionality();
 			case "g26" : return this.theHarryKingOrShonkyShopFunctionality(CardID, 2);
+			case "g29" : System.out.println("Peeled Nut card has been played");return true;
 			case "g30" : return this.theDyskFunctionality();
 			case "g31" : return this.theNoobyNoobsFunctionality();
 			case "g32" : return this.theModoFunctionality(CardID);
