@@ -437,6 +437,8 @@ public class GameLoad {
 					if(hasCityAreaCard){
 						//Accept City Area Card to play from Player
 						String CardID1 = null;
+						while(sbValidCityAreaIDs.length() != 0)
+						{
 						System.out.println("                         City Area Cards ");
 						for(CityAreaCard cityAreaCard : Game.lstCityAreaCards)
 						{
@@ -465,6 +467,9 @@ public class GameLoad {
 							else if(CardID1.equals(""))
 								break;
 							
+						}
+						if(CardID1.equals(""))
+								break;
 						}
 					}
 					Game.SetGreenCardIsPlayed(CardID, true);
