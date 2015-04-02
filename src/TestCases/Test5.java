@@ -19,7 +19,6 @@ public class Test5 {
 	public void test() {
 		ViewFileTxt fileTxt = new ViewFileTxt();
 		String outputPadding = fileTxt.paddingToMakeSixteen("NareshKumar");
-		System.out.print(outputPadding);
 		assertEquals("NareshKumar   ", outputPadding);
 
 	}

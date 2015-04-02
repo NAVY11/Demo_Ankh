@@ -608,4 +608,15 @@ public class PresentationUtility {
 		return greenCardAccessed.GetCardID();	
 
 	}
+	
+	public static boolean isFileNameValid(String fileName) {
+        boolean validationResult = false;
+        if(fileName.endsWith("txt")){
+        	validationResult = true;
+        }
+        return validationResult;
+    }
+	
+	
+
 }
