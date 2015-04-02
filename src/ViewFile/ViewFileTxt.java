@@ -77,7 +77,7 @@ public class ViewFileTxt {
 		}
 		
 		for(Player player : Game.lstPlayers){
-			System.out.printf("\nPlayer " + player.getPlayer_id() + "'s current inventory:");
+			System.out.printf("\n"+ player.getPlayer_name()+", Player " + player.getPlayer_id() + "'s current inventory:");
 			playerDetailsMinBuildDollar(player.getPlayer_id());
 			playerDetailsCityAreaCards(player.getPlayer_id());
 			playerDetailsGreenCards(player.getPlayer_id());
