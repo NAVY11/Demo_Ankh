@@ -862,7 +862,7 @@ public class Player {
 		boolean success = false;
 		if(ActionID.equalsIgnoreCase("Scroll") || ActionID.equalsIgnoreCase(" Scroll") )
 		{
-			CardID = "g9";
+			//CardID = "g9";
 			//this.theFireBrigadeFunctionality();
 			//this.theZorgoTheRetroFunctionality();
 			//this.mrBentFunctionality(CardID);
