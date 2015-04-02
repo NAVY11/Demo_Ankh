@@ -26,8 +26,10 @@ import java.util.Iterator;
 
 
 
+
 import javax.swing.JFileChooser;
 import javax.swing.JOptionPane;
+
 
 
 
@@ -59,7 +61,9 @@ public class GameLoad {
 	{
 
 				JSONParser jsonParser = new JSONParser();		
-				JSONObject json = (JSONObject)jsonParser.parse(objFilereader);		
+				JSONObject json = (JSONObject)jsonParser.parse(objFilereader);	
+				FileValidation.Validate(json,objFilereader);
+
 
 				//Loading Personality
 				JSONArray PersonalityCards = (JSONArray)json.get("PersonalityCards");

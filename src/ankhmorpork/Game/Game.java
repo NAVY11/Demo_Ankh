@@ -1425,9 +1425,9 @@ public class Game {
 				abc.add(iCount2);
 				abc.add(iCount3);
 				abc.add(iCount4);
-				int maxCount = Collections.max(abc);
+				int maxCount = (int) Collections.max(abc);
 				abc.remove(0);
-				int maxCount2 = Collections.max(abc);
+				int maxCount2 = (int) Collections.max(abc);
 				if(maxCount>maxCount2)
 				{
 					if(GetNoOfTrollsInArea(i)<maxCount)
