@@ -12,25 +12,25 @@ public class IConstants {
 	//Constants(String) for Personality Cards
 	/** The Personality card1. */
 	public static String PersonalityCard1 = "Lord Vetinari";
-	
+	public static String PersonalityMotive1 = "With 2 Players: Areas under control 11; With 3 players Areas under control 10; With 4 players Areas under control 9";
 	/** The Personality card2. */
 	public static String PersonalityCard2 = "Lord Selachii";
-	
+	public static String PersonalityMotive2 = "With 2 Players: Areas under control 7; With 3 players Areas under control 5; With 4 players Areas under control 4";
 	/** The Personality card3. */
 	public static String PersonalityCard3 = "Lord Rust";
-	
+	public static String PersonalityMotive3 = "With 2 Players: Areas under control 7; With 3 players Areas under control 5; With 4 players Areas under control 4";
 	/** The Personality card4. */
 	public static String PersonalityCard4 = "Lord de Worde";
-	
+	public static String PersonalityMotive4 = "With 2 Players: Areas under control 7; With 3 players Areas under control 5; With 4 players Areas under control 4";
 	/** The Personality card5. */
 	public static String PersonalityCard5 = "Dragon King of Arms";
-	
+	public static String PersonalityMotive5 = "Trouble Markers more than 8 on the board";
 	/** The Personality card6. */
 	public static String PersonalityCard6 = "Chrysoprase";
-	
+	public static String PersonalityMotive6 = "Total property worth more than $50";
 	/** The Personality card7. */
 	public static String PersonalityCard7 = "Commander Vimes";
-	
+	public static String PersonalityMotive7 = "Cards ran out";
 	//Constants(String) for Area Cards
 	
 	/** The city card area1. */

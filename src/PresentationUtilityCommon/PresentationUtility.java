@@ -124,7 +124,22 @@ public class PresentationUtility {
 		case 4:  return IConstants.PersonalityCard4;
 		case 5:  return IConstants.PersonalityCard5;
 		case 6:  return IConstants.PersonalityCard6;
-		default: return IConstants.PersonalityCard7;
+		case 7:  return IConstants.PersonalityCard7;
+		default: return "Invalid Personality ID";
+		}
+	}
+	
+	public static String getPersonalityMotiveById(Integer personalityCardId){
+
+		switch (personalityCardId) {
+		case 1:  return IConstants.PersonalityMotive1;
+		case 2:  return IConstants.PersonalityMotive2;
+		case 3:  return IConstants.PersonalityMotive3;
+		case 4:  return IConstants.PersonalityMotive4;
+		case 5:  return IConstants.PersonalityMotive5;
+		case 6:  return IConstants.PersonalityMotive6;
+		case 7:  return IConstants.PersonalityMotive7;
+		default: return "Invalid Personality ID";
 		}
 	}
 
