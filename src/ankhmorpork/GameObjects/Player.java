@@ -862,7 +862,7 @@ public class Player {
 		boolean success = false;
 		if(ActionID.equalsIgnoreCase("Scroll") || ActionID.equalsIgnoreCase(" Scroll") )
 		{
-			CardID = "g14";
+			//CardID = "g14";
 			//this.theFireBrigadeFunctionality();
 			//this.theZorgoTheRetroFunctionality();
 			//this.mrBentFunctionality(CardID);
@@ -1956,7 +1956,7 @@ public class Player {
 			if(PC.getPlayerID()==this.getPlayer_id())
 			{
 				strPersonalityCard = PC.GetCardID();
-				PC.setPlayerID(0); //Take away the Crad from Player
+				PC.setPlayerID(0); //Take away the Card from Player
 				break;
 			}
 		}
