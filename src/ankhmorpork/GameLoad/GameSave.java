@@ -89,7 +89,11 @@ public class GameSave {
 		jsonAddData.put("Total_Avail_Bank", Game.GameBank.getBankAmount());
 		
 		//Current Player Playing
-		jsonAddData.put("currentPlayerId", objPlayer.getPlayer_id());
+		Integer playerIdToSave = objPlayer.getPlayer_id() -1;
+		if(playerIdToSave == 0){
+			playerIdToSave = Game.lstPlayers.size();
+		}
+		jsonAddData.put("currentPlayerId", playerIdToSave);
 		
 		return jsonAddData;
 		
