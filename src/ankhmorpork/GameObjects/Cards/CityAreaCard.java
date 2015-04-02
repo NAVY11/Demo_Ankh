@@ -289,6 +289,12 @@ public class CityAreaCard extends Cards{
 		}
 		return status;
 	}
+	
+	public boolean SmallGodsAction(Player objPlayer)
+	{
+		//To be implemented
+		return true;
+	}
 
 	/**
 	 * Dragon landing action.

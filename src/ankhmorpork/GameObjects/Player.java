@@ -1319,10 +1319,11 @@ public class Player {
 			String strMoveToArea = PresentationUtility.GetValidAnswerFromUser(strAdjacentAreas);
 			
 			for(Minion minion : Game.lstMinions){
-				if(minion.getPlayer_id() == this.getPlayer_id() && minion.getArea_id() == Integer.parseInt(strMoveToArea) && minion.getArea_id() > 0){
+				if(minion.getPlayer_id() == this.getPlayer_id() && minion.getArea_id() == Integer.parseInt(strAreaID) && minion.getArea_id() > 0){
 					minion.setArea_id(Integer.parseInt(strMoveToArea));
 					System.out.println("Minion moved successfully from one area to another which has the troublemaker");
 					success = true;
+					break;
 				}
 			}
 		}else{
@@ -2511,7 +2512,8 @@ public class Player {
 	public boolean randomEventTheDragon(){
 		boolean success = false;
 		System.out.println("Rolling Dice ");
-		Integer randomNumber = PresentationUtility.returnRandomNumber(1, 12)+1;
+		Integer randomNumberGen = PresentationUtility.returnRandomNumber(1, 12)+1;
+		Integer randomNumber = randomNumberGen == 0 ? randomNumberGen : 1;
 		//System.out.println("Dice Value : " + randomNumber);
 		System.out.println("Randomly Selected Area By Rolling Dice : " + PresentationUtility.getCityAreaCardNameById(randomNumber));
 		for(Building building : Game.lstBuildings){
@@ -2578,6 +2580,7 @@ public class Player {
 		}
 		if(!success){
 			System.out.println("There is no building in Area : " + PresentationUtility.getCityAreaCardNameById(randomNumber));
+			success = true;
 			System.out.print("\n");
 		}
 		return success;
