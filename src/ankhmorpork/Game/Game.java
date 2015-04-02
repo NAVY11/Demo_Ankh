@@ -1265,7 +1265,7 @@ public class Game {
 		Player objPayToPlayer = GetPlayer(PayToPlayerID);
 		Player objPaidByPlayer =GetPlayer(PaidByPlayer);
 
-		if((int)objPaidByPlayer.getPlayerAmount()>= Amount)
+		if(objPaidByPlayer.getPlayer_amount()>= Amount)
 		{
 			objPaidByPlayer.setPlayer_amount(objPaidByPlayer.getPlayer_amount()-Amount);
 			objPayToPlayer.setPlayer_amount(objPayToPlayer.getPlayer_amount()+ Amount);
@@ -1310,7 +1310,7 @@ public class Game {
 	{			
 		Player objPaidByPlayer =GetPlayer(PaidByPlayer);
 
-		if((int)objPaidByPlayer.getPlayerAmount()>= Amount)
+		if(objPaidByPlayer.getPlayer_amount()>= Amount)
 		{
 			objPaidByPlayer.setPlayer_amount(objPaidByPlayer.getPlayer_amount()-Amount);
 			Game.GameBank.setBankAmount(Game.GameBank.getBankAmount()+ Amount);
