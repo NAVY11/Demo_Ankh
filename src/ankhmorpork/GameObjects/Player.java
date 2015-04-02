@@ -1260,16 +1260,16 @@ public class Player {
 					objMinion.setArea_id(Integer.parseInt(strMoveToArea));
 					//Handle Trouble Markers
 					//Place or Remove Trouble Marker from Previous Area
-					if(Game.AreaHasTroubleMarker(Integer.parseInt(strAreaID)))
+					if(!Game.AreaHasTroubleMarker(Integer.parseInt(strAreaID)))
 					{
 						Game.removeTroubleMarkerByAreaId(Integer.parseInt(strAreaID));							
 						System.out.println("Trouble Marker was removed from : "+PresentationUtility.getCityAreaCardNameById(Integer.parseInt(strAreaID)));													
 					}
-					else
-					{
-						PlaceATroubleMarkerInArea(Integer.parseInt(strAreaID));														
-						System.out.println("Trouble Marker was placed in : "+PresentationUtility.getCityAreaCardNameById(Integer.parseInt(strAreaID)));																				
-					}
+//					else
+//					{
+//						PlaceATroubleMarkerInArea(Integer.parseInt(strAreaID));														
+//						System.out.println("Trouble Marker was placed in : "+PresentationUtility.getCityAreaCardNameById(Integer.parseInt(strAreaID)));																				
+//					}
 
 					//Place or Remove Trouble Marker from New Area
 					if(Game.AreaHasMinion(Integer.parseInt(strMoveToArea)))
