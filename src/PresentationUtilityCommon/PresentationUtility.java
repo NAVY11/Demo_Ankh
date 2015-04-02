@@ -69,7 +69,7 @@ public class PresentationUtility {
 		randomNumber =  (int)(fraction + startNumber); 
 		randomNumberA = randomNumber;
 
-		if(!(numberAlreadyBeingUsedInGame.size() == 0)){
+		if(numberAlreadyBeingUsedInGame != null && !(numberAlreadyBeingUsedInGame.size() == 0)){
 			if(numberAlreadyBeingUsedInGame.contains(randomNumber)){
 				return false;
 			}else{
