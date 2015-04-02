@@ -2439,7 +2439,7 @@ public class Player {
 		System.out.println("Rolling Dice ");
 		Integer randomNumber = PresentationUtility.returnRandomNumber(1, randomCardToSelect.length);
 		String randomCardNumberSelected = randomCardToSelect[randomNumber == randomCardToSelect.length ? randomNumber -1 : randomNumber];
-		int randomCardNumberSelectedInt = Integer.parseInt(randomCardNumberSelected);
+		int randomCardNumberSelectedInt = 2;
 		String randomEventCardName = PresentationUtility.getRandomEventCardNameById(randomCardNumberSelectedInt);
 		System.out.println("Random Event Card Selected by Rolling Dice : "+randomEventCardName+"\n");
 		switch(randomCardNumberSelectedInt){
@@ -2457,6 +2457,9 @@ public class Player {
 		boolean success = false;
 		for(int i = 1; i <=5; i++){
 			String pickNewCardID = Game.GetRandomGreenCardFromDeck();
+			if(pickNewCardID.contains("g")){
+				pickNewCardID = pickNewCardID.replace("g", "");
+			}
 			String cardName = PresentationUtility.getGreenCardNameById(Integer.parseInt(pickNewCardID));
 			System.out.println("Card picked : "+cardName);
 			for(GreenCard greenCard : Game.lstGreenCards){
@@ -2481,10 +2484,12 @@ public class Player {
 		}
 		if(count > 8){
 			System.out.println("There were more than 8 Trouble Makers on Board. Game will end now... ");
+			success = true;
 			System.out.print("\n");
 			System.exit(0);
 		}else{
 			System.out.println("Your card went wasted because there weren't 8 or more Trouble Makers on board. ");
+			success = true;
 			System.out.print("\n");
 			return success;
 		}
