@@ -72,7 +72,7 @@ public class ViewFileTxt {
 			System.out.printf("\t%-11s", minionInfo.get(i) != null ? minionInfo.get(i) : "none");
 			System.out.printf("\t%-4s", (troubleInfo.get(i) != null && troubleInfo.get(i) ? "YES": "no"));
 			System.out.printf("\t%-12s", (buildingInfo.get(i) != null ? buildingInfo.get(i) : "no"));
-			System.out.printf("\t%-4s", (demonInfo.get(i) != null && demonInfo.get(i) > 0? "1" : "0"));
+			System.out.printf("\t%-4s", (demonInfo.get(i) != null? "1" : "0"));
 			System.out.printf("\t%-4s", (trollInfo.get(i) != null && trollInfo.get(i) > 0? "1" : "0"));
 		}
 		
