@@ -25,7 +25,7 @@ import ankhmorpork.GameObjects.Cards.GreenCard;
 public class ViewFileTxt {
 
 	public void printViewState(){
-		System.out.println(ViewState());
+		//System.out.println(ViewState());
 	}
 	/**
 	 * View state.
@@ -38,34 +38,55 @@ public class ViewFileTxt {
 		String saveTheDetailsInTextFile = "";
 		
 		ArrayList<Player> lstPlayers = Game.lstPlayers;
-		saveTheDetailsInTextFile += playerGeneralInfo(lstPlayers);
+		playerGeneralInfo(lstPlayers);
 
 		ArrayList<Minion> lstMinions = Game.lstMinions;
-		saveTheDetailsInTextFile += minionGeneralInfo(lstMinions);
+		HashMap<Integer, String> minionInfo = minionGeneralInfo(lstMinions);
 		
 		ArrayList<TroubleMaker> lstTroubleMakers = Game.lstTroubleMaker;
-		saveTheDetailsInTextFile += troubleMakerGeneralInfo(lstTroubleMakers);
+		HashMap<Integer, Boolean> troubleInfo = troubleMakerGeneralInfo(lstTroubleMakers);
 		
 		ArrayList<Building> lstBuildings = Game.lstBuildings;
-		saveTheDetailsInTextFile += buildingGeneralInfo(lstBuildings);
+		HashMap<Integer, String> buildingInfo = buildingGeneralInfo(lstBuildings);
 		
 		ArrayList<Demon> lstDemons = Game.lstDemons;
-		saveTheDetailsInTextFile += demonGeneralInfo(lstDemons);
+		HashMap<Integer, Integer> demonInfo = demonGeneralInfo(lstDemons);
 
 		ArrayList<Troll> lstTrolls = Game.lstTrolls;
-		saveTheDetailsInTextFile += trollGeneralInfo(lstTrolls);
+		HashMap<Integer, Integer> trollInfo =  trollGeneralInfo(lstTrolls);
 		
-		for(Player player : Game.lstPlayers){
-			saveTheDetailsInTextFile += "\nPlayer " + player.getPlayer_id() + "'s current inventory:";
-			saveTheDetailsInTextFile += playerDetailsMinBuildDollar(player.getPlayer_id());
-			saveTheDetailsInTextFile += playerDetailsCityAreaCards(player.getPlayer_id());
-			saveTheDetailsInTextFile += playerDetailsGreenCards(player.getPlayer_id());
-			saveTheDetailsInTextFile += "\n";
+		System.out.printf("\n\n");
+		System.out.printf("Current state of the game board:");
+		System.out.printf("\n\n");
+		System.out.printf("%-18s", "Area");
+		System.out.printf("\t%-11s", "Minion");
+		System.out.printf("\t%-4s", "Trouble");
+		System.out.printf("\t%-12s", "Building");
+		System.out.printf("\t%-4s", "Demons");
+		System.out.printf("\t%-4s", "Trolls");
+		System.out.printf("\n");
+		
+		for(int i = 1; i <=12; i++){
+			System.out.printf("\n");
+			System.out.printf("%-18s", PresentationUtility.getCityAreaCardNameById(i));
+			System.out.printf("\t%-11s", minionInfo.get(i) != null ? minionInfo.get(i) : "none");
+			System.out.printf("\t%-4s", (troubleInfo.get(i) != null && troubleInfo.get(i) ? "YES": "no"));
+			System.out.printf("\t%-12s", (buildingInfo.get(i) != null ? buildingInfo.get(i) : "no"));
+			System.out.printf("\t%-4s", (demonInfo.get(i) != null && demonInfo.get(i) > 0? "1" : "0"));
+			System.out.printf("\t%-4s", (trollInfo.get(i) != null && trollInfo.get(i) > 0? "1" : "0"));
 		}
 		
-		saveTheDetailsInTextFile += "\n";
-		saveTheDetailsInTextFile += totalAmountBankOwns();
-		saveTheDetailsInTextFile += "\n";
+		for(Player player : Game.lstPlayers){
+			System.out.printf("\nPlayer " + player.getPlayer_id() + "'s current inventory:");
+			playerDetailsMinBuildDollar(player.getPlayer_id());
+			playerDetailsCityAreaCards(player.getPlayer_id());
+			playerDetailsGreenCards(player.getPlayer_id());
+			System.out.printf("\n");
+		}
+		
+		System.out.printf("\n");
+		totalAmountBankOwns();
+		System.out.printf("\n\n");
 		return saveTheDetailsInTextFile;
 	}
 	
@@ -75,26 +96,23 @@ public class ViewFileTxt {
 	 * @param players the players
 	 * @return the string
 	 */
-	public static String playerGeneralInfo(ArrayList<Player> players){
+	public static void playerGeneralInfo(ArrayList<Player> players){
 		
-		String playerGeneralInfoStr = "Game State";
+		System.out.printf("Game State");
 		int i = players.size()-1;
 		
-		playerGeneralInfoStr += "\n-----------------";
-		playerGeneralInfoStr += "\nThere are "+players.size()+" players:";
+		System.out.printf("\n-----------------");
+		System.out.printf("\nThere are "+players.size()+" players:");
 		
 		for(Player player: players){
-			playerGeneralInfoStr += "\nPlayer "+(players.size() -i)+", "+player.getPlayer_name()+" ("+ player.getPlayer_color()+") is playing as "+ PresentationUtility.getPersonalityCardNameById(Integer.parseInt(player.getPersonalityCardListCommaSeparated()));
+			System.out.printf("\nPlayer "+(players.size() -i)+", "+player.getPlayer_name()+" ("+ player.getPlayer_color()+") is playing as "+ PresentationUtility.getPersonalityCardNameById(Integer.parseInt(player.getPersonalityCardListCommaSeparated())));
 			i -= 1;
 		}
-		return playerGeneralInfoStr;
 	}
 	
-	public static String minionGeneralInfo(ArrayList<Minion> minions){
-		String minionGeneralInfoStr = "\n";
+	public static HashMap<Integer, String> minionGeneralInfo(ArrayList<Minion> minions){
 		HashMap<Integer, String> minionInfo = new HashMap<Integer, String>();
 		
-		minionGeneralInfoStr += "\n########## Minion Details ##########";
 		for(int i = 1; i <= 12; i++){
 			String minionsInAreaId = "";
 			for(Minion minion : minions){
@@ -108,18 +126,10 @@ public class ViewFileTxt {
 			}
 			minionInfo.put(i, minionsInAreaId);
 		}
-		for(int i = 1; i <=12; i++){
-			minionGeneralInfoStr += "\n" + PresentationUtility.getCityAreaCardNameById(i) + " : " + (minionInfo.get(i) != null ? minionInfo.get(i) : "");
-		}
-		
-		
-		return minionGeneralInfoStr;
+		return minionInfo;
 	}
 	
-	public static String troubleMakerGeneralInfo(ArrayList<TroubleMaker> troubleMakers){
-		String troubleMakerGeneralInfoStr = "\n";
-		
-		troubleMakerGeneralInfoStr += "\n########## Trouble Maker Details ##########";
+	public static HashMap<Integer, Boolean> troubleMakerGeneralInfo(ArrayList<TroubleMaker> troubleMakers){
 		HashMap<Integer, Boolean> troubleMakerDetails = new HashMap<Integer, Boolean>();
 		
 		boolean isTroubleMakerInArea = false;
@@ -131,17 +141,10 @@ public class ViewFileTxt {
 			troubleMakerDetails.put(troubleMaker.getArea_id(), isTroubleMakerInArea);
 		}
 		
-		for(int i = 1; i <=12; i++){
-			troubleMakerGeneralInfoStr += "\n" + PresentationUtility.getCityAreaCardNameById(i) + " : " + (troubleMakerDetails.get(i) != null && troubleMakerDetails.get(i) ? "YES": "no");
-		}
-		
-		return troubleMakerGeneralInfoStr;
+		return troubleMakerDetails;
 	}
 	
-	public static String buildingGeneralInfo(ArrayList<Building> buildings){
-		String buildingGeneralInfoStr = "\n";
-		
-		buildingGeneralInfoStr += "\n########## Building Details ##########";
+	public static HashMap<Integer, String> buildingGeneralInfo(ArrayList<Building> buildings){
 		HashMap<Integer, String> buildingDetails = new HashMap<Integer, String>();
 		
 		boolean isBuildingInArea = false;
@@ -159,17 +162,10 @@ public class ViewFileTxt {
 			buildingDetails.put(building.getArea_id(), colorOfBuilding);
 		}
 		
-		for(int i = 1; i <=12; i++){
-			buildingGeneralInfoStr += "\n" + PresentationUtility.getCityAreaCardNameById(i) + " : " + (buildingDetails.get(i) != null ? buildingDetails.get(i) : "no");
-		}
-		
-		return buildingGeneralInfoStr;
+		return buildingDetails;
 	}
 	
-	public static String trollGeneralInfo(ArrayList<Troll> trolls){
-		String trollGeneralInfoStr = "\n";
-		
-		trollGeneralInfoStr += "\n########## Troll Details ##########";
+	public static HashMap<Integer, Integer> trollGeneralInfo(ArrayList<Troll> trolls){
 		HashMap<Integer, Integer> trollDetails = new HashMap<Integer, Integer>();
 		
 		int countOfTrollsInArea = 0;
@@ -181,17 +177,10 @@ public class ViewFileTxt {
 			trollDetails.put(troll.getArea_id(), countOfTrollsInArea);
 		}
 		
-		for(int i = 1; i <=12; i++){
-			trollGeneralInfoStr += "\n" + PresentationUtility.getCityAreaCardNameById(i) + " : " + (trollDetails.get(i) != null && trollDetails.get(i) > 0? "1" : "0");
-		}
-		
-		return trollGeneralInfoStr + "\n";
+		return trollDetails;
 	}
 	
-	public static String demonGeneralInfo(ArrayList<Demon> demons){
-		String demonGeneralInfoStr = "\n";
-		
-		demonGeneralInfoStr += "\n########## Demon Details ##########";
+	public static HashMap<Integer, Integer> demonGeneralInfo(ArrayList<Demon> demons){
 		HashMap<Integer, Integer> demonDetails = new HashMap<Integer, Integer>();
 		
 		int countOfDemonsInArea = 0;
@@ -204,44 +193,36 @@ public class ViewFileTxt {
 			demonDetails.put(demon.getArea_id(), countOfDemonsInArea);
 		}
 		
-		for(int i = 1; i <=12; i++){
-			demonGeneralInfoStr += "\n" + PresentationUtility.getCityAreaCardNameById(i) + " : " + (demonDetails.get(i) != null ? "1" : "0");
-		}
-		
-		return demonGeneralInfoStr;
+		return demonDetails;
 	}
 	
-	public static String playerDetailsMinBuildDollar(Integer playerId){
-		String playerDetailsMinBuildDollarStr = "\n\t";
+	public static void playerDetailsMinBuildDollar(Integer playerId){
+		System.out.printf("\n\t");
 		
-		playerDetailsMinBuildDollarStr += "- "+(12-Game.GetMinionsOnBoardByPlayerID(playerId).size()) + " minion(s) "
+		System.out.printf("- "+(12-Game.GetMinionsOnBoardByPlayerID(playerId).size()) + " minion(s) "
 											+ (6-Game.GetBuildingsByPlayerIDAndActiveAndOnBoard(playerId).size()) + " building(s) "
-											+ Game.GetPlayer(playerId).getPlayer_amount() + " Ankh-Morpork dollars";
+											+ Game.GetPlayer(playerId).getPlayer_amount() + " Ankh-Morpork dollars");
 		
-		return playerDetailsMinBuildDollarStr;
 	}
 	
-	public static String playerDetailsCityAreaCards(Integer playerId){
-		String playerDetailsCityAreaCardsStr = "";
+	public static void playerDetailsCityAreaCards(Integer playerId){
 		ArrayList<CityAreaCard> cityAreaCardsByPlayerId = Game.GetCityAreaCardByPlayerID(playerId);
 		if(cityAreaCardsByPlayerId.size() > 0){
-			playerDetailsCityAreaCardsStr = "\n\t";
-			playerDetailsCityAreaCardsStr += "- City Area Cards: ";
+			System.out.printf("\n\t");
+			System.out.printf("- City Area Cards: ");
 			for(CityAreaCard cityAreaCard : cityAreaCardsByPlayerId){
-				playerDetailsCityAreaCardsStr += "\n\t" + cityAreaCard.GetAreaName();
+				System.out.printf("\n\t\t" + cityAreaCard.GetAreaName());
 			}
 		}
-		return playerDetailsCityAreaCardsStr;
 	}
 	
-	public static String playerDetailsGreenCards(Integer playerId){
-		String playerDetailsGreenCardsStr = "\n\t";
-		playerDetailsGreenCardsStr += "- Player Cards: ";
+	public static void playerDetailsGreenCards(Integer playerId){
+		System.out.printf("\n\t");
+		System.out.printf("- Player Cards: ");
 		ArrayList<GreenCard> greenCardsByPlayerId = Game.GetGreenCardByPlayerID(playerId);
 		for(GreenCard greenCard : greenCardsByPlayerId){
-			playerDetailsGreenCardsStr += "\n\t" + greenCard.getName();
+			System.out.printf("\n\t\t" + greenCard.getName());
 		}
-		return playerDetailsGreenCardsStr;
 	}
 	
 	/**
@@ -324,24 +305,20 @@ public class ViewFileTxt {
 	 * @param players the players
 	 * @return the string
 	 */
-	public static String playerDetails(ArrayList<Player> players){
+	public static void playerDetails(ArrayList<Player> players){
 		
-		String playerDetails = "";
 		int i = players.size()-1;
 		for(Player player: players){
-			playerDetails += "\nPlayer "+(players.size() -i)+"'s current Inventory:";
+			System.out.printf("\nPlayer "+(players.size() -i)+"'s current Inventory:");
 			//TODO : complete the changes here to extract Minions, Buildings of Players playerDetails += "\n\n\t- "+player.lstMinions.size()+" minions, "+player.lstBuildings.size()+" buildings, "+player.getPlayerAmount()+" dollars ";
-			playerDetails += "\n\n\t-City Area Cards: \n\n\t\t" +PresentationUtility.getCityAreaCardNameById(Integer.parseInt(player.getCityAreaCardsListCommaSeparated()));
-			playerDetails += "\n\n\t-Player Cards: ";
-			playerDetails += "\n\t\tGreen Cards: "+ player.getGreenCardListCommaSeparated();
-			playerDetails += "\n\t\tGreen Cards Names: " + PresentationUtility.getCommaSeparatedGreenCardNames(player.getGreenCardListCommaSeparated());
-			//playerDetails += "\n\t\tBrown Cards "+ player.getBrownCardListCommaSeparated();
-			playerDetails += "\n";
+			System.out.printf("\n");
+			System.out.printf("\n\n\t-City Area Cards: \n\n\t\t" +PresentationUtility.getCityAreaCardNameById(Integer.parseInt(player.getCityAreaCardsListCommaSeparated())));
+			System.out.printf("\n\n\t-Player Cards: ");
+			System.out.printf("\n\t\tGreen Cards: "+ player.getGreenCardListCommaSeparated());
+			System.out.printf("\n\t\tGreen Cards Names: " + PresentationUtility.getCommaSeparatedGreenCardNames(player.getGreenCardListCommaSeparated()));
+			System.out.printf("\n");
 			i -= 1;
 		}
-
-		return playerDetails;
-		
 	}
 	
 	/**
@@ -349,11 +326,8 @@ public class ViewFileTxt {
 	 *
 	 * @return the string
 	 */
-	public static String totalAmountBankOwns(){
-		
-		String totalAmountStr = "The bank has "+ Game.GameBank.getBankAmount()+" Ankh-Morpork dollars.";
-		
-		return totalAmountStr;
+	public static void totalAmountBankOwns(){
+		System.out.printf("The bank has "+ Game.GameBank.getBankAmount()+" Ankh-Morpork dollars.");
 		
 	}
 
