@@ -556,7 +556,19 @@ public class GameLoad {
 			Game.lstGreenCards.add(objGreenCard);
 
 	    }
-
+		//Initialize Personality Cards
+		for(Integer i = 1; i<8;i++)
+		{
+			PersonalityCard objPC = new PersonalityCard();
+			objPC.SetCardID(i.toString());
+			objPC.SetIsPlayed(false);
+			objPC.setPlayerID(0);
+			objPC.SetPersonalityName(PresentationUtility.getPersonalityCardNameById(i));
+			objPC.setName(objPC.GetPersonalityName());
+			objPC.SetPersonalityMotive(PresentationUtility.getPersonalityMotiveById(i));
+			Game.lstPersonalityCard.add(objPC);
+			
+		}
 
 
 		for(int i=1;i<13;i++)
