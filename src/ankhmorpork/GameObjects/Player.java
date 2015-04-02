@@ -2457,16 +2457,19 @@ public class Player {
 		boolean success = false;
 		for(int i = 1; i <=5; i++){
 			String pickNewCardID = Game.GetRandomGreenCardFromDeck();
+			String pickNedCardIDWithoutG = "";
 			if(pickNewCardID.contains("g")){
-				pickNewCardID = pickNewCardID.replace("g", "");
+				pickNedCardIDWithoutG = pickNewCardID.replace("g", "");
+			}else{
+				pickNedCardIDWithoutG = pickNewCardID;
 			}
-			String cardName = PresentationUtility.getGreenCardNameById(Integer.parseInt(pickNewCardID));
+			String cardName = PresentationUtility.getGreenCardNameById(Integer.parseInt(pickNedCardIDWithoutG));
 			System.out.println("Card picked : "+cardName);
 			for(GreenCard greenCard : Game.lstGreenCards){
 				if(greenCard.GetCardID().equals(pickNewCardID)){
 					greenCard.SetIsPlayed(true);
 					success = true;
-					System.out.println(cardName + "discarded");
+					System.out.println(cardName + " discarded");
 				}
 			}
 		}
