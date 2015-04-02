@@ -1663,12 +1663,26 @@ public class Player {
 	{
 		//Read the scroll
 		boolean success = true;		
+		int count =0;
+		int i=0;
 		System.out.println("Personality Card which are not being used are: ");
 		for(PersonalityCard objPC : Game.lstPersonalityCard)
 		{
+			
 			if(objPC.getPlayerID()==0)
 			{
+				count++;
+			}
+		}
+		for(PersonalityCard objPC : Game.lstPersonalityCard)
+		{
+			
+			if(objPC.getPlayerID()==0)
+			{
+				i++;
+				if(i<count)
 				System.out.println(objPC.GetCardID()+" : "+objPC.GetPersonalityName());
+				
 			}
 		}
 		return success;

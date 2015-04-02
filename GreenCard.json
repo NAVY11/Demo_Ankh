@@ -325,7 +325,7 @@
 	  "IsPlayed": "False",
       "ActionID": "Assassination,Take Money",
       "PlayerID" : "0",
-	  "ActionDescription": "The new Firm"
+	  "ActionDescription": ""
     },
 	"g48": {
 	  "Name": "The Thieves' Guild",

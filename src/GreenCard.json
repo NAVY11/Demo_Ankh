@@ -95,7 +95,7 @@
 	  "IsPlayed": "False",
       "ActionID": "Scroll,Take Money,Place a Building",
       "PlayerID" : "0",
-	  "ActionDescription": "Look at all one of the unused Personality cards"
+	  "ActionDescription": "Look at all but one of the unused Personality cards"
     },
 	"g15": {
 	  "Name": "Groat",
@@ -325,7 +325,7 @@
 	  "IsPlayed": "False",
       "ActionID": "Assassination,Take Money",
       "PlayerID" : "0",
-	  "ActionDescription": "The new Firm"
+	  "ActionDescription": ""
     },
 	"g48": {
 	  "Name": "The Thieves' Guild",

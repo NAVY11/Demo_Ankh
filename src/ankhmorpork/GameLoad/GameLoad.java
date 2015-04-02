@@ -298,7 +298,7 @@ public class GameLoad {
 			//Play Game						
 			//Load Player details
 			Player objPlayer = Game.lstPlayers.get(currentPlayerTurn - 1);
-			System.out.println("Enter 'saveGame' to save the Current State. Else write 'cont' to continue ");
+			System.out.println("Enter 'saveGame' to save the Current State. Else press 'Enter' to continue ");
 			BufferedReader brOption = new BufferedReader(new InputStreamReader(System.in));
 			String brOptionSelected = brOption.readLine();
 			if(brOptionSelected.equals("saveGame")){
