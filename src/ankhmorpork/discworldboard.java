@@ -534,7 +534,22 @@ public class discworldboard extends Component {
 					else
 						continue;
 				}
+				//Set Green Card Played
+				if(iSuccessCount>0)
+				{
+					Game.SetGreenCardIsPlayed(CardID, true);
+					//Get number of Green Cards available with Player
+					int CardsInHand = Game.GetPlayerGreenCardCount(objPlayer.getPlayer_id());
 
+					//Pick as many cards from deck so that the Player holds 5 Cards
+					for(int i=0; i< 5 - CardsInHand;i++)
+					{
+						//Pick a GreenCardFromDeck
+						String PickNewCardID = Game.GetRandomGreenCardFromDeck();
+						Game.SetGreenCardToPlayer(PickNewCardID, objPlayer.getPlayer_id());
+					}
+				}
+				
 				if(iSuccessCount>0)//if(success)
 				{							
 					//Set Current card as 'Played'
@@ -593,20 +608,7 @@ public class discworldboard extends Component {
 				{
 					System.out.println("Opss! Acion failed. Please try again.");
 				}
-				if(iSuccessCount>0)
-				{
-					Game.SetGreenCardIsPlayed(CardID, true);
-					//Get number of Green Cards available with Player
-					int CardsInHand = Game.GetPlayerGreenCardCount(objPlayer.getPlayer_id());
-
-					//Pick as many cards from deck so that the Player holds 5 Cards
-					for(int i=0; i< 5 - CardsInHand;i++)
-					{
-						//Pick a GreenCardFromDeck
-						String PickNewCardID = Game.GetRandomGreenCardFromDeck();
-						Game.SetGreenCardToPlayer(PickNewCardID, objPlayer.getPlayer_id());
-					}
-				}
+				
 			}					
 		}
 	}

@@ -430,17 +430,17 @@ public class PresentationUtility {
 		switch(iAreaID)
 		{
 		case 1 : return ",2,3,12,";
-		case 2 : return ",1,3,4,11,12,";
+		case 2 : return ",1,3,4,10,11,12,";
 		case 3 : return ",1,2,4,";
 		case 4 : return ",2,3,5,6,10,";
 		case 5 : return ",4,6,7,8,10,";
 		case 6 : return ",4,5,7,";
 		case 7 : return ",5,6,8,";
-		case 8 : return ",1,9,5,";
+		case 8 : return ",7,9,5,";
 		case 9 : return ",8,10,11,";
 		case 10 : return ",2,4,5,9,";
-		case 11 : return ",2,9,12,";
-		case 12 : return ",1,2,12,";	
+		case 11 : return ",2,9,10,12,";
+		case 12 : return ",1,2,11,";	
 		default : return "";
 		}
 	}
