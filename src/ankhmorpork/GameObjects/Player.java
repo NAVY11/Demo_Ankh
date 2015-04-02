@@ -862,7 +862,7 @@ public class Player {
 		boolean success = false;
 		if(ActionID.equalsIgnoreCase("Scroll") || ActionID.equalsIgnoreCase(" Scroll") )
 		{
-			//CardID = "g14";
+			CardID = "g9";
 			//this.theFireBrigadeFunctionality();
 			//this.theZorgoTheRetroFunctionality();
 			//this.mrBentFunctionality(CardID);
@@ -916,6 +916,7 @@ public class Player {
 			case "Place a Minion": case " Place a Minion"  : return this.placeAMinionFunctionality();
 			case "Place a Building": case " Place a Building" : return this.placeABuildingFunctionality();
 			case "No Action": case " No Action" : System.out.println("This card cannot be played."); return false;
+			case "" : System.out.println("Peeled Nut card has been played");return true;
 			}
 		}
 		return success;			
@@ -1235,7 +1236,7 @@ public class Player {
 
 		for(Minion objMinion : Game.lstMinions)
 		{
-			if(objMinion.getArea_id()==Integer.parseInt(strAreaID) && objMinion.getPlayer_id()==this.getPlayer_id())
+			if(objMinion.getArea_id()==Integer.parseInt(strAreaID) && objMinion.getPlayer_id()==objChosenPlayer.getPlayer_id())
 			{
 				Player playerObjOfMinion = Game.GetPlayer(objMinion.getPlayer_id()); //Put playerId here to get the player Object
 				ArrayList<GreenCard> greenCardPlayerObj = Game.GetGreenCardByPlayerID(playerObjOfMinion.getPlayer_id());
@@ -1253,7 +1254,7 @@ public class Player {
 							}
 						}
 					}
-					break;
+					
 				}
 				if(!success){
 					objMinion.setArea_id(Integer.parseInt(strMoveToArea));
@@ -1271,10 +1272,13 @@ public class Player {
 					}
 
 					//Place or Remove Trouble Marker from New Area
+					if(Game.AreaHasMinion(Integer.parseInt(strMoveToArea)))
+					{
 					if(!Game.AreaHasTroubleMarker(Integer.parseInt(strMoveToArea)))
 					{
 						PlaceATroubleMarkerInArea(Integer.parseInt(strMoveToArea));														
 						System.out.println("Trouble Marker was placed in : "+PresentationUtility.getCityAreaCardNameById(Integer.parseInt(strMoveToArea)));													
+					}
 					}
 
 					System.out.println("Minion moved successfully!");
