@@ -28,7 +28,7 @@ public class Player {
 		return "Player [player_id=" + player_id + ", player_name="
 				+ player_name + ", player_active=" + player_active
 				+ ", player_color=" + player_color + ", player_amount="
-				+ player_amount + ", player_comments=" + player_comments
+				+ player_amount + ", player_payBackToBank=" + player_payBackToBank
 				+ ", player_personality_card_id=" + player_personality_card_id
 				+ ", brownCardListCommaSeparated="
 				+ brownCardListCommaSeparated
@@ -55,7 +55,7 @@ public class Player {
 	/** The player_amount. */
 	Float player_amount;
 
-	String player_comments;
+	Integer player_payBackToBank;
 
 	/** The player_personality_card_id. */
 	Integer player_personality_card_id;
@@ -270,12 +270,12 @@ public class Player {
 		return player_personality_card_id;
 	}
 
-	public String getPlayer_comments() {
-		return player_comments;
+	public Integer getPlayer_payBackToBank() {
+		return player_payBackToBank;
 	}
 
-	public void setPlayer_comments(String player_comments) {
-		this.player_comments = player_comments;
+	public void setPlayer_payBackToBank(Integer player_payBackToBank) {
+		this.player_payBackToBank = player_payBackToBank;
 	}
 
 	/**
@@ -562,6 +562,7 @@ public class Player {
 											greenCard.SetIsPlayed(true);
 											greenCard.setPlayerID(0);
 											minionSavedAndRemoved = true;
+											success = true;
 											break;
 										}
 									}
@@ -863,7 +864,7 @@ public class Player {
 		boolean success = false;
 		if(ActionID.equalsIgnoreCase("Scroll") || ActionID.equalsIgnoreCase(" Scroll") )
 		{
-			//CardID = "g9";
+			//CardID = "g20";
 			//this.theFireBrigadeFunctionality();
 			//this.theZorgoTheRetroFunctionality();
 			//this.mrBentFunctionality(CardID);
@@ -911,7 +912,7 @@ public class Player {
 			case "Assassination": case " Assassination" : return this.Assassination();
 			case "Remove One Trouble Marker": case " Remove One Trouble Marker": return this.UserRemoveOneTroubleMarker();
 			case "Take Money": case " Take Money" : return this.TakeMoneyFromBank(CardID);
-			case "Random Event": case " Random Event" : this.randomCardToPlay(); 
+			case "Random Event": case " Random Event" : return this.randomCardToPlay(); 
 			case "Play Another Card": case " Play Another Card" : return this.PlayAnotherCard(CardID);
 			//				case "Interrupt " : return 
 			case "Place a Minion": case " Place a Minion"  : return this.placeAMinionFunctionality();
@@ -1017,7 +1018,7 @@ public class Player {
 		Game.PaymentFromBank(this.getPlayer_id(), 10);
 		//		this.setPlayer_amount((float)(this.getPlayer_amount() != null ? this.getPlayer_amount() : 0) + 10);
 		//		Game.GameBank.setBankAmount((float)Game.GameBank.getBankAmount() - 10);
-		this.setPlayer_comments("You had played Mr. Bent/The Bank of AnkhMorpork You need to pay $12 back to Bank Or either you lose 15 points.");
+		this.setPlayer_payBackToBank(10);
 		//Card placed in front of Bank 
 		Game.SetGreenCardIsPlayed(CardID, true);
 		success = true;
@@ -1237,7 +1238,7 @@ public class Player {
 
 		for(Minion objMinion : Game.lstMinions)
 		{
-			if(objMinion.getArea_id()==Integer.parseInt(strAreaID) && objMinion.getPlayer_id()==objChosenPlayer.getPlayer_id())
+			if(objMinion.getArea_id()==Integer.parseInt(strAreaID) && objMinion.getPlayer_id()==this.getPlayer_id())
 			{
 				Player playerObjOfMinion = Game.GetPlayer(objMinion.getPlayer_id()); //Put playerId here to get the player Object
 				ArrayList<GreenCard> greenCardPlayerObj = Game.GetGreenCardByPlayerID(playerObjOfMinion.getPlayer_id());
@@ -1290,6 +1291,20 @@ public class Player {
 		}
 
 
+		return success;
+	}
+	
+	public boolean theRinceWindFunctionality(){
+		boolean success = false;
+		
+		for(Minion minion : Game.lstMinions){
+			for(TroubleMaker troubleMaker : Game.lstTroubleMaker){
+				if(minion.getPlayer_id() == this.getPlayer_id() && minion.getArea_id() == troubleMaker.getArea_id() && minion.getArea_id() > 0 && troubleMaker.getArea_id() > 0){
+					
+				}
+			}
+		}
+		
 		return success;
 	}
 
