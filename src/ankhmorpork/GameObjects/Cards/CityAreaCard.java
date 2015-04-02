@@ -508,7 +508,7 @@ public class CityAreaCard extends Cards{
 			BufferedReader brPlayerBuff = new BufferedReader(new InputStreamReader(System.in));
 			System.out.println("Please select a Green Card which you wish to Discard:");
 			String strValidGreenCardList = ",";
-			Game.SetGreenCardIsPlayed(CardID, true);
+			//Game.SetGreenCardIsPlayed(CardID, true);
 			ArrayList<GreenCard> greenCardList = Game.GetGreenCardByPlayerID(objPlayer.getPlayer_id());
 			for(GreenCard grnCard : greenCardList)
 			{			
@@ -516,7 +516,7 @@ public class CityAreaCard extends Cards{
 				strValidGreenCardList+=grnCard.GetCardID()+",";
 				System.out.printf("%-5s%-5s%-40s%-5s%-50s%-5s%-60s\n",grnCard.GetCardID() ,  " : " ,  grnCard.getName() , " : " , ActionList," : ","Scroll Action : "+grnCard.GetActionDescription());			
 			}		
-			String strGreenCardID = "";
+			String strGreenCardID = ",";
 			while(true)
 			{
 				strGreenCardID = brPlayerBuff.readLine();
@@ -532,6 +532,7 @@ public class CityAreaCard extends Cards{
 
 			}
 			Game.SetGreenCardIsPlayed(strGreenCardID, true);
+			System.out.println("List after discarding the selected card");
 			ArrayList<GreenCard> greenCardList1 = Game.GetGreenCardByPlayerID(objPlayer.getPlayer_id());
 			for(GreenCard grnCard : greenCardList1)
 			{			
@@ -594,7 +595,7 @@ public class CityAreaCard extends Cards{
 				}
 			}
 			System.out.println("Enter a areaID in which you want place a troublemarker:");
-			System.out.println(strhasnotroblemarker);
+			//System.out.println(strhasnotroblemarker);
 			Game.DisplayAreas(strhasnotroblemarker);
 			BufferedReader br2 = new BufferedReader(new InputStreamReader(System.in));
 			String adjacentAreaID = "";
