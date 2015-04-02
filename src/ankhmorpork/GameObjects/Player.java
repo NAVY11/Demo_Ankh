@@ -2439,7 +2439,7 @@ public class Player {
 		System.out.println("Rolling Dice ");
 		Integer randomNumber = PresentationUtility.returnRandomNumber(1, randomCardToSelect.length);
 		String randomCardNumberSelected = randomCardToSelect[randomNumber == randomCardToSelect.length ? randomNumber -1 : randomNumber];
-		int randomCardNumberSelectedInt = 2;
+		int randomCardNumberSelectedInt = Integer.parseInt(randomCardNumberSelected);
 		String randomEventCardName = PresentationUtility.getRandomEventCardNameById(randomCardNumberSelectedInt);
 		System.out.println("Random Event Card Selected by Rolling Dice : "+randomEventCardName+"\n");
 		switch(randomCardNumberSelectedInt){
