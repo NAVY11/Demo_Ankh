@@ -6,14 +6,12 @@ import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.List;
+import java.util.HashMap;
 
 import PresentationUtilityCommon.IConstants;
 import PresentationUtilityCommon.PresentationUtility;
 import ankhmorpork.Game.Game;
 import ankhmorpork.GameConstants.Constants;
-import ankhmorpork.GameObjects.Cards.BrownCard;
 import ankhmorpork.GameObjects.Cards.CityAreaCard;
 import ankhmorpork.GameObjects.Cards.GreenCard;
 import ankhmorpork.GameObjects.Cards.PersonalityCard;
@@ -896,7 +894,7 @@ public class Player {
 			case "g36" : return this.theHarryKingOrShonkyShopFunctionality(CardID, 1);
 			case "g37" : return this.theSacharissaCripslockFunctionality();
 			case "g38" : return this.theRosiePalmFunctionality();
-			case "g39" : return this.theDuckmanFunctionality();
+			case "g39" : return this.theRinceWindFunctionality();
 			case "g41" : return this.theBeggersGuildFunctionality();
 			case "g43" : return this.theZorgoTheRetroFunctionality();
 			case "g44" : return this.theFoolsGuildFunctionality(CardID);
@@ -1293,15 +1291,43 @@ public class Player {
 		return success;
 	}
 	
-	public boolean theRinceWindFunctionality(){
+	public boolean theRinceWindFunctionality() throws IOException{
 		boolean success = false;
+		HashMap<Integer, String> areasWhichHavePlayerMinionAndTroubleMaker = new HashMap<Integer, String>();
+		String areasWhichHavePlayerMinionAndTroubleMakerOutput = "";
 		
 		for(Minion minion : Game.lstMinions){
 			for(TroubleMaker troubleMaker : Game.lstTroubleMaker){
 				if(minion.getPlayer_id() == this.getPlayer_id() && minion.getArea_id() == troubleMaker.getArea_id() && minion.getArea_id() > 0 && troubleMaker.getArea_id() > 0){
-					
+					areasWhichHavePlayerMinionAndTroubleMaker.put(minion.getArea_id(), PresentationUtility.getCityAreaCardNameById(minion.getArea_id()));
 				}
 			}
+		}
+		if(areasWhichHavePlayerMinionAndTroubleMaker.size() > 0){
+			areasWhichHavePlayerMinionAndTroubleMakerOutput = areasWhichHavePlayerMinionAndTroubleMaker.keySet().toString();
+			System.out.println("These are the area(s) in which there are minions with troubleMakers :" + areasWhichHavePlayerMinionAndTroubleMakerOutput);
+			areasWhichHavePlayerMinionAndTroubleMakerOutput = areasWhichHavePlayerMinionAndTroubleMakerOutput.replace("[", ",");
+			areasWhichHavePlayerMinionAndTroubleMakerOutput = areasWhichHavePlayerMinionAndTroubleMakerOutput.replace("]", ",");
+			areasWhichHavePlayerMinionAndTroubleMakerOutput = areasWhichHavePlayerMinionAndTroubleMakerOutput.replace(" ", "");
+			Game.DisplayAreas(areasWhichHavePlayerMinionAndTroubleMakerOutput);
+			System.out.println("Enter an Area ID where you wish to move the Minion");
+			String strAreaID = PresentationUtility.GetValidAnswerFromUser(areasWhichHavePlayerMinionAndTroubleMakerOutput);
+			String strAdjacentAreas = PresentationUtility.GetAdjacentAreas(Integer.parseInt(strAreaID));
+			System.out.println("Following are the Areas Adjacent to "+ PresentationUtility.getCityAreaCardNameById(Integer.parseInt(strAreaID)));
+			Game.DisplayAreas(strAdjacentAreas);
+			System.out.println("Enter an Area ID where you wish to move the Minion");
+			String strMoveToArea = PresentationUtility.GetValidAnswerFromUser(strAdjacentAreas);
+			
+			for(Minion minion : Game.lstMinions){
+				if(minion.getPlayer_id() == this.getPlayer_id() && minion.getArea_id() == Integer.parseInt(strMoveToArea) && minion.getArea_id() > 0){
+					minion.setArea_id(Integer.parseInt(strMoveToArea));
+					System.out.println("Minion moved successfully from one area to another which has the troublemaker");
+					success = true;
+				}
+			}
+		}else{
+			System.out.println("There are no area(s) with your minions and troubleMakers");
+			success = true;
 		}
 		
 		return success;
@@ -2539,7 +2565,7 @@ public class Player {
 	public boolean randomEventExplosion(String strToPrint){
 		boolean success = false;
 		System.out.println("Rolling Dice "+strToPrint);
-		Integer randomNumber = PresentationUtility.returnRandomNumber(1, 12);
+		Integer randomNumber = PresentationUtility.returnRandomNumber(1, 11)+1;
 		System.out.println("Randomly Selected Area By Rolling Dice : " + PresentationUtility.getCityAreaCardNameById(randomNumber));
 		for(Building building : Game.lstBuildings){
 			if(building.getArea_id() == randomNumber){
