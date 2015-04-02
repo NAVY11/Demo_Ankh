@@ -546,7 +546,6 @@ public class Player {
 											greenCard.SetIsPlayed(true);
 											greenCard.setPlayerID(0);
 											minionSavedAndRemoved = true;
-											success = true;
 											break;
 										}
 									}else if(greenCard.GetCardID().equals("g18")){
@@ -1238,7 +1237,7 @@ public class Player {
 
 		for(Minion objMinion : Game.lstMinions)
 		{
-			if(objMinion.getArea_id()==Integer.parseInt(strAreaID) && objMinion.getPlayer_id()==this.getPlayer_id())
+			if(objMinion.getArea_id()==Integer.parseInt(strAreaID) && objMinion.getPlayer_id()==objChosenPlayer.getPlayer_id())
 			{
 				Player playerObjOfMinion = Game.GetPlayer(objMinion.getPlayer_id()); //Put playerId here to get the player Object
 				ArrayList<GreenCard> greenCardPlayerObj = Game.GetGreenCardByPlayerID(playerObjOfMinion.getPlayer_id());
