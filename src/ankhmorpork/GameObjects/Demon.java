@@ -9,6 +9,9 @@ package ankhmorpork.GameObjects;
  */
 public class Demon {
 
+	/* (non-Javadoc)
+	 * @see java.lang.Object#toString()
+	 */
 	@Override
 	public String toString() {
 		return "{demon_id:" + demon_id + ", active:" + active

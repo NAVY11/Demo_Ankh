@@ -5,8 +5,15 @@ import java.util.ArrayList;
 import ankhmorpork.Game.Game;
 import ankhmorpork.GameObjects.TroubleMaker;
 
+// TODO: Auto-generated Javadoc
+/**
+ * The Class DragonKingOfArms.
+ */
 public class DragonKingOfArms implements WinningCondition {
 
+	/* (non-Javadoc)
+	 * @see winningCondition.WinningCondition#isWinner(int)
+	 */
 	@Override
     public Boolean isWinner(int PlayerID) {
       

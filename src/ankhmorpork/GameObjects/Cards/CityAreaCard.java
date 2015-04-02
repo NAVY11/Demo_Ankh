@@ -21,6 +21,9 @@ import ankhmorpork.GameObjects.TroubleMaker;
  */
 public class CityAreaCard extends Cards{
 	
+	/* (non-Javadoc)
+	 * @see java.lang.Object#toString()
+	 */
 	@Override
 	public String toString() {
 		String strCityAreaCard = "{\"ActionID\":" + ActionID + ", \"ActionDescription\":"
@@ -290,6 +293,12 @@ public class CityAreaCard extends Cards{
 		return status;
 	}
 	
+	/**
+	 * Small gods action.
+	 *
+	 * @param objPlayer the obj player
+	 * @return true, if successful
+	 */
 	public boolean SmallGodsAction(Player objPlayer)
 	{
 		//To be implemented
@@ -326,7 +335,7 @@ public class CityAreaCard extends Cards{
 	 *
 	 * @param objPlayer the obj player
 	 * @return true, if successful
-	 * @throws IOException 
+	 * @throws IOException Signals that an I/O exception has occurred.
 	 */
 	public boolean DimwellAction(Player objPlayer) throws IOException
 	{
@@ -409,12 +418,12 @@ public class CityAreaCard extends Cards{
 	//System.out.print("Action Performed Successfully");
 	//status = true;
 /**
- * Dolly sister action.
- *
- * @param objPlayer the obj player
- * @return true, if successful
- * @throws IOException 
- */
+	 * Dolly sister action.
+	 *
+	 * @param objPlayer the obj player
+	 * @return true, if successful
+	 * @throws IOException Signals that an I/O exception has occurred.
+	 */
 	public boolean DollySisterAction(Player objPlayer) throws IOException
 	{
 		boolean status = false;
@@ -632,7 +641,8 @@ public class CityAreaCard extends Cards{
 /**
  * Small gods action.
  *
- * @param objPlayer the obj player
+ * @param objPlayer1 the obj player1
+ * @param objPlayer2 the obj player2
  * @return true, if successful
  * @throws IOException Signals that an I/O exception has occurred.
  */

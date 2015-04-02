@@ -8,8 +8,15 @@ import ankhmorpork.GameObjects.Minion;
 import ankhmorpork.GameObjects.Player;
 import ankhmorpork.GameObjects.Cards.CityAreaCard;
 
+// TODO: Auto-generated Javadoc
+/**
+ * The Class LordVetinari.
+ */
 public class LordVetinari implements WinningCondition {
 
+	/* (non-Javadoc)
+	 * @see winningCondition.WinningCondition#isWinner(int)
+	 */
 	@Override
     public Boolean isWinner(int PlayerID) {
 		int numberOfPlayers = Game.lstPlayers.size();
@@ -26,6 +33,12 @@ public class LordVetinari implements WinningCondition {
 	}
 	
 	
+	/**
+	 * Controlled area.
+	 *
+	 * @param objPlayer the obj player
+	 * @return the int
+	 */
 	private int ControlledArea(Player objPlayer)
 	{
 		int minionCounter = 0;

@@ -21,6 +21,9 @@ import ankhmorpork.GameObjects.Cards.PersonalityCard;
  */
 public class Player {
 
+	/* (non-Javadoc)
+	 * @see java.lang.Object#toString()
+	 */
 	@Override
 	public String toString() {
 		return "Player [player_id=" + player_id + ", player_name="
@@ -53,6 +56,7 @@ public class Player {
 	/** The player_amount. */
 	Float player_amount;
 
+	/** The player_pay back to bank. */
 	Integer player_payBackToBank;
 
 	/** The player_personality_card_id. */
@@ -94,6 +98,7 @@ public class Player {
 	//public ArrayList<Coins> lstGoldCoin = new ArrayList<Coins>();
 	//public ArrayList<Coins> lstSilverCoin = new ArrayList<Coins>();
 
+	/** The br. */
 	private static BufferedReader BR = new BufferedReader(new InputStreamReader(System.in));
 	/**
 	 * Gets the brown card list comma separated.
@@ -268,10 +273,20 @@ public class Player {
 		return player_personality_card_id;
 	}
 
+	/**
+	 * Gets the player_pay back to bank.
+	 *
+	 * @return the player_pay back to bank
+	 */
 	public Integer getPlayer_payBackToBank() {
 		return player_payBackToBank;
 	}
 
+	/**
+	 * Sets the player_pay back to bank.
+	 *
+	 * @param player_payBackToBank the new player_pay back to bank
+	 */
 	public void setPlayer_payBackToBank(Integer player_payBackToBank) {
 		this.player_payBackToBank = player_payBackToBank;
 	}
@@ -286,6 +301,11 @@ public class Player {
 	}
 
 	//Get Total Amount with PLAYER
+	/**
+	 * Gets the player amount.
+	 *
+	 * @return the player amount
+	 */
 	public int getPlayerAmount()
 	{
 		int iTotalAmount = 0;
@@ -503,6 +523,14 @@ public class Player {
 	}		
 
 	//Method to assassinate Minion
+	/**
+	 * Assassinate minion.
+	 *
+	 * @param Minions the minions
+	 * @param AreaID the area id
+	 * @return true, if successful
+	 * @throws IOException Signals that an I/O exception has occurred.
+	 */
 	public boolean AssassinateMinion(ArrayList<Minion> Minions, int AreaID) throws IOException
 	{
 		boolean success = false;
@@ -605,6 +633,13 @@ public class Player {
 		return success;
 	}
 
+	/**
+	 * Assassinate troll.
+	 *
+	 * @param Trolls the trolls
+	 * @return true, if successful
+	 * @throws IOException Signals that an I/O exception has occurred.
+	 */
 	public boolean AssassinateTroll(ArrayList<Troll> Trolls) throws IOException
 	{
 		boolean success = false;
@@ -662,6 +697,13 @@ public class Player {
 	}
 
 	//Assassinate Demon
+	/**
+	 * Assassinate demon.
+	 *
+	 * @param Demons the demons
+	 * @return true, if successful
+	 * @throws IOException Signals that an I/O exception has occurred.
+	 */
 	public boolean AssassinateDemon(ArrayList<Demon> Demons) throws IOException
 	{
 		boolean success = false;
@@ -719,6 +761,13 @@ public class Player {
 	}
 
 	//Method to check if "other" Players have Minion in an Area
+	/**
+	 * Checks for other players minion.
+	 *
+	 * @param objPlayer the obj player
+	 * @param AreaID the area id
+	 * @return true, if successful
+	 */
 	public boolean HasOtherPlayersMinion(Player objPlayer, int AreaID)
 	{
 		boolean success = false;
@@ -737,6 +786,13 @@ public class Player {
 	}
 
 	//Method to check if "other" Players have Minion in an Area
+	/**
+	 * Gets the other players minion.
+	 *
+	 * @param objPlayer the obj player
+	 * @param AreaID the area id
+	 * @return the array list
+	 */
 	public ArrayList<Minion> GetOtherPlayersMinion(Player objPlayer, int AreaID)
 	{
 		ArrayList<Minion> MinionIDs = new ArrayList<Minion>();
@@ -754,6 +810,12 @@ public class Player {
 	}
 
 	//Method to ask user to remove One trouble marker
+	/**
+	 * User remove one trouble marker.
+	 *
+	 * @return true, if successful
+	 * @throws IOException Signals that an I/O exception has occurred.
+	 */
 	public boolean UserRemoveOneTroubleMarker() throws IOException
 	{
 		System.out.println("Select an area to remove Trouble Marker");
@@ -790,6 +852,12 @@ public class Player {
 
 
 	//Method to remove Trouble marker
+	/**
+	 * Removes the trouble marker.
+	 *
+	 * @param AreaID the area id
+	 * @return true, if successful
+	 */
 	public boolean RemoveTroubleMarker(int AreaID)
 	{
 		boolean success = false;
@@ -810,6 +878,11 @@ public class Player {
 	}
 
 	//Method to ask for Interrupt
+	/**
+	 * Ask for interrupt.
+	 *
+	 * @return true, if successful
+	 */
 	private boolean AskForInterrupt()
 	{
 		boolean interrupt =false;
@@ -848,6 +921,12 @@ public class Player {
 	}
 
 	//Take money from bank
+	/**
+	 * Take money from bank.
+	 *
+	 * @param CardID the card id
+	 * @return true, if successful
+	 */
 	public boolean TakeMoneyFromBank(String CardID)
 	{
 		int iAmount = PresentationUtility.howMuchMoneyToTakeFromBank(CardID);
@@ -855,6 +934,14 @@ public class Player {
 		return Game.PaymentFromBank(this.getPlayer_id(), iAmount);
 	}
 	//Player performs action
+	/**
+	 * Perform card action.
+	 *
+	 * @param ActionID the action id
+	 * @param CardID the card id
+	 * @return true, if successful
+	 * @throws IOException Signals that an I/O exception has occurred.
+	 */
 	public boolean PerformCardAction(String ActionID, String CardID) throws IOException
 	{
 		//ActionID ="Remove One Trouble Marker";
@@ -923,6 +1010,13 @@ public class Player {
 
 	//Green Card Functionalities
 	//Play another card
+	/**
+	 * Play another card.
+	 *
+	 * @param OldCardID the old card id
+	 * @return true, if successful
+	 * @throws IOException Signals that an I/O exception has occurred.
+	 */
 	public boolean PlayAnotherCard(String OldCardID) throws IOException
 	{
 		//Set previously played card to Played
@@ -994,6 +1088,11 @@ public class Player {
 
 	//Same Functionality of The Thieves' Guild
 	//Take $2, if possible, from each player
+	/**
+	 * Mr boggis functionality.
+	 *
+	 * @return true, if successful
+	 */
 	public boolean mrBoggisFunctionality(){
 		//1st Action to read scroll & then to place minion
 		boolean success = false;
@@ -1009,6 +1108,12 @@ public class Player {
 	}
 
 	// Same Functionality for The Bank of Ankh-Morpork
+	/**
+	 * Mr bent functionality.
+	 *
+	 * @param CardID the card id
+	 * @return true, if successful
+	 */
 	public boolean mrBentFunctionality(String CardID){
 		//1st Action to read scroll & then play another card
 		boolean success = false;
@@ -1022,6 +1127,13 @@ public class Player {
 		return success;
 	}
 
+	/**
+	 * Removes the one card from comma separated string.
+	 *
+	 * @param listOfCommaSeparatedCard the list of comma separated card
+	 * @param whatToRemove the what to remove
+	 * @return the string
+	 */
 	public String removeOneCardFromCommaSeparatedString(String listOfCommaSeparatedCard, String whatToRemove){
 
 		if(listOfCommaSeparatedCard.contains(whatToRemove)){
@@ -1038,6 +1150,12 @@ public class Player {
 
 	// Same Functionality for Queen Molly
 	//Select one player. They must give you two cards of their choice
+	/**
+	 * The beggers guild functionality.
+	 *
+	 * @return true, if successful
+	 * @throws IOException Signals that an I/O exception has occurred.
+	 */
 	public boolean theBeggersGuildFunctionality() throws IOException
 	{
 		//1st Action to read scroll & then play another card
@@ -1106,6 +1224,12 @@ public class Player {
 	//	}
 
 	//Each Player must give you either $1 or one of their cards
+	/**
+	 * The ankh morpork sunshine dragon sanctuary functionality.
+	 *
+	 * @return true, if successful
+	 * @throws IOException Signals that an I/O exception has occurred.
+	 */
 	public boolean theAnkhMorporkSunshineDragonSanctuaryFunctionality() throws IOException{
 		//1st Action to read scroll & then play another card
 		boolean success = false;
@@ -1178,6 +1302,11 @@ public class Player {
 	//	}
 
 	// Same Functionality for The Opera House
+	/**
+	 * The dysk functionality.
+	 *
+	 * @return true, if successful
+	 */
 	public boolean theDyskFunctionality()
 	{
 		//Place a building & then read the scroll
@@ -1197,6 +1326,12 @@ public class Player {
 
 	//Foul Ole Ron & RinceWind has the same functionality
 	//Move a minion belonging to another player from one area to an adjacent area
+	/**
+	 * The duckman functionality.
+	 *
+	 * @return true, if successful
+	 * @throws IOException Signals that an I/O exception has occurred.
+	 */
 	public boolean theDuckmanFunctionality() throws IOException
 	{
 		//Read the scroll
@@ -1291,6 +1426,12 @@ public class Player {
 		return success;
 	}
 	
+	/**
+	 * The rince wind functionality.
+	 *
+	 * @return true, if successful
+	 * @throws IOException Signals that an I/O exception has occurred.
+	 */
 	public boolean theRinceWindFunctionality() throws IOException{
 		boolean success = false;
 		HashMap<Integer, String> areasWhichHavePlayerMinionAndTroubleMaker = new HashMap<Integer, String>();
@@ -1366,6 +1507,12 @@ public class Player {
 
 	//********* TO be handelled************
 	//Play any two other cards from your hand
+	/**
+	 * The drumknott functionality.
+	 *
+	 * @return true, if successful
+	 * @throws IOException Signals that an I/O exception has occurred.
+	 */
 	public boolean theDrumknottFunctionality() throws IOException{
 		//Read the scroll
 		boolean success = false;
@@ -1388,6 +1535,12 @@ public class Player {
 
 	// Same functionality for Here'n'Now
 	//Roll the die. On a roll of '7' or more you take $4 from the bank. On a roll of '1' you must pay $2 to the bank or remove one of your minions from the board. All other results have no effect
+	/**
+	 * The cmot dibbler functionality.
+	 *
+	 * @return true, if successful
+	 * @throws IOException Signals that an I/O exception has occurred.
+	 */
 	public boolean theCMOTDibblerFunctionality() throws IOException
 	{
 		//Read the scroll
@@ -1501,6 +1654,11 @@ public class Player {
 	//		return success;
 	//	}
 
+	/**
+	 * The mrs cake functionality.
+	 *
+	 * @return true, if successful
+	 */
 	public boolean theMrsCakeFunctionality()
 	{
 		//Read the scroll
@@ -1534,7 +1692,14 @@ public class Player {
 
 	// Same Functionality of Dr WhiteFace
 	//Select another player. If they do not give you $5 then place this card in front of them. This card now counts towards their hand size of five cards when they come to refill their hands. They cannot get rid of this card
-	public boolean theFoolsGuildFunctionality(String CardID) throws IOException{
+	/**
+ * The fools guild functionality.
+ *
+ * @param CardID the card id
+ * @return true, if successful
+ * @throws IOException Signals that an I/O exception has occurred.
+ */
+public boolean theFoolsGuildFunctionality(String CardID) throws IOException{
 		boolean success = false;
 		GreenCard grnCard = Game.GetGreenCard(CardID);
 		//Get a List of Other Players
@@ -1602,6 +1767,12 @@ public class Player {
 	//	}
 
 	//Choose a player. If he does not pay you $5 you can remove one of this buildings from the board.
+	/**
+	 * The fire brigade functionality.
+	 *
+	 * @return true, if successful
+	 * @throws IOException Signals that an I/O exception has occurred.
+	 */
 	public boolean theFireBrigadeFunctionality() throws IOException{
 		//Read the scroll & play another card
 		boolean success = false;
@@ -1726,6 +1897,12 @@ public class Player {
 	//		return success;
 	//	}
 	//Take $3 from a player of your choice	
+	/**
+	 * The nooby noobs functionality.
+	 *
+	 * @return true, if successful
+	 * @throws IOException Signals that an I/O exception has occurred.
+	 */
 	public boolean theNoobyNoobsFunctionality() throws IOException{
 		boolean success = false;
 		String strValidPlayerIDs = ","; 
@@ -1779,6 +1956,13 @@ public class Player {
 	//	}
 
 	//Discard one card
+	/**
+	 * The modo functionality.
+	 *
+	 * @param CardID the card id
+	 * @return true, if successful
+	 * @throws IOException Signals that an I/O exception has occurred.
+	 */
 	public boolean theModoFunctionality(String CardID) throws IOException
 	{			
 		boolean success = false;
@@ -1829,6 +2013,12 @@ public class Player {
 	//Functionality for Leonard of Quirm & theLibrarianFunctionality -- Draw 4 Cards
 	//theHexFunctionality -- Draw 3 Cards
 	//Take four cards from the draw deck	
+	/**
+	 * Draw random cards from deck.
+	 *
+	 * @param NoOfCardsToDraw the no of cards to draw
+	 * @return true, if successful
+	 */
 	public boolean DrawRandomCardsFromDeck(int NoOfCardsToDraw){
 		//Read the scroll & play another card
 		boolean success = false;
@@ -1870,6 +2060,11 @@ public class Player {
 
 
 	//Earn $1 for each trouble maker on the board
+	/**
+	 * The sacharissa cripslock functionality.
+	 *
+	 * @return true, if successful
+	 */
 	public boolean theSacharissaCripslockFunctionality()
 	{
 		//Read the scroll & play another card
@@ -1890,6 +2085,12 @@ public class Player {
 	// Same functionality for The Seamstresses Guild
 	//Choose one player. Given them one of your cards. They must give you $2 in return
 
+	/**
+	 * The rosie palm functionality.
+	 *
+	 * @return true, if successful
+	 * @throws IOException Signals that an I/O exception has occurred.
+	 */
 	public boolean theRosiePalmFunctionality() throws IOException
 	{
 		//1st Action to read scroll & then play another card
@@ -1992,6 +2193,11 @@ public class Player {
 
 
 	//Functionality -- You may exchange your personality card with one drawn randomly from those not in use
+	/**
+	 * The zorgo the retro functionality.
+	 *
+	 * @return true, if successful
+	 */
 	public boolean theZorgoTheRetroFunctionality()
 	{
 		//1st Action to read scroll & then play another card
@@ -2053,6 +2259,12 @@ public class Player {
 	 */
 
 	//Shuffle the discard pile and draw four cards randomly. Place the remaining cards back as the discard pile
+	/**
+	 * The history monks functionality.
+	 *
+	 * @return true, if successful
+	 * @throws IOException Signals that an I/O exception has occurred.
+	 */
 	public boolean theHistoryMonksFunctionality() throws IOException
 	{
 		boolean success = false;
@@ -2138,6 +2350,14 @@ public class Player {
 	//	}
 
 	//Discard as many cards as you wish and take $2 / $1 for each one discarded
+	/**
+	 * The harry king or shonky shop functionality.
+	 *
+	 * @param CardID the card id
+	 * @param Amount the amount
+	 * @return true, if successful
+	 * @throws IOException Signals that an I/O exception has occurred.
+	 */
 	public boolean theHarryKingOrShonkyShopFunctionality(String CardID, int Amount) throws IOException
 	{
 		//1st Action to read scroll & then play another card
@@ -2394,6 +2614,12 @@ public class Player {
 	}
 
 
+	/**
+	 * Place a trouble marker in area.
+	 *
+	 * @param AreaID the area id
+	 * @return true, if successful
+	 */
 	public boolean PlaceATroubleMarkerInArea(int AreaID)
 	{
 		boolean success = false;
@@ -2433,6 +2659,11 @@ public class Player {
 		}
 	}
 
+	/**
+	 * Random card to play.
+	 *
+	 * @return true, if successful
+	 */
 	public boolean randomCardToPlay(){
 		boolean success = true;
 		String[] randomCardToSelect = new String[]{"2","4","9","10","11"};
@@ -2453,6 +2684,11 @@ public class Player {
 		return success;
 	}
 
+	/**
+	 * Random event fog.
+	 *
+	 * @return true, if successful
+	 */
 	public boolean randomEventFog(){
 		boolean success = false;
 		for(int i = 1; i <=5; i++){
@@ -2476,6 +2712,11 @@ public class Player {
 		return success;
 	}
 
+	/**
+	 * Random event riots.
+	 *
+	 * @return true, if successful
+	 */
 	public boolean randomEventRiots(){
 		Integer count = 0;
 		boolean success = false;
@@ -2499,6 +2740,11 @@ public class Player {
 		return success;
 	}
 
+	/**
+	 * Random event trolls.
+	 *
+	 * @return true, if successful
+	 */
 	public boolean randomEventTrolls(){
 		boolean success = false;
 		for(int i = 1; i <=3; i++){
@@ -2517,6 +2763,11 @@ public class Player {
 		return success;
 	}
 
+	/**
+	 * Random event the dragon.
+	 *
+	 * @return true, if successful
+	 */
 	public boolean randomEventTheDragon(){
 		boolean success = false;
 		System.out.println("Rolling Dice ");
@@ -2563,6 +2814,11 @@ public class Player {
 		return success;
 	}
 
+	/**
+	 * Random event earthquake.
+	 *
+	 * @return true, if successful
+	 */
 	public boolean randomEventEarthquake(){
 		boolean success = false;
 		success = randomEventExplosion("first time");
@@ -2572,6 +2828,12 @@ public class Player {
 		return success;
 	}
 
+	/**
+	 * Random event explosion.
+	 *
+	 * @param strToPrint the str to print
+	 * @return true, if successful
+	 */
 	public boolean randomEventExplosion(String strToPrint){
 		boolean success = false;
 		System.out.println("Rolling Dice "+strToPrint);

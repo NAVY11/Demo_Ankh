@@ -10,6 +10,9 @@ package ankhmorpork.GameObjects;
  */
 public class Building {
 	
+	/* (non-Javadoc)
+	 * @see java.lang.Object#toString()
+	 */
 	@Override
 	public String toString() {
 		return "{building_id:" + building_id + ", player_id:"

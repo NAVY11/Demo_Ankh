@@ -35,6 +35,7 @@ public class GameSave {
 	 * Save game.
 	 *
 	 * @param objFileWriter the obj file writer
+	 * @param objPlayer the obj player
 	 * @throws IOException Signals that an I/O exception has occurred.
 	 * @throws JSONException the JSON exception
 	 */
@@ -54,6 +55,7 @@ public class GameSave {
 	/**
 	 * Json object while saving game.
 	 *
+	 * @param objPlayer the obj player
 	 * @return the JSON object
 	 * @throws IOException Signals that an I/O exception has occurred.
 	 * @throws JSONException the JSON exception

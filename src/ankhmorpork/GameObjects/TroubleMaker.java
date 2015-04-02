@@ -9,6 +9,9 @@ package ankhmorpork.GameObjects;
  */
 public class TroubleMaker {
 	
+	/* (non-Javadoc)
+	 * @see java.lang.Object#toString()
+	 */
 	@Override
 	public String toString() {
 		return "{tm_id:" + tm_id + ", area_id:" + area_id

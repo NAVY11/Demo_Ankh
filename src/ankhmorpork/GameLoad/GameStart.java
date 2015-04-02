@@ -312,6 +312,9 @@ public class GameStart {
 		}
 	
 	
+	/**
+	 * Initializing green cards.
+	 */
 	public static void initializingGreenCards(){
 		for(Player player : Game.lstPlayers){
 			String[] greenCardArr = player.getGreenCardListCommaSeparated().split(",");

@@ -57,7 +57,7 @@ public class GameLoad {
 	 * @param objFilereader the obj filereader
 	 * @throws IOException Signals that an I/O exception has occurred.
 	 * @throws ParseException the parse exception
-	 * @throws JSONException 
+	 * @throws JSONException the JSON exception
 	 */
 	public static void LoadGame(FileReader objFilereader) throws IOException, ParseException, JSONException
 	{
@@ -267,6 +267,15 @@ public class GameLoad {
 				 LoadedGame(iNoOfPlayers, currentPlayerTurn);
 	}
 	
+	/**
+	 * Loaded game.
+	 *
+	 * @param iNoOfPlayers the i no of players
+	 * @param currentPlayerTurn the current player turn
+	 * @throws IOException Signals that an I/O exception has occurred.
+	 * @throws ParseException the parse exception
+	 * @throws JSONException the JSON exception
+	 */
 	public static void LoadedGame(int iNoOfPlayers, int currentPlayerTurn) throws IOException, ParseException, JSONException
 	{					
 

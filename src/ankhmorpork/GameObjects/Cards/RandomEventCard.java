@@ -7,6 +7,9 @@ package ankhmorpork.GameObjects.Cards;
  */
 public class RandomEventCard extends Cards{
 
+	/* (non-Javadoc)
+	 * @see java.lang.Object#toString()
+	 */
 	@Override
 	public String toString() {
 		return "{\"EventID\":" +"\""+ EventID +"\""+ ", \"EventDescription\":"

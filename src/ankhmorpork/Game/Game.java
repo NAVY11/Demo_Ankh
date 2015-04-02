@@ -153,7 +153,7 @@ public class Game {
 	/**
 	 * Gets the minions by player id.
 	 *
-	 * @param PlayerID the player id
+	 * @param MinionID the minion id
 	 * @return the array list
 	 */
 	public static ArrayList<Minion> GetMinionsArrByMinionID(int MinionID)
@@ -170,6 +170,12 @@ public class Game {
 		return Minions;
 	}
 
+	/**
+	 * Gets the player obj by minion id.
+	 *
+	 * @param minionId the minion id
+	 * @return the player obj by minion id
+	 */
 	public static Player getPlayerObjByMinionId(int minionId){
 		Player playerObj = null;
 
@@ -182,6 +188,12 @@ public class Game {
 		return playerObj;
 	}
 
+	/**
+	 * Gets the minions by player id.
+	 *
+	 * @param PlayerID the player id
+	 * @return the array list
+	 */
 	public static ArrayList<Minion> GetMinionsByPlayerID(int PlayerID)
 	{
 		ArrayList<Minion> Minions = new ArrayList<Minion>();
@@ -216,6 +228,12 @@ public class Game {
 		return Minions;
 	}
 
+	/**
+	 * Gets the minions on board by player id.
+	 *
+	 * @param PlayerID the player id
+	 * @return the array list
+	 */
 	public static ArrayList<Minion> GetMinionsOnBoardByPlayerID(int PlayerID)
 	{
 		ArrayList<Minion> Minions = new ArrayList<Minion>();
@@ -251,6 +269,13 @@ public class Game {
 	}
 
 	//Method to get one Player Minion form an Area
+	/**
+	 * Gets the player minion from area.
+	 *
+	 * @param iPlayerID the i player id
+	 * @param iAreaID the i area id
+	 * @return the minion
+	 */
 	public static Minion GetPlayerMinionFromArea(int iPlayerID, int iAreaID)
 	{
 		Minion objMinion = new Minion();
@@ -374,6 +399,12 @@ public class Game {
 		return success;
 	}			
 
+	/**
+	 * Sets the minion.
+	 *
+	 * @param Minion the minion
+	 * @return true, if successful
+	 */
 	public static boolean SetMinion(Minion Minion)
 	{
 		boolean success = false;
@@ -428,6 +459,12 @@ public class Game {
 		return Buildings;
 	}
 
+	/**
+	 * Gets the buildings by player id and active and on board.
+	 *
+	 * @param PlayerID the player id
+	 * @return the array list
+	 */
 	public static ArrayList<Building> GetBuildingsByPlayerIDAndActiveAndOnBoard(int PlayerID)
 	{
 		ArrayList<Building> Buildings = new ArrayList<Building>();
@@ -481,6 +518,12 @@ public class Game {
 		return strAreaList;
 	}
 
+	/**
+	 * Area has a building.
+	 *
+	 * @param AreaID the area id
+	 * @return true, if successful
+	 */
 	public static boolean AreaHasABuilding(int AreaID)
 	{	
 		boolean Found = false;
@@ -495,6 +538,12 @@ public class Game {
 		return Found;
 	}
 
+	/**
+	 * Gets the valid areas to place building.
+	 *
+	 * @param PlayerID the player id
+	 * @return the string
+	 */
 	public static String GetValidAreasToPlaceBuilding(int PlayerID)
 	{
 		String strValidAreas = "";
@@ -517,6 +566,12 @@ public class Game {
 		return strValidAreas;
 	}
 
+	/**
+	 * Gets the areas having minion of player.
+	 *
+	 * @param PlayerID the player id
+	 * @return the string
+	 */
 	public static String GetAreasHavingMinionOfPlayer(int PlayerID)
 	{
 		String strValidAreas = "";
@@ -539,6 +594,12 @@ public class Game {
 		return strValidAreas;
 	}
 
+	/**
+	 * Gets the valid areas to place minion.
+	 *
+	 * @param PlayerID the player id
+	 * @return the string
+	 */
 	public static String GetValidAreasToPlaceMinion(int PlayerID)
 	{
 		String strValidAreas = "";
@@ -567,6 +628,11 @@ public class Game {
 	}			
 
 	//Display Area names to User
+	/**
+	 * Display areas.
+	 *
+	 * @param strAreaIDsCommaSeparated the str area i ds comma separated
+	 */
 	public static void DisplayAreas(String strAreaIDsCommaSeparated)
 	{
 		if(strAreaIDsCommaSeparated.startsWith(","))
@@ -583,6 +649,11 @@ public class Game {
 	}
 
 	//Display Area names to User
+	/**
+	 * Display players.
+	 *
+	 * @param strPlayerIDsCommaSeparated the str player i ds comma separated
+	 */
 	public static void DisplayPlayers(String strPlayerIDsCommaSeparated)
 	{
 		if(strPlayerIDsCommaSeparated.startsWith(","))
@@ -610,6 +681,12 @@ public class Game {
 	//			}
 	//		}
 
+	/**
+	 * Gets the minion i ds not on board.
+	 *
+	 * @param PlayerID the player id
+	 * @return the string
+	 */
 	public static String GetMinionIDsNotOnBoard(int PlayerID)
 	{
 		String placingAMinionStr = "";
@@ -623,6 +700,12 @@ public class Game {
 		}
 		return placingAMinionStr;
 	}
+	
+	/**
+	 * Area with no minion.
+	 *
+	 * @return the string
+	 */
 	public static String AreaWithNoMinion()
 	{
 		String strAreaList = "1,2,3,4,5,6,7,8,9,10,11,12,";
@@ -639,6 +722,11 @@ public class Game {
 		return strAreaList;
 	}
 
+	/**
+	 * Gets the player i ds having minions on board.
+	 *
+	 * @return the string
+	 */
 	public static String GetPlayerIDsHavingMinionsOnBoard()
 	{
 		String strPlayerID =",";			
@@ -678,6 +766,12 @@ public class Game {
 		return placingABuidingStr;
 	}
 
+	/**
+	 * Gets the buildings not on board by player id.
+	 *
+	 * @param PlayerID the player id
+	 * @return the array list
+	 */
 	public static ArrayList<Building> GetBuildingsNotOnBoardByPlayerID(int PlayerID)
 	{
 		ArrayList<Building> Buildings = new ArrayList<Building>();
@@ -691,6 +785,11 @@ public class Game {
 		return Buildings;
 	}
 
+	/**
+	 * Gets the player i ds having buildings on board.
+	 *
+	 * @return the string
+	 */
 	public static String GetPlayerIDsHavingBuildingsOnBoard()
 	{
 		String strPlayerID =",";			
@@ -814,6 +913,13 @@ public class Game {
 			return false;
 	}
 
+	/**
+	 * Area has minion of player.
+	 *
+	 * @param AreaID the area id
+	 * @param PlayerID the player id
+	 * @return true, if successful
+	 */
 	public static boolean AreaHasMinionOfPlayer(Integer AreaID, int PlayerID) 
 	{			
 		boolean found = false;
@@ -905,6 +1011,12 @@ public class Game {
 	}
 
 
+	/**
+	 * Gets the personality card by player id.
+	 *
+	 * @param PlayerID the player id
+	 * @return the personality card
+	 */
 	public static PersonalityCard GetPersonalityCardByPlayerID(int PlayerID)
 	{
 		PersonalityCard objPersonalityCard = new PersonalityCard();
@@ -1368,6 +1480,12 @@ public class Game {
 	//					return lstCityAreaCard;
 	//				}
 	//				
+	/**
+	 * Gets the cost by area id.
+	 *
+	 * @param AreaID the area id
+	 * @return the int
+	 */
 	public static int GetCostByAreaID(int AreaID){
 		int iCost = 0 ;
 		ArrayList<CityAreaCard> lstCityAreaCard = new ArrayList<CityAreaCard>();
@@ -1383,6 +1501,12 @@ public class Game {
 	}
 
 
+	/**
+	 * Gets the no of areas controlled by player.
+	 *
+	 * @param PlayerID the player id
+	 * @return the int
+	 */
 	public static int GetNoOfAreasControlledByPlayer(int PlayerID)
 	{
 		int iPlayerAreaControlledCount =0;
@@ -1469,6 +1593,12 @@ public class Game {
 		//		int maxAreaControlled = Collections.max(lstPlayerAreaCounts);
 	}
 
+	/**
+	 * Gets the no of trolls in area.
+	 *
+	 * @param iAreaID the i area id
+	 * @return the int
+	 */
 	private static int GetNoOfTrollsInArea(int iAreaID) 
 	{
 		int count = 0;

@@ -10,8 +10,18 @@ import ankhmorpork.GameObjects.Player;
 import ankhmorpork.GameObjects.Cards.GreenCard;
 import ankhmorpork.GameObjects.Cards.PersonalityCard;
 
+// TODO: Auto-generated Javadoc
+/**
+ * A factory for creating WinningCondition objects.
+ */
 public class WinningConditionFactory {
 	
+	/**
+	 * Gets the winning condition.
+	 *
+	 * @param objPlayer the obj player
+	 * @return the winning condition
+	 */
 	public static WinningCondition getWinningCondition(Player objPlayer) {
 		int playeID = objPlayer.getPlayer_id();
 		PersonalityCard objPersonalityCard = Game.GetPersonalityCardByPlayerID(playeID);

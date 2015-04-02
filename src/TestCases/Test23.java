@@ -6,8 +6,15 @@ import org.junit.Test;
 
 import ankhmorpork.Game.Game;
 
+// TODO: Auto-generated Javadoc
+/**
+ * The Class Test23.
+ */
 public class Test23 {
 
+	/**
+	 * Test.
+	 */
 	@Test
 	public void test() {
 		String adjacentList = Game.getAdjacentAreas(5);

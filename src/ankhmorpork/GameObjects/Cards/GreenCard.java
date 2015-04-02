@@ -8,6 +8,10 @@ import java.util.Arrays;
  * The Class GreenCard.
  */
 public class GreenCard extends Cards {
+	
+	/* (non-Javadoc)
+	 * @see java.lang.Object#toString()
+	 */
 	@Override
 	public String toString() {
 		return "{\"ActionID\":" + "\""+actionid()
@@ -108,6 +112,11 @@ public class GreenCard extends Cards {
 		return this.ActionDescription;
 	}
 	
+	/**
+	 * Actionid.
+	 *
+	 * @return the string
+	 */
 	public String actionid()
 	{
 		String action = Arrays.toString(ActionID);

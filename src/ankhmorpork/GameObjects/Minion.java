@@ -9,6 +9,9 @@ package ankhmorpork.GameObjects;
  */
 public class Minion {
 
+	/* (non-Javadoc)
+	 * @see java.lang.Object#toString()
+	 */
 	@Override
 	public String toString() {
 		return "{minion_id:" + minion_id + ", player_id:" + player_id

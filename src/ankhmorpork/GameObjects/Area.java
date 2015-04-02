@@ -13,6 +13,9 @@ import java.util.HashMap;
  */
 public class Area {
 
+	/* (non-Javadoc)
+	 * @see java.lang.Object#toString()
+	 */
 	@Override
 	public String toString() {
 		return "{area_id:" + area_id + ", area_name:" + area_name

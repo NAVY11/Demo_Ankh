@@ -9,6 +9,9 @@ import java.util.Arrays;
  */
 public class BrownCard extends Cards{
 	
+	/* (non-Javadoc)
+	 * @see java.lang.Object#toString()
+	 */
 	@Override
 	public String toString() {
 		return "BrownCard [ActionID=" + Arrays.toString(ActionID)

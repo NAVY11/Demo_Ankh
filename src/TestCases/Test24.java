@@ -7,8 +7,15 @@ import org.junit.Test;
 
 import PresentationUtilityCommon.PresentationUtility;
 
+// TODO: Auto-generated Javadoc
+/**
+ * The Class Test24.
+ */
 public class Test24 {
 
+	/**
+	 * Test.
+	 */
 	@Test
 	public void test() {
 	        assertTrue(PresentationUtility.isFileNameValid(" test.txt"));

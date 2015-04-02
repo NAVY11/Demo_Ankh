@@ -7,8 +7,15 @@ import ankhmorpork.GameObjects.Area;
 import ankhmorpork.GameObjects.Building;
 import ankhmorpork.GameObjects.Player;
 
+// TODO: Auto-generated Javadoc
+/**
+ * The Class Chrysoprase.
+ */
 public class Chrysoprase implements WinningCondition {
 
+    /* (non-Javadoc)
+     * @see winningCondition.WinningCondition#isWinner(int)
+     */
     @Override
     public Boolean isWinner(int PlayerID) {
     	int totalAmtByBuilding = 0;

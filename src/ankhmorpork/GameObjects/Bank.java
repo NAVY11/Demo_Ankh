@@ -26,6 +26,9 @@ public class Bank {
 	/** The obj gold coin. */
 	public Coins objGoldCoin = new Coins(Constants.GoldCoin());
 	
+	/* (non-Javadoc)
+	 * @see java.lang.Object#toString()
+	 */
 	@Override
 	public String toString() {
 		return "{player_amount:" + player_amount + ", Bank_Amount:"
@@ -82,6 +85,7 @@ public class Bank {
 	 /**
  	 * Gets the bank amount.
  	 *
+ 	 * @param f the new bank amount
  	 * @return the bank amount
  	 */
 // 	public int getBankAmount()
@@ -101,11 +105,19 @@ public class Bank {
 		this.Bank_Amount = f;
 	}
 
+	/**
+	 * Gets the bank amount.
+	 *
+	 * @return the bank amount
+	 */
 	public float getBankAmount() {
 		// TODO Auto-generated method stub
 		return this.Bank_Amount;
 	}
 
+	/**
+	 * Sets the initial bank funds.
+	 */
 	public void SetInitialBankFunds() {
 		// TODO Auto-generated method stub
       int iTotalAmount = 0;

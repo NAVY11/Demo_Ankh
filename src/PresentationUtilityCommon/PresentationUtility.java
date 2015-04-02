@@ -129,6 +129,12 @@ public class PresentationUtility {
 		}
 	}
 	
+	/**
+	 * Gets the personality motive by id.
+	 *
+	 * @param personalityCardId the personality card id
+	 * @return the personality motive by id
+	 */
 	public static String getPersonalityMotiveById(Integer personalityCardId){
 
 		switch (personalityCardId) {
@@ -143,6 +149,12 @@ public class PresentationUtility {
 		}
 	}
 
+	/**
+	 * Gets the random event card name by id.
+	 *
+	 * @param randomEventCardId the random event card id
+	 * @return the random event card name by id
+	 */
 	public static String getRandomEventCardNameById(Integer randomEventCardId){
 
 		switch (randomEventCardId) {
@@ -163,6 +175,12 @@ public class PresentationUtility {
 	}
 
 	//Get comma separated string with distinct values
+	/**
+	 * Gets the distinct comma separated values.
+	 *
+	 * @param strCommaSeparatedString the str comma separated string
+	 * @return the distinct comma separated values
+	 */
 	public static String getDistinctCommaSeparatedValues(String strCommaSeparatedString)
 	{
 		String strDistinctValues = ",";
@@ -209,6 +227,13 @@ public class PresentationUtility {
 	}
 
 	//Get valid answer from user
+	/**
+	 * Gets the valid answer from user.
+	 *
+	 * @param strValidAnswersCommaSeparated the str valid answers comma separated
+	 * @return the string
+	 * @throws IOException Signals that an I/O exception has occurred.
+	 */
 	public static String GetValidAnswerFromUser(String strValidAnswersCommaSeparated) throws IOException	
 	{
 		String ans= "";
@@ -422,7 +447,7 @@ public class PresentationUtility {
 	/**
 	 * Gets the adjacent areas.
 	 *
-	 * @param areaId the area id
+	 * @param iAreaID the i area id
 	 * @return the adjacent areas
 	 */
 	public static String GetAdjacentAreas(int iAreaID){
@@ -609,6 +634,12 @@ public class PresentationUtility {
 
 	}
 	
+	/**
+	 * Checks if is file name valid.
+	 *
+	 * @param fileName the file name
+	 * @return true, if is file name valid
+	 */
 	public static boolean isFileNameValid(String fileName) {
         boolean validationResult = false;
         if(fileName.endsWith("txt")){

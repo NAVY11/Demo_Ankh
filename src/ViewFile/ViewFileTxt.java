@@ -24,13 +24,16 @@ import ankhmorpork.GameObjects.Cards.GreenCard;
  */
 public class ViewFileTxt {
 
+	/**
+	 * Prints the view state.
+	 */
 	public void printViewState(){
 		//System.out.println(ViewState());
 	}
+	
 	/**
 	 * View state.
 	 *
-	 * @param lstPlayers the lst players
 	 * @return the string
 	 */
 	public static String ViewState(){
@@ -110,6 +113,12 @@ public class ViewFileTxt {
 		}
 	}
 	
+	/**
+	 * Minion general info.
+	 *
+	 * @param minions the minions
+	 * @return the hash map
+	 */
 	public static HashMap<Integer, String> minionGeneralInfo(ArrayList<Minion> minions){
 		HashMap<Integer, String> minionInfo = new HashMap<Integer, String>();
 		
@@ -129,6 +138,12 @@ public class ViewFileTxt {
 		return minionInfo;
 	}
 	
+	/**
+	 * Trouble maker general info.
+	 *
+	 * @param troubleMakers the trouble makers
+	 * @return the hash map
+	 */
 	public static HashMap<Integer, Boolean> troubleMakerGeneralInfo(ArrayList<TroubleMaker> troubleMakers){
 		HashMap<Integer, Boolean> troubleMakerDetails = new HashMap<Integer, Boolean>();
 		
@@ -144,6 +159,12 @@ public class ViewFileTxt {
 		return troubleMakerDetails;
 	}
 	
+	/**
+	 * Building general info.
+	 *
+	 * @param buildings the buildings
+	 * @return the hash map
+	 */
 	public static HashMap<Integer, String> buildingGeneralInfo(ArrayList<Building> buildings){
 		HashMap<Integer, String> buildingDetails = new HashMap<Integer, String>();
 		
@@ -165,6 +186,12 @@ public class ViewFileTxt {
 		return buildingDetails;
 	}
 	
+	/**
+	 * Troll general info.
+	 *
+	 * @param trolls the trolls
+	 * @return the hash map
+	 */
 	public static HashMap<Integer, Integer> trollGeneralInfo(ArrayList<Troll> trolls){
 		HashMap<Integer, Integer> trollDetails = new HashMap<Integer, Integer>();
 		
@@ -180,6 +207,12 @@ public class ViewFileTxt {
 		return trollDetails;
 	}
 	
+	/**
+	 * Demon general info.
+	 *
+	 * @param demons the demons
+	 * @return the hash map
+	 */
 	public static HashMap<Integer, Integer> demonGeneralInfo(ArrayList<Demon> demons){
 		HashMap<Integer, Integer> demonDetails = new HashMap<Integer, Integer>();
 		
@@ -196,6 +229,11 @@ public class ViewFileTxt {
 		return demonDetails;
 	}
 	
+	/**
+	 * Player details min build dollar.
+	 *
+	 * @param playerId the player id
+	 */
 	public static void playerDetailsMinBuildDollar(Integer playerId){
 		System.out.printf("\n\t");
 		
@@ -205,6 +243,11 @@ public class ViewFileTxt {
 		
 	}
 	
+	/**
+	 * Player details city area cards.
+	 *
+	 * @param playerId the player id
+	 */
 	public static void playerDetailsCityAreaCards(Integer playerId){
 		ArrayList<CityAreaCard> cityAreaCardsByPlayerId = Game.GetCityAreaCardByPlayerID(playerId);
 		if(cityAreaCardsByPlayerId.size() > 0){
@@ -216,6 +259,11 @@ public class ViewFileTxt {
 		}
 	}
 	
+	/**
+	 * Player details green cards.
+	 *
+	 * @param playerId the player id
+	 */
 	public static void playerDetailsGreenCards(Integer playerId){
 		System.out.printf("\n\t");
 		System.out.printf("- Player Cards: ");
@@ -246,6 +294,12 @@ public class ViewFileTxt {
 		return currentAndNextPlayerTurnStr ;
 	}
 	
+	/**
+	 * Current player playing.
+	 *
+	 * @param players the players
+	 * @return the string
+	 */
 	public static String currentPlayerPlaying(ArrayList<Player> players){
 		String currentPlayerPlaying = "";
 		

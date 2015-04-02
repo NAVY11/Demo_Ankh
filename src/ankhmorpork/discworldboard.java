@@ -286,6 +286,7 @@ public class discworldboard extends Component {
 	 * Save game.
 	 *
 	 * @param objFileWriter the obj file writer
+	 * @param objPlayer the obj player
 	 * @throws IOException Signals that an I/O exception has occurred.
 	 * @throws JSONException the JSON exception
 	 */
@@ -304,7 +305,7 @@ public class discworldboard extends Component {
 	 * @return the game
 	 * @throws IOException Signals that an I/O exception has occurred.
 	 * @throws ParseException the parse exception
-	 * @throws JSONException 
+	 * @throws JSONException the JSON exception
 	 */
 	public void Loadgamefetch(FileReader objFileReader) throws IOException, ParseException, JSONException
 	{

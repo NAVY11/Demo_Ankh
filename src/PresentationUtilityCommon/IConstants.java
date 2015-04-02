@@ -12,24 +12,38 @@ public class IConstants {
 	//Constants(String) for Personality Cards
 	/** The Personality card1. */
 	public static String PersonalityCard1 = "Lord Vetinari";
+	
+	/** The Personality motive1. */
 	public static String PersonalityMotive1 = "With 2 Players: Areas under control 11; With 3 players Areas under control 10; With 4 players Areas under control 9";
 	/** The Personality card2. */
 	public static String PersonalityCard2 = "Lord Selachii";
+	
+	/** The Personality motive2. */
 	public static String PersonalityMotive2 = "With 2 Players: Areas under control 7; With 3 players Areas under control 5; With 4 players Areas under control 4";
 	/** The Personality card3. */
 	public static String PersonalityCard3 = "Lord Rust";
+	
+	/** The Personality motive3. */
 	public static String PersonalityMotive3 = "With 2 Players: Areas under control 7; With 3 players Areas under control 5; With 4 players Areas under control 4";
 	/** The Personality card4. */
 	public static String PersonalityCard4 = "Lord de Worde";
+	
+	/** The Personality motive4. */
 	public static String PersonalityMotive4 = "With 2 Players: Areas under control 7; With 3 players Areas under control 5; With 4 players Areas under control 4";
 	/** The Personality card5. */
 	public static String PersonalityCard5 = "Dragon King of Arms";
+	
+	/** The Personality motive5. */
 	public static String PersonalityMotive5 = "Trouble Markers more than 8 on the board";
 	/** The Personality card6. */
 	public static String PersonalityCard6 = "Chrysoprase";
+	
+	/** The Personality motive6. */
 	public static String PersonalityMotive6 = "Total property worth more than $50";
 	/** The Personality card7. */
 	public static String PersonalityCard7 = "Commander Vimes";
+	
+	/** The Personality motive7. */
 	public static String PersonalityMotive7 = "Cards ran out";
 	//Constants(String) for Area Cards
 	
@@ -421,73 +435,73 @@ public class IConstants {
 	/** The g48 str. */
 	public static String g48Str = "The Thieves' Guild";
 	
-	/** The e1 */
+	/**  The e1. */
 	public static Integer e1 = 1;
 	
 	/** The e1 str. */
 	public static String e1Str = "Fire";
 
-	/** The e2 */
+	/**  The e2. */
 	public static Integer e2 = 2;
 	
 	/** The e2 str. */
 	public static String e2Str = "Fog";
 	
-	/** The e3 */
+	/**  The e3. */
 	public static Integer e3 = 3;
 	
 	/** The e3 str. */
 	public static String e3Str = "Mysterious Murders";
 	
-	/** The e4 */
+	/**  The e4. */
 	public static Integer e4 = 4;
 	
 	/** The e4 str. */
 	public static String e4Str = "Riots";
 	
-	/** The e5 */
+	/**  The e5. */
 	public static Integer e5 = 5;
 	
 	/** The e5 str. */
 	public static String e5Str = "Subsidence";
 
-	/** The e6 */
+	/**  The e6. */
 	public static Integer e6 = 6;
 	
 	/** The e6 str. */
 	public static String e6Str = "Trolls";
 	
-	/** The e7 */
+	/**  The e7. */
 	public static Integer e7 = 7;
 	
 	/** The e7 str. */
 	public static String e7Str = "Bloody Stupid Johnson";
 	
-	/** The e8 */
+	/**  The e8. */
 	public static Integer e8 = 8;
 	
 	/** The e8 str. */
 	public static String e8Str = "Demons from the Dungeon Dimensions";
 	
-	/** The e9 */
+	/**  The e9. */
 	public static Integer e9 = 9;
 	
 	/** The e9 str. */
 	public static String e9Str = "The Dragon";
 
-	/** The e10 */
+	/**  The e10. */
 	public static Integer e10 = 10;
 	
 	/** The e10 str. */
 	public static String e10Str = "Earthquake";
 	
-	/** The e11 */
+	/**  The e11. */
 	public static Integer e11 = 11;
 	
 	/** The e11 str. */
 	public static String e11Str = "Explosion";
 	
-	/** The e12 */
+	/**  The e12. */
 	public static Integer e12 = 12;
 	
 	/** The e12 str. */

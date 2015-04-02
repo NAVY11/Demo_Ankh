@@ -10,8 +10,15 @@ import ankhmorpork.GameObjects.Player;
 import ankhmorpork.GameObjects.Troll;
 import ankhmorpork.GameObjects.Cards.CityAreaCard;
 
+// TODO: Auto-generated Javadoc
+/**
+ * The Class LordRustSelachiiWorde.
+ */
 public class LordRustSelachiiWorde implements WinningCondition {
 
+	/* (non-Javadoc)
+	 * @see winningCondition.WinningCondition#isWinner(int)
+	 */
 	@Override
 	public Boolean isWinner(int PlayerID) {
 		int numberOfPlayers = Game.lstPlayers.size();
@@ -26,6 +33,13 @@ public class LordRustSelachiiWorde implements WinningCondition {
 	   return Boolean.FALSE;
 	}
 	
+	/**
+	 * Controlled area.
+	 *
+	 * @param PlayerID the player id
+	 * @param controlledAreaChk the controlled area chk
+	 * @return true, if successful
+	 */
 	private boolean ControlledArea(int PlayerID,int controlledAreaChk)
 	{
 		int playerId = PlayerID;
