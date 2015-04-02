@@ -445,7 +445,7 @@ public class Player {
 						System.out.println("Minion of " + Game.GetPlayer(objMinion.getPlayer_id()).getPlayer_name() + " ");
 					}
 				}
-				System.out.print("Enter 'M' to assasinate a Minion");
+				System.out.println("Enter 'M' to assasinate a Minion");
 			}
 
 			if(!Trolls.isEmpty())
@@ -476,8 +476,8 @@ public class Player {
 			boolean Break = false;
 			while(true)
 			{
-				System.out.println("\n");
-				System.out.println("To assassinate Enter 'M' for Minion, 'D' for Demon, 'T' for Troll");
+//				System.out.println("\n");
+//				System.out.println("To assassinate Enter 'M' for Minion, 'D' for Demon, 'T' for Troll");
 				String input = br.readLine();
 				switch(input)
 				{
@@ -570,7 +570,7 @@ public class Player {
 							}
 						}
 						if(!minionSavedAndRemoved){
-							if(objMinion.getMinion_id().toString().equals(MinionID) )
+							if(objMinion.getPlayer_id().toString().equals(strPlayerID) )
 							{
 								for(Minion GameMinion : Game.lstMinions)
 								{
@@ -862,7 +862,7 @@ public class Player {
 		boolean success = false;
 		if(ActionID.equalsIgnoreCase("Scroll") || ActionID.equalsIgnoreCase(" Scroll") )
 		{
-			//CardID = "g20";
+			CardID = "g14";
 			//this.theFireBrigadeFunctionality();
 			//this.theZorgoTheRetroFunctionality();
 			//this.mrBentFunctionality(CardID);
@@ -1458,17 +1458,32 @@ public class Player {
 	public boolean theMrsCakeFunctionality()
 	{
 		//Read the scroll
-		boolean success = true;
-		String nameOfPersonalityCardsCommaSeparated = "";
-		for(PersonalityCard personalityCard : Game.lstPersonalityCard){
-			nameOfPersonalityCardsCommaSeparated = personalityCard.GetPersonalityName() + ",";
+		boolean success = true;		
+		System.out.println("Personality Card which are not being used are: ");
+		for(PersonalityCard objPC : Game.lstPersonalityCard)
+		{
+			if(objPC.getPlayerID()==0)
+			{
+				System.out.println(objPC.GetCardID()+" : "+objPC.GetPersonalityName());
+			}
 		}
-		if(nameOfPersonalityCardsCommaSeparated.endsWith(",")){
-			nameOfPersonalityCardsCommaSeparated = nameOfPersonalityCardsCommaSeparated.substring(0, nameOfPersonalityCardsCommaSeparated.length()-1);
-		}
-		System.out.println("Personality Card which are not being used are: " + nameOfPersonalityCardsCommaSeparated );
 		return success;
 	}
+	
+//	public boolean theMrsCakeFunctionality()
+//	{
+//		//Read the scroll
+//		boolean success = true;
+//		String nameOfPersonalityCardsCommaSeparated = "";
+//		for(PersonalityCard personalityCard : Game.lstPersonalityCard){
+//			nameOfPersonalityCardsCommaSeparated = personalityCard.GetPersonalityName() + ",";
+//		}
+//		if(nameOfPersonalityCardsCommaSeparated.endsWith(",")){
+//			nameOfPersonalityCardsCommaSeparated = nameOfPersonalityCardsCommaSeparated.substring(0, nameOfPersonalityCardsCommaSeparated.length()-1);
+//		}
+//		System.out.println("Personality Card which are not being used are: " + nameOfPersonalityCardsCommaSeparated );
+//		return success;
+//	}
 
 
 	// Same Functionality of Dr WhiteFace
