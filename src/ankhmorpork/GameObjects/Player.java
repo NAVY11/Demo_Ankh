@@ -542,7 +542,7 @@ public class Player {
 						ArrayList<GreenCard> greenCardPlayerObj = Game.GetGreenCardByPlayerID(playerObjOfMinion.getPlayer_id());
 						boolean minionSavedAndRemoved = false;
 						if(greenCardPlayerObj != null && greenCardPlayerObj.size() > 0){
-							ArrayList<Minion> minionByAreaId = Game.GetMinionsByAreaID(0); //getAreaId needed to make sure from where I have to remove the minion
+							ArrayList<Minion> minionByAreaId = Game.GetMinionsByAreaID(AreaID); //getAreaId needed to make sure from where I have to remove the minion
 							Minion minionObj = minionByAreaId.get(0);
 							for(GreenCard greenCard : greenCardPlayerObj){
 								if(greenCard.GetCardID().equals("g17") || greenCard.GetCardID().equals("g18")){
