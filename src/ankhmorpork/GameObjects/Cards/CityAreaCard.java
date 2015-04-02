@@ -336,7 +336,7 @@ public class CityAreaCard extends Cards{
 			{	
 				//System.out.println("You are allowed to place these minions which are not on board : " + placingAMinionStr);
 				String strAdjacentArea = Game.getAdjacentAreas(8);
-				strAdjacentArea += ",8";
+				strAdjacentArea += ",8,";
 				//String AreaList = Game.GetValidAreasToPlaceMinion(this.getPlayer_id());//"1,2,3,4,5,6,7,8,9,10,11,12";//Game.AreaWithNoMinion();
 				//System.out.println(AreaList);
 				//Game.DisplayAreas(AreaList);
@@ -423,7 +423,7 @@ public class CityAreaCard extends Cards{
 			{	
 				//System.out.println("You are allowed to place these minions which are not on board : " + placingAMinionStr);
 				String strAdjacentArea = Game.getAdjacentAreas(1);
-				strAdjacentArea += ",1";
+				strAdjacentArea += ",1,";
 				//String AreaList = Game.GetValidAreasToPlaceMinion(this.getPlayer_id());//"1,2,3,4,5,6,7,8,9,10,11,12";//Game.AreaWithNoMinion();
 				//System.out.println(AreaList);
 				//Game.DisplayAreas(AreaList);
@@ -532,6 +532,13 @@ public class CityAreaCard extends Cards{
 
 			}
 			Game.SetGreenCardIsPlayed(strGreenCardID, true);
+			ArrayList<GreenCard> greenCardList1 = Game.GetGreenCardByPlayerID(objPlayer.getPlayer_id());
+			for(GreenCard grnCard : greenCardList1)
+			{			
+				String ActionList = Game.GetGreenCardActions(grnCard.GetCardID());
+				strValidGreenCardList+=grnCard.GetCardID()+",";
+				System.out.printf("%-5s%-5s%-40s%-5s%-50s%-5s%-60s\n",grnCard.GetCardID() ,  " : " ,  grnCard.getName() , " : " , ActionList," : ","Scroll Action : "+grnCard.GetActionDescription());			
+			}
 			status = true;
 			System.out.println("Action Performed");
 		}
@@ -576,16 +583,18 @@ public class CityAreaCard extends Cards{
 			//int areaID = Integer.parseInt(br1.readLine());
 			String strhasnotroblemarker = "";
 			String strAdjacentArea = Game.getAdjacentAreas(7);
-			strAdjacentArea += ",7";
+			strAdjacentArea += ",7,";
 			String[] adjArea = strAdjacentArea.split(",");
+			strhasnotroblemarker +=",";
 			for(int i = 0; i<adjArea.length; i++)
 			{
 				if(!Game.AreaHasTroubleMarker(Integer.parseInt(adjArea[i])))
 				{
-					strhasnotroblemarker += ","+adjArea[i];
+					strhasnotroblemarker += adjArea[i]+",";
 				}
 			}
 			System.out.println("Enter a areaID in which you want place a troublemarker:");
+			System.out.println(strhasnotroblemarker);
 			Game.DisplayAreas(strhasnotroblemarker);
 			BufferedReader br2 = new BufferedReader(new InputStreamReader(System.in));
 			String adjacentAreaID = "";
@@ -594,7 +603,7 @@ public class CityAreaCard extends Cards{
 				adjacentAreaID = br2.readLine();
 				if(strhasnotroblemarker.contains(","+adjacentAreaID+","))
 				{
-					//status = true;
+					status = true;
 					break;
 				}
 				else
@@ -605,7 +614,7 @@ public class CityAreaCard extends Cards{
 			}
 			
 			objPlayer.PlaceATroubleMarkerInArea(Integer.parseInt(adjacentAreaID));														
-			System.out.println("Trouble Marker was placed in : "+PresentationUtility.getCityAreaCardNameById(Integer.parseInt(adjacentAreaID)));
+			System.out.println("Trouble Marker is placed in : "+PresentationUtility.getCityAreaCardNameById(Integer.parseInt(adjacentAreaID)));
 			//TroubleMaker objTroubleMaker = Game.GetTroubleMakerNotOnBoard();
 			//objTroubleMaker.setArea_id(adjacentAreaID);
 			status = true;
