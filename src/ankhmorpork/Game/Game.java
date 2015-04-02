@@ -1394,7 +1394,7 @@ public class Game {
 			int iCount2 =0;
 			int iCount3 =0;
 			int iCount4 =0;
-			if(AreaHasDemon(i))
+			if(!AreaHasDemon(i))
 			{
 				for(Minion objMinion : Game.lstMinions)
 				{
@@ -1426,7 +1426,8 @@ public class Game {
 				abc.add(iCount3);
 				abc.add(iCount4);
 				int maxCount = (int) Collections.max(abc);
-				abc.remove(0);
+				Collections.sort(abc);
+				abc.remove(abc.size()-1);
 				int maxCount2 = (int) Collections.max(abc);
 				if(maxCount>maxCount2)
 				{
